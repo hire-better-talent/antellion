@@ -1,0 +1,25 @@
+{
+  "name": "@antellion/jobs",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.81.0",
+    "@google/generative-ai": "^0.24.1",
+    "@antellion/core": "workspace:*",
+    "@antellion/db": "workspace:*",
+    "@antellion/prompts": "workspace:*",
+    "dotenv": "^17.3.1",
+    "openai": "^6.33.0"
+  },
+  "devDependencies": {
+    "@antellion/config": "workspace:*",
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}

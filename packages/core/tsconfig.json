@@ -1,0 +1,8 @@
+{
+  "extends": "@antellion/config/tsconfig.node.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "include": ["src", "src/**/*.test.ts"]
+}

@@ -1,0 +1,1564 @@
+{
+  "initialized": true,
+  "templateId": "wizard-built",
+  "profile": {
+    "name": "Jordan Ellison",
+    "currentTitle": "Director, Growth",
+    "location": "Munster, IN",
+    "email": "hireme.1t1bn@simplelogin.com",
+    "phone": "219.401.3991",
+    "yearsExperience": 15,
+    "executiveSummary": "Growth-focused sales leader with 15+ years driving revenue across SaaS, HR tech, and performance marketing. I combine deep consultative selling expertise with operational rigor to accelerate pipeline, expand account value, and build go-to-market strategies that deliver measurable ROI. Record-setting individual contributor turned cross-functional leader ready to scale sales organizations.",
+    "reportedComp": null,
+    "headline": "Director, Growth · 15+ Years"
+  },
+  "skills": [
+    {
+      "name": "Enterprise Sales",
+      "level": "Mastery",
+      "category": "skill",
+      "key": true,
+      "evidence": [
+        {
+          "description": "15+ years driving revenue across SaaS and HR tech",
+          "outcome": "Growth-focused sales leader with record-setting performance"
+        }
+      ],
+      "rarity": "rare",
+      "_marketKeep": true,
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Consultative Selling",
+      "level": "Mastery",
+      "category": "skill",
+      "key": true,
+      "evidence": [
+        {
+          "description": "Set company record for highest single-month revenue through consultative approach at CareerBuilder",
+          "outcome": "Record-setting individual contributor status"
+        }
+      ],
+      "rarity": "rare",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Revenue Growth",
+      "level": "Mastery",
+      "category": "skill",
+      "key": true,
+      "evidence": [
+        {
+          "description": "15+ years driving revenue across multiple industries",
+          "outcome": "Consistent revenue acceleration across roles"
+        }
+      ],
+      "rarity": "rare",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Account Expansion",
+      "level": "Expert",
+      "category": "skill",
+      "key": true,
+      "evidence": [
+        {
+          "description": "Drive expansion revenue through strategic upsell and cross-sell at Symphony Talent",
+          "outcome": "Growing enterprise account portfolio"
+        }
+      ],
+      "rarity": "rare",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Strategic Account Management",
+      "level": "Expert",
+      "category": "skill",
+      "key": true,
+      "evidence": [
+        {
+          "description": "Managed portfolio of strategic enterprise accounts at Phenom",
+          "outcome": "AI-driven talent experience platform growth"
+        },
+        {
+          "description": "Implemented systems and processes that improved team productivity",
+          "type": "outcome",
+          "source": "suggested-outcome",
+          "date": "2026-04-06"
+        },
+        {
+          "description": "Scaled department operations to support business growth",
+          "type": "outcome",
+          "source": "suggested-outcome",
+          "date": "2026-04-06"
+        }
+      ],
+      "rarity": "rare",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Go-to-Market Strategy",
+      "level": "Expert",
+      "category": "skill",
+      "key": true,
+      "evidence": [
+        {
+          "description": "Build go-to-market strategies that deliver measurable ROI",
+          "outcome": "Sales organization scaling readiness"
+        },
+        {
+          "description": "Drove cross-functional initiatives with measurable business impact",
+          "type": "outcome",
+          "source": "suggested-outcome",
+          "date": "2026-04-06"
+        },
+        {
+          "description": "Scaled department operations to support business growth",
+          "type": "outcome",
+          "source": "suggested-outcome",
+          "date": "2026-04-06"
+        }
+      ],
+      "rarity": "rare",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Sales Leadership",
+      "level": "Expert",
+      "category": "skill",
+      "key": true,
+      "evidence": [
+        {
+          "description": "Cross-functional leader ready to scale sales organizations",
+          "outcome": "Transition from individual contributor to leadership"
+        },
+        {
+          "description": "Drove cross-functional initiatives with measurable business impact",
+          "type": "outcome",
+          "source": "suggested-outcome",
+          "date": "2026-04-06"
+        },
+        {
+          "description": "Scaled department operations to support business growth",
+          "type": "outcome",
+          "source": "suggested-outcome",
+          "date": "2026-04-06"
+        }
+      ],
+      "rarity": "rare",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Pipeline Acceleration",
+      "level": "Expert",
+      "category": "skill",
+      "key": true,
+      "evidence": [
+        {
+          "description": "Accelerate pipeline through operational rigor",
+          "outcome": "Measurable revenue impact"
+        }
+      ],
+      "rarity": "rare",
+      "_marketKeep": true,
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Talent Intelligence",
+      "level": "Advanced",
+      "category": "skill",
+      "key": false,
+      "evidence": [
+        {
+          "description": "Work with AI-driven talent experience and recruitment marketing platforms",
+          "outcome": "Platform expertise across Phenom and Symphony Talent"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Performance Benchmarking",
+      "level": "Advanced",
+      "category": "skill",
+      "key": false,
+      "evidence": [
+        {
+          "description": "Conducted financial analysis and performance benchmarking at Phenom",
+          "outcome": "Strategic account optimization"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Financial Analysis",
+      "level": "Advanced",
+      "category": "skill",
+      "key": false,
+      "evidence": [
+        {
+          "description": "Conducted financial analysis and performance benchmarking",
+          "outcome": "Data-driven account decisions"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "P&L Management",
+      "level": "Advanced",
+      "category": "skill",
+      "key": false,
+      "evidence": [
+        {
+          "description": "P&L accountability for multi-vertical client portfolio at Grupo NGN",
+          "outcome": "30% YoY revenue growth"
+        },
+        {
+          "description": "Implemented systems and processes that improved team productivity",
+          "type": "outcome",
+          "source": "suggested-outcome",
+          "date": "2026-04-06"
+        },
+        {
+          "description": "Scaled department operations to support business growth",
+          "type": "outcome",
+          "source": "suggested-outcome",
+          "date": "2026-04-06"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Budget Optimization",
+      "level": "Advanced",
+      "category": "skill",
+      "key": false,
+      "evidence": [
+        {
+          "description": "Implemented budget optimization strategies at iProspect",
+          "outcome": "Cost efficiency across vendor partners"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Operational Strategy",
+      "level": "Advanced",
+      "category": "skill",
+      "key": false,
+      "evidence": [
+        {
+          "description": "Combine deep consultative selling expertise with operational rigor",
+          "outcome": "Accelerated pipeline and expanded account value"
+        },
+        {
+          "description": "Drove cross-functional initiatives with measurable business impact",
+          "type": "outcome",
+          "source": "suggested-outcome",
+          "date": "2026-04-06"
+        },
+        {
+          "description": "Scaled department operations to support business growth",
+          "type": "outcome",
+          "source": "suggested-outcome",
+          "date": "2026-04-06"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Vendor Management",
+      "level": "Advanced",
+      "category": "skill",
+      "key": false,
+      "evidence": [
+        {
+          "description": "Managed call center operations across multiple vendor partners",
+          "outcome": "Established performance standards"
+        },
+        {
+          "description": "Implemented systems and processes that improved team productivity",
+          "type": "outcome",
+          "source": "suggested-outcome",
+          "date": "2026-04-06"
+        },
+        {
+          "description": "Scaled department operations to support business growth",
+          "type": "outcome",
+          "source": "suggested-outcome",
+          "date": "2026-04-06"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Strategic Upselling",
+      "level": "Expert",
+      "category": "skill",
+      "key": false,
+      "evidence": [
+        {
+          "description": "Identified and maximized upsell opportunities within existing accounts",
+          "outcome": "Account value expansion at CareerBuilder"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Cross-Functional Leadership",
+      "level": "Expert",
+      "category": "ability",
+      "key": false,
+      "evidence": [
+        {
+          "description": "Cross-functional leader integrating sales, operations, and strategy",
+          "outcome": "Organizational scaling capability"
+        },
+        {
+          "description": "Drove cross-functional initiatives with measurable business impact",
+          "type": "outcome",
+          "source": "suggested-outcome",
+          "date": "2026-04-06"
+        },
+        {
+          "description": "Scaled department operations to support business growth",
+          "type": "outcome",
+          "source": "suggested-outcome",
+          "date": "2026-04-06"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Account Portfolio Management",
+      "level": "Expert",
+      "category": "skill",
+      "key": false,
+      "evidence": [
+        {
+          "description": "Own and grow enterprise account portfolio at Symphony Talent",
+          "outcome": "Strategic revenue growth"
+        },
+        {
+          "description": "Implemented systems and processes that improved team productivity",
+          "type": "outcome",
+          "source": "suggested-outcome",
+          "date": "2026-04-06"
+        },
+        {
+          "description": "Scaled department operations to support business growth",
+          "type": "outcome",
+          "source": "suggested-outcome",
+          "date": "2026-04-06"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "SaaS Sales",
+      "level": "Mastery",
+      "category": "skill",
+      "key": true,
+      "evidence": [
+        {
+          "description": "15+ years driving revenue across SaaS",
+          "outcome": "Deep SaaS domain expertise"
+        }
+      ],
+      "rarity": "uncommon",
+      "_marketKeep": true,
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "HR Technology Sales",
+      "level": "Expert",
+      "category": "skill",
+      "key": false,
+      "evidence": [
+        {
+          "description": "15+ years across HR tech and talent platforms",
+          "outcome": "Expertise across Phenom and Symphony Talent"
+        },
+        {
+          "description": "Implemented systems and processes that improved team productivity",
+          "type": "outcome",
+          "source": "suggested-outcome",
+          "date": "2026-04-06"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Performance Marketing",
+      "level": "Expert",
+      "category": "skill",
+      "key": false,
+      "evidence": [
+        {
+          "description": "15+ years in performance marketing domain",
+          "outcome": "ROI-focused revenue strategies"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Enterprise Account Strategy",
+      "level": "Expert",
+      "category": "skill",
+      "key": false,
+      "evidence": [
+        {
+          "description": "Managed strategic enterprise accounts with consultative approach",
+          "outcome": "Record revenue and growth targets"
+        },
+        {
+          "description": "Drove cross-functional initiatives with measurable business impact",
+          "type": "outcome",
+          "source": "suggested-outcome",
+          "date": "2026-04-06"
+        },
+        {
+          "description": "Scaled department operations to support business growth",
+          "type": "outcome",
+          "source": "suggested-outcome",
+          "date": "2026-04-06"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Sales Negotiation",
+      "level": "Expert",
+      "category": "skill",
+      "key": false,
+      "evidence": [
+        {
+          "description": "Consultative selling with enterprise clients and upsell maximization",
+          "outcome": "Record-setting revenue performance"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Client Relationship Management",
+      "level": "Expert",
+      "category": "skill",
+      "key": false,
+      "evidence": [
+        {
+          "description": "Managed global account portfolio and strategic enterprise relationships",
+          "outcome": "Account retention and expansion"
+        },
+        {
+          "description": "Implemented systems and processes that improved team productivity",
+          "type": "outcome",
+          "source": "suggested-outcome",
+          "date": "2026-04-06"
+        },
+        {
+          "description": "Scaled department operations to support business growth",
+          "type": "outcome",
+          "source": "suggested-outcome",
+          "date": "2026-04-06"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Revenue Forecasting",
+      "level": "Advanced",
+      "category": "skill",
+      "key": false,
+      "evidence": [
+        {
+          "description": "Financial analysis and performance benchmarking",
+          "outcome": "Strategic planning capability"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Sales Process Optimization",
+      "level": "Advanced",
+      "category": "skill",
+      "key": false,
+      "evidence": [
+        {
+          "description": "Consultative selling approach combined with operational rigor",
+          "outcome": "Pipeline acceleration and ROI delivery"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Customer Needs Assessment",
+      "level": "Expert",
+      "category": "skill",
+      "key": false,
+      "evidence": [
+        {
+          "description": "Consultative selling expertise across enterprise accounts",
+          "outcome": "Identified and maximized opportunities"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Market Analysis",
+      "level": "Advanced",
+      "category": "skill",
+      "key": false,
+      "evidence": [
+        {
+          "description": "Performance benchmarking and strategic account evaluation",
+          "outcome": "Data-driven strategy development"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Organizational Development",
+      "level": "Advanced",
+      "category": "skill",
+      "key": false,
+      "evidence": [
+        {
+          "description": "Ready to scale sales organizations",
+          "outcome": "Leadership capability for team expansion"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Strategic Planning",
+      "level": "Expert",
+      "category": "ability",
+      "key": false,
+      "evidence": [
+        {
+          "description": "Build go-to-market strategies with measurable ROI",
+          "outcome": "Enterprise sales organization scaling"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Results-Driven Execution",
+      "level": "Mastery",
+      "category": "workstyle",
+      "key": false,
+      "evidence": [
+        {
+          "description": "15+ years consistently delivering measured ROI",
+          "outcome": "Record-setting performance across roles"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Data-Driven Decision Making",
+      "level": "Expert",
+      "category": "ability",
+      "key": true,
+      "evidence": [
+        {
+          "description": "Financial analysis and performance benchmarking inform strategy",
+          "outcome": "Measurable business outcomes"
+        }
+      ],
+      "rarity": "uncommon",
+      "_marketKeep": true,
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Consultative Problem Solving",
+      "level": "Mastery",
+      "category": "ability",
+      "key": false,
+      "evidence": [
+        {
+          "description": "Deep consultative selling expertise combined with operational rigor",
+          "outcome": "Complex enterprise account solutions"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Relationship Building",
+      "level": "Mastery",
+      "category": "workstyle",
+      "key": false,
+      "evidence": [
+        {
+          "description": "15+ years managing strategic enterprise accounts and client portfolios",
+          "outcome": "Record revenue from established relationships"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Accountability",
+      "level": "Mastery",
+      "category": "workstyle",
+      "key": false,
+      "evidence": [
+        {
+          "description": "P&L accountability with 30% YoY revenue growth delivered",
+          "outcome": "Ownership mentality across roles"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Analytical Thinking",
+      "level": "Expert",
+      "category": "ability",
+      "key": false,
+      "evidence": [
+        {
+          "description": "Financial analysis, performance benchmarking, and workflow optimization",
+          "outcome": "Strategic and operational improvements"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Scalability Mindset",
+      "level": "Expert",
+      "category": "workstyle",
+      "key": false,
+      "evidence": [
+        {
+          "description": "Record-setting individual contributor ready to scale organizations",
+          "outcome": "From IC to leader ready for team building"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Multi-Vendor Coordination",
+      "level": "Advanced",
+      "category": "skill",
+      "key": false,
+      "evidence": [
+        {
+          "description": "Managed operations across multiple vendor partners with established standards",
+          "outcome": "Performance consistency and budget optimization"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Operational Excellence",
+      "level": "Expert",
+      "category": "ability",
+      "key": false,
+      "evidence": [
+        {
+          "description": "End-to-end call center operations with 30% YoY growth",
+          "outcome": "Scalable operational frameworks"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "ROI Optimization",
+      "level": "Expert",
+      "category": "skill",
+      "key": false,
+      "evidence": [
+        {
+          "description": "Build strategies that deliver measurable ROI",
+          "outcome": "Consistent revenue acceleration"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Talent Acquisition Strategy",
+      "level": "Advanced",
+      "category": "skill",
+      "key": false,
+      "evidence": [
+        {
+          "description": "Work with AI-driven talent experience platforms",
+          "outcome": "Recruitment marketing platform expertise"
+        },
+        {
+          "description": "Drove cross-functional initiatives with measurable business impact",
+          "type": "outcome",
+          "source": "suggested-outcome",
+          "date": "2026-04-06"
+        },
+        {
+          "description": "Scaled department operations to support business growth",
+          "type": "outcome",
+          "source": "suggested-outcome",
+          "date": "2026-04-06"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "AI-Driven Sales Tools",
+      "level": "Advanced",
+      "category": "skill",
+      "key": false,
+      "evidence": [
+        {
+          "description": "Experience with AI-driven talent experience platforms at Phenom",
+          "outcome": "Technology-enhanced sales capability"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Competitive Positioning",
+      "level": "Advanced",
+      "category": "skill",
+      "key": false,
+      "evidence": [
+        {
+          "description": "Performance benchmarking and strategic account analysis",
+          "outcome": "Market differentiation strategies"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Business Acumen",
+      "level": "Expert",
+      "category": "ability",
+      "key": false,
+      "evidence": [
+        {
+          "description": "15+ years driving revenue with P&L accountability",
+          "outcome": "Comprehensive business understanding"
+        }
+      ],
+      "rarity": "uncommon",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "onetId": null,
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Active Listening",
+      "level": "Advanced",
+      "category": "skill",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "key": false,
+      "evidence": [],
+      "onetId": "2.A.1.b",
+      "sources": [
+        "onet-enrichment:2026-04-06"
+      ],
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Reading Comprehension",
+      "level": "Advanced",
+      "category": "skill",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "key": false,
+      "evidence": [],
+      "onetId": "2.A.1.a",
+      "sources": [
+        "onet-enrichment:2026-04-06"
+      ],
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Speaking",
+      "level": "Advanced",
+      "category": "skill",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "key": false,
+      "evidence": [],
+      "onetId": "2.A.1.d",
+      "sources": [
+        "onet-enrichment:2026-04-06"
+      ],
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Critical Thinking",
+      "level": "Advanced",
+      "category": "skill",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "key": false,
+      "evidence": [],
+      "onetId": "2.A.2.a",
+      "sources": [
+        "onet-enrichment:2026-04-06"
+      ],
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Near Vision",
+      "level": "Advanced",
+      "category": "ability",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "key": false,
+      "evidence": [],
+      "onetId": "1.A.4.a.1",
+      "sources": [
+        "onet-enrichment:2026-04-06"
+      ],
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Far Vision",
+      "level": "Advanced",
+      "category": "ability",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "key": false,
+      "evidence": [],
+      "onetId": "1.A.4.a.2",
+      "sources": [
+        "onet-enrichment:2026-04-06"
+      ],
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Time Management",
+      "level": "Advanced",
+      "category": "skill",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "key": false,
+      "evidence": [
+        {
+          "description": "Implemented systems and processes that improved team productivity",
+          "type": "outcome",
+          "source": "suggested-outcome",
+          "date": "2026-04-06"
+        },
+        {
+          "description": "Scaled department operations to support business growth",
+          "type": "outcome",
+          "source": "suggested-outcome",
+          "date": "2026-04-06"
+        }
+      ],
+      "onetId": "2.B.5.a",
+      "sources": [
+        "onet-enrichment:2026-04-06"
+      ],
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Active Learning",
+      "level": "Proficient",
+      "category": "skill",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "key": false,
+      "evidence": [],
+      "onetId": "2.A.2.b",
+      "sources": [
+        "onet-enrichment:2026-04-06"
+      ],
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Learning Strategies",
+      "level": "Proficient",
+      "category": "skill",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "key": false,
+      "evidence": [],
+      "onetId": "2.A.2.c",
+      "sources": [
+        "onet-enrichment:2026-04-06"
+      ],
+      "endorsements": 0,
+      "endorsementBoosted": false
+    },
+    {
+      "name": "Persuasion",
+      "level": "Proficient",
+      "category": "skill",
+      "roles": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "key": false,
+      "evidence": [],
+      "onetId": "2.B.1.c",
+      "sources": [
+        "onet-enrichment:2026-04-06"
+      ],
+      "endorsements": 0,
+      "endorsementBoosted": false
+    }
+  ],
+  "roles": [
+    {
+      "id": "r1",
+      "name": "Director, Growth",
+      "company": "Symphony Talent",
+      "years": "2024-Present",
+      "progression": null,
+      "totalYears": null,
+      "color": "var(--c-orange)"
+    },
+    {
+      "id": "r2",
+      "name": "Global Account Manager",
+      "company": "Phenom",
+      "years": "2021-2024",
+      "progression": null,
+      "totalYears": null,
+      "color": "var(--c-orange)"
+    },
+    {
+      "id": "r3",
+      "name": "Senior Associate",
+      "company": "iProspect",
+      "years": "2020-2021",
+      "progression": null,
+      "totalYears": null,
+      "color": "var(--c-purple)"
+    },
+    {
+      "id": "r4",
+      "name": "Operations Manager",
+      "company": "Grupo NGN",
+      "years": "2011-2020",
+      "progression": null,
+      "totalYears": null,
+      "color": "var(--success)"
+    },
+    {
+      "id": "r5",
+      "name": "Account Executive",
+      "company": "CareerBuilder",
+      "years": "2010-2011",
+      "progression": null,
+      "totalYears": null,
+      "color": "var(--accent)"
+    }
+  ],
+  "values": [
+    {
+      "name": "Consultative Excellence",
+      "description": "Built career on translating complex platform capabilities into actionable business strategies for Fortune 500 clients, converting transactional relationships into long-term strategic partnerships.",
+      "selected": true
+    },
+    {
+      "name": "Operational Rigor",
+      "description": "Demonstrated across 9 years managing P&L and scaling operations at Grupo NGN, driving 30% YoY revenue growth through process optimization and eliminating operational bottlenecks.",
+      "selected": true
+    },
+    {
+      "name": "Revenue Acceleration",
+      "description": "Consistently exceeded expansion targets at Phenom and set company sales records at CareerBuilder through data-driven pipeline acceleration and strategic account expansion.",
+      "selected": true
+    },
+    {
+      "name": "Cross-Functional Collaboration",
+      "description": "Partner effectively with product, delivery, and client success teams to execute account growth plans and surface whitespace opportunities, bridging client needs with internal capabilities.",
+      "selected": true
+    },
+    {
+      "name": "SaaS & HR Tech Expertise",
+      "description": "Deep 15+ year background in enterprise SaaS selling, with specialized focus on HR tech, talent acquisition, and recruitment marketing platforms serving Fortune 500 clients.",
+      "selected": true
+    },
+    {
+      "name": "Strategic Leadership",
+      "description": "Transitioned from record-setting individual contributor to cross-functional leader, ready to scale sales organizations and mentor teams toward sustainable growth.",
+      "selected": true
+    }
+  ],
+  "purpose": "I'm driven to lead growth organizations that combine consultative selling with operational excellence to deliver measurable business impact. With 15+ years scaling revenue across SaaS and HR tech, I thrive on building strategic client relationships with Fortune 500 leaders, identifying untapped opportunities within portfolios, and mentoring teams to exceed ambitious targets. I'm ready to apply my enterprise sales expertise and cross-functional leadership to scale a growing organization.",
+  "workHistory": [
+    {
+      "title": "Director, Growth",
+      "company": "Symphony Talent",
+      "startDate": "Jun 2024",
+      "endDate": "Present",
+      "description": "Own and grow enterprise account portfolio for recruitment marketing platform. Drive expansion revenue through strategic upsell and cross-sell of employer branding, programmatic media, and AI-powered talent technology. Partner cross-functionally with product, delivery, and client success to execute account growth plans and surface whitespace opportunities within existing client base."
+    },
+    {
+      "title": "Global Account Manager",
+      "company": "Phenom",
+      "startDate": "Apr 2021",
+      "endDate": "May 2024",
+      "description": "Managed portfolio of strategic enterprise accounts for AI-driven talent experience platform. Conducted financial analysis and performance benchmarking to identify upsell and cross-sell opportunities, consistently exceeding annual expansion revenue targets. Acted as trusted advisor to senior HR and TA stakeholders, translating platform capabilities into actionable workforce strategies."
+    },
+    {
+      "title": "Senior Associate",
+      "company": "iProspect",
+      "startDate": "Aug 2020",
+      "endDate": "Apr 2021",
+      "description": "Managed call center operations across multiple vendor partners. Established cross-vendor performance standards and implemented budget optimization strategies to improve program ROI and maximize account value."
+    },
+    {
+      "title": "Operations Manager",
+      "company": "Grupo NGN",
+      "startDate": "Oct 2011",
+      "endDate": "Aug 2020",
+      "description": "Ran end-to-end call center operations for multi-vertical client portfolio with P&L accountability. Drove 30% YoY revenue growth through workflow automation and process redesign. Increased order conversion 4% through skills-based routing while reducing costs. Implemented gamification and callback systems that improved agent ROI and customer experience."
+    },
+    {
+      "title": "Account Executive",
+      "company": "CareerBuilder",
+      "startDate": "Oct 2010",
+      "endDate": "Sep 2011",
+      "description": "Set company record for highest single-month revenue through consultative selling approach. Identified and maximized upsell opportunities within existing accounts to strengthen positioning and drive portfolio growth."
+    }
+  ],
+  "pastRolesSummary": "",
+  "companyTenures": [],
+  "education": [
+    {
+      "school": "Indiana University Bloomington",
+      "degree": "B.S.",
+      "field": "Economics",
+      "years": "2008"
+    }
+  ],
+  "certifications": [],
+  "verifications": [],
+  "linkedinContent": {
+    "endorsements": {},
+    "recommendations": [],
+    "volunteering": [],
+    "honors": [],
+    "causes": [],
+    "organizations": [],
+    "articles": [],
+    "posts": [],
+    "learning": [],
+    "networkSize": 0
+  },
+  "importStats": {},
+  "growthSkills": [
+    {
+      "name": "Product-Market Fit Strategy",
+      "rationale": "Growth directors increasingly own PMF validation; this gap is critical as 58% of growth director roles now require product strategy ownership.",
+      "estimatedValueAdd": 2000,
+      "valueAddPct": 6,
+      "dateAdded": "2026-04-06",
+      "source": "market-intel",
+      "sourceRole": "Director, Growth",
+      "sourceIndustry": ""
+    },
+    {
+      "name": "Pricing Strategy & Packaging",
+      "rationale": "Monetization strategy is increasingly a growth director responsibility; only 12% of candidates possess this and it commands 4-6% salary premium.",
+      "estimatedValueAdd": 1000,
+      "valueAddPct": 4,
+      "dateAdded": "2026-04-06",
+      "source": "market-intel",
+      "sourceRole": "Director, Growth",
+      "sourceIndustry": ""
+    },
+    {
+      "name": "AI/ML-Driven Customer Intelligence",
+      "rationale": "Predictive analytics and AI-enabled insights are now expected in 71% of growth director postings; notable absence given data-driven positioning.",
+      "estimatedValueAdd": 2000,
+      "valueAddPct": 7,
+      "dateAdded": "2026-04-06",
+      "source": "market-intel",
+      "sourceRole": "Director, Growth",
+      "sourceIndustry": ""
+    }
+  ],
+  "preferences": {
+    "seniorityLevel": "Senior",
+    "minimumMatchScore": 60,
+    "minimumSkillMatches": 3
+  },
+  "applications": []
+}

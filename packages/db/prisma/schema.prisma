@@ -1,0 +1,608 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Enums ──────────────────────────────────────────────────
+
+enum DecisionStage {
+  DISCOVERY
+  CONSIDERATION
+  EVALUATION
+  COMMITMENT
+}
+
+enum QAStatus {
+  PENDING
+  PASS
+  FAIL
+  CONDITIONAL_PASS
+}
+
+enum QACheckOutcome {
+  PASS
+  FAIL
+  WARNING
+  SKIPPED
+}
+
+enum LLMProvider {
+  OPENAI
+  ANTHROPIC
+  GOOGLE
+  MANUAL
+}
+
+enum EvidenceStatus {
+  DRAFT
+  APPROVED
+  SUPERSEDED
+  REJECTED
+}
+
+enum ScanResultStatus {
+  CAPTURED
+  NEEDS_REVIEW
+  APPROVED
+  REJECTED
+}
+
+// ─── Tenant & Auth ──────────────────────────────────────────
+
+model Organization {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  users   User[]
+  clients Client[]
+
+  @@map("organizations")
+}
+
+model User {
+  id             String   @id @default(cuid())
+  organizationId String
+  email          String   @unique
+  name           String
+  role           UserRole @default(MEMBER)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization     Organization   @relation(fields: [organizationId], references: [id])
+  scanRuns         ScanRun[]      @relation("TriggeredBy")
+  reports          Report[]       @relation("GeneratedBy")
+  approvedEvidence ScanEvidence[] @relation("EvidenceApprovedBy")
+
+  @@index([organizationId])
+  @@map("users")
+}
+
+enum UserRole {
+  OWNER
+  ADMIN
+  MEMBER
+  VIEWER
+}
+
+// ─── Client & Competitors ───────────────────────────────────
+
+model Client {
+  id             String   @id @default(cuid())
+  organizationId String
+  name           String
+  domain         String
+  industry       String?
+  description    String?  @db.Text
+  nicheKeywords  String?  @db.Text
+  logoUrl        String?
+  careerUrl      String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  // ── Company profile (enterprise context) ──
+  employeeCount       Int?
+  headquarters        String?
+  additionalLocations String? @db.Text
+  publiclyTraded      Boolean @default(false)
+  revenueScale        String? // "startup", "growth", "mid-market", "enterprise", "fortune500"
+  knownFor            String? @db.Text
+
+  organization  Organization         @relation(fields: [organizationId], references: [id])
+  competitors   Competitor[]
+  roleProfiles  RoleProfile[]
+  queryClusters QueryCluster[]
+  scanRuns      ScanRun[]
+  contentAssets ContentAsset[]
+  reports       Report[]
+  baselines     AssessmentBaseline[]
+
+  @@unique([organizationId, domain])
+  @@index([organizationId])
+  @@map("clients")
+}
+
+model Competitor {
+  id          String   @id @default(cuid())
+  clientId    String
+  name        String
+  domain      String
+  industry    String?
+  description String?  @db.Text
+  careerUrl   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  client      Client       @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  scanResults ScanResult[]
+
+  @@unique([clientId, domain])
+  @@index([clientId])
+  @@map("competitors")
+}
+
+// ─── Roles & Queries ────────────────────────────────────────
+
+model RoleProfile {
+  id          String   @id @default(cuid())
+  clientId    String
+  title       String
+  department  String?
+  seniority   String?
+  description String?  @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  client        Client         @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  queryClusters QueryCluster[]
+
+  @@index([clientId])
+  @@map("role_profiles")
+}
+
+model QueryCluster {
+  id            String         @id @default(cuid())
+  clientId      String
+  roleProfileId String?
+  name          String
+  intent        String?
+  description   String?        @db.Text
+  stage         DecisionStage?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  client      Client       @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  roleProfile RoleProfile? @relation(fields: [roleProfileId], references: [id], onDelete: SetNull)
+  queries     Query[]
+
+  @@index([clientId])
+  @@index([clientId, stage])
+  @@index([roleProfileId])
+  @@map("query_clusters")
+}
+
+model Query {
+  id             String         @id @default(cuid())
+  queryClusterId String
+  text           String
+  intent         String?
+  isActive       Boolean        @default(true)
+  stage          DecisionStage?
+  source         String? // "template" | "llm" — null for legacy queries
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  queryCluster QueryCluster @relation(fields: [queryClusterId], references: [id], onDelete: Cascade)
+  scanResults  ScanResult[]
+
+  @@index([queryClusterId])
+  @@map("queries")
+}
+
+// ─── Scans ──────────────────────────────────────────────────
+
+model ScanRun {
+  id              String        @id @default(cuid())
+  clientId        String
+  triggeredById   String?
+  parentScanRunId String?
+  status          ScanRunStatus @default(PENDING)
+  model           String?
+  queryDepth      String?
+  focusArea       String?
+  queryCount      Int           @default(0)
+  resultCount     Int           @default(0)
+  queryScope      Json?
+  startedAt       DateTime?
+  completedAt     DateTime?
+  errorMessage    String?       @db.Text
+  metadata        Json?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  client          Client       @relation(fields: [clientId], references: [id])
+  triggeredBy     User?        @relation("TriggeredBy", fields: [triggeredById], references: [id], onDelete: SetNull)
+  parentScan      ScanRun?     @relation("ValidationScans", fields: [parentScanRunId], references: [id])
+  validationScans ScanRun[]    @relation("ValidationScans")
+  results         ScanResult[]
+
+  @@index([clientId])
+  @@index([status])
+  @@index([parentScanRunId])
+  @@map("scan_runs")
+}
+
+enum ScanRunStatus {
+  PENDING
+  RUNNING
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+model ScanResult {
+  id              String           @id @default(cuid())
+  scanRunId       String
+  queryId         String
+  competitorId    String?
+  response        String           @db.Text
+  visibilityScore Float?
+  sentimentScore  Float?
+  relevanceScore  Float?
+  ranking         Int?
+  mentioned       Boolean          @default(false)
+  tokenCount      Int?
+  latencyMs       Int?
+  metadata        Json?
+  status          ScanResultStatus @default(CAPTURED)
+  createdAt       DateTime         @default(now())
+
+  scanRun    ScanRun          @relation(fields: [scanRunId], references: [id], onDelete: Cascade)
+  query      Query            @relation(fields: [queryId], references: [id])
+  competitor Competitor?      @relation(fields: [competitorId], references: [id], onDelete: SetNull)
+  citations  CitationSource[]
+  evidence   ScanEvidence[]
+
+  @@unique([scanRunId, queryId])
+  @@index([scanRunId])
+  @@index([queryId])
+  @@index([competitorId])
+  @@index([status])
+  @@map("scan_results")
+}
+
+model CitationSource {
+  id           String   @id @default(cuid())
+  scanResultId String
+  url          String
+  title        String?
+  domain       String?
+  sourceType   String?
+  createdAt    DateTime @default(now())
+
+  scanResult ScanResult @relation(fields: [scanResultId], references: [id], onDelete: Cascade)
+
+  @@index([scanResultId])
+  @@map("citation_sources")
+}
+
+model ScanEvidence {
+  id           String @id @default(cuid())
+  scanResultId String
+  version      Int    @default(1)
+
+  // ── Provenance: what was asked ──
+  promptText    String  @db.Text
+  promptVersion String?
+
+  // ── Provenance: who answered ──
+  provider     LLMProvider
+  modelName    String
+  modelVersion String?
+  temperature  Float?
+  topP         Float?
+  maxTokens    Int?
+  systemPrompt String?     @db.Text
+  parameters   Json?
+
+  // ── Raw output ──
+  rawResponse   String @db.Text
+  rawTokenCount Int?
+  promptTokens  Int?
+  latencyMs     Int?
+
+  // ── Execution ──
+  executedAt DateTime
+
+  // ── Review state ──
+  status       EvidenceStatus @default(DRAFT)
+  approvedAt   DateTime?
+  approvedById String?
+
+  // ── Analyst overlay ──
+  analystNotes      String? @db.Text
+  confidenceScore   Float?
+  analystConfidence Float?
+
+  // ── Extracted structured data ──
+  extractedSources Json?
+
+  // ── Timestamps ──
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // ── Relations ──
+  scanResult  ScanResult       @relation(fields: [scanResultId], references: [id], onDelete: Cascade)
+  approvedBy  User?            @relation("EvidenceApprovedBy", fields: [approvedById], references: [id], onDelete: SetNull)
+  reportLinks ReportEvidence[]
+
+  @@unique([scanResultId, version])
+  @@index([scanResultId])
+  @@index([status])
+  @@index([provider, modelName])
+  @@index([executedAt])
+  @@map("scan_evidence")
+}
+
+// ─── Content & Reports ──────────────────────────────────────
+
+model ContentAsset {
+  id          String           @id @default(cuid())
+  clientId    String
+  url         String
+  title       String?
+  assetType   ContentAssetType
+  content     String?          @db.Text
+  lastCrawled DateTime?
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  client Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@unique([clientId, url])
+  @@index([clientId])
+  @@map("content_assets")
+}
+
+enum ContentAssetType {
+  CAREERS_PAGE
+  JOB_POSTING
+  BLOG_POST
+  PRESS_RELEASE
+  SOCIAL_PROFILE
+  REVIEW_SITE
+  OTHER
+}
+
+model Report {
+  id            String       @id @default(cuid())
+  clientId      String
+  generatedById String?
+  title         String
+  status        ReportStatus @default(DRAFT)
+  summary       String?      @db.Text
+  generatedAt   DateTime?
+  publishedAt   DateTime?
+  metadata      Json?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  client          Client              @relation(fields: [clientId], references: [id])
+  generatedBy     User?               @relation("GeneratedBy", fields: [generatedById], references: [id], onDelete: SetNull)
+  recommendations Recommendation[]
+  evidenceLinks   ReportEvidence[]
+  qa              ReportQA?
+  baseline        AssessmentBaseline?
+
+  @@index([clientId])
+  @@index([status])
+  @@map("reports")
+}
+
+enum ReportStatus {
+  DRAFT
+  GENERATING
+  REVIEW
+  PUBLISHED
+  ARCHIVED
+}
+
+model Recommendation {
+  id          String                 @id @default(cuid())
+  reportId    String
+  category    RecommendationCategory
+  priority    RecommendationPriority @default(MEDIUM)
+  title       String
+  description String                 @db.Text
+  impact      String?                @db.Text
+  effort      String?
+  status      RecommendationStatus   @default(OPEN)
+  sortOrder   Int                    @default(0)
+  createdAt   DateTime               @default(now())
+  updatedAt   DateTime               @updatedAt
+
+  report Report @relation(fields: [reportId], references: [id], onDelete: Cascade)
+
+  @@index([reportId])
+  @@map("recommendations")
+}
+
+enum RecommendationCategory {
+  CONTENT_GAP
+  COMPETITIVE_POSITIONING
+  EMPLOYER_BRAND
+  TECHNICAL_REPUTATION
+  COMPENSATION_PERCEPTION
+  CULTURE_SIGNAL
+  DIVERSITY_INCLUSION
+  OTHER
+}
+
+enum RecommendationPriority {
+  CRITICAL
+  HIGH
+  MEDIUM
+  LOW
+}
+
+enum RecommendationStatus {
+  OPEN
+  IN_PROGRESS
+  COMPLETED
+  DISMISSED
+}
+
+model ReportEvidence {
+  id             String @id @default(cuid())
+  reportId       String
+  scanEvidenceId String
+
+  // ── Traceability ──
+  sectionHeading String? @db.VarChar(255)
+  claimText      String? @db.Text
+  evidenceRole   String?
+  sortOrder      Int     @default(0)
+
+  createdAt DateTime @default(now())
+
+  // ── Relations ──
+  report       Report       @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  scanEvidence ScanEvidence @relation(fields: [scanEvidenceId], references: [id], onDelete: Restrict)
+
+  @@unique([reportId, scanEvidenceId, sectionHeading])
+  @@index([reportId])
+  @@index([scanEvidenceId])
+  @@map("report_evidence")
+}
+
+// ─── QA ─────────────────────────────────────────────────────
+
+model ReportQA {
+  id             String    @id @default(cuid())
+  reportId       String    @unique
+  status         QAStatus  @default(PENDING)
+  runCompletedAt DateTime?
+  signedOffById  String?
+  signedOffAt    DateTime?
+  confidence     String? // LOW, MEDIUM, HIGH
+  signoffNote    String?   @db.Text
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  report Report          @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  checks QACheckResult[]
+
+  @@index([reportId])
+  @@index([status])
+  @@map("report_qa")
+}
+
+model QACheckResult {
+  id         String         @id @default(cuid())
+  reportQAId String
+  checkKey   String
+  category   String
+  severity   String // BLOCKING, WARNING, INFO
+  outcome    QACheckOutcome
+  detail     String?        @db.Text
+  expected   String?        @db.Text
+  actual     String?        @db.Text
+  createdAt  DateTime       @default(now())
+
+  reportQA ReportQA @relation(fields: [reportQAId], references: [id], onDelete: Cascade)
+
+  @@index([reportQAId])
+  @@map("qa_check_results")
+}
+
+// ─── Leads ──────────────────────────────────────────────────
+
+model Lead {
+  id            String   @id @default(cuid())
+  companyName   String
+  companyDomain String
+  contactName   String
+  contactEmail  String
+  contactTitle  String?
+  topCompetitor String?
+  primaryRole   String?
+  source        String   @default("landing_page") // "landing_page", "linkedin", "referral"
+  status        String   @default("NEW") // "NEW", "CONTACTED", "SNAPSHOT_SENT", "CONVERTED", "DECLINED"
+  notes         String?  @db.Text
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+  @@map("leads")
+}
+
+// ─── Audit ──────────────────────────────────────────────────
+
+model TransitionLog {
+  id         String   @id @default(cuid())
+  entityType String // 'SCAN_RUN', 'SCAN_RESULT', 'SCAN_EVIDENCE', 'REPORT'
+  entityId   String
+  fromStatus String
+  toStatus   String
+  action     String // e.g. 'completeScan', 'approveResult', 'submitForReview'
+  actorId    String? // who triggered the transition (null for system actions)
+  note       String?  @db.Text
+  createdAt  DateTime @default(now())
+
+  @@index([entityType, entityId])
+  @@index([createdAt])
+  @@map("transition_logs")
+}
+
+// ─── Longitudinal Benchmarking ──────────────────────────────
+
+model AssessmentBaseline {
+  id       String @id @default(cuid())
+  clientId String
+  reportId String @unique
+
+  // Snapshot metrics
+  earnedVisibilityRate     Float
+  discoveryMentionRate     Float?
+  evaluationMentionRate    Float?
+  considerationMentionRate Float?
+  commitmentMentionRate    Float?
+  overallMentionRate       Float
+  avgSentiment             Float?
+
+  // Competitive metrics
+  topCompetitorName String?
+  topCompetitorRate Float?
+  competitorGapPp   Int? // gap in percentage points
+
+  // Citation metrics
+  totalGapDomains    Int @default(0)
+  employerGapDomains Int @default(0)
+
+  // Positioning
+  overallPositioning String? // CHAMPION/CONTENDER/PERIPHERAL/etc.
+
+  // Context
+  queryCount     Int
+  focusArea      String?
+  assessmentDate DateTime @default(now())
+
+  // Full stage data as JSON for detailed comparison
+  stageData Json?
+
+  createdAt DateTime @default(now())
+
+  client Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  report Report @relation(fields: [reportId], references: [id], onDelete: Cascade)
+
+  @@index([clientId])
+  @@index([clientId, assessmentDate])
+  @@map("assessment_baselines")
+}

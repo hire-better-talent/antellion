@@ -1,0 +1,10 @@
+{
+  "name": "@antellion/config",
+  "private": true,
+  "files": [
+    "tsconfig.base.json",
+    "tsconfig.nextjs.json",
+    "tsconfig.node.json",
+    "eslint.base.mjs"
+  ]
+}
