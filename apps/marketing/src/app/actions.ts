@@ -96,5 +96,51 @@ export async function submitLead(
     return { message: "Something went wrong. Please try again." };
   }
 
+  // 5. Notify via Slack (fire-and-forget — never block the response)
+  notifySlack({
+    companyName: rest.companyName,
+    companyDomain,
+    contactName: rest.contactName,
+    contactEmail,
+    contactTitle: rest.contactTitle,
+    topCompetitor: rest.topCompetitor,
+    primaryRole: rest.primaryRole,
+  });
+
   return { success: true };
+}
+
+// ─── Slack notification ─────────────────────────────────────
+
+function notifySlack(lead: {
+  companyName: string;
+  companyDomain: string;
+  contactName: string;
+  contactEmail: string;
+  contactTitle?: string;
+  topCompetitor?: string;
+  primaryRole?: string;
+}) {
+  const webhookUrl = process.env.SLACK_WEBHOOK_URL;
+  if (!webhookUrl) return;
+
+  const fields = [
+    `*Company:* ${lead.companyName} (${lead.companyDomain})`,
+    `*Contact:* ${lead.contactName} <${lead.contactEmail}>`,
+    lead.contactTitle ? `*Title:* ${lead.contactTitle}` : null,
+    lead.topCompetitor ? `*Top Competitor:* ${lead.topCompetitor}` : null,
+    lead.primaryRole ? `*Primary Role:* ${lead.primaryRole}` : null,
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  const text = `🎯 *New Snapshot Lead*\n\n${fields}`;
+
+  fetch(webhookUrl, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ text }),
+  }).catch((err) => {
+    console.error("Slack notification failed:", err);
+  });
 }
