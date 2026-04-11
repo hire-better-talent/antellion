@@ -51,10 +51,9 @@ function DarkFormField({
     <div>
       <label
         htmlFor={name}
-        className="block text-sm font-medium text-gray-300"
+        className="flex min-h-[2.5rem] items-end text-sm font-medium text-gray-300"
       >
         {label}
-        {required && <span className="text-red-400"> *</span>}
       </label>
       <input
         id={name}
@@ -189,6 +188,10 @@ export function LeadCaptureForm() {
         </div>
       )}
 
+      <p className="text-xs uppercase tracking-wide text-gray-500">
+        All fields are required
+      </p>
+
       {/* Required: company info */}
       <div className="grid gap-5 sm:grid-cols-2">
         <DarkFormField
@@ -236,14 +239,14 @@ export function LeadCaptureForm() {
           error={fieldError(state, "contactTitle")}
         />
         <DarkFormField
-          label="Biggest talent competitor"
+          label="Top competitor"
           name="topCompetitor"
-          placeholder="Who do you compete with for hires?"
+          placeholder="Who you compete with for hires"
           required
           error={fieldError(state, "topCompetitor")}
         />
         <DarkFormField
-          label="Primary role you hire for"
+          label="Primary role"
           name="primaryRole"
           placeholder="e.g., Software Engineers"
           required
