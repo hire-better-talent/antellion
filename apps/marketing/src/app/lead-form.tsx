@@ -227,24 +227,26 @@ export function LeadCaptureForm() {
         />
       </div>
 
-      {/* Optional fields */}
       <div className="grid gap-5 sm:grid-cols-3">
         <DarkFormField
           label="Your title"
           name="contactTitle"
           placeholder="VP Talent Acquisition"
+          required
           error={fieldError(state, "contactTitle")}
         />
         <DarkFormField
           label="Biggest talent competitor"
           name="topCompetitor"
           placeholder="Who do you compete with for hires?"
+          required
           error={fieldError(state, "topCompetitor")}
         />
         <DarkFormField
           label="Primary role you hire for"
           name="primaryRole"
           placeholder="e.g., Software Engineers"
+          required
           error={fieldError(state, "primaryRole")}
         />
       </div>

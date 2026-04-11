@@ -442,9 +442,15 @@ export const CreateLeadSchema = z.object({
   companyDomain: domain,
   contactName: z.string().min(1, "Your name is required").max(255),
   contactEmail: z.string().email("Valid work email is required").max(255),
-  contactTitle: z.string().max(255).optional(),
-  topCompetitor: z.string().max(255).optional(),
-  primaryRole: z.string().max(255).optional(),
+  contactTitle: z.string().min(1, "Your title is required").max(255),
+  topCompetitor: z
+    .string()
+    .min(1, "Please name your biggest talent competitor")
+    .max(255),
+  primaryRole: z
+    .string()
+    .min(1, "Please tell us the primary role you hire for")
+    .max(255),
 });
 export type CreateLeadInput = z.infer<typeof CreateLeadSchema>;
 

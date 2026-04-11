@@ -36,15 +36,15 @@ export async function submitLead(
   _prev: ActionState,
   formData: FormData,
 ): Promise<ActionState & { success?: boolean }> {
-  // 1. Validate input
+  // 1. Validate input — all fields are required
   const result = validate(CreateLeadSchema, {
     companyName: formData.get("companyName"),
     companyDomain: formData.get("companyDomain"),
     contactName: formData.get("contactName"),
     contactEmail: formData.get("contactEmail"),
-    contactTitle: formData.get("contactTitle") || undefined,
-    topCompetitor: formData.get("topCompetitor") || undefined,
-    primaryRole: formData.get("primaryRole") || undefined,
+    contactTitle: formData.get("contactTitle"),
+    topCompetitor: formData.get("topCompetitor"),
+    primaryRole: formData.get("primaryRole"),
   });
 
   if (!result.success) return { errors: result.errors };
@@ -117,9 +117,9 @@ function notifySlack(lead: {
   companyDomain: string;
   contactName: string;
   contactEmail: string;
-  contactTitle?: string;
-  topCompetitor?: string;
-  primaryRole?: string;
+  contactTitle: string;
+  topCompetitor: string;
+  primaryRole: string;
 }) {
   const webhookUrl = process.env.SLACK_WEBHOOK_URL;
   if (!webhookUrl) return;
@@ -127,12 +127,10 @@ function notifySlack(lead: {
   const fields = [
     `*Company:* ${lead.companyName} (${lead.companyDomain})`,
     `*Contact:* ${lead.contactName} <${lead.contactEmail}>`,
-    lead.contactTitle ? `*Title:* ${lead.contactTitle}` : null,
-    lead.topCompetitor ? `*Top Competitor:* ${lead.topCompetitor}` : null,
-    lead.primaryRole ? `*Primary Role:* ${lead.primaryRole}` : null,
-  ]
-    .filter(Boolean)
-    .join("\n");
+    `*Title:* ${lead.contactTitle}`,
+    `*Top Competitor:* ${lead.topCompetitor}`,
+    `*Primary Role:* ${lead.primaryRole}`,
+  ].join("\n");
 
   const text = `🎯 *New Snapshot Lead*\n\n${fields}`;
 
