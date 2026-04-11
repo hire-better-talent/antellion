@@ -241,7 +241,7 @@ export function LeadCaptureForm() {
         <DarkFormField
           label="Talent competitor"
           name="topCompetitor"
-          placeholder="Who you compete with for hires"
+          placeholder="Ajax Corporation"
           required
           error={fieldError(state, "topCompetitor")}
         />
