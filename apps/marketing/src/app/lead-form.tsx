@@ -205,7 +205,7 @@ export function LeadCaptureForm() {
           label="Work email"
           name="contactEmail"
           type="email"
-          placeholder="jane@company.com"
+          placeholder="jane@acme.com"
           required
           error={fieldError(state, "contactEmail")}
           hint={emailHint}
@@ -234,12 +234,12 @@ export function LeadCaptureForm() {
         <DarkFormField
           label="Your title"
           name="contactTitle"
-          placeholder="VP Talent Acquisition"
+          placeholder="CHRO"
           required
           error={fieldError(state, "contactTitle")}
         />
         <DarkFormField
-          label="Top competitor"
+          label="Talent competitor"
           name="topCompetitor"
           placeholder="Who you compete with for hires"
           required
@@ -248,7 +248,7 @@ export function LeadCaptureForm() {
         <DarkFormField
           label="Primary role"
           name="primaryRole"
-          placeholder="e.g., Software Engineers"
+          placeholder="Software Engineer"
           required
           error={fieldError(state, "primaryRole")}
         />
