@@ -1,5 +1,13 @@
 import { LeadCaptureForm } from "./lead-form";
 
+// Opt out of static prerendering. The page hosts a server action
+// (submitLead) that hits Prisma, and Next's outputFileTracingIncludes
+// post-processing skips routes in the static-pages set — meaning the
+// Prisma query engine binary never gets included in the serverless
+// function bundle on Vercel. Marking the route dynamic puts it back
+// into the include-tracing path so the engine ships with the function.
+export const dynamic = "force-dynamic";
+
 // ─── Inline CTA ─────────────────────────────────────────────
 
 function InlineCTA({ label }: { label: string }) {
