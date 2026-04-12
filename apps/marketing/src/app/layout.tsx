@@ -27,6 +27,11 @@ export const metadata: Metadata = {
       "100 candidate-intent queries. Ranked competitor comparison. Citation gap analysis. See what AI tells candidates about your company vs. your competitors. Free Visibility Snapshot in 48 hours.",
   },
   metadataBase: new URL("https://antellion.com"),
+  alternates: {
+    types: {
+      "application/rss+xml": "/blog/rss.xml",
+    },
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -44,12 +49,20 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                   className="h-16"
                 />
               </Link>
-              <a
-                href="#lead-form"
-                className="btn-gradient btn-glow rounded-full px-6 py-2.5 text-sm font-semibold text-white transition-all"
-              >
-                Get My Snapshot
-              </a>
+              <div className="flex items-center gap-6">
+                <Link
+                  href="/blog"
+                  className="text-sm font-medium text-gray-300 transition-colors hover:text-white"
+                >
+                  Blog
+                </Link>
+                <a
+                  href="#lead-form"
+                  className="btn-gradient btn-glow rounded-full px-6 py-2.5 text-sm font-semibold text-white transition-all"
+                >
+                  Get My Snapshot
+                </a>
+              </div>
             </div>
           </header>
 
@@ -74,6 +87,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 </div>
 
                 <div className="flex flex-col gap-3 text-sm">
+                  <Link
+                    href="/blog"
+                    className="text-gray-300 transition-colors hover:text-white"
+                  >
+                    Blog
+                  </Link>
                   <a
                     href="mailto:hello@antellion.com"
                     className="text-gray-300 transition-colors hover:text-white"

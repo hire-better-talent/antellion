@@ -11,12 +11,16 @@
   "dependencies": {
     "@antellion/core": "workspace:*",
     "@antellion/db": "workspace:*",
+    "gray-matter": "^4.0.3",
     "next": "^15.2.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-markdown": "^9.0.0",
+    "remark-gfm": "^4.0.0"
   },
   "devDependencies": {
     "@antellion/config": "workspace:*",
+    "@tailwindcss/typography": "^0.5.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "autoprefixer": "^10.4.0",
