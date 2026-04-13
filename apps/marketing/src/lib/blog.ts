@@ -10,10 +10,15 @@ export interface BlogPost {
   author: string;
   image?: string;
   tags?: string[];
+  status: string;
   content: string;
 }
 
 const BLOG_DIR = path.join(process.cwd(), "src/content/blog");
+
+function isPublishable(post: BlogPost): boolean {
+  return post.status !== "draft" && new Date(post.date) <= new Date();
+}
 
 export function getBlogPosts(): BlogPost[] {
   if (!fs.existsSync(BLOG_DIR)) return [];
@@ -23,13 +28,16 @@ export function getBlogPosts(): BlogPost[] {
     .filter((f) => f.endsWith(".md"))
     .map((filename) => parseBlogFile(filename))
     .filter((p): p is BlogPost => p !== null)
+    .filter(isPublishable)
     .sort((a, b) => (a.date > b.date ? -1 : 1));
 }
 
 export function getBlogPost(slug: string): BlogPost | null {
   const filepath = path.join(BLOG_DIR, `${slug}.md`);
   if (!fs.existsSync(filepath)) return null;
-  return parseBlogFile(`${slug}.md`);
+  const post = parseBlogFile(`${slug}.md`);
+  if (!post || !isPublishable(post)) return null;
+  return post;
 }
 
 function parseBlogFile(filename: string): BlogPost | null {
@@ -49,6 +57,7 @@ function parseBlogFile(filename: string): BlogPost | null {
     author: data.author,
     image: data.image,
     tags: data.tags,
+    status: (data.status as string) ?? "ready",
     content,
   };
 }
