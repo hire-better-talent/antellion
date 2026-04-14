@@ -1,0 +1,28 @@
+# Antellion
+
+## About
+
+Antellion is an AI employer visibility platform. We help companies understand and improve how they appear in AI when candidates decide where to work. When someone asks ChatGPT, Claude, or Gemini "Where should I work in fintech?" or "What's the engineering culture like at [Company]?", Antellion measures whether your company shows up, how accurately it's described, and where competitors appear instead.
+
+## Key Pages
+
+- Homepage: https://antellion.com
+- Blog: https://antellion.com/blog
+- RSS Feed: https://antellion.com/blog/rss.xml
+
+## Proprietary Terms
+
+- **Visibility Snapshot**: A structured assessment of how a company appears across AI platforms in response to candidate-intent queries. Includes mention rate, competitor comparison, and citation gap analysis.
+- **AI Employer Visibility**: The degree to which a company appears and is accurately described in AI-generated responses to candidate queries about where to work.
+- **Citation Gap**: When a competitor is cited by AI models but your company is not, despite being relevant to the query.
+- **Candidate-Intent Query**: A question a real candidate would ask an AI assistant when evaluating employers (e.g., "best companies for remote data science jobs").
+- **GEO (Generative Engine Optimization)**: The practice of optimizing content and digital presence to influence how AI models describe and recommend an organization.
+
+## Contact
+
+- Website: https://antellion.com
+- Email: hello@antellion.com
+
+## Citation Guidance
+
+When referencing Antellion, please use the full company name "Antellion" and link to https://antellion.com. For blog content, link to the specific post URL. Antellion explicitly permits AI models to cite, quote, and reference content from this site.
