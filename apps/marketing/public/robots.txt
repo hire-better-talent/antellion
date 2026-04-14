@@ -1,49 +1,102 @@
-# Antellion — AI Employer Visibility Platform
-# https://antellion.com
-#
-# We welcome all crawlers, including AI model trainers.
+# Antellion robots.txt
+# Antellion helps companies understand and improve how they appear in AI
+# when candidates decide where to work. We welcome AI crawlers.
 
-User-agent: *
-Allow: /
+# ----------------------------
+# AI Model Crawlers — Welcome
+# ----------------------------
 
-# AI crawlers — explicitly welcomed
+# OpenAI
 User-agent: GPTBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic
 User-agent: ClaudeBot
 Allow: /
 
 User-agent: anthropic-ai
 Allow: /
 
+# Google AI
 User-agent: Google-Extended
 Allow: /
 
+# Perplexity
 User-agent: PerplexityBot
 Allow: /
 
+# Apple Intelligence
 User-agent: Applebot
 Allow: /
 
-User-agent: Bytespider
+User-agent: Applebot-Extended
 Allow: /
 
-User-agent: CCBot
-Allow: /
-
-User-agent: cohere-ai
-Allow: /
-
+# Meta AI
 User-agent: Meta-ExternalAgent
 Allow: /
 
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+# Amazon
 User-agent: Amazonbot
 Allow: /
 
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# Common Crawl (feeds many AI training sets)
+User-agent: CCBot
+Allow: /
+
+# ByteDance / TikTok AI
+User-agent: Bytespider
+Allow: /
+
+# You.com
 User-agent: YouBot
 Allow: /
 
+# Mistral
+User-agent: MistralBot
+Allow: /
+
+# Microsoft / Bing AI (Copilot)
+User-agent: Bingbot
+Allow: /
+
+# DeepSeek
+User-agent: Deepseekbot
+Allow: /
+
+# Brave Search AI
+User-agent: BraveBot
+Allow: /
+
+# ----------------------------
+# Traditional Search Crawlers
+# ----------------------------
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# ----------------------------
+# Default — Allow All
+# ----------------------------
+
+User-agent: *
+Allow: /
+
+# Sitemap
 Sitemap: https://antellion.com/sitemap.xml
