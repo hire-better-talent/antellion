@@ -1,10 +1,10 @@
 ---
 title: "What ChatGPT Actually Tells Candidates About Your Company"
 description: "We ran candidate-intent queries across AI models to see which companies get named, which sources get cited, and where the biggest employer visibility gaps are. Here is what we found."
-date: "2026-04-15"
+date: "2026-04-14"
 author: "Jordan Ellison"
 tags: ["ai-visibility", "chatgpt", "candidate-research", "employer-brand", "data"]
-status: "draft"
+status: "ready"
 ---
 
 ## What Does ChatGPT Say When Candidates Ask Where to Work?
