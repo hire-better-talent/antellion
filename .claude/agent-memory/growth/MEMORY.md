@@ -5,6 +5,7 @@
 
 ## Feedback
 - [feedback_email_tone.md](./feedback_email_tone.md) -- Email copy must match original cold outreach playbook tone: warm, peer-to-peer, conversational; never mechanical or vendor-sounding
+- [feedback_symphony_talent_messaging_constraint.md](./feedback_symphony_talent_messaging_constraint.md) -- All public content must frame AI visibility as ADDITIVE to employer brand/careers sites/recruitment marketing, never as replacement or critique (Symphony Talent sells those exact services)
 
 ## Project Context
 - [project_growth_playbook.md](./project_growth_playbook.md) -- Comprehensive growth playbook created 2026-03-22, covering positioning, offer, pricing, messaging, lead gen, roadmap
@@ -18,4 +19,5 @@
 - [project_linkedin_positioning_april2026.md](./project_linkedin_positioning_april2026.md) -- LinkedIn constraint (2026-04-09): Jordan CANNOT list Antellion on LinkedIn due to Symphony Talent risk; previous headline recommendation superseded
 - [project_email_campaign_v1.md](./project_email_campaign_v1.md) -- Email Campaign V1 (2026-04-09): 3-email cold sequence targeting Chief Talent Officers at 2K-10K companies via Apollo, with subject line A/B tests, sending schedule, and response handling
 - [project_warmup_launch_plan.md](./project_warmup_launch_plan.md) -- Email warmup and launch plan (2026-04-12): Google Workspace + Warmbox setup, 14-day warmup schedule, parallel work plan, day-1 cold send ramp, deliverability monitoring thresholds, target launch April 29
-- [project_apollo_blocked_april2026.md](./project_apollo_blocked_april2026.md) -- Apollo account flagged as suspicious (~2026-04-11); evaluating alternative prospecting/sequencing tools; Warmbox (not Instantly) is warmup tool
+- [project_apollo_blocked_april2026.md](./project_apollo_blocked_april2026.md) -- Apollo dead; Instantly confirmed as sequencing tool (2026-04-14); evaluating Instantly Lead Finder for prospecting; Warmbox for warmup
+- [project_competitor_analysis_april2026.md](./project_competitor_analysis_april2026.md) -- First competitor intel (2026-04-15): Open Forge AI is horizontal AI visibility at $499/mo; produced a report for Symphony Talent; employer brand vertical still unoccupied

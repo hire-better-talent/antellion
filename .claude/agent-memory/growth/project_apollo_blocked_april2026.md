@@ -1,16 +1,19 @@
 ---
-name: Apollo account potentially blocked
-description: Apollo flagged Jordan's IP as suspicious ~2-3 days after signup (around 2026-04-11); account may be permanently locked; evaluating alternative prospecting/sequencing tools
+name: Outbound infrastructure stack evolution
+description: Apollo blocked; Instantly now confirmed as sequencing tool (mailbox connected, 5/day limit set as of 2026-04-14); Warmbox for warmup; evaluating Instantly Lead Finder for prospecting
 type: project
 ---
 
-Apollo flagged Jordan's IP as "suspicious" shortly after signup (~April 10-11, 2026). Account may be permanently locked before any meaningful use.
+Apollo flagged Jordan's IP as "suspicious" shortly after signup (~April 10-11, 2026). Account permanently locked before meaningful use.
 
-Corrected infrastructure stack:
-- Warmbox (NOT Instantly) for email warmup -- already running
-- Google Workspace for sending (jordan@antellion.com) -- already set up
-- Apollo was intended for prospecting + sequencing -- now blocked
+Confirmed infrastructure stack as of 2026-04-14:
+- **Warmbox** for email warmup -- running
+- **Google Workspace** for sending (jordan@antellion.com) -- set up
+- **Instantly** for sequencing -- mailbox connected, 5 emails/day limit configured
+- **Prospecting:** Evaluating Instantly Lead Finder ($37/month add-on). If title coverage is too thin for Chief Talent Officers at 2K-10K companies, supplement with Snov.io ($30/month).
 
-**Why:** This is a critical-path blocker. The April 29 launch requires a prospect list and sequencing tool ready by April 28. If Apollo cannot be recovered within 1-2 days, an alternative platform must be selected immediately.
+Send schedule configured: Tuesday-Thursday only, 7:30-8:30 AM Eastern.
 
-**How to apply:** All future prospecting and sequencing tool recommendations must account for the fact that Warmbox (not Instantly) is the warmup tool. If Instantly is recommended for prospecting/sequencing, there is no overlap conflict with warmup.
+**Why:** Apollo block forced a tool switch. Instantly consolidates sequencing and potentially prospecting in one platform, reducing complexity. Warmbox remains the dedicated warmup tool (no overlap).
+
+**How to apply:** All campaign setup, list building, and sequencing guidance should reference Instantly as the primary tool. Apollo is dead. If Jordan mentions Lead Finder quality issues, recommend Snov.io as the cheapest supplement.
