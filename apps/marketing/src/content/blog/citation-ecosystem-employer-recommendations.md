@@ -1,19 +1,21 @@
 ---
 title: "The Citation Ecosystem: Which Sources Shape AI's Employer Recommendations"
 description: "AI models draw from a specific set of platforms when answering candidate queries about employers. Most companies have presence on 2-3. AI cites 8-10. That gap determines whether you show up."
-date: "2026-04-18"
+date: "2026-04-17"
 author: "Jordan Ellison"
 tags: ["ai-visibility", "citation-ecosystem", "employer-brand", "platforms", "geo"]
-status: "draft"
+status: "ready"
 ---
 
-## Which Sources Do AI Models Use When Candidates Ask About Employers?
+## Your Company Probably Appears in 2-3 of the Platforms AI Uses. Your Competitor Probably Appears in 8.
 
-AI models draw employer information from a specific, identifiable set of platforms -- review sites, salary databases, company profile pages, engineering blogs, press coverage, and community discussion boards. When a candidate asks ChatGPT "what is it like to work at [Company]?" the response is not generated from a single source. It is synthesized from this entire [citation ecosystem](/blog/geo-employer-brand-glossary): a composite narrative assembled from every relevant signal the model can access.
+When a candidate asks ChatGPT "what is it like to work at [your company]?" the answer isn't coming from your careers page. It is synthesized from 10-12 specific platforms -- and most companies have meaningful presence on only 2 or 3 of them. That gap is why a competitor with a 3.8-star Glassdoor rating can show up in AI responses looking stronger than you, with your 4.5.
 
-The citation ecosystem for employer-related queries is both broader than most talent leaders realize and more concentrated than they expect. Broader, because AI draws from 10-12 distinct platform categories, not just Glassdoor. More concentrated, because a small number of platforms account for the majority of citation weight -- and most companies have meaningful presence on only 2-3 of them.
+This is the [citation ecosystem](/blog/geo-employer-brand-glossary), and most talent leaders have never mapped theirs.
 
-This gap -- between where companies invest their employer brand effort and where AI actually looks -- is the single most actionable finding in [AI employer visibility](/blog/ai-employer-visibility-explained) assessments. Closing citation gaps is typically the fastest path to improving how AI describes your company to candidates.
+The ecosystem is both broader than most teams realize and more concentrated than they expect. Broader, because AI draws from 10-12 distinct platform categories, not just Glassdoor. More concentrated, because a small number of platforms account for the majority of citation weight -- and that is where the gap lives.
+
+Closing citation gaps is typically the fastest path to improving how AI describes your company to candidates. It is one of the first things a structured [AI employer visibility](/blog/ai-employer-visibility-explained) assessment surfaces.
 
 ## The Platform Map: Where AI Looks for Employer Information
 
@@ -116,6 +118,8 @@ The result: AI constructs employer narratives from whatever it can find. For a c
 
 A competitor with broad citation ecosystem presence receives a richer, more specific, more favorable narrative -- not because they are a better employer, but because AI has more material to work with.
 
+In practical terms: the competitor gets named in the Discovery shortlist you are missing from. Gets the specific compensation framing in head-to-head comparisons. Gets the "known for strong engineering culture" line when candidates compare you. You get "a growing company in the space." The candidate moves on.
+
 ## Why This Is Different from Having a "Good Glassdoor Score"
 
 A common response when talent leaders first encounter this analysis is: "We already manage Glassdoor. Our score is strong." This reflects the assumption that Glassdoor is the primary input to employer perception.
@@ -175,7 +179,7 @@ The citation ecosystem analysis has three implications for how talent leaders th
 
 ## How to Audit Your Own Citation Ecosystem Presence
 
-A basic audit takes 30 minutes. For each platform in the citation ecosystem, answer three questions:
+Before you read further, do this. Open the table below, put your company name across the top, and answer three questions for each platform:
 
 1. **Do you have a presence?** Is there a company profile, structured data, or meaningful content about your company on this platform?
 2. **Is it current?** When was the last update, review, or content addition? Content older than 18 months is losing citation weight.
@@ -203,4 +207,8 @@ This is what [answer-surface intelligence](/blog/geo-employer-brand-glossary) me
 
 ---
 
-*Antellion maps citation ecosystem coverage as part of structured AI employer visibility assessments across 120+ candidate-intent queries. To understand which platforms are shaping -- or missing from -- your AI employer narrative, visit [antellion.com](https://antellion.com).*
+Running the 30-minute audit above will show you where your gaps are. It will not tell you what AI is *actually saying* about your company today, or how that compares to your three closest competitors.
+
+That is what a Visibility Snapshot is for. 100 candidate-intent queries across ChatGPT, Claude, and Gemini, mapped to the citation ecosystem. You see which platforms AI is citing for your competitors that it is not citing for you, and which narrative tier you are landing in. No call required to see the output.
+
+Request one at [antellion.com](https://antellion.com).
