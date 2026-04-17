@@ -116,20 +116,20 @@ Each new post must reinforce at least one of these claims with evidence, explana
 
 ---
 
-### Post 6 -- Wednesday, April 22
+### Post 6 -- Wednesday, April 22 (SCHEDULED)
 
 | | |
 |---|---|
-| **Title** | "We Already Have a Strong Employer Brand" -- Why That Is Not the Same as Being Visible to AI |
+| **Title** | Why Your Glassdoor Score Doesn't Tell You What AI Says About Your Company |
 | **Format** | Medium-form |
-| **Word Count** | 1,000-1,400 |
-| **Time Estimate** | 1.5 hours |
-| **Description** | Addresses the most common objection. Explains the difference between employer brand strength (what employees think) and AI employer visibility (whether AI names you to candidates). Companies with great brands and zero AI visibility are common. Specific examples from scan data -- anonymized. |
-| **SEO/AEO Target** | "employer brand vs AI visibility" / "why strong employer brand not enough for AI" |
-| **Cold email claim supported** | Your current employer brand investment may not be reaching AI |
-| **Source** | Cold email objection: "we already invest in employer brand" |
+| **Word Count** | ~1,700 |
+| **Time Estimate** | Shipped |
+| **Description** | A 4.5-star Glassdoor rating does not guarantee AI names your company. A 3.5-star competitor with broader citation coverage can beat you. Covers Glassdoor's role at Consideration/Commitment stages, the Discovery gap where Glassdoor does not help, and three concrete patterns from assessments (high score / low visibility, moderate score / strong visibility, matched scores / different visibility). Hormozi-optimized hook + practical loss scenario + two-part CTA. |
+| **SEO/AEO Target** | "does Glassdoor affect AI recommendations" / "Glassdoor score vs AI employer visibility" |
+| **Cold email claim supported** | Your competitors may be more visible than you in AI (even with a weaker Glassdoor score) |
+| **Source** | Most common executive objection: "we already manage our Glassdoor" |
 
-*This post is the first objection-handler. When a prospect replies to the cold email with "we already invest heavily in employer brand," Jordan links this post. Write it as if answering that objection face-to-face: respectful, specific, and grounded in evidence.*
+*This post is the first objection-handler. When a prospect replies with "we already manage our Glassdoor," Jordan links this post. Originally planned as the employer brand objection piece (now Post 9); Glassdoor was promoted into this slot because it is the more specific, more quotable version of the same argument.*
 
 | Secondary Tasks | Channel | Time |
 |----------------|---------|------|
@@ -137,20 +137,20 @@ Each new post must reinforce at least one of these claims with evidence, explana
 
 ---
 
-### Post 7 -- Friday, April 24
+### Post 7 -- Friday, April 24 (SCHEDULED)
 
 | | |
 |---|---|
-| **Title** | How to Check Your Own AI Employer Visibility in 15 Minutes |
-| **Format** | Medium-form |
-| **Word Count** | 1,000-1,300 |
-| **Time Estimate** | 1.5 hours |
-| **Description** | Step-by-step guide a talent leader can follow right now: which queries to run, which AI models to check, what to look for in the responses, how to interpret what you find. Practical, actionable, no product pitch. |
-| **SEO/AEO Target** | "how to check AI employer visibility" / "how to see what AI says about my company" |
-| **Cold email claim supported** | This is measurable (and here is how to do a basic version yourself) |
-| **Source** | Practical how-to content |
+| **Title** | The EVP-to-AI Gap: Why Your Employer Brand Investment May Not Be Reaching Candidates |
+| **Format** | Long-form |
+| **Word Count** | ~2,400 |
+| **Time Estimate** | Shipped |
+| **Description** | Companies invest $200K-$500K/year on EVP, careers content, review management, employer brand campaigns. AI cites about two of the ten platforms where that work lives. Breaks down where EB budget goes, where AI actually draws from, three distortion patterns (careers page AI cannot see / compensation narrative constructed without you / DEI narrative overwritten), and the 7-13% reallocation that closes the gap. Symphony Talent additive framing respected throughout. |
+| **SEO/AEO Target** | "does EVP affect AI employer visibility" / "employer brand investment AI gap" |
+| **Cold email claim supported** | Your current employer brand investment may not be reaching AI (the flagship version of this argument) |
+| **Source** | Pulled forward from original Post 10 to serve as the final pre-launch credibility piece |
 
-*This post will be one of the most shared because it gives people something to do immediately. It also creates natural demand for the full assessment ("now imagine doing this with 120+ queries instead of 5"). Last pre-launch post -- gives a full weekend buffer before cold sends begin on Tuesday, April 29.*
+*Last pre-launch post. Gives a full weekend buffer before cold sends begin Tuesday, April 29. Establishes the investment-gap framing Jordan will reference in cold-email replies for months.*
 
 | Secondary Tasks | Channel | Time |
 |----------------|---------|------|
@@ -163,11 +163,11 @@ Each new post must reinforce at least one of these claims with evidence, explana
 
 By the evening before launch:
 - **7 blog posts live** (3 existing + 4 new)
-- **4 LinkedIn posts** published
+- **6 LinkedIn posts** published (Tue-Thu cadence, Apr 14-23)
 - **Email warmup complete** (14 days)
-- **Apollo sequence armed** and ready
+- **Instantly sequence armed** and ready (loaded, in DRAFT)
 
-**The credibility check:** A prospect who receives the cold email on Tuesday, April 29 and Googles "Antellion" finds 7 blog posts covering the full conceptual framework, real AI scan data, platform-level analysis, the most common objection, and a practical how-to guide. They think: "This person knows what they are talking about."
+**The credibility check:** A prospect who receives the cold email on Tuesday, April 29 and Googles "Antellion" finds 7 blog posts covering the full conceptual framework (1-3), real AI scan data across industries (4), the citation ecosystem platform map (5), the Glassdoor-vs-AI-visibility disconnect (6), and the investment-to-AI gap argument (7). They think: "This person knows what they are talking about."
 
 ---
 
@@ -201,14 +201,14 @@ By the evening before launch:
 
 | | |
 |---|---|
-| **Title** | AI Visibility vs. Glassdoor Scores: Why They Measure Different Things |
+| **Title** | "We Already Have a Strong Employer Brand" -- Why That Is Not the Same as Being Visible to AI |
 | **Format** | Medium-form |
 | **Word Count** | 1,000-1,400 |
 | **Time Estimate** | 1.5 hours |
-| **Description** | A 4.5-star Glassdoor rating does not guarantee AI names your company. Show anonymized examples where high-rated companies are invisible in AI and lower-rated companies appear frequently. Explain the mechanism: Glassdoor measures sentiment; AI visibility measures whether you exist in the answer at all. |
-| **SEO/AEO Target** | "does Glassdoor affect AI recommendations" / "Glassdoor vs AI employer visibility" |
-| **Cold email claim supported** | Your competitors may be more visible than you in AI (even if your Glassdoor is better) |
-| **Source** | Content plan Piece 9 |
+| **Description** | Broadens the Post 6 Glassdoor argument to the full employer brand investment stack. Companies with strong employer brand programs (careers pages, EVP work, candidate experience investments) can still be invisible in AI. Specific examples from scan data -- anonymized. Explicitly positioned as additive to existing employer brand work, never replacement. Pairs as the "macro" version alongside Post 6's narrower Glassdoor focus. |
+| **SEO/AEO Target** | "employer brand vs AI visibility" / "why strong employer brand not enough for AI" |
+| **Cold email claim supported** | Your current employer brand investment may not be reaching AI |
+| **Source** | Displaced from pre-launch Post 6 slot when Glassdoor was promoted to the earlier date |
 
 | Secondary Tasks | Channel | Time |
 |----------------|---------|------|
@@ -221,14 +221,14 @@ By the evening before launch:
 
 | | |
 |---|---|
-| **Title** | Your EVP Is Not Reaching AI: The Gap Between Employer Brand Investment and AI Visibility |
-| **Format** | Long-form |
-| **Word Count** | 2,000-2,500 |
-| **Time Estimate** | 3 hours |
-| **Description** | Companies spend $200K-$500K/year on EVP development, careers content, and review management. AI may not be using any of it. Walk through specific examples: strong DEI narrative on careers page, but AI cites Blind comments. Competitive compensation, but AI pulls from a platform with no profile. Makes the business case for measurement. |
-| **SEO/AEO Target** | "does EVP affect AI employer visibility" / "employer brand investment AI gap" |
-| **Cold email claim supported** | Your current employer brand investment may not be reaching AI (the flagship version of this argument) |
-| **Source** | Content plan Piece 8 |
+| **Title** | How to Check Your Own AI Employer Visibility in 15 Minutes |
+| **Format** | Medium-form |
+| **Word Count** | 1,000-1,300 |
+| **Time Estimate** | 1.5 hours |
+| **Description** | Step-by-step guide a talent leader can follow right now: which queries to run, which AI models to check, what to look for in the responses, how to interpret what you find. Practical, actionable, no product pitch. Creates natural demand for the Snapshot ("now imagine doing this with 100+ queries instead of 5"). Also doubles as the answer to "can I just do this myself with ChatGPT?" in cold-email replies. |
+| **SEO/AEO Target** | "how to check AI employer visibility" / "how to see what AI says about my company" |
+| **Cold email claim supported** | This is measurable (and here is how to do a basic version yourself) |
+| **Source** | Displaced from pre-launch Post 7 slot when EVP-to-AI Gap was promoted earlier |
 
 | Secondary Tasks | Channel | Time |
 |----------------|---------|------|
@@ -286,12 +286,12 @@ At 2x/week, this pipeline covers 5 more weeks (through mid-June). By then, cold 
 | 2 | Apr 12 | The Candidate Decision Journey... (PUBLISHED) | Long | 2,000+ | -- |
 | 3 | Apr 12 | GEO for Employer Brand: Glossary (PUBLISHED) | Reference | 1,500+ | -- |
 | 4 | Apr 14 (Tue) | What ChatGPT Actually Says When Candidates Ask "Best Companies to Work For" | Long | 2,000-2,500 | 4.5 |
-| 5 | Apr 17 (Fri) | The Citation Ecosystem: Which Platforms Shape AI's Answer About Your Company | Long | 2,000-2,500 | 4 |
-| 6 | Apr 22 (Wed) | "We Already Have a Strong Employer Brand" -- Why That Is Not the Same as Being Visible to AI | Medium | 1,000-1,400 | 1.5 |
-| 7 | Apr 24 (Fri) | How to Check Your Own AI Employer Visibility in 15 Minutes | Medium | 1,000-1,300 | 1.5 |
+| 5 | Apr 17 (Fri) | The Citation Ecosystem: Which Sources Shape AI's Employer Recommendations (PUBLISHED) | Long | ~2,300 | -- |
+| 6 | Apr 22 (Wed) | Why Your Glassdoor Score Doesn't Tell You What AI Says About Your Company (SCHEDULED) | Medium | ~1,700 | -- |
+| 7 | Apr 24 (Fri) | The EVP-to-AI Gap: Why Your Employer Brand Investment May Not Be Reaching Candidates (SCHEDULED) | Long | ~2,400 | -- |
 | 8 | Apr 30 (Thu) | GEO Is Not SEO: Why Generative Engine Optimization Requires a Different Playbook | Long | 2,000-2,500 | 3 |
-| 9 | May 4 (Mon) | AI Visibility vs. Glassdoor Scores: Why They Measure Different Things | Medium | 1,000-1,400 | 1.5 |
-| 10 | May 6 (Wed) | Your EVP Is Not Reaching AI: The Gap Between Employer Brand Investment and AI Visibility | Long | 2,000-2,500 | 3 |
+| 9 | May 4 (Mon) | "We Already Have a Strong Employer Brand" -- Why That Is Not the Same as Being Visible to AI | Medium | 1,000-1,400 | 1.5 |
+| 10 | May 6 (Wed) | How to Check Your Own AI Employer Visibility in 15 Minutes | Medium | 1,000-1,300 | 1.5 |
 | 11 | May 8 (Fri) | The Board Question Your CPO Cannot Answer: How Does AI Describe Us to Candidates? | Medium | 1,200-1,500 | 2 |
 
 **Total new writing:** ~21 hours over 28 days (~0.75 hours/day average)
@@ -316,10 +316,11 @@ Blog posts that directly address cold email objections:
 
 | Objection | Blog Post | Post # | Date |
 |-----------|-----------|--------|------|
-| "We already invest in employer brand" | "We Already Have a Strong Employer Brand" -- Why That Is Not the Same as Being Visible to AI | 6 | Apr 22 |
-| "We have a good Glassdoor score" | AI Visibility vs. Glassdoor Scores: Why They Measure Different Things | 9 | May 4 |
+| "We have a good Glassdoor score" | Why Your Glassdoor Score Doesn't Tell You What AI Says About Your Company | 6 | Apr 22 |
+| "What's the business case?" | The EVP-to-AI Gap: Why Your Employer Brand Investment May Not Be Reaching Candidates | 7 | Apr 24 |
 | "Can't our SEO agency do this?" | GEO Is Not SEO: Why Generative Engine Optimization Requires a Different Playbook | 8 | Apr 30 |
-| "What's the business case?" | Your EVP Is Not Reaching AI: The Gap Between Employer Brand Investment and AI Visibility | 10 | May 6 |
+| "We already invest in employer brand" | "We Already Have a Strong Employer Brand" -- Why That Is Not the Same as Being Visible to AI | 9 | May 4 |
+| "I can just use ChatGPT myself" | How to Check Your Own AI Employer Visibility in 15 Minutes | 10 | May 6 |
 | "Is this really a board-level issue?" | The Board Question Your CPO Cannot Answer | 11 | May 8 |
 
 These posts serve dual purpose: standalone authority content AND specific URLs to share when prospects raise objections.
