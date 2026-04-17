@@ -37,9 +37,9 @@ Use when the prospect seems warm but conversational. Directs them to self-serve 
 ```
 {{firstName}} —
 
-Glad this resonated. The fastest path: submit your company info at antellion.com — takes 60 seconds, and I will have your Snapshot back within 48 hours.
+Glad this resonated. I can run it two ways — reply here with your domain and top talent competitor and I will take it from there, or fill out the 60-second form at antellion.com if you prefer self-serve. Either path, results in 48 hours.
 
-If you have a specific competitor you want compared, include that in the form. If not, I will identify your most visible competitor from the scan data.
+One nudge: pick the competitor you actually lose candidates to, not your logo rival. That is where the comparison gets interesting.
 
 Jordan
 ```
@@ -53,7 +53,11 @@ Jordan
 ```
 {{firstName}} —
 
-Completely understand. I will check back in a quarter with updated observations about how AI describes {{companyName}} to candidates. If anything changes on your end before then, the offer stands.
+Completely understand — Q4 timing is real.
+
+One option: reply with your domain and I will run the Snapshot on my own time and sit on the results until you are ready to look. No call, no follow-up pressure. When you want them, they are there.
+
+If that is not useful right now, no problem — I will send one note next quarter with any shift in how AI describes {{companyName}}.
 
 Jordan
 ```
@@ -137,9 +141,11 @@ Use when the prospect asks about cost — usually after seeing the Snapshot and 
 ```
 {{firstName}} —
 
-The Snapshot is free — that is the whole thing.
+The Snapshot stays free — no upsell attached.
 
-The Full Assessment sits at $5K-$15K depending on scope (number of competitors, depth of remediation recommendations, executive presentation). I can walk through what is included once you have seen your Snapshot and know whether the direction is useful.
+The Full Assessment is a different product: 3-5 ranked competitors scored across the full candidate decision journey, a source-by-source citation map showing where AI is drawing your story from, specific remediation priorities tied to what is actually moving the answers, and an executive-ready deck your CPO can walk into a board meeting with.
+
+Scope drives the number — typically $5K-$15K. Easier to price once you have your Snapshot and we know what gap we are closing.
 
 Jordan
 ```
