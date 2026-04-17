@@ -1,21 +1,19 @@
 ---
 title: "The EVP-to-AI Gap: Why Your Employer Brand Investment May Not Be Reaching Candidates"
 description: "Companies spend $200K-$500K per year on employer value proposition development. AI may not be using any of it. The gap between EVP investment and AI visibility is measurable -- and most companies do not know it exists."
-date: "2026-04-25"
+date: "2026-04-24"
 author: "Jordan Ellison"
 tags: ["ai-visibility", "evp", "employer-brand", "roi", "talent-acquisition"]
-status: "draft"
+status: "ready"
 ---
 
-## Is Your Employer Brand Investment Reaching AI?
+## Your Employer Brand Is Excellent. AI Cites About Two of the Ten Platforms It Lives On.
 
-Companies invest $200,000-$500,000 per year in employer value proposition development, careers content creation, review-site management, employer brand campaigns, and recruitment marketing. This investment produces polished careers pages, thoughtfully crafted EVP narratives, managed Glassdoor profiles, targeted social media campaigns, and carefully designed candidate experiences.
+Companies invest $200,000-$500,000 per year in employer value proposition development, careers content, review-site management, employer brand campaigns, and recruitment marketing. The work is thoughtful. The output is polished: careers pages, EVP narratives, managed Glassdoor profiles, targeted social campaigns, candidate experience programs. Teams doing this work are skilled, and most companies are genuinely better employers because of it.
 
-AI may not be using any of it.
+When a candidate asks AI "what is it like to work at your company?", AI will probably cite two or three of those investments -- not the rest. The careers page, the employer brand video, the EVP deck, the candidate experience redesign -- AI may never surface any of it. It weighs those surfaces far below Levels.fyi data, Blind threads, Built In profiles, and engineering blog posts your employer brand team does not manage.
 
-When a candidate asks ChatGPT "best companies to work for in healthcare IT" or "what is the culture like at [Company]?" the response is synthesized from the [citation ecosystem](/blog/geo-employer-brand-glossary) -- a set of platforms and sources that overlaps only partially with where most employer brand investment goes. The EVP narrative on your careers page, the employer brand video on your YouTube channel, the managed Glassdoor response strategy -- these live on surfaces that AI may not draw from when constructing its answer, or that AI weighs less heavily than other sources your employer brand team does not manage.
-
-This is the EVP-to-AI gap: the disconnect between where companies invest in employer brand and where AI actually looks when candidates ask about employers. The gap is not speculative. It shows up in every [AI employer visibility](/blog/ai-employer-visibility-explained) assessment as a measurable delta between employer brand effort and AI-mediated candidate perception.
+This is the EVP-to-AI gap. Not a failure of employer brand work. A distribution gap between where the work lives and where AI draws from. It shows up in every [AI employer visibility](/blog/ai-employer-visibility-explained) assessment as a measurable delta between effort and candidate-facing narrative.
 
 ## Where Employer Brand Budgets Go
 
@@ -99,7 +97,9 @@ The new question is: **"Of the $300,000 we spend on employer brand, how much of 
 
 For most companies, the honest answer is: a fraction. Glassdoor management affects AI responses at the Consideration and Commitment stages. Everything else -- careers page, recruitment marketing, employer brand campaigns, EVP development -- affects AI minimally or not at all.
 
-This is not an argument to cut employer brand budgets. It is an argument to redirect a portion of that investment toward the surfaces AI actually draws from.
+In practical terms: a candidate asks ChatGPT about your company. AI cites a Glassdoor rating, a LinkedIn headcount, and maybe a Built In profile. Not the careers page. Not the EVP video. Not the benefits summary. Not the $80,000 employer brand campaign. A competitor whose AI narrative also pulls from Levels.fyi, engineering content, and recent press receives a richer answer. The candidate compares the two and moves on.
+
+This is not an argument to cut employer brand budgets. It is an argument to extend that investment toward the surfaces AI actually draws from.
 
 ## The Investment Reallocation That Closes the Gap
 
@@ -152,4 +152,10 @@ That is a specific, data-backed, commercially grounded conversation. It does not
 
 ---
 
-*Antellion measures the EVP-to-AI gap using structured assessments across 120+ candidate-intent queries, with citation ecosystem mapping and competitive displacement analysis. To see what candidates hear when they ask AI about your company, visit [antellion.com](https://antellion.com).*
+You can map your own EVP-to-AI gap in about an hour. List every line item in your employer brand budget. Then list the platforms AI actually draws from (see the citation ecosystem table above). Circle the overlap. The surfaces outside the circle are where your investment is not reaching candidates who use AI.
+
+What the back-of-envelope exercise will not show you is what AI is *actually saying* about your company today -- the compensation framing it attaches to competitors vs the vague "competitive" label on you, the Discovery queries you are missing from, or the Blind threads and press gaps shaping your narrative in real time.
+
+That is what a Visibility Snapshot is for. 100 candidate-intent queries across ChatGPT, Claude, and Gemini, mapped against your three closest competitors and the full citation ecosystem. You see the gap in specific platforms, specific quotes, and specific competitive losses. No call required to see the output.
+
+Request one at [antellion.com](https://antellion.com).

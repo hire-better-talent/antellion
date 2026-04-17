@@ -1,17 +1,17 @@
 ---
 title: "Why Your Glassdoor Score Doesn't Tell You What AI Says About Your Company"
 description: "Glassdoor measures employee sentiment. AI employer visibility measures what candidates actually hear. A 4.5-star rating does not guarantee AI names your company -- and a 3.5-star rating does not mean it won't."
-date: "2026-04-23"
+date: "2026-04-22"
 author: "Jordan Ellison"
 tags: ["ai-visibility", "glassdoor", "employer-brand", "measurement"]
-status: "draft"
+status: "ready"
 ---
 
-## Does Your Glassdoor Score Determine What AI Tells Candidates?
+## A 4.5 on Glassdoor Is Not Enough to Get AI to Mention You. A 3.5-Star Competitor With Broader Citation Coverage Will Beat You.
 
-No. A strong Glassdoor rating does not guarantee that AI names your company when candidates ask where to work, and a lower rating does not mean AI will exclude you. Glassdoor and [AI employer visibility](/blog/ai-employer-visibility-explained) measure fundamentally different things: Glassdoor measures how current and former employees rate their experience. AI employer visibility measures whether and how AI includes your company in synthesized answers to candidate queries. These are different surfaces, different inputs, and different outcomes.
+A strong Glassdoor rating is a real asset. It is also insufficient on its own to get AI to name your company when a candidate asks where to work. A 4.5-star company can be invisible to ChatGPT at the Discovery stage. A 3.5-star competitor with a Built In profile, Levels.fyi data, and an engineering blog can dominate the same query.
 
-This distinction matters because many talent leaders assume their Glassdoor management strategy covers the AI-mediated candidate experience. It does not. A company can have a 4.5-star Glassdoor rating and still be invisible when a candidate asks ChatGPT "best companies for engineers in fintech." A company with a 3.5-star rating but broad presence across the [citation ecosystem](/blog/geo-employer-brand-glossary) can appear consistently.
+This is not a criticism of Glassdoor management. It is a distinction most talent leaders have not yet had to make: Glassdoor measures how current and former employees rate their experience. [AI employer visibility](/blog/ai-employer-visibility-explained) measures whether and how AI includes your company in synthesized answers to candidate queries. Different surfaces, different inputs, different outcomes -- and a talent leader's Glassdoor strategy covers only one of them.
 
 ## What Glassdoor Actually Measures
 
@@ -90,6 +90,8 @@ But understanding precisely what Glassdoor contributes -- and what it does not -
 
 The pattern: Glassdoor is most influential at the Consideration and Commitment stages, where candidates are asking about a specific company. It is least influential at the Discovery stage, where candidates are asking AI to generate a list of employers. Since Discovery is where the largest [pipeline throughput leakage](/blog/geo-employer-brand-glossary) occurs -- candidates who never discover you never enter your funnel -- the gap between Glassdoor influence and Discovery importance is commercially significant.
 
+In practical terms: when a candidate asks AI "best companies for engineers in your industry," your Glassdoor score does not put you on the list. Built In profiles, Levels.fyi data, engineering blogs, and press coverage put competitors on the list. The candidate never sees your 4.5-star rating because they never discover you. Your Glassdoor management was real. Your Discovery visibility was not. You lose the applicant before they enter your funnel.
+
 ## The Objection This Addresses
 
 When talent leaders first hear about AI employer visibility, the most common response is: "We already manage our Glassdoor. Our score is strong."
@@ -118,4 +120,10 @@ The goal is not to replace Glassdoor management with something else. It is to ex
 
 ---
 
-*Antellion measures AI employer visibility across the full citation ecosystem -- not just review sites. To see how your company appears beyond Glassdoor, visit [antellion.com](https://antellion.com).*
+You can estimate your own gap in 15 minutes. Look up your company on Glassdoor, then Levels.fyi, Built In, Comparably, and Blind. If three of the last four show "no data" or a thin profile, that is the gap in front of you.
+
+What the self-check will not show you is what AI is *actually saying* about your company today, whether it mentions you at all in Discovery queries, or how that compares to your three closest competitors.
+
+That is what a Visibility Snapshot is for. 100 candidate-intent queries across ChatGPT, Claude, and Gemini, with citation ecosystem mapping. You see which platforms AI is citing for your competitors that it is not citing for you, and which stages of the candidate journey you are disappearing from. No call required to see the output.
+
+Request one at [antellion.com](https://antellion.com).
