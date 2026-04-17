@@ -74,7 +74,7 @@ Each new post must reinforce at least one of these claims with evidence, explana
 
 ---
 
-### Post 4 -- Tuesday, April 15
+### Post 4 -- Tuesday, April 14
 
 | | |
 |---|---|
@@ -95,7 +95,7 @@ Each new post must reinforce at least one of these claims with evidence, explana
 
 ---
 
-### Post 5 -- Friday, April 18
+### Post 5 -- Friday, April 17
 
 | | |
 |---|---|
@@ -116,7 +116,7 @@ Each new post must reinforce at least one of these claims with evidence, explana
 
 ---
 
-### Post 6 -- Wednesday, April 23
+### Post 6 -- Wednesday, April 22
 
 | | |
 |---|---|
@@ -137,7 +137,7 @@ Each new post must reinforce at least one of these claims with evidence, explana
 
 ---
 
-### Post 7 -- Friday, April 25
+### Post 7 -- Friday, April 24
 
 | | |
 |---|---|
@@ -159,7 +159,7 @@ Each new post must reinforce at least one of these claims with evidence, explana
 
 ---
 
-### Pre-Launch Review (Monday, April 28)
+### Pre-Launch Review (Monday, April 27)
 
 By the evening before launch:
 - **7 blog posts live** (3 existing + 4 new)
@@ -177,7 +177,7 @@ By the evening before launch:
 
 ---
 
-### Post 8 -- Thursday, May 1
+### Post 8 -- Thursday, April 30
 
 | | |
 |---|---|
@@ -197,7 +197,7 @@ By the evening before launch:
 
 ---
 
-### Post 9 -- Monday, May 5
+### Post 9 -- Monday, May 4
 
 | | |
 |---|---|
@@ -217,7 +217,7 @@ By the evening before launch:
 
 ---
 
-### Post 10 -- Wednesday, May 7
+### Post 10 -- Wednesday, May 6
 
 | | |
 |---|---|
@@ -237,7 +237,7 @@ By the evening before launch:
 
 ---
 
-### Post 11 -- Friday, May 9
+### Post 11 -- Friday, May 8
 
 | | |
 |---|---|
@@ -285,14 +285,14 @@ At 2x/week, this pipeline covers 5 more weeks (through mid-June). By then, cold 
 | 1 | Apr 12 | AI Employer Visibility: What It Is... (PUBLISHED) | Long | 2,500+ | -- |
 | 2 | Apr 12 | The Candidate Decision Journey... (PUBLISHED) | Long | 2,000+ | -- |
 | 3 | Apr 12 | GEO for Employer Brand: Glossary (PUBLISHED) | Reference | 1,500+ | -- |
-| 4 | Apr 15 (Tue) | What ChatGPT Actually Says When Candidates Ask "Best Companies to Work For" | Long | 2,000-2,500 | 4.5 |
-| 5 | Apr 18 (Fri) | The Citation Ecosystem: Which Platforms Shape AI's Answer About Your Company | Long | 2,000-2,500 | 4 |
-| 6 | Apr 23 (Wed) | "We Already Have a Strong Employer Brand" -- Why That Is Not the Same as Being Visible to AI | Medium | 1,000-1,400 | 1.5 |
-| 7 | Apr 25 (Fri) | How to Check Your Own AI Employer Visibility in 15 Minutes | Medium | 1,000-1,300 | 1.5 |
-| 8 | May 1 (Thu) | GEO Is Not SEO: Why Generative Engine Optimization Requires a Different Playbook | Long | 2,000-2,500 | 3 |
-| 9 | May 5 (Mon) | AI Visibility vs. Glassdoor Scores: Why They Measure Different Things | Medium | 1,000-1,400 | 1.5 |
-| 10 | May 7 (Wed) | Your EVP Is Not Reaching AI: The Gap Between Employer Brand Investment and AI Visibility | Long | 2,000-2,500 | 3 |
-| 11 | May 9 (Fri) | The Board Question Your CPO Cannot Answer: How Does AI Describe Us to Candidates? | Medium | 1,200-1,500 | 2 |
+| 4 | Apr 14 (Tue) | What ChatGPT Actually Says When Candidates Ask "Best Companies to Work For" | Long | 2,000-2,500 | 4.5 |
+| 5 | Apr 17 (Fri) | The Citation Ecosystem: Which Platforms Shape AI's Answer About Your Company | Long | 2,000-2,500 | 4 |
+| 6 | Apr 22 (Wed) | "We Already Have a Strong Employer Brand" -- Why That Is Not the Same as Being Visible to AI | Medium | 1,000-1,400 | 1.5 |
+| 7 | Apr 24 (Fri) | How to Check Your Own AI Employer Visibility in 15 Minutes | Medium | 1,000-1,300 | 1.5 |
+| 8 | Apr 30 (Thu) | GEO Is Not SEO: Why Generative Engine Optimization Requires a Different Playbook | Long | 2,000-2,500 | 3 |
+| 9 | May 4 (Mon) | AI Visibility vs. Glassdoor Scores: Why They Measure Different Things | Medium | 1,000-1,400 | 1.5 |
+| 10 | May 6 (Wed) | Your EVP Is Not Reaching AI: The Gap Between Employer Brand Investment and AI Visibility | Long | 2,000-2,500 | 3 |
+| 11 | May 8 (Fri) | The Board Question Your CPO Cannot Answer: How Does AI Describe Us to Candidates? | Medium | 1,200-1,500 | 2 |
 
 **Total new writing:** ~21 hours over 28 days (~0.75 hours/day average)
 
@@ -316,11 +316,11 @@ Blog posts that directly address cold email objections:
 
 | Objection | Blog Post | Post # | Date |
 |-----------|-----------|--------|------|
-| "We already invest in employer brand" | "We Already Have a Strong Employer Brand" -- Why That Is Not the Same as Being Visible to AI | 6 | Apr 23 |
-| "We have a good Glassdoor score" | AI Visibility vs. Glassdoor Scores: Why They Measure Different Things | 9 | May 5 |
-| "Can't our SEO agency do this?" | GEO Is Not SEO: Why Generative Engine Optimization Requires a Different Playbook | 8 | May 1 |
-| "What's the business case?" | Your EVP Is Not Reaching AI: The Gap Between Employer Brand Investment and AI Visibility | 10 | May 7 |
-| "Is this really a board-level issue?" | The Board Question Your CPO Cannot Answer | 11 | May 9 |
+| "We already invest in employer brand" | "We Already Have a Strong Employer Brand" -- Why That Is Not the Same as Being Visible to AI | 6 | Apr 22 |
+| "We have a good Glassdoor score" | AI Visibility vs. Glassdoor Scores: Why They Measure Different Things | 9 | May 4 |
+| "Can't our SEO agency do this?" | GEO Is Not SEO: Why Generative Engine Optimization Requires a Different Playbook | 8 | Apr 30 |
+| "What's the business case?" | Your EVP Is Not Reaching AI: The Gap Between Employer Brand Investment and AI Visibility | 10 | May 6 |
+| "Is this really a board-level issue?" | The Board Question Your CPO Cannot Answer | 11 | May 8 |
 
 These posts serve dual purpose: standalone authority content AND specific URLs to share when prospects raise objections.
 
@@ -336,10 +336,10 @@ All LinkedIn posts are published Tuesday through Thursday for maximum engagement
 
 | Week | Posts | Days |
 |------|-------|------|
-| Week 1 (Apr 14-18) | #1-3 | Tue Apr 15, Wed Apr 16, Thu Apr 17 |
-| Week 2 (Apr 21-25) | #4-6 | Tue Apr 22, Wed Apr 23, Thu Apr 24 |
-| Week 3 (Apr 28 - May 2) | #7-9 | Tue Apr 29, Wed Apr 30, Thu May 1 |
-| Week 4 (May 5-9) | #10-12 | Tue May 6, Wed May 7, Thu May 8 |
+| Week 1 (Apr 13-17) | #1-3 | Tue Apr 14, Wed Apr 15, Thu Apr 16 |
+| Week 2 (Apr 20-24) | #4-6 | Tue Apr 21, Wed Apr 22, Thu Apr 23 |
+| Week 3 (Apr 27 - May 1) | #7-9 | Tue Apr 28, Wed Apr 29, Thu Apr 30 |
+| Week 4 (May 4-8) | #10-12 | Tue May 5, Wed May 6, Thu May 7 |
 
 ### Community: ROI Assessment and Recommendation
 
