@@ -496,6 +496,16 @@ export type {
   MultiRunAnalysis,
 } from "./multi-run-aggregation";
 
+// ─── Snapshot Action Plan ────────────────────────────────────
+export { buildSnapshotActionPlan } from "./snapshot-action-plan";
+export type {
+  SnapshotActionPlan,
+  SnapshotTalkingPoint,
+  SnapshotPushbackItem,
+  SnapshotReplyTemplate,
+  SnapshotReplyTemplateVariant,
+} from "./snapshot-action-plan";
+
 // ─── Operator Action Plan ────────────────────────────────────
 export type {
   OperatorActionPlan,

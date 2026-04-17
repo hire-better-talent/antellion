@@ -7,7 +7,7 @@ import { ScanProgressBar } from "@/components/ScanProgressBar";
 import { Card, CardHeader, CardBody, Badge } from "@antellion/ui";
 import { getOrganizationId } from "@/lib/auth";
 import { formatDate } from "@/lib/format";
-import { DMTemplateEditor } from "./dm-template-editor";
+import { CopyProspectLinkButton } from "./copy-prospect-link-button";
 import { RawResultsSection } from "./raw-results-section";
 import { CollapsibleSection } from "./collapsible-section";
 import { PrintButton } from "./print-button";
@@ -89,12 +89,14 @@ function SnapshotHeader({
   roleTitle,
   date,
   queryCount,
+  scanRunId,
 }: {
   prospectName: string;
   industry: string;
   roleTitle: string;
   date: Date;
   queryCount: number;
+  scanRunId?: string;
 }) {
   return (
     <div>
@@ -113,6 +115,15 @@ function SnapshotHeader({
         }
         action={
           <div className="flex items-center gap-3">
+            {scanRunId && <CopyProspectLinkButton scanRunId={scanRunId} />}
+            {scanRunId && (
+              <Link
+                href={`/snapshots/${scanRunId}/action-plan`}
+                className="text-sm font-medium text-gray-600 hover:text-gray-900"
+              >
+                Action plan
+              </Link>
+            )}
             <PrintButton />
             <Link
               href="/snapshots"
@@ -630,6 +641,7 @@ export default async function SnapshotFindingsPage({ params }: Props) {
           roleTitle={roleTitle}
           date={scan.createdAt}
           queryCount={scan.queryCount}
+          scanRunId={id}
         />
 
         <Card>
@@ -663,6 +675,7 @@ export default async function SnapshotFindingsPage({ params }: Props) {
           roleTitle={roleTitle}
           date={scan.createdAt}
           queryCount={scan.queryCount}
+          scanRunId={id}
         />
 
         <Card>
@@ -693,6 +706,7 @@ export default async function SnapshotFindingsPage({ params }: Props) {
           roleTitle={roleTitle}
           date={scan.createdAt}
           queryCount={scan.queryCount}
+          scanRunId={id}
         />
 
         <Card>
@@ -729,15 +743,13 @@ export default async function SnapshotFindingsPage({ params }: Props) {
         roleTitle={roleTitle}
         date={scan.createdAt}
         queryCount={scan.queryCount}
+        scanRunId={id}
       />
 
-      {/* ═══ ABOVE THE FOLD: Interpretation + DM template ═══ */}
+      {/* ═══ ABOVE THE FOLD: Interpretation ═══ */}
 
       {/* Interpretation layer -- analyst-prepared summary */}
       <InterpretationSection interpretation={summary.interpretation} />
-
-      {/* DM template -- immediately usable, the actual outreach tool */}
-      <DMTemplateEditor template={summary.dmTemplate} />
 
       {/* ═══ BELOW THE FOLD: Collapsible detail sections ═══ */}
 

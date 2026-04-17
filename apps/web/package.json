@@ -9,11 +9,12 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.81.0",
     "@antellion/core": "workspace:*",
     "@antellion/db": "workspace:*",
     "@antellion/prompts": "workspace:*",
     "@antellion/ui": "workspace:*",
+    "@anthropic-ai/sdk": "^0.81.0",
+    "nanoid": "^5.1.9",
     "next": "^15.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

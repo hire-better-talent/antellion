@@ -67,7 +67,7 @@ export interface SnapshotResultData {
   competitorName?: string; // for contrast queries
   prospectName: string;
   prospectDomain?: string; // when available, used directly in citation gap analysis
-  industry?: string; // threaded to DM template
+  industry?: string;
   competitors: Array<{ name: string; domain: string }>;
   // Result data
   mentioned: boolean;
@@ -224,9 +224,6 @@ export interface SnapshotSummary {
 
   // ── Interpretation layer ──
   interpretation: SnapshotInterpretation;
-
-  // ── DM template ──
-  dmTemplate: string;
 }
 
 // ─── Markdown stripping ──────────────────────────────────────
@@ -1226,7 +1223,7 @@ export function computeSnapshotSummary(results: SnapshotResultData[]): SnapshotS
   const topCompetitorMentionRate =
     discoveryResults.length > 0 ? topCompetitorMentioned / discoveryResults.length : 0;
 
-  // Classify visibility tier to drive hook scoring, headline framing, and DM template
+  // Classify visibility tier to drive hook scoring and headline framing
   const visibilityTier = classifyVisibilityTier(discoveryMentionRate);
 
   const discoveryHook = scoreHook("discovery_absence", {
@@ -1358,21 +1355,13 @@ export function computeSnapshotSummary(results: SnapshotResultData[]): SnapshotS
     },
   } as const;
 
-  // ── Build interpretation first, then DM from interpretation ──
+  // ── Build interpretation ──
 
   const interpretation = buildInterpretation(baseSummary, visibilityTier);
-
-  const dmTemplate = buildDmTemplate(
-    prospectName,
-    interpretation,
-    industry,
-    visibilityTier,
-  );
 
   return {
     ...baseSummary,
     interpretation,
-    dmTemplate,
   };
 }
 
@@ -1590,7 +1579,7 @@ function extractDimensionFromQuery(queryText: string): string | null {
 // snapshot page: 1 strength, 2 opportunities (different types), a
 // primary takeaway sentence, and a bridge to the full assessment.
 
-type InterpretationSourceSummary = Omit<SnapshotSummary, "interpretation" | "dmTemplate">;
+type InterpretationSourceSummary = Omit<SnapshotSummary, "interpretation">;
 
 // ─── Multi-dimensional scoring model ────────────────────────
 //
@@ -2924,86 +2913,6 @@ export function buildInterpretation(
   return { primaryTakeaway, strength, opportunities, bridge };
 }
 
-// ─── DM template builder ─────────────────────────────────────
-//
-// Consumes the interpretation layer directly so the DM mirrors the
-// interpretation cards. When the operator reads the DM and then looks
-// at the interpretation, they see the same story.
-
-function buildDmTemplate(
-  prospectName: string,
-  interpretation: SnapshotInterpretation,
-  industry?: string,
-  tier: VisibilityTier = "low",
-): string {
-  const industryText = industry || "your space";
-
-  // Build the "fair + pointed" pivot: acknowledge strength, then gap
-  const strengthBrief = summarizeStrengthForDm(interpretation.strength);
-  const opp = interpretation.opportunities[0];
-  const oppDetail = summarizeOppForDm(opp);
-  const pivotLine = `${strengthBrief} — but ${lowercaseFirst(opp.title)}: ${oppDetail}`;
-
-  return (
-    `Hi {first_name},\n\n` +
-    `We ran an AI employer visibility assessment on ${prospectName} — ` +
-    `100 queries across what candidates ask about employers in ${industryText}.\n\n` +
-    `${interpretation.primaryTakeaway}\n\n` +
-    `${pivotLine}\n\n` +
-    `The full diagnostic maps where the remaining gaps are and what to prioritize first. ` +
-    `Happy to share if useful.`
-  );
-}
-
-/**
- * Produces a brief (< 15 word) DM-friendly summary of the strength card.
- * Used as the positive acknowledgement before the pivot to the gap.
- */
-function summarizeStrengthForDm(strength: SnapshotInterpretation["strength"]): string {
-  if (strength.source === "discovery") {
-    // Extract percentage if present in the title/detail
-    const pctMatch = strength.detail.match(/(\d+)% of/);
-    if (pctMatch) {
-      return `AI mentions the company in ${pctMatch[1]}% of employer queries`;
-    }
-    return strength.title;
-  }
-  if (strength.source === "reputation") {
-    return "AI frames the company positively when candidates ask directly";
-  }
-  if (strength.source === "citation") {
-    return "The company has some citation coverage in AI responses";
-  }
-  if (strength.source === "contrast") {
-    return "The company holds its own in some head-to-head comparisons";
-  }
-  return strength.title;
-}
-
-/**
- * Lowercases the first character of a string unless it looks like a proper noun.
- * Used to make opportunity titles read naturally mid-sentence.
- */
-function lowercaseFirst(s: string): string {
-  if (!s) return s;
-  // Don't lowercase "AI" or "Zero" which read awkwardly lowercased in DM copy
-  if (/^(AI |Zero )/.test(s)) return s;
-  return s[0]!.toLowerCase() + s.slice(1);
-}
-
-/**
- * Summarizes an opportunity card into a brief DM-appropriate detail clause.
- * Extracts the first concrete sentence from the opportunity detail.
- */
-function summarizeOppForDm(opp: SnapshotInterpretation["opportunities"][0]): string {
-  // Use the first sentence of the detail for a tight DM summary.
-  const sentences = splitSentences(opp.detail);
-  if (sentences.length > 0) {
-    return sentences[0]!;
-  }
-  return opp.detail.slice(0, 200);
-}
-
 /**
  * Formats a string list with Oxford comma.
  * ["A"] → "A"
@@ -3096,6 +3005,5 @@ function buildEmptySummary(): SnapshotSummary {
     },
     primaryHook: hook,
     interpretation: emptyInterpretation,
-    dmTemplate: buildDmTemplate("", emptyInterpretation),
   };
 }

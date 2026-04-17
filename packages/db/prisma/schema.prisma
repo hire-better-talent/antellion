@@ -227,6 +227,9 @@ model ScanRun {
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
 
+  shareToken          String?   @unique
+  shareTokenRevokedAt DateTime?
+
   client          Client       @relation(fields: [clientId], references: [id])
   triggeredBy     User?        @relation("TriggeredBy", fields: [triggeredById], references: [id], onDelete: SetNull)
   parentScan      ScanRun?     @relation("ValidationScans", fields: [parentScanRunId], references: [id])

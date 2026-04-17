@@ -25,16 +25,17 @@ interface ClientContext {
   competitors: { name: string; domain: string }[];
 }
 
-// ── Delay between queries ────────────────────────────────────
+// ── Delay helpers ────────────────────────────────────────────
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-/** Random delay between 1 and 2 seconds to avoid OpenAI rate limits. */
-function interQueryDelayMs(): number {
-  return 1000 + Math.floor(Math.random() * 1000);
-}
+/** Delay between batches (not between individual queries within a batch). */
+const INTER_BATCH_DELAY_MS = 300;
+
+/** Number of queries executed concurrently in each batch. */
+const BATCH_SIZE = 5;
 
 // ── Core execution ───────────────────────────────────────────
 
@@ -144,34 +145,44 @@ export async function executeScan(scanRunId: string): Promise<void> {
     `Scan ${scanRunId}: running ${pendingQueries.length} pending queries (${recordedQueryIds.size} already recorded).`,
   );
 
-  // ── 4. Execute each pending query ────────────────────────
+  // ── 4. Execute pending queries in concurrent batches ─────
+  //
+  // BATCH_SIZE queries run in parallel via Promise.all. A fixed
+  // inter-batch delay (INTER_BATCH_DELAY_MS) gives the rate limiter
+  // breathing room without serialising individual queries.
   let errorCount = 0;
 
-  for (let i = 0; i < pendingQueries.length; i++) {
-    const query = pendingQueries[i]!;
-    const queryNum = recordedQueryIds.size + i + 1;
+  for (let batchStart = 0; batchStart < pendingQueries.length; batchStart += BATCH_SIZE) {
+    const batch = pendingQueries.slice(batchStart, batchStart + BATCH_SIZE);
+    const batchEnd = batchStart + batch.length;
 
     console.log(
-      `  Query ${queryNum}/${allQueries.length}: ${query.text.substring(0, 60)}${query.text.length > 60 ? "..." : ""}`,
+      `  Batch ${Math.floor(batchStart / BATCH_SIZE) + 1}: queries ${batchStart + 1}–${batchEnd} of ${pendingQueries.length}`,
     );
 
-    try {
-      await executeQuery(scanRunId, query, client, model);
-    } catch (err) {
-      errorCount++;
-      console.error(`  Query ${query.id} failed:`, err);
+    const results = await Promise.allSettled(
+      batch.map((query) => executeQuery(scanRunId, query, client, model)),
+    );
 
-      const failureRate = errorCount / pendingQueries.length;
-      if (failureRate > 0.2) {
-        console.warn(
-          `  Warning: ${errorCount}/${pendingQueries.length} queries failed (${Math.round(failureRate * 100)}%). Continuing to process remaining queries.`,
-        );
+    for (let j = 0; j < results.length; j++) {
+      const result = results[j]!;
+      if (result.status === "rejected") {
+        errorCount++;
+        const query = batch[j]!;
+        console.error(`  Query ${query.id} failed:`, result.reason);
+
+        const failureRate = errorCount / pendingQueries.length;
+        if (failureRate > 0.2) {
+          console.warn(
+            `  Warning: ${errorCount}/${pendingQueries.length} queries failed (${Math.round(failureRate * 100)}%). Continuing.`,
+          );
+        }
       }
     }
 
-    // Avoid hammering the API — skip the delay after the last query
-    if (i < pendingQueries.length - 1) {
-      await sleep(interQueryDelayMs());
+    // Inter-batch pause — skip after the last batch
+    if (batchEnd < pendingQueries.length) {
+      await sleep(INTER_BATCH_DELAY_MS);
     }
   }
 

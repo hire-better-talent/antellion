@@ -45,6 +45,13 @@ const nextConfig: NextConfig = {
       "../../node_modules/.pnpm/@prisma+client*/node_modules/@prisma/client/**/*",
       "../../node_modules/.pnpm/prisma*/node_modules/prisma/libquery_engine-*.node",
     ],
+    // The /s/[token] route hits Prisma for public snapshot lookups.
+    "/s/[token]": [
+      "../../node_modules/.pnpm/@prisma+client*/node_modules/.prisma/client/*.node",
+      "../../node_modules/.pnpm/@prisma+client*/node_modules/.prisma/client/schema.prisma",
+      "../../node_modules/.pnpm/@prisma+client*/node_modules/@prisma/client/**/*",
+      "../../node_modules/.pnpm/prisma*/node_modules/prisma/libquery_engine-*.node",
+    ],
   },
 };
 

@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { generateSnapshotQueries } from "../snapshot-queries";
-import type { SnapshotQueryInput, SnapshotQuery } from "../snapshot-queries";
+import type { SnapshotQueryInput, SnapshotQuery, DiscoveryTheme } from "../snapshot-queries";
 
 // ─── Fixtures ────────────────────────────────────────────────
 
@@ -578,6 +578,110 @@ describe("generateSnapshotQueries — template variable substitution", () => {
     const cit = byCategory(generateSnapshotQueries(BASE_INPUT), "citation_source");
     for (const q of cit) {
       expect(q.text).toContain("Meridian Technologies");
+    }
+  });
+});
+
+// ─── 16. v2: Discovery theme tags ────────────────────────────
+
+const VALID_THEMES: ReadonlySet<DiscoveryTheme> = new Set([
+  "general reputation",
+  "compensation",
+  "culture",
+  "career growth",
+  "work-life balance",
+  "remote & hybrid",
+  "diversity & inclusion",
+  "innovation",
+  "leadership",
+  "benefits",
+]);
+
+describe("generateSnapshotQueries — v2 discovery theme tags", () => {
+  it("every discovery query carries a theme tag", () => {
+    const discovery = byCategory(generateSnapshotQueries(BASE_INPUT), "discovery");
+    expect(discovery).toHaveLength(65);
+    for (const q of discovery) {
+      expect(q.theme).toBeDefined();
+      expect(VALID_THEMES.has(q.theme as DiscoveryTheme)).toBe(true);
+    }
+  });
+
+  it("non-discovery queries do not carry a theme tag", () => {
+    const queries = generateSnapshotQueries(BASE_INPUT);
+    for (const q of queries.filter((q) => q.category !== "discovery")) {
+      expect(q.theme).toBeUndefined();
+    }
+  });
+
+  it("at least 3 distinct themes are present across discovery queries", () => {
+    const discovery = byCategory(generateSnapshotQueries(BASE_INPUT), "discovery");
+    const themes = new Set(discovery.map((q) => q.theme));
+    expect(themes.size).toBeGreaterThanOrEqual(3);
+  });
+
+  it("compensation theme is present", () => {
+    const discovery = byCategory(generateSnapshotQueries(BASE_INPUT), "discovery");
+    expect(discovery.some((q) => q.theme === "compensation")).toBe(true);
+  });
+
+  it("culture theme is present", () => {
+    const discovery = byCategory(generateSnapshotQueries(BASE_INPUT), "discovery");
+    expect(discovery.some((q) => q.theme === "culture")).toBe(true);
+  });
+
+  it("career growth theme is present", () => {
+    const discovery = byCategory(generateSnapshotQueries(BASE_INPUT), "discovery");
+    expect(discovery.some((q) => q.theme === "career growth")).toBe(true);
+  });
+
+  it("theme tags hold with niche keywords", () => {
+    const discovery = byCategory(
+      generateSnapshotQueries(makeInput({ nicheKeywords: ["payments"] })),
+      "discovery",
+    );
+    for (const q of discovery) {
+      expect(q.theme).toBeDefined();
+      expect(VALID_THEMES.has(q.theme as DiscoveryTheme)).toBe(true);
+    }
+  });
+
+  it("theme tags hold with geography", () => {
+    const discovery = byCategory(
+      generateSnapshotQueries(makeInput({ geography: "Austin" })),
+      "discovery",
+    );
+    for (const q of discovery) {
+      expect(q.theme).toBeDefined();
+      expect(VALID_THEMES.has(q.theme as DiscoveryTheme)).toBe(true);
+    }
+  });
+});
+
+// ─── 17. v2: Contrast competitor intent prefix ───────────────
+
+describe("generateSnapshotQueries — v2 contrast competitorName field", () => {
+  it("all contrast queries have a non-empty competitorName (enables competitor:<name> intent prefix)", () => {
+    const contrast = byCategory(generateSnapshotQueries(BASE_INPUT), "competitor_contrast");
+    for (const q of contrast) {
+      expect(typeof q.competitorName).toBe("string");
+      expect((q.competitorName as string).trim().length).toBeGreaterThan(0);
+    }
+  });
+
+  it("competitorName values match only the provided competitors", () => {
+    const contrast = byCategory(generateSnapshotQueries(BASE_INPUT), "competitor_contrast");
+    const allowed = new Set(BASE_INPUT.competitors.map((c) => c.name));
+    for (const q of contrast) {
+      expect(allowed.has(q.competitorName!)).toBe(true);
+    }
+  });
+
+  it("each of the 3 competitors maps to at least one contrast query", () => {
+    const contrast = byCategory(generateSnapshotQueries(BASE_INPUT), "competitor_contrast");
+    const names = new Set(contrast.map((q) => q.competitorName));
+    for (const comp of BASE_INPUT.competitors) {
+      expect(names.has(comp.name)).toBe(true);
     }
   });
 });

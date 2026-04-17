@@ -9,6 +9,110 @@ import {
 } from "@antellion/core";
 import { getOrganizationId } from "@/lib/auth";
 import type { ActionState } from "@/lib/actions";
+import { nanoid } from "nanoid";
+import { buildSnapshotActionPlan } from "@antellion/core";
+import type { SnapshotActionPlan } from "@antellion/core";
+
+// ─── Share token ─────────────────────────────────────────────
+
+const APP_URL =
+  process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "") ?? "http://localhost:3000";
+
+/**
+ * Idempotently generate (or return the existing) share token for a ScanRun.
+ *
+ * Org-scoped: the scan run must belong to a Client in the caller's organization.
+ * If a token already exists and is not revoked, it is returned as-is.
+ */
+export async function generateShareToken(
+  scanRunId: string,
+): Promise<{ token: string; url: string }> {
+  if (!scanRunId || typeof scanRunId !== "string") {
+    throw new Error("Invalid scanRunId");
+  }
+
+  const organizationId = await getOrganizationId();
+
+  // Org-scoped lookup: walk the relation chain ScanRun → Client → Organization.
+  const scanRun = await prisma.scanRun.findFirst({
+    where: {
+      id: scanRunId,
+      client: { organizationId },
+    },
+    select: {
+      id: true,
+      shareToken: true,
+      shareTokenRevokedAt: true,
+    },
+  });
+
+  if (!scanRun) {
+    throw new Error("Scan run not found");
+  }
+
+  // Idempotent: return existing token if present and not revoked.
+  if (scanRun.shareToken && !scanRun.shareTokenRevokedAt) {
+    return {
+      token: scanRun.shareToken,
+      url: `${APP_URL}/s/${scanRun.shareToken}`,
+    };
+  }
+
+  const token = nanoid(16);
+
+  await prisma.scanRun.update({
+    where: { id: scanRun.id },
+    data: { shareToken: token, shareTokenRevokedAt: null },
+  });
+
+  return {
+    token,
+    url: `${APP_URL}/s/${token}`,
+  };
+}
+
+// ─── getSnapshotActionPlan ───────────────────────────────────
+
+/**
+ * Fetch and build the SnapshotActionPlan for the given scan run.
+ *
+ * Org-scoped: the scan run must belong to a Client in the caller's organization.
+ * Throws if the scan run is not found or if snapshotSummary is missing.
+ */
+export async function getSnapshotActionPlan(
+  scanRunId: string,
+): Promise<SnapshotActionPlan> {
+  if (!scanRunId || typeof scanRunId !== "string") {
+    throw new Error("Invalid scanRunId");
+  }
+
+  const organizationId = await getOrganizationId();
+
+  const scanRun = await prisma.scanRun.findFirst({
+    where: {
+      id: scanRunId,
+      client: { organizationId },
+    },
+    select: { id: true, metadata: true },
+  });
+
+  if (!scanRun) {
+    throw new Error("Scan run not found");
+  }
+
+  const meta = scanRun.metadata as Record<string, unknown> | null;
+
+  if (!meta?.snapshotSummary) {
+    throw new Error(
+      `Scan run ${scanRunId} has no snapshotSummary. Ensure the scan is complete before generating the action plan.`,
+    );
+  }
+
+  return buildSnapshotActionPlan(
+    scanRun.id,
+    meta.snapshotSummary as Parameters<typeof buildSnapshotActionPlan>[1],
+  );
+}
 
 // ── Category → cluster name mapping ─────────────────────────
 
@@ -232,7 +336,7 @@ export async function createSnapshotScan(
           metadata: {
             automated: true,
             snapshot: true,
-            snapshotVersion: 1,
+            snapshotVersion: 2,
             queryClusterIds: clusterIds,
             prospectName,
             prospectDomain,

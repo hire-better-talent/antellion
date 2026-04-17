@@ -6,19 +6,6 @@ import { LeadRow } from "./lead-row";
 
 export const dynamic = "force-dynamic";
 
-const STATUS_BADGE: Record<string, { label: string; color: string }> = {
-  NEW: { label: "New", color: "bg-blue-100 text-blue-800" },
-  CONTACTED: { label: "Contacted", color: "bg-yellow-100 text-yellow-800" },
-  SNAPSHOT_SENT: {
-    label: "Snapshot Sent",
-    color: "bg-green-100 text-green-800",
-  },
-  CONVERTED: { label: "Converted", color: "bg-purple-100 text-purple-800" },
-  DECLINED: { label: "Declined", color: "bg-gray-100 text-gray-600" },
-};
-
-export { STATUS_BADGE };
-
 export default async function LeadsPage() {
   const leads = await prisma.lead.findMany({
     orderBy: { createdAt: "desc" },

@@ -98,9 +98,6 @@ async function main() {
     console.log();
   }
   console.log("Bridge:", s.interpretation.bridge);
-  console.log();
-  console.log("=== DM TEMPLATE ===");
-  console.log(s.dmTemplate);
 }
 
 main().then(() => prisma.$disconnect()).catch(e => { console.error(e); prisma.$disconnect(); });

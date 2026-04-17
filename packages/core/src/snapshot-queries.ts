@@ -11,11 +11,29 @@ export interface SnapshotQueryInput {
   geography?: string;
 }
 
+export type DiscoveryTheme =
+  | "general reputation"
+  | "compensation"
+  | "culture"
+  | "career growth"
+  | "work-life balance"
+  | "remote & hybrid"
+  | "diversity & inclusion"
+  | "innovation"
+  | "leadership"
+  | "benefits";
+
 export interface SnapshotQuery {
   text: string;
   category: "discovery" | "competitor_contrast" | "reputation" | "citation_source";
   /** Which competitor this query targets (contrast queries only). */
   competitorName?: string;
+  /**
+   * Theme tag for discovery queries — used by computeSnapshotSummary to build
+   * themeBreakdown without falling back to keyword inference.
+   * Required on all discovery queries (v2 shape).
+   */
+  theme?: DiscoveryTheme;
 }
 
 // ─── Helpers ─────────────────────────────────────────────────
@@ -30,8 +48,8 @@ function isEngineeringRole(roleTitle: string): boolean {
   );
 }
 
-function d(text: string): SnapshotQuery {
-  return { text, category: "discovery" };
+function d(text: string, theme: DiscoveryTheme = "general reputation"): SnapshotQuery {
+  return { text, category: "discovery", theme };
 }
 
 // ─── Category 1: Discovery Absence (65 queries) ──────────────
@@ -58,124 +76,132 @@ function buildDiscoveryQueries(
   // ── Fixed core (D1–D30) ──────────────────────────────────
   const fixed: SnapshotQuery[] = [
     // T1 — General reputation
-    d(`best ${industry} companies to work for`),
-    d(`top companies hiring ${role} in ${industry}`),
-    d(`best companies for ${role}`),
-    d(`I'm a ${role} looking for my next job in ${industry}, what companies should be on my radar`),
-    d(`top rated ${industry} employers`),
+    d(`best ${industry} companies to work for`, "general reputation"),
+    d(`top companies hiring ${role} in ${industry}`, "general reputation"),
+    d(`best companies for ${role}`, "general reputation"),
+    d(`I'm a ${role} looking for my next job in ${industry}, what companies should be on my radar`, "general reputation"),
+    d(`top rated ${industry} employers`, "general reputation"),
     // T4 — Career growth
-    d(`best ${industry} companies for career growth`),
-    d(`${industry} companies with the best career development programs`),
-    d(`where should I work if I want to grow my career in ${industry}`),
+    d(`best ${industry} companies for career growth`, "career growth"),
+    d(`${industry} companies with the best career development programs`, "career growth"),
+    d(`where should I work if I want to grow my career in ${industry}`, "career growth"),
     // T2 — Compensation
-    d(`highest paying ${industry} companies for ${role}`),
-    d(`which ${industry} companies pay ${role} the best right now`),
-    d(`best paying employers in ${industry}`),
+    d(`highest paying ${industry} companies for ${role}`, "compensation"),
+    d(`which ${industry} companies pay ${role} the best right now`, "compensation"),
+    d(`best paying employers in ${industry}`, "compensation"),
     // T5 — Work-life balance
-    d(`best ${industry} companies for work life balance`),
-    d(`${industry} companies known for good work life balance`),
-    d(`where should I work in ${industry} if I want work life balance`),
+    d(`best ${industry} companies for work life balance`, "work-life balance"),
+    d(`${industry} companies known for good work life balance`, "work-life balance"),
+    d(`where should I work in ${industry} if I want work life balance`, "work-life balance"),
     // T3 — Culture
-    d(`best ${industry} companies for company culture`),
-    d(`which ${industry} companies have the best culture for ${role}`),
-    d(`I want to work somewhere with great culture in ${industry}, what are my options`),
+    d(`best ${industry} companies for company culture`, "culture"),
+    d(`which ${industry} companies have the best culture for ${role}`, "culture"),
+    d(`I want to work somewhere with great culture in ${industry}, what are my options`, "culture"),
     // T6 — Innovation / technology
-    d(`most innovative ${industry} companies to work for`),
-    d(`${industry} companies known for cutting edge technology`),
-    d(`best ${industry} companies for ${role} who want to work on interesting problems`),
+    d(`most innovative ${industry} companies to work for`, "innovation"),
+    d(`${industry} companies known for cutting edge technology`, "innovation"),
+    d(`best ${industry} companies for ${role} who want to work on interesting problems`, "innovation"),
     // T7 — Leadership / management
-    d(`best managed ${industry} companies`),
-    d(`${industry} companies with the best leadership`),
+    d(`best managed ${industry} companies`, "leadership"),
+    d(`${industry} companies with the best leadership`, "leadership"),
     // T8 — Diversity / inclusion
-    d(`most diverse ${industry} companies to work for`),
-    d(`${industry} companies with the best diversity and inclusion programs`),
+    d(`most diverse ${industry} companies to work for`, "diversity & inclusion"),
+    d(`${industry} companies with the best diversity and inclusion programs`, "diversity & inclusion"),
     // T9 — Benefits / perks
-    d(`best ${industry} companies for benefits and perks`),
-    d(`which ${industry} companies have the best employee benefits`),
+    d(`best ${industry} companies for benefits and perks`, "benefits"),
+    d(`which ${industry} companies have the best employee benefits`, "benefits"),
     // T10 — Remote / hybrid
-    d(`best remote ${industry} companies for ${role}`),
-    d(`${industry} companies that offer remote work for ${role}`),
+    d(`best remote ${industry} companies for ${role}`, "remote & hybrid"),
+    d(`${industry} companies that offer remote work for ${role}`, "remote & hybrid"),
     // T3 + T1 — Additional
-    d(`which ${industry} companies have the happiest employees`),
-    d(`I'm looking for a ${role} job at a company that treats employees well in ${industry}`),
+    d(`which ${industry} companies have the happiest employees`, "culture"),
+    d(`I'm looking for a ${role} job at a company that treats employees well in ${industry}`, "general reputation"),
   ];
 
   // ── Phrasing variants (D31–D45) ──────────────────────────
   const phrasings: SnapshotQuery[] = [
-    d(`if I want to be a ${role} in ${industry}, which companies should be on my shortlist`),
-    d(`what are the top ${industry} companies that ${role} recommend working at`),
-    d(`companies in ${industry} where ${role} say they are happy`),
-    d(`best ${industry} employers for someone early in their ${role} career`),
-    d(`which ${industry} companies promote ${role} the fastest`),
-    d(`${industry} companies with the best compensation packages for ${role}`),
-    d(`what ${industry} companies should I avoid as a ${role}`),
-    d(`most respected ${industry} companies to have on your resume`),
-    d(`${industry} companies with the best engineering culture`),
-    d(`where do the best ${role} in ${industry} work`),
-    d(`top ${industry} companies for ${role} career opportunities right now`),
-    d(`${industry} companies that invest in employee development`),
-    d(`best ${industry} companies for women in ${role}`),
-    d(`which companies in ${industry} have the best remote work policies`),
-    d(`I'm a senior ${role} considering ${industry}, which companies stand out`),
+    d(`if I want to be a ${role} in ${industry}, which companies should be on my shortlist`, "general reputation"),
+    d(`what are the top ${industry} companies that ${role} recommend working at`, "general reputation"),
+    d(`companies in ${industry} where ${role} say they are happy`, "culture"),
+    d(`best ${industry} employers for someone early in their ${role} career`, "career growth"),
+    d(`which ${industry} companies promote ${role} the fastest`, "career growth"),
+    d(`${industry} companies with the best compensation packages for ${role}`, "compensation"),
+    d(`what ${industry} companies should I avoid as a ${role}`, "general reputation"),
+    d(`most respected ${industry} companies to have on your resume`, "general reputation"),
+    d(`${industry} companies with the best engineering culture`, "innovation"),
+    d(`where do the best ${role} in ${industry} work`, "general reputation"),
+    d(`top ${industry} companies for ${role} career opportunities right now`, "career growth"),
+    d(`${industry} companies that invest in employee development`, "career growth"),
+    d(`best ${industry} companies for women in ${role}`, "diversity & inclusion"),
+    d(`which companies in ${industry} have the best remote work policies`, "remote & hybrid"),
+    d(`I'm a senior ${role} considering ${industry}, which companies stand out`, "general reputation"),
   ];
 
   // ── Seniority variants (D46–D53) ─────────────────────────
   const seniority: SnapshotQuery[] = [
-    d(`best ${industry} companies for junior ${role}`),
-    d(`best ${industry} companies for senior ${role}`),
-    d(`top ${industry} companies for ${role} managers`),
-    d(`best places to work as a ${role} lead in ${industry}`),
-    d(`${industry} companies hiring experienced ${role} right now`),
-    d(`where should a mid-career ${role} work in ${industry}`),
-    d(`best ${industry} companies for ${role} who want to move into management`),
-    d(`top ${industry} companies for new grad ${role}`),
+    d(`best ${industry} companies for junior ${role}`, "career growth"),
+    d(`best ${industry} companies for senior ${role}`, "career growth"),
+    d(`top ${industry} companies for ${role} managers`, "career growth"),
+    d(`best places to work as a ${role} lead in ${industry}`, "career growth"),
+    d(`${industry} companies hiring experienced ${role} right now`, "general reputation"),
+    d(`where should a mid-career ${role} work in ${industry}`, "general reputation"),
+    d(`best ${industry} companies for ${role} who want to move into management`, "career growth"),
+    d(`top ${industry} companies for new grad ${role}`, "career growth"),
   ];
 
   // ── Conditional pool (D54–D65) ordered by priority ───────
   interface ConditionalTemplate {
     text: string;
+    theme: DiscoveryTheme;
     condition: () => boolean;
     priority: number;
   }
 
   const conditionals: ConditionalTemplate[] = [
-    { text: `best ${niche} companies to work for`, condition: () => hasNiche, priority: 10 },
-    { text: `top ${niche} companies for ${role}`, condition: () => hasNiche, priority: 10 },
+    { text: `best ${niche} companies to work for`, theme: "general reputation", condition: () => hasNiche, priority: 10 },
+    { text: `top ${niche} companies for ${role}`, theme: "general reputation", condition: () => hasNiche, priority: 10 },
     {
       text: `${niche} companies known for treating employees well`,
+      theme: "culture",
       condition: () => hasNiche,
       priority: 9,
     },
     {
       text: `best companies to work for in ${niche} right now`,
+      theme: "general reputation",
       condition: () => hasNiche,
       priority: 9,
     },
     {
       text: `best ${industry} companies to work for in ${geo}`,
+      theme: "general reputation",
       condition: () => hasGeo,
       priority: 8,
     },
     {
       text: `top ${industry} employers in ${geo} for ${role}`,
+      theme: "general reputation",
       condition: () => hasGeo,
       priority: 8,
     },
-    { text: `${industry} companies hiring ${role} in ${geo}`, condition: () => hasGeo, priority: 7 },
-    { text: `best Fortune 500 companies for ${role}`, condition: () => true, priority: 9 },
-    { text: `most respected Fortune 500 employers in ${industry}`, condition: () => true, priority: 8 },
+    { text: `${industry} companies hiring ${role} in ${geo}`, theme: "general reputation", condition: () => hasGeo, priority: 7 },
+    { text: `best Fortune 500 companies for ${role}`, theme: "general reputation", condition: () => true, priority: 9 },
+    { text: `most respected Fortune 500 employers in ${industry}`, theme: "general reputation", condition: () => true, priority: 8 },
     {
       text: `best ${niche} startups to work for`,
+      theme: "general reputation",
       condition: () => hasNiche,
       priority: 9,
     },
     {
       text: `which ${industry} companies in ${geo} have the best culture`,
+      theme: "culture",
       condition: () => hasGeo,
       priority: 7,
     },
     {
       text: `${industry} companies known for ${niche} that are great employers`,
+      theme: "general reputation",
       condition: () => hasNiche,
       priority: 8,
     },
@@ -183,18 +209,18 @@ function buildDiscoveryQueries(
 
   // ── Fallback pool (F1–F12) ────────────────────────────────
   const fallbacks: SnapshotQuery[] = [
-    d(`which companies are considered the best employers in ${industry}`),
-    d(`${industry} companies with the highest employee satisfaction`),
-    d(`where do top ${role} talent go in ${industry}`),
-    d(`${industry} companies that are great places to work`),
-    d(`best ${industry} companies for ${role} compensation and equity`),
-    d(`${industry} employers that ${role} rate highly`),
-    d(`top ${industry} companies for work flexibility and remote options`),
-    d(`which ${industry} companies are known for strong mentorship programs`),
-    d(`best ${industry} companies for people who care about social impact`),
-    d(`${industry} companies where ${role} say leadership is excellent`),
-    d(`what are the fastest growing ${industry} companies to work for`),
-    d(`${industry} companies with the strongest employer brand`),
+    d(`which companies are considered the best employers in ${industry}`, "general reputation"),
+    d(`${industry} companies with the highest employee satisfaction`, "culture"),
+    d(`where do top ${role} talent go in ${industry}`, "general reputation"),
+    d(`${industry} companies that are great places to work`, "culture"),
+    d(`best ${industry} companies for ${role} compensation and equity`, "compensation"),
+    d(`${industry} employers that ${role} rate highly`, "general reputation"),
+    d(`top ${industry} companies for work flexibility and remote options`, "remote & hybrid"),
+    d(`which ${industry} companies are known for strong mentorship programs`, "career growth"),
+    d(`best ${industry} companies for people who care about social impact`, "diversity & inclusion"),
+    d(`${industry} companies where ${role} say leadership is excellent`, "leadership"),
+    d(`what are the fastest growing ${industry} companies to work for`, "general reputation"),
+    d(`${industry} companies with the strongest employer brand`, "general reputation"),
   ];
 
   // ── Selection algorithm ───────────────────────────────────
@@ -209,7 +235,7 @@ function buildDiscoveryQueries(
   const selected: SnapshotQuery[] = [];
   for (const c of eligible) {
     if (selected.length >= 12) break;
-    selected.push(d(c.text));
+    selected.push(d(c.text, c.theme));
   }
 
   // If conditionals didn't fill all 12 slots, draw from fallback pool.

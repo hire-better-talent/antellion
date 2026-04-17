@@ -1408,78 +1408,6 @@ describe("computeSnapshotSummary — hook selection and finding strength", () =>
   });
 });
 
-// ─── computeSnapshotSummary — DM template ────────────────────
-
-describe("computeSnapshotSummary — DM template", () => {
-  it("contains '100 queries'", () => {
-    const results = makeFullResultSet({ discoveryMentioned: 0, competitorMentioned: 42 });
-    const summary = computeSnapshotSummary(results);
-    expect(summary.dmTemplate).toContain("100 queries");
-  });
-
-  it("contains the prospect mention rate percentage", () => {
-    const results = makeFullResultSet({ discoveryMentioned: 8 }); // 8/65 ≈ 12%
-    const summary = computeSnapshotSummary(results);
-    expect(summary.dmTemplate).toContain("12%");
-  });
-
-  it("contains the top competitor name", () => {
-    const results = makeFullResultSet({ discoveryMentioned: 0, competitorMentioned: 42 });
-    const summary = computeSnapshotSummary(results);
-    expect(summary.dmTemplate).toContain("Stripe");
-  });
-
-  it("contains a specific gap query finding when competitors were mentioned in discovery", () => {
-    // When top gap queries have competitors, the DM names specific competitors and uses
-    // either dimension-based contrast or gap-query-based contrast — actionable for cold outreach.
-    const results = makeFullResultSet({ discoveryMentioned: 0, competitorMentioned: 42 });
-    const summary = computeSnapshotSummary(results);
-    // The DM should mention the prospect and key competitors
-    expect(summary.dmTemplate).toContain("Plaid");
-    // Low-vis specific takeaway uses prose ("almost never recommends") instead of raw "%".
-    // Should contain either "but not Plaid" (gap query phrasing) or "never recommends" (specific low-vis)
-    expect(summary.dmTemplate).toMatch(/but not Plaid|over Plaid|never recommends/);
-  });
-
-  it("falls back to high-visibility DM when all discovery queries mention prospect", () => {
-    // All 65 discovery queries mention the prospect → 100% → high visibility tier.
-    // DM should use the interpretation layer and contain the primaryTakeaway.
-    const results = makeFullResultSet({ discoveryMentioned: 65, competitorMentioned: 42 });
-    const summary = computeSnapshotSummary(results);
-    // DM now mirrors interpretation: contains the primaryTakeaway
-    expect(summary.dmTemplate).toContain(summary.interpretation.primaryTakeaway);
-    // Should contain the first opportunity title (may be lowercased in DM pivot line)
-    expect(summary.dmTemplate.toLowerCase()).toContain(summary.interpretation.opportunities[0].title.toLowerCase());
-    expect(summary.dmTemplate.length).toBeGreaterThan(100);
-  });
-
-  it("contains the standard closing text", () => {
-    const results = makeFullResultSet({ discoveryMentioned: 0 });
-    const summary = computeSnapshotSummary(results);
-    expect(summary.dmTemplate).toContain(
-      "The full diagnostic maps where the remaining gaps are and what to prioritize first.",
-    );
-    expect(summary.dmTemplate).toContain("Happy to share if useful.");
-  });
-
-  it("starts with 'Hi {first_name},'", () => {
-    const results = makeFullResultSet();
-    const summary = computeSnapshotSummary(results);
-    expect(summary.dmTemplate.startsWith("Hi {first_name},")).toBe(true);
-  });
-
-  it("contains actual industry text (not a raw placeholder)", () => {
-    const results = makeFullResultSet();
-    // When industry is set on the results, it should be substituted
-    const summary = computeSnapshotSummary(results);
-    // Should NOT contain the raw {industry} placeholder
-    expect(summary.dmTemplate).not.toContain("{industry}");
-    // Should contain "your industry" (the fallback when no industry is set)
-    // or the actual industry text if set on the results
-    expect(summary.dmTemplate).toMatch(/employers in .+\./);
-  });
-});
-
 // ─── computeSnapshotSummary — scoreboard fields ──────────────
 
 describe("computeSnapshotSummary — scoreboard fields", () => {
@@ -2032,43 +1960,6 @@ describe("computeSnapshotSummary — high visibility prospect", () => {
     expect(["strong", "moderate"]).toContain(summary.primaryHook.findingStrength);
   });
 
-  it("high-visibility DM template leads with strength", () => {
-    const discoveryResults: SnapshotResultData[] = Array.from({ length: 65 }, (_, i) =>
-      makeResult({
-        queryText: `d${i}`,
-        category: "discovery",
-        prospectName: "ServiceTitan",
-        mentioned: i < 32,
-        competitors: [{ name: "Procore", domain: "procore.com" }],
-        response: i < 32
-          ? "ServiceTitan is a top employer."
-          : "Procore is well known.",
-      }),
-    );
-
-    const contrastResults: SnapshotResultData[] = [
-      makeResult({
-        queryText: "ServiceTitan vs Procore culture",
-        category: "competitor_contrast",
-        competitorName: "Procore",
-        prospectName: "ServiceTitan",
-        mentioned: true,
-        sentimentScore: -0.4,
-        competitors: [{ name: "Procore", domain: "procore.com" }],
-        response: "Procore is the clear winner over ServiceTitan for culture.",
-      }),
-    ];
-
-    const summary = computeSnapshotSummary([...discoveryResults, ...contrastResults]);
-
-    // DM now mirrors the interpretation layer: contains primaryTakeaway
-    expect(summary.dmTemplate).toContain(summary.interpretation.primaryTakeaway);
-    // Should contain the first opportunity title (may be lowercased in DM pivot line)
-    expect(summary.dmTemplate.toLowerCase()).toContain(summary.interpretation.opportunities[0].title.toLowerCase());
-    // Should NOT say "was mentioned in 49% of them" (old low-vis framing)
-    expect(summary.dmTemplate).not.toContain("was mentioned in 49% of them");
-  });
-
   it("high-visibility prospect with no contrast issues → weak finding", () => {
     // All discovery mentioned, no competitor favoring, neutral reputation
     const discoveryResults: SnapshotResultData[] = Array.from({ length: 65 }, (_, i) =>
@@ -2121,7 +2012,7 @@ describe("computeSnapshotSummary — high visibility prospect", () => {
 // ─── computeSnapshotSummary — moderate visibility integration ─
 
 describe("computeSnapshotSummary — moderate visibility prospect", () => {
-  it("15% mention rate → moderate tier, DM mirrors interpretation", () => {
+  it("15% mention rate → moderate tier", () => {
     const discoveryResults: SnapshotResultData[] = Array.from({ length: 65 }, (_, i) =>
       makeResult({
         queryText: `d${i}`,
@@ -2137,46 +2028,8 @@ describe("computeSnapshotSummary — moderate visibility prospect", () => {
 
     const summary = computeSnapshotSummary(discoveryResults);
 
-    // DM now mirrors interpretation: contains primaryTakeaway with percentage
-    expect(summary.dmTemplate).toContain(summary.interpretation.primaryTakeaway);
-    expect(summary.dmTemplate).toContain("15%");
-    // Should NOT use old high-vis "strong AI visibility" framing
-    expect(summary.dmTemplate).not.toContain("strong AI visibility at");
-  });
-});
-
-// ─── computeSnapshotSummary — DM template tier variants ──────
-
-describe("computeSnapshotSummary — DM template visibility tier variants", () => {
-  it("low visibility DM mirrors interpretation takeaway", () => {
-    const results = makeFullResultSet({ discoveryMentioned: 0, competitorMentioned: 42 });
-    const summary = computeSnapshotSummary(results);
-    // DM now uses interpretation.primaryTakeaway directly
-    expect(summary.dmTemplate).toContain(summary.interpretation.primaryTakeaway);
-    // Low vis takeaway should communicate invisibility — either via "0%" or "never recommends" prose
-    expect(summary.interpretation.primaryTakeaway).toMatch(/0%|never recommends|invisible/);
-    expect(summary.dmTemplate.toLowerCase()).toContain(summary.interpretation.opportunities[0].title.toLowerCase());
-  });
-
-  it("high visibility DM mirrors interpretation takeaway", () => {
-    const results = makeFullResultSet({ discoveryMentioned: 32, competitorMentioned: 4 });
-    const summary = computeSnapshotSummary(results);
-    // 32/65 ≈ 49% → high tier
-    expect(summary.dmTemplate).toContain(summary.interpretation.primaryTakeaway);
-    // High vis takeaway should reference the prospect and contain the discovery rate
-    expect(summary.interpretation.primaryTakeaway).toContain("Plaid");
-    expect(summary.interpretation.primaryTakeaway).toContain("49%");
-    expect(summary.dmTemplate.toLowerCase()).toContain(summary.interpretation.opportunities[0].title.toLowerCase());
-  });
-
-  it("moderate visibility DM mirrors interpretation takeaway", () => {
-    const results = makeFullResultSet({ discoveryMentioned: 8, competitorMentioned: 40 });
-    const summary = computeSnapshotSummary(results);
-    // 8/65 ≈ 12% → moderate tier
-    expect(summary.dmTemplate).toContain(summary.interpretation.primaryTakeaway);
-    // Moderate takeaway should contain the percentage
-    expect(summary.interpretation.primaryTakeaway).toContain("12%");
-    expect(summary.dmTemplate.toLowerCase()).toContain(summary.interpretation.opportunities[0].title.toLowerCase());
+    expect(summary.visibilityTier).toBe("moderate");
+    expect(summary.interpretation.primaryTakeaway).toBeTruthy();
   });
 });
 
@@ -3172,7 +3025,7 @@ describe("interpretation — semantic coherence", () => {
       // The competitive comparison vulnerability should name non-culture dimensions,
       // OR the strength should have been swapped to broad.
       // Fail if we get here with both having conflicting polarity on culture.
-      fail("Contradictory interpretation: strength says culture is strong while opportunity says culture is weak");
+      throw new Error("Contradictory interpretation: strength says culture is strong while opportunity says culture is weak");
     }
   });
 
@@ -3386,7 +3239,7 @@ describe("interpretation — semantic coherence", () => {
       // Unless the strength was swapped to avoid the contradiction
       if (oppMentionsStripeFavored) {
         // Verify it's not a "Dominant over Stripe" + "Stripe favored" combo
-        expect(summary.interpretation.strength.meta).toBeUndefined(); // meta is internal-only
+        expect((summary.interpretation.strength as Record<string, unknown>).meta).toBeUndefined(); // meta is internal-only
       }
     }
 
@@ -3741,5 +3594,148 @@ describe("coverage-weighted ranking — support threshold enforcement", () => {
 
   it("threshold is MIN_THEME_STRENGTH_QUERIES (exported constant)", () => {
     expect(MIN_THEME_STRENGTH_QUERIES).toBe(8);
+  });
+});
+
+// ─── v2 contract: themeBreakdown and competitorSummaries ─────
+
+describe("computeSnapshotSummary — v2: themeBreakdown populated from explicit theme tags", () => {
+  it("themeBreakdown groups by theme tag when present", () => {
+    // 10 compensation queries, 5 mentioned; 10 culture queries, 0 mentioned
+    const results: SnapshotResultData[] = [
+      ...Array.from({ length: 10 }, (_, i) =>
+        makeResult({
+          queryText: `highest paying fintech companies ${i}`,
+          category: "discovery",
+          theme: "compensation",
+          mentioned: i < 5,
+          response: i < 5
+            ? "Plaid, Stripe are top payers."
+            : "Stripe is the top payer.",
+        }),
+      ),
+      ...Array.from({ length: 10 }, (_, i) =>
+        makeResult({
+          queryText: `best fintech companies for culture ${i}`,
+          category: "discovery",
+          theme: "culture",
+          mentioned: false,
+          response: "Stripe and Square have great culture.",
+        }),
+      ),
+    ];
+
+    const summary = computeSnapshotSummary(results);
+    const themes = summary.discovery.themeBreakdown;
+
+    const compensation = themes.find((t) => t.theme === "compensation");
+    const culture = themes.find((t) => t.theme === "culture");
+
+    expect(compensation).toBeDefined();
+    expect(compensation!.queriesRun).toBe(10);
+    expect(compensation!.prospectMentioned).toBe(5);
+    expect(compensation!.mentionRate).toBeCloseTo(0.5);
+
+    expect(culture).toBeDefined();
+    expect(culture!.queriesRun).toBe(10);
+    expect(culture!.prospectMentioned).toBe(0);
+    expect(culture!.mentionRate).toBe(0);
+  });
+
+  it("themeBreakdown is sorted worst-first (lowest mentionRate first)", () => {
+    const results: SnapshotResultData[] = [
+      ...Array.from({ length: 5 }, () =>
+        makeResult({ category: "discovery", theme: "compensation", mentioned: true }),
+      ),
+      ...Array.from({ length: 5 }, () =>
+        makeResult({ category: "discovery", theme: "culture", mentioned: false }),
+      ),
+    ];
+    const summary = computeSnapshotSummary(results);
+    const rates = summary.discovery.themeBreakdown.map((t) => t.mentionRate);
+    for (let i = 1; i < rates.length; i++) {
+      expect(rates[i]!).toBeGreaterThanOrEqual(rates[i - 1]!);
+    }
+  });
+
+  it("themeBreakdown falls back to keyword inference when theme is absent", () => {
+    const results: SnapshotResultData[] = Array.from({ length: 5 }, (_, i) =>
+      makeResult({
+        queryText: `highest paying fintech companies ${i}`,
+        category: "discovery",
+        // no theme field — should infer "compensation" from keyword
+        mentioned: false,
+      }),
+    );
+    const summary = computeSnapshotSummary(results);
+    const compensation = summary.discovery.themeBreakdown.find(
+      (t) => t.theme === "compensation",
+    );
+    expect(compensation).toBeDefined();
+    expect(compensation!.queriesRun).toBe(5);
+  });
+});
+
+describe("computeSnapshotSummary — v2: competitorSummaries populated from competitorName field", () => {
+  it("competitorSummaries contains one entry per distinct competitor in contrast results", () => {
+    const contrastResults: SnapshotResultData[] = [
+      ...Array.from({ length: 6 }, (_, i) =>
+        makeContrastResult({
+          queryText: `Plaid vs Stripe query ${i}`,
+          competitorName: "Stripe",
+          sentimentScore: -0.1,
+        }),
+      ),
+      ...Array.from({ length: 6 }, (_, i) =>
+        makeContrastResult({
+          queryText: `Plaid vs Square query ${i}`,
+          competitorName: "Square",
+          sentimentScore: 0.1,
+        }),
+      ),
+    ];
+    const summary = computeSnapshotSummary(contrastResults);
+    const names = summary.competitorContrast.competitorSummaries.map((s) => s.competitorName);
+    expect(names).toContain("Stripe");
+    expect(names).toContain("Square");
+  });
+
+  it("competitorSummaries queriesRun count matches input", () => {
+    const contrastResults: SnapshotResultData[] = Array.from({ length: 6 }, (_, i) =>
+      makeContrastResult({ queryText: `query ${i}`, competitorName: "Stripe" }),
+    );
+    const summary = computeSnapshotSummary(contrastResults);
+    const stripe = summary.competitorContrast.competitorSummaries.find(
+      (s) => s.competitorName === "Stripe",
+    );
+    expect(stripe).toBeDefined();
+    expect(stripe!.queriesRun).toBe(6);
+  });
+
+  it("favorRate is 1 when all contrast results favor the competitor", () => {
+    const contrastResults: SnapshotResultData[] = Array.from({ length: 6 }, (_, i) =>
+      makeContrastResult({
+        queryText: `query ${i}`,
+        competitorName: "Stripe",
+        // response that triggers isCompetitorFavored
+        response:
+          "Stripe is the clear winner over Plaid for engineering careers due to better compensation and culture.",
+        sentimentScore: -0.4,
+      }),
+    );
+    const summary = computeSnapshotSummary(contrastResults);
+    const stripe = summary.competitorContrast.competitorSummaries.find(
+      (s) => s.competitorName === "Stripe",
+    );
+    expect(stripe).toBeDefined();
+    expect(stripe!.favorRate).toBeGreaterThan(0);
+  });
+
+  it("competitorSummaries is empty when there are no contrast results", () => {
+    const results: SnapshotResultData[] = Array.from({ length: 5 }, () =>
+      makeResult({ category: "discovery", mentioned: false }),
+    );
+    const summary = computeSnapshotSummary(results);
+    expect(summary.competitorContrast.competitorSummaries).toHaveLength(0);
   });
 });
