@@ -1,0 +1,4 @@
+Date Sent,Prospect Name,Company,Title,Industry,Email Stage,Reply Status,Reply Date,Snapshot Requested,Snapshot Delivered Date,Share Link URL,Full Assessment Interest,Outcome,Next Action,Next Action Date,Notes
+2026-04-29,Jane Doe,Acme Corp,Chief Talent Officer,Enterprise SaaS,1,Interested,2026-04-29,Y,2026-05-01,https://antellion.com/s/abc123,Y,Scheduled follow-up,Send Full Assessment proposal,2026-05-05,"Responded within 1 hour; mentioned AI pilot internally"
+2026-04-29,John Smith,Beta Inc,CPO,Healthcare IT,1,Bad Timing,2026-04-30,N,,,,,90-day nurture,Follow up with new finding,2026-07-30,"Q4 planning mentioned; revisit in Q3"
+2026-04-30,Sarah Lee,Gamma Co,VP Talent,Financial Services,1,No Reply,,,,,,,,"Wait for Email 2 auto-send"
