@@ -91,7 +91,7 @@ Each new post must reinforce at least one of these claims with evidence, explana
 
 | Secondary Tasks | Channel | Time |
 |----------------|---------|------|
-| Draft LinkedIn post #1 (Data Point template using findings) | LinkedIn | 25 min |
+| LinkedIn post #1 (Tue Apr 14): Data Point — "best companies for engineers in fintech" findings | LinkedIn | 25 min |
 
 ---
 
@@ -112,7 +112,7 @@ Each new post must reinforce at least one of these claims with evidence, explana
 
 | Secondary Tasks | Channel | Time |
 |----------------|---------|------|
-| Publish LinkedIn post #2 (Contrarian: Glassdoor is one of many inputs) | LinkedIn | 25 min |
+| LinkedIn post #4 (Tue Apr 21): Data Point — 10-12 platforms that drive AI employer answers | LinkedIn | 25 min |
 
 ---
 
@@ -133,7 +133,7 @@ Each new post must reinforce at least one of these claims with evidence, explana
 
 | Secondary Tasks | Channel | Time |
 |----------------|---------|------|
-| Publish LinkedIn post #3 (Framework: brand strength vs. AI visibility) | LinkedIn | 25 min |
+| LinkedIn post #5 (Wed Apr 22, same day): Contrarian — "a 4.5 Glassdoor doesn't mean what you think" | LinkedIn | 25 min |
 
 ---
 
@@ -154,7 +154,7 @@ Each new post must reinforce at least one of these claims with evidence, explana
 
 | Secondary Tasks | Channel | Time |
 |----------------|---------|------|
-| Publish LinkedIn post #4 (Question: has your team tested this?) | LinkedIn | 20 min |
+| LinkedIn post #7 (Tue Apr 28): Data Point — $200K-$500K/yr on EB, AI cites 2 of 10 platforms | LinkedIn | 25 min |
 | Final pre-launch infrastructure check | Infrastructure | 15 min |
 
 ---
@@ -192,7 +192,7 @@ By the evening before launch:
 
 | Secondary Tasks | Channel | Time |
 |----------------|---------|------|
-| Publish LinkedIn post #5 (Contrarian: SEO tools cannot do this) | LinkedIn | 25 min |
+| LinkedIn post #9 (Thu Apr 30, same day): Question — if the board asked "how does AI describe us?" could your team answer? | LinkedIn | 25 min |
 | Send cold emails per ramp schedule | Email | 15 min |
 
 ---
@@ -212,7 +212,7 @@ By the evening before launch:
 
 | Secondary Tasks | Channel | Time |
 |----------------|---------|------|
-| Publish LinkedIn post #6 (Data Point: Glassdoor score vs. AI visibility disconnect) | LinkedIn | 25 min |
+| LinkedIn post #10 (Tue May 5): Framing — "strong employer brand + AI invisible" pattern | LinkedIn | 25 min |
 | Send cold emails per ramp schedule | Email | 15 min |
 
 ---
@@ -232,7 +232,7 @@ By the evening before launch:
 
 | Secondary Tasks | Channel | Time |
 |----------------|---------|------|
-| Publish LinkedIn post #7 (Framework: investment gap) | LinkedIn | 25 min |
+| LinkedIn post #11 (Wed May 6, same day): How-to — 15-minute self-check anyone can run | LinkedIn | 25 min |
 | Send cold emails per ramp schedule | Email | 15 min |
 
 ---
@@ -252,7 +252,7 @@ By the evening before launch:
 
 | Secondary Tasks | Channel | Time |
 |----------------|---------|------|
-| Publish LinkedIn post #8 (Question: can your CPO answer this?) | LinkedIn | 25 min |
+| LinkedIn post #12 (Thu May 7): Question — can your CPO answer "what does AI say about us?" | LinkedIn | 25 min |
 | Plan Month 2 content priorities | Planning | 30 min |
 
 ---
@@ -333,14 +333,31 @@ These posts serve dual purpose: standalone authority content AND specific URLs t
 
 ### LinkedIn (12 posts, 3/week, Tuesday-Thursday only)
 
-All LinkedIn posts are published Tuesday through Thursday for maximum engagement with the VP TA / CPO audience. Each blog post contains 2-3 LinkedIn posts worth of material.
+All LinkedIn posts are published Tuesday through Thursday for maximum engagement with the VP TA / CPO audience. Each blog post contains 2-3 LinkedIn posts worth of material — LinkedIn builds curiosity, blog delivers substance when the reader goes looking.
 
-| Week | Posts | Days |
-|------|-------|------|
-| Week 1 (Apr 13-17) | #1-3 | Tue Apr 14, Wed Apr 15, Thu Apr 16 |
-| Week 2 (Apr 20-24) | #4-6 | Tue Apr 21, Wed Apr 22, Thu Apr 23 |
-| Week 3 (Apr 27 - May 1) | #7-9 | Tue Apr 28, Wed Apr 29, Thu Apr 30 |
-| Week 4 (May 4-8) | #10-12 | Tue May 5, Wed May 6, Thu May 7 |
+**Constraints (non-negotiable):**
+- No Antellion mention by name
+- No Symphony Talent mention
+- No links in the post body
+- Personal observations about AI + hiring only
+- All framing must be ADDITIVE — AI visibility is a new surface, never a replacement for existing employer brand work
+
+**Format mix across the 12 posts:** 4 data-point, 4 framing, 3 question, 2 contrarian, 1 how-to. Rotates formats so the feed does not feel repetitive.
+
+| # | Date | Day | Format | Theme | Connects to blog |
+|---|------|-----|--------|-------|------------------|
+| 1 | Apr 14 | Tue | Data point | "I asked ChatGPT 'best companies for engineers in fintech' five times..." | Blog 4 (data foundation) |
+| 2 | Apr 15 | Wed | Framing | "AI is telling candidates a story about your company as an employer..." | Blog 5 citation ecosystem |
+| 3 | Apr 16 | Thu | Framing | "Most talent teams think about employer brand as one thing..." | Blog 5 citation ecosystem |
+| 4 | Apr 21 | Tue | Data point | "I mapped the sources AI draws from to answer 'best companies to work for'. 10-12 platforms. Most companies invest in 2-3." | Blog 5 → Blog 6 setup |
+| 5 | Apr 22 | Wed | Contrarian | "A 4.5-star Glassdoor score doesn't mean what you think it means in the AI answer." | Blog 6 Glassdoor (publishing same day) |
+| 6 | Apr 23 | Thu | Question | "What shows up when you run your top talent competitor's name through ChatGPT right now?" | Blog 7 EVP Gap setup |
+| 7 | Apr 28 | Tue | Data point | "$200K-$500K/yr on employer brand. AI cites maybe 2 of the 10 platforms it lives on." | Blog 7 EVP Gap (already live) |
+| 8 | Apr 29 | Wed | Contrarian | "Your SEO agency cannot do this. Different inputs, different outputs, different measurement." | Blog 8 GEO vs SEO setup |
+| 9 | Apr 30 | Thu | Question | "If your board asked 'how does AI describe us to candidates?' could your team answer?" | Blog 11 board question seed |
+| 10 | May 5 | Tue | Framing | "Strong employer brand + invisible in AI is a pattern I see every week." | Blog 9 objection macro |
+| 11 | May 6 | Wed | How-to | "Here's a 15-minute self-check anyone can run on their own company today." | Blog 10 how-to (publishing same day) |
+| 12 | May 7 | Thu | Question | "Can your CPO answer: what does AI say about us as an employer? If not, who owns that?" | Blog 11 board question (publishing May 8) |
 
 ### Community: ROI Assessment and Recommendation
 
