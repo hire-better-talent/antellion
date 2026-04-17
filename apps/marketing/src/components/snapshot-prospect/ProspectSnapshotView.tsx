@@ -38,7 +38,7 @@ function CoverHeader({
     <div className="border-b border-gray-100 pb-8 mb-8">
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-2">
+          <p className="text-xs font-semibold uppercase tracking-widest text-gradient mb-2">
             AI Visibility Snapshot
           </p>
           <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl">
@@ -54,7 +54,7 @@ function CoverHeader({
           <img
             src="/logo-horizontal-dark.svg"
             alt="Antellion"
-            className="h-8 opacity-70"
+            className="h-8"
             onError={(e) => {
               const img = e.currentTarget;
               img.style.display = "none";
@@ -154,20 +154,20 @@ function DiscoveryScoreboard({
             {allEntries.map((entry, idx) => (
               <tr
                 key={entry.name}
-                className={entry.isProspect ? "bg-blue-50/50" : "bg-white"}
+                className={entry.isProspect ? "bg-brand-50/50" : "bg-white"}
               >
                 <td className="px-4 py-3 font-medium">
-                  <span className={entry.isProspect ? "text-blue-800" : "text-gray-700"}>
+                  <span className={entry.isProspect ? "text-brand-800" : "text-gray-700"}>
                     {idx + 1}. {entry.name}
                   </span>
                   {entry.isProspect && (
-                    <span className="ml-2 rounded-full bg-blue-100 px-1.5 py-0.5 text-xs font-medium text-blue-700">
+                    <span className="ml-2 rounded-full bg-brand-100 px-1.5 py-0.5 text-xs font-medium text-brand-700">
                       you
                     </span>
                   )}
                 </td>
                 <td className="px-4 py-3 text-right">
-                  <span className={`tabular-nums font-semibold ${entry.isProspect ? "text-blue-700" : "text-gray-600"}`}>
+                  <span className={`tabular-nums font-semibold ${entry.isProspect ? "text-brand-700" : "text-gray-600"}`}>
                     {pct(entry.mentionRate)}
                   </span>
                 </td>
@@ -425,7 +425,7 @@ function ProspectCTA({ prospectName }: { prospectName: string }) {
       </p>
       <a
         href={`mailto:jordan@antellion.com?subject=${subject}`}
-        className="inline-flex items-center gap-2 rounded-md bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-gray-800 transition-colors"
+        className="btn-gradient btn-glow inline-flex items-center gap-2 rounded-full px-8 py-3 text-sm font-semibold text-white transition-all"
       >
         Request full assessment
       </a>
@@ -458,6 +458,7 @@ export function ProspectSnapshotView({
 }: ProspectSnapshotViewProps) {
   return (
     <div className="min-h-screen bg-white">
+      <div className="h-1 bg-gradient-to-r from-brand-600 via-indigo-600 to-purple-600" />
       <div className="mx-auto max-w-3xl px-6 py-10 sm:px-8 sm:py-14">
         <CoverHeader
           prospectName={prospectName}
