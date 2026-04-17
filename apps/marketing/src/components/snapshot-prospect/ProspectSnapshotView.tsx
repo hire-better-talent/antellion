@@ -1,9 +1,9 @@
-import type { SnapshotSummary } from "@antellion/core";
+import type { PublicSnapshotSummary } from "@antellion/core";
 
 // ─── Types ────────────────────────────────────────────────────
 
 interface ProspectSnapshotViewProps {
-  summary: SnapshotSummary;
+  summary: PublicSnapshotSummary;
   prospectName: string;
   scanDate: Date;
   queryCount: number;
@@ -80,10 +80,10 @@ function ExecutiveFraming({
   summary,
   prospectName,
 }: {
-  summary: SnapshotSummary;
+  summary: PublicSnapshotSummary;
   prospectName: string;
 }) {
-  const { primaryHook, visibilityTier } = summary;
+  const { visibilityTier } = summary;
   const mentionPct = pct(summary.discoveryMentionRate);
   const topComp = summary.discovery.competitorRanking.at(0);
 
@@ -117,7 +117,7 @@ function DiscoveryScoreboard({
   summary,
   prospectName,
 }: {
-  summary: SnapshotSummary;
+  summary: PublicSnapshotSummary;
   prospectName: string;
 }) {
   const { discovery } = summary;
@@ -191,7 +191,7 @@ function DiscoveryScoreboard({
 function GapQueriesSection({
   gaps,
 }: {
-  gaps: SnapshotSummary["discovery"]["topGapQueries"];
+  gaps: PublicSnapshotSummary["discovery"]["topGapQueries"];
 }) {
   if (gaps.length === 0) return null;
 
@@ -231,7 +231,7 @@ function GapQueriesSection({
 function CompetitorContrastSection({
   contrast,
 }: {
-  contrast: SnapshotSummary["competitorContrast"];
+  contrast: PublicSnapshotSummary["competitorContrast"];
 }) {
   if (contrast.competitorSummaries.length === 0) return null;
 
@@ -291,7 +291,7 @@ function CompetitorContrastSection({
 function ReputationSection({
   reputation,
 }: {
-  reputation: SnapshotSummary["reputation"];
+  reputation: PublicSnapshotSummary["reputation"];
 }) {
   const consistencyLabel: Record<string, string> = {
     consistent: "Consistent",
@@ -357,7 +357,7 @@ function CitationGapSection({
   citationGap,
   prospectName,
 }: {
-  citationGap: SnapshotSummary["citationGap"];
+  citationGap: PublicSnapshotSummary["citationGap"];
   prospectName: string;
 }) {
   return (

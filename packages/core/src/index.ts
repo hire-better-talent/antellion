@@ -1,3 +1,7 @@
+// ─── LLM retry ──────────────────────────────────────────────
+export { withRetry, isTransientError, extractRetryAfterMs, computeBackoffMs } from "./llm-retry";
+export type { RetryOptions } from "./llm-retry";
+
 // ─── Brand tokens ───────────────────────────────────────────
 export { BRAND_TOKENS } from "./brand-tokens";
 export type { BrandToken } from "./brand-tokens";
@@ -256,9 +260,11 @@ export {
 export type {
   SnapshotResultData,
   SnapshotSummary,
+  PublicSnapshotSummary,
   SnapshotInterpretation,
   VisibilityTier,
 } from "./snapshot-summary";
+export { toPublicSnapshotSummary } from "./snapshot-summary";
 
 // ─── Workflow rules ──────────────────────────────────────────
 export type {

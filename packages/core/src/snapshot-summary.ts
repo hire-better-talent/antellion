@@ -226,6 +226,199 @@ export interface SnapshotSummary {
   interpretation: SnapshotInterpretation;
 }
 
+// ─── Public (prospect-facing) subset ────────────────────────
+// Explicit allow-list: only fields safe to expose to a prospect.
+// Operator-only fields (primaryHook, interpretation, allResults arrays)
+// are intentionally absent. When a new field is added to SnapshotSummary
+// it stays out of this type until someone deliberately adds it here.
+
+export interface PublicSnapshotSummary {
+  prospectName: string;
+  totalQueries: number;
+  discoveryMentionRate: number;
+  discoveryMentionCount: number;
+  overallMentionRate: number;
+  visibilityTier: VisibilityTier;
+
+  discovery: {
+    queriesRun: number;
+    prospectMentioned: number;
+    mentionRate: number;
+    competitorRanking: Array<{
+      name: string;
+      mentioned: number;
+      mentionCount: number;
+      mentionRate: number;
+    }>;
+    topCompetitorName: string;
+    topCompetitorMentioned: number;
+    topGapQueries: Array<{
+      queryText: string;
+      competitorsMentioned: string[];
+      prospectMentioned: boolean;
+      responseExcerpt: string;
+    }>;
+    themeBreakdown: Array<{
+      theme: string;
+      queriesRun: number;
+      prospectMentioned: number;
+      mentionRate: number;
+    }>;
+    // allResults is intentionally excluded (raw data, operator-only)
+  };
+
+  competitorContrast: {
+    queriesRun: number;
+    competitorSummaries: Array<{
+      competitorName: string;
+      queriesRun: number;
+      competitorFavoredCount: number;
+      prospectFavoredCount: number;
+      neutralCount: number;
+      favorRate: number;
+      worstDimension: string | null;
+      worstExcerpt: string | null;
+    }>;
+    worstComparison: {
+      queryText: string;
+      competitorName: string;
+      responseExcerpt: string;
+      prospectSentiment: number;
+      competitorFavored: boolean;
+    } | null;
+    // allResults is intentionally excluded (raw data, operator-only)
+  };
+
+  reputation: {
+    queriesRun: number;
+    avgSentiment: number;
+    narrativeConsistency: "consistent" | "varied" | "contradictory";
+    recurringThemes: string[];
+    worstResponse: {
+      queryText: string;
+      responseExcerpt: string;
+      sentiment: number;
+      keyIssue: string;
+    } | null;
+  };
+
+  citationGap: {
+    prospectOwnedCitations: number;
+    prospectTotalCitations: number;
+    competitorOwnedCitations: number;
+    gapPlatforms: string[];
+    finding: string;
+    prospectEmployerCitations: number;
+    competitorEmployerCitations: number;
+  };
+
+  // primaryHook is intentionally excluded (operator DM tool, never for prospects)
+  // interpretation is intentionally excluded (operator framing layer)
+}
+
+/**
+ * Converts a full SnapshotSummary to the prospect-safe subset.
+ *
+ * This is the single enforcement point for the public/operator boundary.
+ * New fields added to SnapshotSummary must be explicitly added here to
+ * reach the public view — they are excluded by default.
+ */
+export function toPublicSnapshotSummary(
+  summary: SnapshotSummary,
+): PublicSnapshotSummary {
+  return {
+    prospectName: summary.prospectName,
+    totalQueries: summary.totalQueries,
+    discoveryMentionRate: summary.discoveryMentionRate,
+    discoveryMentionCount: summary.discoveryMentionCount,
+    overallMentionRate: summary.overallMentionRate,
+    visibilityTier: summary.visibilityTier,
+
+    discovery: {
+      queriesRun: summary.discovery.queriesRun,
+      prospectMentioned: summary.discovery.prospectMentioned,
+      mentionRate: summary.discovery.mentionRate,
+      competitorRanking: summary.discovery.competitorRanking.map((c) => ({
+        name: c.name,
+        mentioned: c.mentioned,
+        mentionCount: c.mentionCount,
+        mentionRate: c.mentionRate,
+      })),
+      topCompetitorName: summary.discovery.topCompetitorName,
+      topCompetitorMentioned: summary.discovery.topCompetitorMentioned,
+      topGapQueries: summary.discovery.topGapQueries.map((q) => ({
+        queryText: q.queryText,
+        competitorsMentioned: q.competitorsMentioned,
+        prospectMentioned: q.prospectMentioned,
+        responseExcerpt: q.responseExcerpt,
+      })),
+      themeBreakdown: summary.discovery.themeBreakdown.map((t) => ({
+        theme: t.theme,
+        queriesRun: t.queriesRun,
+        prospectMentioned: t.prospectMentioned,
+        mentionRate: t.mentionRate,
+      })),
+    },
+
+    competitorContrast: {
+      queriesRun: summary.competitorContrast.queriesRun,
+      competitorSummaries: summary.competitorContrast.competitorSummaries.map(
+        (cs) => ({
+          competitorName: cs.competitorName,
+          queriesRun: cs.queriesRun,
+          competitorFavoredCount: cs.competitorFavoredCount,
+          prospectFavoredCount: cs.prospectFavoredCount,
+          neutralCount: cs.neutralCount,
+          favorRate: cs.favorRate,
+          worstDimension: cs.worstDimension,
+          worstExcerpt: cs.worstExcerpt,
+        }),
+      ),
+      worstComparison:
+        summary.competitorContrast.worstComparison !== null
+          ? {
+              queryText: summary.competitorContrast.worstComparison.queryText,
+              competitorName:
+                summary.competitorContrast.worstComparison.competitorName,
+              responseExcerpt:
+                summary.competitorContrast.worstComparison.responseExcerpt,
+              prospectSentiment:
+                summary.competitorContrast.worstComparison.prospectSentiment,
+              competitorFavored:
+                summary.competitorContrast.worstComparison.competitorFavored,
+            }
+          : null,
+    },
+
+    reputation: {
+      queriesRun: summary.reputation.queriesRun,
+      avgSentiment: summary.reputation.avgSentiment,
+      narrativeConsistency: summary.reputation.narrativeConsistency,
+      recurringThemes: summary.reputation.recurringThemes,
+      worstResponse:
+        summary.reputation.worstResponse !== null
+          ? {
+              queryText: summary.reputation.worstResponse.queryText,
+              responseExcerpt: summary.reputation.worstResponse.responseExcerpt,
+              sentiment: summary.reputation.worstResponse.sentiment,
+              keyIssue: summary.reputation.worstResponse.keyIssue,
+            }
+          : null,
+    },
+
+    citationGap: {
+      prospectOwnedCitations: summary.citationGap.prospectOwnedCitations,
+      prospectTotalCitations: summary.citationGap.prospectTotalCitations,
+      competitorOwnedCitations: summary.citationGap.competitorOwnedCitations,
+      gapPlatforms: summary.citationGap.gapPlatforms,
+      finding: summary.citationGap.finding,
+      prospectEmployerCitations: summary.citationGap.prospectEmployerCitations,
+      competitorEmployerCitations:
+        summary.citationGap.competitorEmployerCitations,
+    },
+  };
+}
+
 // ─── Markdown stripping ──────────────────────────────────────
 
 /**

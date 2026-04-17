@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { prisma } from "@antellion/db";
 import type { SnapshotSummary } from "@antellion/core";
+import { toPublicSnapshotSummary } from "@antellion/core";
 import { ProspectSnapshotView } from "@/components/snapshot-prospect/ProspectSnapshotView";
 
 export const dynamic = "force-dynamic";
@@ -114,7 +115,7 @@ export default async function ProspectSnapshotPage({ params }: Props) {
 
   return (
     <ProspectSnapshotView
-      summary={snapshotSummary}
+      summary={toPublicSnapshotSummary(snapshotSummary)}
       prospectName={prospectName}
       scanDate={scan.createdAt}
       queryCount={scan.queryCount}
