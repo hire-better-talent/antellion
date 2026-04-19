@@ -143,9 +143,9 @@ Use when the prospect asks about cost — usually after seeing the Snapshot and 
 
 The Snapshot stays free — no upsell attached.
 
-The Full Assessment is a different product: 3-5 ranked competitors scored across the full candidate decision journey, a source-by-source citation map showing where AI is drawing your story from, specific remediation priorities tied to what is actually moving the answers, and an executive-ready deck your CPO can walk into a board meeting with.
+Full Assessment engagements scale with scope. A Starter Audit at $14K covers one function across the full candidate journey and all major AI models, with a human-interpreted report and executive readout. Focused through Enterprise engagements ($75K-$110K+) add multi-turn conversational probing across one or more functions — the methodology that shows where AI's story about your company shifts when candidates probe further. That depth is what single-query scans cannot produce.
 
-Scope drives the number — typically $5K-$15K. Easier to price once you have your Snapshot and we know what gap we are closing.
+Scope drives the number, so easier to price precisely once you have your Snapshot and we know what gap we are closing.
 
 Jordan
 ```
