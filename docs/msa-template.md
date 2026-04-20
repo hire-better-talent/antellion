@@ -63,9 +63,15 @@ Engagements may be structured in phases, as specified in each SOW:
 - **Phase 1 — Baseline Audit:** An initial foundational assessment that establishes the fact pattern for further work.
 - **Phase 2 — Extended Audit:** Optional extended work (Focused, Strategic, or Enterprise scope) priced against Phase 1 findings.
 
-**Customer is not obligated to proceed to Phase 2** upon delivery of Phase 1. If Customer elects not to proceed, Antellion will refund any Phase 2 deposit paid within thirty (30) days of Customer's written notice, and the engagement will be deemed complete upon Phase 1 delivery.
+**Default structure — separate SOWs per phase.** By default, Phase 1 and Phase 2 are engaged under separate SOWs. Customer signs an SOW for Phase 1 Baseline Audit, pays the Phase 1 deposit, and Antellion delivers Phase 1. After Phase 1 delivery and the associated readout, if Customer elects to proceed to Phase 2, a separate SOW is executed covering Phase 2 scope and fees. Under this default, **no Phase 2 fees are invoiced or collected before Phase 1 is complete**, and Customer's decision whether to proceed to Phase 2 is made with the benefit of Phase 1 findings in hand.
 
-> **Drafter's Note:** This section operationalizes the "never obligated to proceed" guarantee from the offer stack. Keep this precise — if a customer's legal team pushes for different language, preserve the substance: Customer can stop at Phase 1 with a full Phase 2 deposit refund.
+**Combined SOW (exception).** Where Customer's procurement process requires a single contract covering both phases, the SOW may cover Phase 1 and Phase 2 together with a single engagement fee. In that case:
+
+- The deposit (fifty percent (50%) of the combined engagement fee) is payable upon SOW execution;
+- **Customer remains not obligated to proceed to Phase 2** upon Phase 1 delivery; and
+- If Customer elects not to proceed to Phase 2 within thirty (30) days of Phase 1 delivery, Antellion will refund the Phase 2 portion of any deposit paid within thirty (30) days of Customer's written notice, and the engagement will be deemed complete upon Phase 1 delivery.
+
+> **Drafter's Note:** This section operationalizes the "never obligated to proceed" guarantee. Model A (separate SOWs) is the default and should be used whenever Customer's procurement allows. Model B (combined SOW with refund clause) should only be used when Customer's procurement process requires a single contract. The Phase 2 portion of any deposit is always refundable if Customer opts out after Phase 1.
 
 ### 2.3 Customer Cooperation
 
@@ -173,13 +179,25 @@ Antellion will:
 
 ### 6.3 AI Model Interactions
 
-As part of Services, Antellion submits queries to third-party AI systems (such as OpenAI's ChatGPT, Anthropic's Claude, and Google's Gemini). These queries contain Customer's company name, competitor names, and job category context. Customer acknowledges that:
+As part of Services, Antellion submits queries to third-party AI systems to analyze how those systems describe Customer and Customer's competitors to prospective candidates. The AI systems currently used include OpenAI's ChatGPT, Anthropic's Claude, and Google's Gemini, and may include additional AI systems (such as Perplexity, Microsoft Copilot, or successor systems) as Antellion's methodology evolves or as Customer specifically requests in an SOW.
+
+**Data submitted to AI systems.** Queries submitted to these AI systems contain only:
+
+- Customer's company name;
+- Customer's domain or brand name references necessary for clear identification;
+- Named competitor companies specified in the SOW;
+- Industry descriptors and job category names in scope;
+- Query text formatted as candidate-intent questions (for example, "Best companies to work for in [industry]?" or "What is it like to work at [Customer Name]?").
+
+**Data not submitted to AI systems.** Queries do not contain Customer's employee personal data, applicant records, internal HR data, proprietary EVP or employer brand materials, financial data, salary data, or any Confidential Information specific to Customer's internal operations. The query data submitted is limited to information that is either publicly available or inferable from Customer's public identity.
+
+**Third-party processing.** Customer acknowledges that:
 
 - These AI systems are operated by third parties with their own data handling policies;
 - Antellion does not control how these third parties process query data; and
-- Antellion will make commercially reasonable efforts to configure API interactions to minimize data retention by third-party AI providers where such configuration is available.
+- Antellion will make commercially reasonable efforts to configure API interactions to minimize data retention by third-party AI providers where such configuration is available (for example, using enterprise API tiers that opt out of model training where offered).
 
-> **Drafter's Note:** This is the right place to disclaim that Antellion is sending customer identifiers to OpenAI/Anthropic/Google APIs. Enterprise security teams will ask about this. If Antellion adopts enterprise API tiers that offer no-training / zero-retention configurations, update this section to specify.
+> **Drafter's Note:** This section is load-bearing for enterprise security reviews. The "Data not submitted" paragraph is the key reassurance — update it as the pipeline evolves if any additional data categories start being transmitted. When Antellion adopts enterprise API tiers that offer no-training / zero-retention configurations (OpenAI Enterprise, Anthropic Enterprise, Google Cloud Vertex), update the "commercially reasonable efforts" language to name specific configurations. Update the "AI systems currently used" list when new models are added to the production pipeline.
 
 ### 6.4 Data Processing Agreement
 
@@ -407,3 +425,4 @@ Before using this template in live deals, a licensed attorney should review:
 ## Changelog
 
 - **2026-04-19** — Initial template draft created. Requires counsel review before use.
+- **2026-04-20** — Revised Section 2.2 to specify Model A (separate SOWs) as default and Model B (combined SOW with Phase 2 refund clause) as enterprise exception. Revised Section 6.3 to enumerate the specific data submitted to AI systems, enumerate data explicitly not submitted, and extend the model list to contemplate additional providers beyond the current Big 3.
