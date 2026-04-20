@@ -143,9 +143,9 @@ Use when the prospect asks about cost — usually after seeing the Snapshot and 
 
 The Snapshot stays free — no upsell attached.
 
-Full Assessment engagements scale with scope. A Starter Audit at $14K covers one function across the full candidate journey and all major AI models, with a human-interpreted report and executive readout. Focused through Enterprise engagements ($75K-$110K+) add multi-turn conversational probing across one or more functions — the methodology that shows where AI's story about your company shifts when candidates probe further. That depth is what single-query scans cannot produce.
+Every paid engagement begins with a $14K Baseline Audit (one function, full candidate journey, all major AI models, human-interpreted report + executive readout). Phase 2 is priced against what the Baseline reveals — Focused at +$75K, Strategic at +$90K, Enterprise at +$110K+. Total engagements run $89K-$125K+.
 
-Scope drives the number, so easier to price precisely once you have your Snapshot and we know what gap we are closing.
+Easier to price precisely once you have your Snapshot and we know what gap we are closing.
 
 Jordan
 ```

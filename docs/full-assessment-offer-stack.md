@@ -7,13 +7,15 @@
 
 ## Core principles
 
-1. **Risk reversal is tied exclusively to Antellion-controlled outcomes.** Refund triggers are defined by what *Antellion ships* — findings count, remediation actions surfaced, factual accuracy, delivery time, deliverable completeness. Never tied to what the customer does after delivery (implementation, AI visibility improvement, hiring outcomes, etc.).
+1. **Every paid engagement begins with Phase 1: Baseline Audit.** Baseline is mandatory. Phase 2 (Focused / Strategic / Enterprise) is scoped and priced against Phase 1 findings. This is the McKinsey / BCG two-phase architecture: establish facts before committing to larger execution. The customer may also elect to stop at Baseline — it stands alone as a complete deliverable.
 
-2. **Value framing is honest, not inflated.** Component stand-alone values are grounded in realistic consulting rates. Sophisticated CPOs spot 3-5x inflated value stacks and discount the whole pitch. Aim for 1.4-1.6x defensible multiplier.
+2. **Risk reversal is tied exclusively to Antellion-controlled outcomes.** Refund triggers are defined by what *Antellion ships* — findings count, remediation actions surfaced, factual accuracy, delivery time, deliverable completeness. Never tied to what the customer does after delivery (implementation, AI visibility improvement, hiring outcomes, etc.).
 
-3. **Pricing is not published on the landing page.** Landing page exists to capture Snapshot leads. Pricing is introduced in follow-up conversations, pitch decks, and proposals — after value has been delivered or demonstrated.
+3. **Value framing is honest, not inflated.** Component stand-alone values are grounded in realistic consulting rates. Sophisticated CPOs spot 3-5x inflated value stacks and discount the whole pitch. Aim for 1.4-1.6x defensible multiplier.
 
-4. **Every paid tier covers all 4 candidate journey stages by default.** Discovery, Consideration, Evaluation, Commitment. The journey is methodology, not a pricing lever. Pricing scales on categories × models × layers.
+4. **Pricing is not published on the landing page.** Landing page exists to capture Snapshot leads. Pricing is introduced in follow-up conversations, pitch decks, and proposals — after value has been delivered or demonstrated.
+
+5. **Every paid tier covers all 4 candidate journey stages by default.** Discovery, Consideration, Evaluation, Commitment. The journey is methodology, not a pricing lever. Pricing scales on categories × models × layers.
 
 ---
 
@@ -47,9 +49,9 @@
 
 ---
 
-## Tier 2: Starter Audit — $14,000
+## Phase 1: Baseline Audit — $14,000
 
-**Role in funnel:** The paid entry point. Functions as the Snapshot → Full Assessment bridge AND as a downsell from the Focused Audit for budget-constrained buyers.
+**Role:** **Mandatory Phase 1 for every paid engagement.** Establishes the fact pattern Phase 2 is scoped against. Also stands alone as a complete deliverable for buyers who want only the Baseline without committing to Phase 2.
 
 **Scope:** 1 job category × 1 layer × 3 models × all 4 candidate journey stages. Human-interpreted.
 
@@ -75,6 +77,8 @@ If the final report does not include:
 
 ...full refund.
 
+**Additionally: the customer is never obligated to proceed to Phase 2.** Baseline can be the entire engagement if the findings do not warrant further work.
+
 If a factual error is identified in the analysis, Antellion corrects it within 48 hours or refunds.
 
 ### Stand-alone component value
@@ -91,15 +95,15 @@ If a factual error is identified in the analysis, Antellion corrects it within 4
 
 ---
 
-## Tier 3: Focused Audit — $75,000
+## Phase 2 Option A: Focused Audit — +$75,000 Phase 2 (total engagement $89,000)
 
-**Role in funnel:** The methodology flagship. The tier that demonstrates what Antellion does that no competitor can replicate.
+**Role:** The methodology flagship added to Baseline. Demonstrates what Antellion does that no competitor can replicate — multi-layer conversational probing across models.
 
-**Scope:** 1 job category × 3 layers × 3 models × all 4 candidate journey stages.
+**Scope of Phase 2 work:** 1 job category × 3 layers × 3 models × all 4 candidate journey stages. Builds on the Baseline established in Phase 1.
 
-### What you get
+### What you get (Phase 2 additions on top of Phase 1 Baseline)
 
-1. **Everything in the Starter Audit**, plus:
+1. **Everything delivered in Phase 1 Baseline Audit**, plus:
 2. **Multi-turn conversational probing** — 3 layers of conversational depth per query thread. The only methodology that shows where AI's story about your company shifts when candidates probe further.
 3. **Cross-layer consistency analysis** — where AI contradicts itself under follow-up questioning, where it drifts to new sources, where it entrenches competitive narratives
 4. **Hallucination and source-drift map** — what AI gets wrong about you, and how wrong narratives compound over a candidate's research session
@@ -114,7 +118,9 @@ If a factual error is identified in the analysis, Antellion corrects it within 4
 
 ### Delivery
 
-- 3 weeks from scope confirmation
+- Phase 1 Baseline: 2 weeks
+- Phase 2 Focused: 3 weeks after Phase 1 sign-off
+- **Total engagement: ~5 weeks**
 
 ### Guarantee (Antellion-controlled)
 
@@ -125,31 +131,32 @@ If the final report does not include all of the following, full refund:
 
 If a factual error is identified in the analysis, Antellion corrects it within 48 hours or refunds.
 
-### Stand-alone component value
+### Stand-alone component value (total engagement)
 
 | Component | Stand-alone value |
 |---|---|
+| Phase 1 Baseline components (see above) | $21,000 |
 | Multi-layer analysis (3 layers × 3 models × full journey) | $40,000 |
 | Enhanced written report (40+ pages) | $15,000 |
 | Board-ready deck | $5,000 |
 | Two executive readout calls | $5,000 |
 | Two Q&A sessions | $2,000 |
 | Four quarterly re-scans (at discounted re-scan rate) | $40,000 |
-| **Total** | **~$107,000** |
+| **Total** | **~$128,000** |
 
-**You pay $75,000.**
+**You pay $89,000 total ($14K Phase 1 + $75K Phase 2).**
 
 ---
 
-## Tier 4: Strategic Audit — $90,000
+## Phase 2 Option B: Strategic Audit — +$90,000 Phase 2 (total engagement $104,000)
 
-**Role in funnel:** CPO-level multi-function engagement. Covers the 2-3 roles the buyer is most anxious about.
+**Role:** CPO-level multi-function engagement added to Baseline. Covers the 2-3 roles the buyer is most anxious about.
 
-**Scope:** 3 job categories × 3 layers × 3 models × all 4 candidate journey stages.
+**Scope of Phase 2 work:** 3 job categories × 3 layers × 3 models × all 4 candidate journey stages. Builds on the Baseline established in Phase 1.
 
-### What you get
+### What you get (Phase 2 additions on top of Phase 1 Baseline)
 
-1. **Everything in the Focused Audit**, applied to three categories
+1. **Everything in the Focused Audit Phase 2 scope**, applied to three categories
 2. **Cross-category pattern analysis** — how AI's narrative about your company shifts by role (e.g., how your engineering narrative differs from your sales narrative)
 3. **Function-specific competitive sets** per category (different competitors per category if warranted — e.g., Stripe for engineering, Salesforce for sales)
 4. **Per-category 90-day remediation roadmaps** — three parallel action plans with cross-category dependencies mapped
@@ -159,7 +166,9 @@ If a factual error is identified in the analysis, Antellion corrects it within 4
 
 ### Delivery
 
-- 4 weeks from scope confirmation
+- Phase 1 Baseline: 2 weeks
+- Phase 2 Strategic: 4 weeks after Phase 1 sign-off
+- **Total engagement: ~6 weeks**
 
 ### Guarantee (Antellion-controlled)
 
@@ -171,30 +180,31 @@ If any category fails the guarantee, full refund on that category's portion of t
 
 If a factual error is identified in the analysis, Antellion corrects it within 48 hours or refunds the affected portion.
 
-### Stand-alone component value
+### Stand-alone component value (total engagement)
 
 | Component | Stand-alone value |
 |---|---|
+| Phase 1 Baseline components (see above) | $21,000 |
 | Three Focused-equivalent analyses | $120,000 |
 | Cross-category pattern analysis + rollup synthesis | $15,000 |
 | Three executive readouts + rollup call | $8,000 |
 | Three Q&A sessions | $3,000 |
 | Quarterly re-scans (3 cats × 4 quarters at discounted rate) | $20,000 |
-| **Total** | **~$166,000** |
+| **Total** | **~$187,000** |
 
-**You pay $90,000.**
+**You pay $104,000 total ($14K Phase 1 + $90K Phase 2).**
 
 ---
 
-## Tier 5: Enterprise Audit — Starting at $110,000 (Custom)
+## Phase 2 Option C: Enterprise Audit — +$110,000+ Phase 2 (total engagement starts at $124,000, Custom)
 
-**Role in funnel:** Fortune 500 / 10K+ headcount. Strategic engagement with ongoing advisory.
+**Role:** Fortune 500 / 10K+ headcount. Strategic engagement added to Baseline, with ongoing advisory.
 
-**Scope:** 5 or more job categories × 3 layers × 3 models × all 4 candidate journey stages, plus ongoing advisory.
+**Scope of Phase 2 work:** 5 or more job categories × 3 layers × 3 models × all 4 candidate journey stages, plus ongoing advisory. Builds on the Baseline established in Phase 1.
 
-### What you get
+### What you get (Phase 2 additions on top of Phase 1 Baseline)
 
-1. **Everything in the Strategic Audit**, across 5+ categories
+1. **Everything in the Strategic Audit Phase 2 scope**, across 5+ categories
 2. **12 months of advisor-level access to Jordan** — monthly 60-minute strategy sessions for implementation guidance
 3. **Custom research questions beyond standard methodology** — unique competitive dimensions, industry-specific AI visibility questions, M&A-related analysis, diversity narrative deep-dives
 4. **Annual "State of AI Visibility" benchmark for your industry** (available when 5+ comparable competitors can be mapped)
@@ -203,7 +213,9 @@ If a factual error is identified in the analysis, Antellion corrects it within 4
 
 ### Delivery
 
-- 6 weeks from scope confirmation
+- Phase 1 Baseline: 2 weeks
+- Phase 2 Enterprise: 6 weeks after Phase 1 sign-off
+- **Total engagement: ~8 weeks**
 
 ### Guarantee (Antellion-controlled)
 
@@ -230,19 +242,21 @@ If a factual error is identified in the analysis, Antellion corrects it within 4
 | Written proposal | **Yes** — full value stack per recommended tier |
 | Executive readout materials | **Yes** — anchored to specific recommendations |
 
-### Referral rev share math (20% to referrer)
+### Referral rev share math (20% of total engagement to referrer)
 
-- Starter Audit ($14K) → $2,800 per referral
-- Focused Audit ($75K) → $15,000 per referral
-- Strategic Audit ($90K) → $18,000 per referral
-- Enterprise Audit ($110K+) → $22,000+ per referral
+Because every Phase 2 engagement includes Phase 1 Baseline, referral economics compound:
+
+- Baseline-only ($14K) → $2,800 per referral
+- Baseline + Focused ($89K total) → **$17,800** per referral
+- Baseline + Strategic ($104K total) → **$20,800** per referral
+- Baseline + Enterprise ($124K+) → **$24,800+** per referral
 
 ### Delivery capacity (solo, before hiring a delivery analyst)
 
 | Tier | Monthly capacity |
 |---|---|
 | Snapshot | 10-15 |
-| Starter Audit | 4-5 |
+| Baseline Audit | 4-5 |
 | Focused Audit | 2 |
 | Strategic Audit | 1-1.5 |
 | Enterprise Audit | ~1 every 6 weeks |
@@ -267,7 +281,7 @@ If a factual error is identified in the analysis, Antellion corrects it within 4
 ## Notes for future revision
 
 - Re-evaluate after 10-20 real customer engagements. Actual delivery hours per tier and customer-reported value perception will sharpen pricing.
-- If Snapshot conversion to Starter Audit is <5%, consider price adjustment or additional bonus stacking on Starter.
+- If Snapshot conversion to Baseline Audit is <5%, consider price adjustment or additional bonus stacking on Starter.
 - If Starter → Focused upgrade rate is <30%, investigate whether Focused value stack communicates the depth differentiation clearly enough.
 - Published-pricing decision revisits at Month 4+ after observing whether "what does this cost?" dominates Snapshot follow-up objections.
 
