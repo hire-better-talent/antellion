@@ -192,21 +192,24 @@ The Audit includes:
 - Cross-model comparison of how AI describes Customer and Named Competitors
 - Source attribution analysis identifying the platforms and citations AI draws from
 - Narrative consistency scoring across queries and models
+- Strategic synthesis via the Journey Action Map (see Deliverables)
 - Human interpretation of findings with remediation prioritization
 
 ### 4.1 Deliverables
 
 1. **Written Report** — PDF, executive-ready, covering findings across all 4 journey stages, competitive analysis, and citation analysis
-2. **Prioritized Remediation Recommendations** — specific platform-level actions ranked by effort × impact
-3. **60-minute Executive Readout Call** — live walkthrough of findings with Customer's primary contact and up to 3 additional attendees
-4. **One follow-up Q&A session** (30 minutes) scheduled within 30 days of deliverable acceptance
+2. **Journey Action Map** — 1-2 page strategic scorecard mapping Customer's AI visibility position across all four candidate journey stages (Discovery, Consideration, Evaluation, Commitment), with the #1 remediation priority identified per stage tied to named platforms or citation sources
+3. **Prioritized Remediation Recommendations** — at least 5 specific platform-level actions ranked by effort × impact, inclusive of the 4 stage-specific priorities from the Journey Action Map
+4. **60-minute Executive Readout Call** — live walkthrough of findings with Customer's primary contact and up to 3 additional attendees
+5. **One follow-up Q&A session** (30 minutes) scheduled within 30 days of deliverable acceptance
 
 ### 4.2 Completeness Criteria
 
 The final Report must include at least:
 
 - **Ten (10) specific findings** spanning all four (4) candidate journey stages
-- **Five (5) prioritized remediation actions** with specific platforms or content types identified
+- A **Journey Action Map** covering all 4 candidate journey stages, each with a clearly identified #1 remediation priority tied to a named platform or citation source
+- **Five (5) prioritized remediation actions** total with specific platforms or content types identified (inclusive of the 4 stage-specific priorities from the Journey Action Map plus at least 1 additional overall-priority action)
 
 ### Fee and Schedule
 

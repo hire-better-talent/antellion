@@ -51,7 +51,7 @@
 
 ## Phase 1: Baseline Audit — $14,000
 
-**Role:** **Mandatory Phase 1 for every paid engagement.** Establishes the fact pattern Phase 2 is scoped against. Also stands alone as a complete deliverable for buyers who want only the Baseline without committing to Phase 2.
+**Role:** **Mandatory Phase 1 for every paid engagement.** Establishes the fact pattern Phase 2 is scoped against. Also stands alone as a complete deliverable for buyers who want only the Baseline without committing to Phase 2. The Baseline introduces the **Journey Action Map** — a strategic layer bridging raw AI visibility data to stage-specific remediation priorities. The Journey Action Map is a paid-tier deliverable and is not included in the free Snapshot.
 
 **Scope:** 1 job category × 1 layer × 3 models × all 4 candidate journey stages. Human-interpreted.
 
@@ -60,10 +60,11 @@
 1. **Full-journey AI analysis** — 300-400 queries across Discovery, Consideration, Evaluation, and Commitment stages, tested across ChatGPT, Claude, and Gemini
 2. **Competitive citation map** — the specific platforms AI is citing for each of your three closest competitors, and the gaps for you
 3. **Source attribution analysis** — every source AI is drawing from, ranked by influence on the narrative about your company
-4. **Prioritized remediation roadmap** — at least 5 specific platform-level actions ranked by effort × impact
-5. **Executive-ready written report** (PDF, shareable with your team)
-6. **60-minute executive readout call** — live walkthrough with Jordan
-7. **One follow-up Q&A session** (30 min) within 30 days of delivery
+4. **Journey Action Map** — a 1-2 page strategic scorecard mapping your AI visibility position across all four candidate journey stages, with the #1 remediation priority identified at each stage, tied to named platforms or citation sources
+5. **Prioritized remediation roadmap** — at least 5 specific platform-level actions ranked by effort × impact (inclusive of the 4 stage-specific priorities from the Journey Action Map)
+6. **Executive-ready written report** (PDF, shareable with your team)
+7. **60-minute executive readout call** — live walkthrough with Jordan
+8. **One follow-up Q&A session** (30 min) within 30 days of delivery
 
 ### Delivery
 
@@ -72,8 +73,9 @@
 ### Guarantee (Antellion-controlled)
 
 If the final report does not include:
-- At least **10 specific findings** across the 4 journey stages, and
-- At least **5 prioritized remediation actions**
+- At least **10 specific findings** across the 4 journey stages;
+- A **Journey Action Map** covering all 4 candidate journey stages, each with a clearly identified #1 remediation priority tied to a named platform or citation source; and
+- At least **5 prioritized remediation actions** total (inclusive of the 4 stage-specific priorities from the Journey Action Map plus additional overall-priority actions)
 
 ...full refund.
 
@@ -86,10 +88,11 @@ If a factual error is identified in the analysis, Antellion corrects it within 4
 | Component | Stand-alone value |
 |---|---|
 | Core analysis (1 category, full journey, 3 models) | $10,000 |
+| Journey Action Map strategic synthesis | $6,000 |
 | Written report + source attribution | $8,000 |
 | Executive readout call | $2,000 |
 | Follow-up Q&A | $1,000 |
-| **Total** | **~$21,000** |
+| **Total** | **~$27,000** |
 
 **You pay $14,000.**
 
