@@ -40,7 +40,11 @@ This Agreement establishes the general terms governing all services Antellion pr
 
 ### 1.3 Order of Precedence
 
-In the event of a conflict between this Agreement and an SOW, the SOW controls **only to the extent expressly stated in the SOW**. Otherwise, this Agreement controls.
+In the event of a conflict between this Agreement and an SOW, the SOW controls **only to the extent expressly stated in the SOW and only with respect to scope of Services, deliverables, fees, schedule, and other project-specific details**. Core risk and framework provisions — including Section 3 (Fees, Payment, and Taxes), Section 5 (Confidentiality), Section 6 (Data Protection), Section 7 (Intellectual Property), Section 8 (Warranties and Disclaimers), Section 9 (Limitation of Liability), Section 10 (Indemnification), and Section 13 (Governing Law and Dispute Resolution) — remain governed by this Agreement regardless of any conflicting SOW language. Otherwise, this Agreement controls.
+
+### 1.4 Purchase Orders
+
+Customer may issue purchase orders for administrative or accounting reference. Any pre-printed or embedded terms and conditions in a Customer purchase order that conflict with or add to this Agreement or an SOW are void and of no effect, regardless of whether Antellion acknowledges the purchase order. Performance under this Agreement is governed solely by this Agreement and the executed SOWs referencing it.
 
 ---
 
@@ -77,6 +81,14 @@ Engagements may be structured in phases, as specified in each SOW:
 
 Customer agrees to provide, in a timely manner, the information reasonably necessary for Antellion to perform Services, including but not limited to: company identifying information, named competitors, job categories in scope, and access to any Customer personnel required for readout sessions.
 
+### 2.4 Changes to Scope
+
+Either Party may request a change to the scope, schedule, or deliverables of an active SOW. Changes are effective only upon both Parties' execution of a written change order or amendment to the SOW. Work on out-of-scope tasks will not commence, and Antellion assumes no obligation to perform out-of-scope work, until the applicable change order is signed. Customer-caused delays that materially affect Antellion's schedule may, at Antellion's election, be documented as change orders reflecting adjusted timelines.
+
+### 2.5 Deliverable Acceptance
+
+Unless an SOW specifies a different acceptance procedure, each deliverable is deemed accepted upon the earlier of: (a) ten (10) business days after delivery to Customer, if Customer has not provided written notice of rejection; or (b) Customer's written acceptance. A rejection notice must specify, with reasonable particularity, the respects in which the deliverable fails to meet the applicable SOW's stated completeness criteria (including any minimum findings counts or minimum remediation-action counts). Upon receipt of a timely rejection notice, Antellion will, within a commercially reasonable time, either correct the identified defects and re-deliver for acceptance or, if the defect cannot be remedied, refund the fees paid for the rejected deliverable. Customer's continued use of a deliverable constitutes acceptance, except for defects that could not reasonably have been discovered through review.
+
 ---
 
 ## 3. Fees, Payment, and Taxes
@@ -97,11 +109,15 @@ Unless otherwise stated in the SOW:
 
 Antellion will issue invoices through Stripe. Customer may pay by ACH bank transfer, wire transfer, or credit card. Credit card payments of over **$25,000** are subject to a **three percent (3%)** processing surcharge.
 
-### 3.4 Late Payments
+### 3.4 Late Payments and Suspension
 
-Invoices unpaid **fifteen (15) days** past their due date accrue interest at **one and one-half percent (1.5%) per month** (or the maximum rate permitted by law, whichever is lower). Antellion reserves the right to pause delivery of Services on engagements with past-due invoices.
+Invoices unpaid **fifteen (15) days** past their due date accrue interest at **one and one-half percent (1.5%) per month** (or the maximum rate permitted by law, whichever is lower). If any invoice is more than **thirty (30) days** past due, Antellion may, upon **three (3) business days'** written notice, suspend performance of Services (including withholding in-progress deliverables) until the past-due amount is paid in full. Antellion's right to suspend is in addition to, and not in lieu of, its other rights and remedies under this Agreement.
 
-### 3.5 Taxes
+### 3.5 Invoice Disputes
+
+If Customer disputes any portion of an invoice, Customer must: (a) pay the undisputed portion by the invoice due date; (b) provide Antellion written notice of the dispute, with reasonable supporting documentation, within **ten (10) business days** of the invoice due date; and (c) engage in good-faith negotiation with Antellion to resolve the dispute. Customer's failure to provide timely written notice waives Customer's right to dispute the invoice.
+
+### 3.6 Taxes
 
 Customer is responsible for all sales, use, value-added, and similar taxes arising out of the Services, excluding taxes based on Antellion's net income.
 
@@ -111,7 +127,7 @@ Customer is responsible for all sales, use, value-added, and similar taxes arisi
 
 ### 4.1 Term
 
-This Agreement commences on the Effective Date and continues until terminated in accordance with Section 4.2 or Section 4.3 (the "**Term**").
+This Agreement commences on the Effective Date and continues for an initial term of **one (1) year**, automatically renewing for successive **one (1) year** periods, until terminated in accordance with Section 4.2 or Section 4.3 (the "**Term**"). Active SOWs executed during the Term remain in effect for their stated duration notwithstanding expiration of this Agreement's current renewal period.
 
 ### 4.2 Termination for Convenience
 
@@ -124,13 +140,19 @@ Either Party may terminate this Agreement or any active SOW immediately upon wri
 - Materially breaches this Agreement and fails to cure such breach within **thirty (30) days** of written notice describing the breach; or
 - Becomes insolvent, files for bankruptcy, or ceases to operate as a going concern.
 
-### 4.4 Effect of Termination
+A material breach of Section 5 (Confidentiality) or Section 7 (Intellectual Property) is grounds for immediate termination by the non-breaching Party without a cure period.
+
+### 4.4 Partial Termination
+
+Where the basis for termination under Section 4.3 pertains to a specific SOW, the terminating Party's termination right is limited to the affected SOW only, unless the breach or insolvency event materially impairs performance of this Agreement as a whole. In the latter case, either Party may terminate this Agreement in its entirety.
+
+### 4.5 Effect of Termination
 
 Upon termination of this Agreement or any SOW:
 
-- Customer will pay Antellion for all Services performed and deliverables provided up to the effective date of termination, on a pro-rata basis;
+- Customer will pay Antellion for all Services performed and deliverables provided up to the effective date of termination, on a pro-rata basis, plus any non-cancelable third-party commitments properly incurred by Antellion in performance of the SOW;
 - Antellion will deliver any in-progress work product in its then-current state; and
-- Each Party's obligations that by their nature survive termination (including confidentiality, IP, warranty disclaimers, limitation of liability, and indemnification) will survive.
+- The following provisions survive termination or expiration of this Agreement: Section 3 (to the extent of amounts outstanding), Section 5 (Confidentiality), Section 6 (Data Protection, as applicable to retained data), Section 7 (Intellectual Property), Section 8 (Warranties and Disclaimers), Section 9 (Limitation of Liability), Section 10 (Indemnification), Section 13 (Governing Law and Dispute Resolution), and Section 14 (General Provisions), along with any other provisions that by their nature should survive.
 
 ---
 
@@ -173,9 +195,12 @@ Antellion collects and processes minimal Customer information to perform Service
 
 Antellion will:
 
-- Store Customer information on encrypted infrastructure with industry-standard access controls;
-- Limit access to Customer information to personnel who require such access to perform Services;
-- Not sell, share, or distribute Customer information to third parties, except to subcontractors engaged to perform Services who are bound by confidentiality obligations at least as protective as this Agreement.
+- **Encrypt** Customer Confidential Information **in transit** using TLS 1.2 or higher;
+- **Encrypt** Customer Confidential Information **at rest** using AES-256 or an equivalent industry-standard encryption method;
+- Limit access to Customer Confidential Information to personnel and subcontractors who require such access to perform Services, under written confidentiality obligations at least as protective as those in Section 5;
+- Apply role-based access controls and authentication mechanisms consistent with industry standards for a vendor of Antellion's scale and services;
+- Not sell, share, or distribute Customer Confidential Information to third parties, except to (i) subcontractors engaged to perform Services, and (ii) third-party AI system providers as described in Section 6.3; and
+- Upon expiration or termination of the applicable SOW, return or destroy Customer Confidential Information at Customer's election within **thirty (30) days** of Customer's written request, except to the extent retention is required by law or for legitimate internal record-keeping of aggregated/de-identified data as permitted under Section 7.3.
 
 ### 6.3 AI Model Interactions
 
@@ -202,6 +227,14 @@ As part of Services, Antellion submits queries to third-party AI systems to anal
 ### 6.4 Data Processing Agreement
 
 If Customer requires a separate Data Processing Agreement (DPA), Antellion will execute Customer's standard DPA in substantially its proposed form, subject to reasonable Antellion review.
+
+### 6.5 Security Incident Notification
+
+Antellion will notify Customer of any confirmed unauthorized access to, use of, acquisition of, or disclosure of Customer's Confidential Information ("**Security Incident**") without undue delay, and in any event within **seventy-two (72) hours** after Antellion's confirmation of the incident. Such notification will include reasonably available information about the nature of the incident, the categories of data affected, the steps Antellion has taken or is taking to contain the incident, and the remediation activities underway. Antellion will cooperate in good faith with Customer's reasonable investigation and remediation efforts at Antellion's expense where the Security Incident is caused by Antellion's breach of this Agreement.
+
+### 6.6 Sub-Processors
+
+Antellion engages third-party sub-processors in the delivery of Services, including categories such as: (a) cloud infrastructure providers (hosting, compute, storage); (b) third-party AI system providers (as described in Section 6.3); (c) email and communications providers; and (d) analytics and monitoring providers. Upon Customer's written request, Antellion will provide a current list of named sub-processors. Antellion remains responsible for each sub-processor's compliance with the confidentiality and data-handling obligations in this Agreement. Antellion will use commercially reasonable efforts to provide Customer with advance notice of any material change to its sub-processor list.
 
 ---
 
@@ -300,9 +333,12 @@ The indemnified Party must: (i) promptly notify the indemnifying Party of the cl
 
 Antellion will maintain the following insurance coverage during the Term:
 
-- **General Liability Insurance:** At least **$1,000,000** per occurrence;
-- **Professional Liability / Errors and Omissions Insurance:** At least **$1,000,000** per claim; and
-- **Cyber Liability Insurance:** At least **$1,000,000** per claim.
+- **Commercial General Liability:** At least **$1,000,000 per occurrence** and **$2,000,000 in the aggregate**;
+- **Professional Liability / Errors and Omissions Insurance:** At least **$1,000,000** per claim;
+- **Cyber Liability Insurance:** At least **$1,000,000** per claim; and
+- **Workers' Compensation Insurance** at statutory minimums, where applicable.
+
+For any insurance maintained on a claims-made basis, Antellion will maintain or purchase tail coverage for a period of at least **two (2) years** following expiration or termination of the applicable policy to ensure continued coverage for claims arising from events during the Term.
 
 Antellion will provide Customer with certificates of insurance evidencing such coverage upon reasonable request.
 
@@ -377,6 +413,14 @@ No waiver of any provision of this Agreement is effective unless in writing sign
 
 This Agreement may be executed in counterparts, each of which is deemed an original, and all of which together constitute the same instrument. Electronic signatures (including via DocuSign, HelloSign, or similar service) have the same legal effect as original handwritten signatures.
 
+### 14.10 Non-Solicitation
+
+During the Term and for **twelve (12) months** following termination or expiration of this Agreement, neither Party will directly solicit for employment or engagement any employee or individual contractor of the other Party with whom the soliciting Party had material contact in connection with the Services. This restriction does not apply to: (a) general solicitations not targeted at the other Party's personnel (including general job postings and employment advertising); or (b) unsolicited applications from such personnel.
+
+### 14.11 Material Change in Law
+
+If a change in applicable law materially affects the Services or the rights and obligations of the Parties under this Agreement, the Parties will negotiate in good faith any amendments necessary to ensure the Agreement remains compliant and commercially viable. If the Parties cannot reach agreement within **sixty (60) days** of either Party's written notice of the change, either Party may terminate this Agreement or any affected SOW upon **thirty (30) days'** written notice.
+
 ---
 
 ## 15. Signatures
@@ -426,3 +470,20 @@ Before using this template in live deals, a licensed attorney should review:
 
 - **2026-04-19** — Initial template draft created. Requires counsel review before use.
 - **2026-04-20** — Revised Section 2.2 to specify Model A (separate SOWs) as default and Model B (combined SOW with Phase 2 refund clause) as enterprise exception. Revised Section 6.3 to enumerate the specific data submitted to AI systems, enumerate data explicitly not submitted, and extend the model list to contemplate additional providers beyond the current Big 3.
+- **2026-04-20** — Enterprise-grade enhancements based on standard B2B MSA conventions:
+  - Section 1.3 strengthened: SOW precedence carve-back preserving core risk provisions at master-agreement level.
+  - Section 1.4 added: purchase order terms override (embedded PO terms void).
+  - Section 2.4 added: formal change order / scope change procedure.
+  - Section 2.5 added: deliverable acceptance mechanism (10-business-day deemed-acceptance window, rejection must cite SOW completeness criteria).
+  - Section 3.4 expanded: suspension-for-non-payment mechanism (30 days past due + 3 business days' notice).
+  - Section 3.5 added: invoice dispute process (10 business days to object with documentation, undisputed portion must still be paid).
+  - Section 4.1: added 1-year initial term with auto-renewal.
+  - Section 4.3: clarified that Section 5 and Section 7 breaches allow immediate termination without cure period.
+  - Section 4.4 added: partial-SOW termination (termination scoped to the affected SOW unless breach impairs the whole Agreement).
+  - Section 4.5: replaced generic "obligations that by their nature survive" with explicit survival list, including indemnification.
+  - Section 6.2: strengthened security controls language — TLS 1.2+ in transit, AES-256 at rest, role-based access controls, 30-day data return/destruction window.
+  - Section 6.5 added: 72-hour security incident notification obligation.
+  - Section 6.6 added: sub-processor disclosure (categories listed, named list on request).
+  - Section 11: CGL aggregate limit added ($2M), Workers' Comp added, 2-year tail coverage required for claims-made policies.
+  - Section 14.10 added: mutual non-solicitation (12 months post-termination, material-contact scope, general-advertising carve-out).
+  - Section 14.11 added: material-change-in-law renegotiation with 60-day good-faith window and 30-day termination right.
