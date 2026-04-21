@@ -12,3 +12,7 @@ coverage/
 # Third-party content — keep locally, do not commit to the repo
 docs/competitor-assets/
 docs/growth-assets/
+
+# Internal strategic assessments — keep locally, do not commit
+PE_DILIGENCE_MEMO.md
+*_DILIGENCE_MEMO.md
