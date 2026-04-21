@@ -12,7 +12,7 @@
     "@antellion/core": "workspace:*",
     "@antellion/db": "workspace:*",
     "gray-matter": "^4.0.3",
-    "next": "^15.2.0",
+    "next": "^15.5.15",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-markdown": "^9.0.0",

@@ -9,5 +9,6 @@ dist/
 coverage/
 .DS_Store
 
-# Sensitive competitor assets — keep locally, do not commit
-docs/competitor-assets/Symphony Talent AI Visibility Report.pdf
+# Third-party content — keep locally, do not commit to the repo
+docs/competitor-assets/
+docs/growth-assets/

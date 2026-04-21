@@ -97,11 +97,13 @@ export async function submitLead(
   }
 
   // 5. Notify via Slack (fire-and-forget — never block the response)
+  //    PII (name, email) is intentionally excluded from the Slack payload.
+  //    Full contact details live in the operator /leads dashboard where
+  //    they are tenant-scoped. Slack is a signal to check the dashboard,
+  //    not a data store.
   notifySlack({
     companyName: rest.companyName,
     companyDomain,
-    contactName: rest.contactName,
-    contactEmail,
     contactTitle: rest.contactTitle,
     topCompetitor: rest.topCompetitor,
     primaryRole: rest.primaryRole,
@@ -115,8 +117,6 @@ export async function submitLead(
 function notifySlack(lead: {
   companyName: string;
   companyDomain: string;
-  contactName: string;
-  contactEmail: string;
   contactTitle: string;
   topCompetitor: string;
   primaryRole: string;
@@ -126,13 +126,12 @@ function notifySlack(lead: {
 
   const fields = [
     `*Company:* ${lead.companyName} (${lead.companyDomain})`,
-    `*Contact:* ${lead.contactName} <${lead.contactEmail}>`,
     `*Title:* ${lead.contactTitle}`,
     `*Top Competitor:* ${lead.topCompetitor}`,
     `*Primary Role:* ${lead.primaryRole}`,
   ].join("\n");
 
-  const text = `🎯 *New Snapshot Lead*\n\n${fields}`;
+  const text = `🎯 *New Snapshot Lead* — contact details in the /leads dashboard\n\n${fields}`;
 
   fetch(webhookUrl, {
     method: "POST",
