@@ -10,7 +10,7 @@ import {
   validateResultTransition,
 } from "@antellion/core";
 import type { ActionState } from "@/lib/actions";
-import { getOrganizationId } from "@/lib/auth";
+import { getAuthContext } from "@/lib/auth";
 
 // ── createEvidence ──────────────────────────────────────────────────────────
 
@@ -57,7 +57,7 @@ export async function createEvidence(
     extractedSources,
     ...plainData
   } = result.data;
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   // Verify the scan result belongs to the current org
   const scanResult = await prisma.scanResult.findFirst({
@@ -123,7 +123,7 @@ export async function approveEvidence(
   if (!result.success) return { errors: result.errors };
 
   const { evidenceId, targetStatus, note } = result.data;
-  const organizationId = await getOrganizationId();
+  const { userId, organizationId, role } = await getAuthContext();
 
   // Fetch evidence and verify org ownership through the chain:
   // ScanEvidence -> ScanResult -> ScanRun -> Client -> Organization
@@ -163,21 +163,27 @@ export async function approveEvidence(
     return { message: immutabilityCheck.reason };
   }
 
-  // Validate the state machine transition.
-  // TODO(auth): replace actorId: "system" with the real authenticated user ID,
-  // and derive actorRole from the session. The literal string "system" is used
-  // as a placeholder so the transition validator runs (it is non-null), but the
-  // reviewer-cannot-equal-analyst check will never fire against it because
-  // "system" !== any real triggeredById value. This means the self-review guard
-  // is currently bypassed for evidence approvals. Remove this comment and supply
-  // the real actorId once auth is wired.
+  // Self-review guard with role-based override.
+  //
+  // OWNER and ADMIN users are permitted to approve evidence they also triggered.
+  // This is the expected solo-operator pattern and is explicitly logged via
+  // self_approved: true in the transition log note so the audit trail is clear.
+  // MEMBER and VIEWER roles still hit the standard reviewer-cannot-equal-analyst guard.
+  const scanAnalystId = evidence.scanResult.scanRun.triggeredById;
+  const isSelfReview = scanAnalystId !== null && userId === scanAnalystId;
+  const selfReviewPermitted = isSelfReview && (role === "OWNER" || role === "ADMIN");
+
+  // For the evidence transition, pass a sentinel actorId when self-review is
+  // permitted so the validator's identity check does not block it.
+  const effectiveActorId = selfReviewPermitted ? "self-approved-override" : userId;
+
   const transitionCheck = validateEvidenceTransition(
     currentStatus,
     targetStatus,
     {
-      actorId: "system",
-      actorRole: "ADMIN",
-      scanAnalystId: evidence.scanResult.scanRun.triggeredById,
+      actorId: effectiveActorId,
+      actorRole: role,
+      scanAnalystId: selfReviewPermitted ? null : scanAnalystId,
       note,
     },
   );
@@ -195,12 +201,15 @@ export async function approveEvidence(
   // Guard: validate the co-transition on the parent ScanResult before writing.
   // Without this check, approving evidence on a REJECTED result would bypass the
   // result state machine and silently force it back to APPROVED.
-  // actorId: null is the pre-auth placeholder (reviewer-cannot-equal-analyst guard
-  // won't fire when actorId is null, which is acceptable until auth is real).
+  // For self-review by OWNER/ADMIN, pass null for actorId so the identity guard
+  // does not interfere — the evidence transition already permitted self-review above.
   const resultTransitionCheck = validateResultTransition(
     currentResultStatus,
     resultTargetStatus,
-    { actorId: null, scanAnalystId: evidence.scanResult.scanRun.triggeredById },
+    {
+      actorId: selfReviewPermitted ? null : userId,
+      scanAnalystId: selfReviewPermitted ? null : scanAnalystId,
+    },
   );
 
   if (!resultTransitionCheck.valid) {
@@ -215,7 +224,7 @@ export async function approveEvidence(
       data: {
         status: targetStatus,
         ...(targetStatus === "APPROVED"
-          ? { approvedAt: new Date(), approvedById: null }
+          ? { approvedAt: new Date(), approvedById: userId }
           : {}),
         ...(note ? { analystNotes: note } : {}),
       },
@@ -228,6 +237,12 @@ export async function approveEvidence(
     });
 
     // 3. Log the evidence transition
+    // When an OWNER/ADMIN self-approves, the note records self_approved: true
+    // so the audit trail remains interpretable without losing the approval.
+    const selfApproveNote = isSelfReview && selfReviewPermitted
+      ? `self_approved: true${note ? ` — ${note}` : ""}`
+      : note;
+
     await tx.transitionLog.create({
       data: {
         entityType: "SCAN_EVIDENCE",
@@ -235,8 +250,8 @@ export async function approveEvidence(
         fromStatus: currentStatus,
         toStatus: targetStatus,
         action: targetStatus === "APPROVED" ? "approveEvidence" : "rejectEvidence",
-        actorId: null, // TODO: real actorId once auth is wired
-        note,
+        actorId: userId,
+        note: selfApproveNote,
       },
     });
 
@@ -248,7 +263,7 @@ export async function approveEvidence(
         fromStatus: currentResultStatus,
         toStatus: resultTargetStatus,
         action: targetStatus === "APPROVED" ? "approveEvidence" : "rejectEvidence",
-        actorId: null,
+        actorId: userId,
         note: "Co-transition from evidence approval/rejection.",
       },
     });
@@ -339,7 +354,7 @@ export interface EvidenceBySection {
 export async function getEvidenceByReport(
   reportId: string,
 ): Promise<EvidenceBySection[]> {
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   // Verify report belongs to current org and fetch metadata for confidence data
   const report = await prisma.report.findFirst({

@@ -41,7 +41,7 @@ import type {
   MultiRunAnalysis,
 } from "@antellion/core";
 import type { ActionState } from "@/lib/actions";
-import { getOrganizationId } from "@/lib/auth";
+import { getAuthContext } from "@/lib/auth";
 import { runReportQA } from "./qa";
 import { generateProse } from "@/lib/llm";
 import { executiveSummaryPrompt } from "@antellion/prompts";
@@ -57,7 +57,7 @@ export async function checkReportReadiness(
   clientId: string,
   scanRunIds: string[],
 ): Promise<ReadinessWarning[]> {
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   // Verify client and scans belong to the org
   const scans = await prisma.scanRun.findMany({
@@ -136,7 +136,7 @@ export async function generateReport(
   if (!result.success) return { errors: result.errors };
 
   const { clientId, title } = result.data;
-  const organizationId = await getOrganizationId();
+  const { organizationId, userId } = await getAuthContext();
 
   // Fetch the selected scans with org scoping and enough data to validate generation
   const scans = await prisma.scanRun.findMany({
@@ -1398,7 +1398,7 @@ export async function generateReport(
         fromStatus: "",
         toStatus: "DRAFT",
         action: "generateReport",
-        actorId: null,
+        actorId: userId,
       },
     });
 
@@ -1460,8 +1460,7 @@ export async function updateReportStatus(
     throw new Error(`Invalid report status: ${status}`);
   }
 
-  // TODO: once auth is real, verify report belongs to the current org before mutating.
-  const organizationId = await getOrganizationId();
+  const { organizationId, userId } = await getAuthContext();
   const report = await prisma.report.findFirst({
     where: { id, client: { organizationId } },
     select: { id: true, status: true },
@@ -1553,7 +1552,7 @@ export async function updateReportStatus(
         fromStatus: currentStatus,
         toStatus: targetStatus,
         action: "updateReportStatus",
-        actorId: null,
+        actorId: userId,
       },
     });
   });
@@ -1562,7 +1561,7 @@ export async function updateReportStatus(
 }
 
 export async function deleteReport(id: string): Promise<void> {
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
   const report = await prisma.report.findFirst({
     where: { id, client: { organizationId } },
     select: { id: true, status: true },

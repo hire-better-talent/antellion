@@ -7,7 +7,7 @@ import {
   generateSnapshotQueries,
   deriveStandardAssets,
 } from "@antellion/core";
-import { getOrganizationId } from "@/lib/auth";
+import { getAuthContext } from "@/lib/auth";
 import type { ActionState } from "@/lib/actions";
 import { nanoid } from "nanoid";
 import { buildSnapshotActionPlan } from "@antellion/core";
@@ -31,7 +31,7 @@ export async function generateShareToken(
     throw new Error("Invalid scanRunId");
   }
 
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   // Org-scoped lookup: walk the relation chain ScanRun → Client → Organization.
   const scanRun = await prisma.scanRun.findFirst({
@@ -86,7 +86,7 @@ export async function getSnapshotActionPlan(
     throw new Error("Invalid scanRunId");
   }
 
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   const scanRun = await prisma.scanRun.findFirst({
     where: {
@@ -179,7 +179,7 @@ export async function createSnapshotScan(
 
   // ── 2. Resolve organizationId ────────────────────────────
 
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   // ── 3. Generate snapshot queries (pure, no LLM) ──────────
 

@@ -10,7 +10,7 @@ import {
 import type { ActionState } from "@/lib/actions";
 import { optionalString } from "@/lib/actions";
 import {
-  getOrganizationId,
+  getAuthContext,
   requireOrgClient,
   requireOrgContentAsset,
 } from "@/lib/auth";
@@ -29,7 +29,7 @@ export async function createContentAsset(
 
   if (!result.success) return { errors: result.errors };
 
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   // Verify the client belongs to the current organization
   await requireOrgClient(result.data.clientId, organizationId);
@@ -70,7 +70,7 @@ export async function updateContentAsset(
 
   if (!result.success) return { errors: result.errors };
 
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   // Verify the content asset belongs to the current organization (via its client)
   await requireOrgContentAsset(id, organizationId);
@@ -84,7 +84,7 @@ export async function updateContentAsset(
 }
 
 export async function deleteContentAsset(id: string): Promise<void> {
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   // Verify the content asset belongs to the current organization (via its client)
   await requireOrgContentAsset(id, organizationId);

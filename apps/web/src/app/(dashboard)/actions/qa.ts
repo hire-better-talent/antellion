@@ -3,7 +3,7 @@
 import { prisma } from "@antellion/db";
 import { runQAChecks } from "@antellion/core";
 import type { QACheckContext, QARunResult } from "@antellion/core";
-import { getOrganizationId } from "@/lib/auth";
+import { getAuthContext } from "@/lib/auth";
 
 // ── Fetch QA context ───────────────────────────────────────
 
@@ -122,7 +122,7 @@ export async function runReportQA(reportId: string): Promise<{
   result?: QARunResult;
   error?: string;
 }> {
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
   const ctx = await buildQAContext(reportId, organizationId);
 
   if (!ctx) {
@@ -219,7 +219,7 @@ export async function signoffQA(
   confidence: string,
   note?: string,
 ): Promise<{ success: boolean; error?: string }> {
-  const organizationId = await getOrganizationId();
+  const { organizationId, userId } = await getAuthContext();
 
   // Verify the QA record exists and belongs to current org
   const qa = await prisma.reportQA.findFirst({
@@ -253,7 +253,7 @@ export async function signoffQA(
     await tx.reportQA.update({
       where: { id: reportQAId },
       data: {
-        signedOffById: null, // TODO: use real user ID once auth is wired
+        signedOffById: userId,
         signedOffAt: new Date(),
         confidence,
         signoffNote: note ?? null,
@@ -274,7 +274,7 @@ export async function signoffQA(
           fromStatus: updatedQA.status,
           toStatus: updatedQA.status, // status unchanged on signoff
           action: "signoffQA",
-          actorId: null, // TODO: real user ID once auth lands
+          actorId: userId,
         },
       });
     }
@@ -286,7 +286,7 @@ export async function signoffQA(
 // ── Get QA status ──────────────────────────────────────────
 
 export async function getReportQA(reportId: string) {
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   const qa = await prisma.reportQA.findFirst({
     where: {

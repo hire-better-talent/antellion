@@ -8,7 +8,7 @@ import {
   UpdateClientSchema,
   deriveStandardAssets,
 } from "@antellion/core";
-import { getOrganizationId, requireOrgClient } from "@/lib/auth";
+import { getAuthContext, requireOrgClient } from "@/lib/auth";
 import type { ActionState } from "@/lib/actions";
 import { optionalString } from "@/lib/actions";
 
@@ -51,7 +51,7 @@ export async function createClient(
   _prev: ActionState,
   formData: FormData,
 ): Promise<ActionState> {
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   const result = validate(CreateClientSchema, {
     organizationId,
@@ -132,7 +132,7 @@ export async function updateClient(
 
   if (!result.success) return { errors: result.errors };
 
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   // Verify the client belongs to the current organization
   await requireOrgClient(id, organizationId);
@@ -146,7 +146,7 @@ export async function updateClient(
 }
 
 export async function deleteClient(id: string): Promise<void> {
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   // Verify the client belongs to the current organization
   await requireOrgClient(id, organizationId);

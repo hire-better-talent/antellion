@@ -11,7 +11,7 @@ import {
 import type { ActionState } from "@/lib/actions";
 import { optionalString } from "@/lib/actions";
 import {
-  getOrganizationId,
+  getAuthContext,
   requireOrgClient,
   requireOrgCompetitor,
 } from "@/lib/auth";
@@ -33,7 +33,7 @@ export async function createCompetitor(
 
   if (!result.success) return { errors: result.errors };
 
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   // Verify the client belongs to the current organization
   await requireOrgClient(clientId, organizationId);
@@ -75,7 +75,7 @@ export async function updateCompetitor(
 
   if (!result.success) return { errors: result.errors };
 
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   // Verify the competitor belongs to the current organization (via its client)
   await requireOrgCompetitor(competitorId, organizationId);
@@ -92,7 +92,7 @@ export async function deleteCompetitor(
   competitorId: string,
   clientId: string,
 ): Promise<void> {
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   // Verify the competitor belongs to the current organization (via its client)
   await requireOrgCompetitor(competitorId, organizationId);
@@ -173,7 +173,7 @@ export async function addDiscoveredCompetitor(
   scanId: string,
   name: string,
 ): Promise<ActionState> {
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   // Verify the client belongs to the current organization
   await requireOrgClient(clientId, organizationId);

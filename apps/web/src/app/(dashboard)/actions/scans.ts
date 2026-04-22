@@ -21,7 +21,7 @@ import {
 } from "@antellion/core";
 import type { DiscoveredCompetitor } from "@antellion/core";
 import type { ActionState } from "@/lib/actions";
-import { getOrganizationId, requireOrgClient, requireOrgScan } from "@/lib/auth";
+import { getAuthContext, requireOrgClient, requireOrgScan } from "@/lib/auth";
 
 export async function createScan(
   _prev: ActionState,
@@ -40,7 +40,7 @@ export async function createScan(
   if (!result.success) return { errors: result.errors };
 
   const { clientId, model, queryDepth, focusArea } = result.data;
-  const organizationId = await getOrganizationId();
+  const { organizationId, userId } = await getAuthContext();
 
   // Verify the client belongs to the current organization
   await requireOrgClient(clientId, organizationId);
@@ -68,6 +68,7 @@ export async function createScan(
       queryCount,
       startedAt: new Date(),
       metadata: { queryClusterIds },
+      triggeredById: userId,
     },
   });
 
@@ -88,7 +89,7 @@ export async function recordResult(
   if (!result.success) return { errors: result.errors };
 
   const { scanRunId, queryId, response, citedDomains } = result.data;
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   // Fetch context for analysis, scoped to the current org
   const scan = await prisma.scanRun.findFirst({
@@ -281,7 +282,7 @@ export async function recordResult(
 }
 
 export async function completeScan(id: string): Promise<void> {
-  const organizationId = await getOrganizationId();
+  const { organizationId, userId } = await getAuthContext();
 
   // Fetch the scan with org scoping to validate the transition
   const scan = await prisma.scanRun.findFirst({
@@ -317,7 +318,7 @@ export async function completeScan(id: string): Promise<void> {
         fromStatus: scan.status,
         toStatus: "COMPLETED",
         action: "completeScan",
-        actorId: null,
+        actorId: userId,
       },
     });
   });
@@ -327,7 +328,7 @@ export async function completeScan(id: string): Promise<void> {
 }
 
 export async function cancelScan(id: string): Promise<void> {
-  const organizationId = await getOrganizationId();
+  const { organizationId, userId } = await getAuthContext();
 
   const scan = await prisma.scanRun.findFirst({
     where: { id, client: { organizationId } },
@@ -353,7 +354,7 @@ export async function cancelScan(id: string): Promise<void> {
         fromStatus: scan.status,
         toStatus: "CANCELLED",
         action: "cancelScan",
-        actorId: null,
+        actorId: userId,
       },
     }),
   ]);
@@ -363,7 +364,7 @@ export async function cancelScan(id: string): Promise<void> {
 }
 
 export async function deleteScan(id: string): Promise<void> {
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   const scan = await prisma.scanRun.findFirst({
     where: { id, client: { organizationId } },
@@ -391,7 +392,7 @@ export async function deleteScan(id: string): Promise<void> {
  * sets that flag; the worker does the rest.
  */
 export async function startAutomatedScan(scanId: string): Promise<void> {
-  const organizationId = await getOrganizationId();
+  const { organizationId, userId } = await getAuthContext();
 
   const scan = await prisma.scanRun.findFirst({
     where: { id: scanId, client: { organizationId } },
@@ -423,7 +424,7 @@ export async function startAutomatedScan(scanId: string): Promise<void> {
         fromStatus: scan.status,
         toStatus: scan.status, // status doesn't change — automation is a metadata flag
         action: "startAutomatedScan",
-        actorId: null,
+        actorId: userId,
         note: "Scan queued for automated execution by job worker.",
       },
     });
@@ -447,7 +448,7 @@ export async function createValidationScan(
   parentScanId: string,
   queryIds: string[],
 ): Promise<{ scanId: string } | { error: string }> {
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   // Fetch and verify the parent scan belongs to this org and is completed
   const parentScan = await prisma.scanRun.findFirst({
@@ -523,7 +524,7 @@ export async function createValidationScan(
 export async function discoverCompetitorsFromScan(
   scanId: string,
 ): Promise<DiscoveredCompetitor[]> {
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   // Fetch scan with org scoping, pulling response texts and client context
   const scan = await prisma.scanRun.findFirst({

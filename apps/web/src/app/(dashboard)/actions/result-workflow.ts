@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { prisma } from "@antellion/db";
 import { validateResultTransition, validateEvidenceTransition } from "@antellion/core";
 import type { ActionState } from "@/lib/actions";
-import { getOrganizationId } from "@/lib/auth";
+import { getAuthContext } from "@/lib/auth";
 
 // ── Shared result fetcher ────────────────────────────────────
 
@@ -51,7 +51,7 @@ async function fetchResultWithOrgScope(resultId: string, organizationId: string)
  * Org scoping: verified through ScanResult -> ScanRun -> Client -> Organization.
  */
 export async function approveResult(resultId: string): Promise<ActionState> {
-  const organizationId = await getOrganizationId();
+  const { organizationId, userId, role } = await getAuthContext();
   const result = await fetchResultWithOrgScope(resultId, organizationId);
 
   if (!result) return { message: "Scan result not found." };
@@ -67,15 +67,18 @@ export async function approveResult(resultId: string): Promise<ActionState> {
 
   const currentStatus = result.status;
 
-  // Validate the ScanResult transition.
-  // TODO(auth): replace actorId: null with the real authenticated user ID.
-  // With actorId: null the reviewer-cannot-equal-analyst guard in
-  // validateResultTransition is intentionally bypassed (the guard only fires
-  // when both IDs are non-null and equal). Once auth is wired, pass the real
-  // actorId here and remove this comment.
+  // Self-review guard with role-based override.
+  //
+  // OWNER and ADMIN users are permitted to approve results they also triggered.
+  // This is the expected solo-operator pattern and is logged with self_approved: true
+  // in the transition log so the audit trail remains interpretable.
+  const scanAnalystId = result.scanRun.triggeredById;
+  const isSelfReview = scanAnalystId !== null && userId === scanAnalystId;
+  const selfReviewPermitted = isSelfReview && (role === "OWNER" || role === "ADMIN");
+
   const resultCheck = validateResultTransition(currentStatus, "APPROVED", {
-    actorId: null,
-    scanAnalystId: result.scanRun.triggeredById,
+    actorId: selfReviewPermitted ? null : userId,
+    scanAnalystId: selfReviewPermitted ? null : scanAnalystId,
   });
 
   if (!resultCheck.valid) {
@@ -95,6 +98,9 @@ export async function approveResult(resultId: string): Promise<ActionState> {
     });
 
     // 2. Transition logs for the result
+    // When an OWNER/ADMIN self-approves, log self_approved: true for audit trail clarity.
+    const selfApproveNote = isSelfReview && selfReviewPermitted ? "self_approved: true" : undefined;
+
     await tx.transitionLog.create({
       data: {
         entityType: "SCAN_RESULT",
@@ -102,19 +108,19 @@ export async function approveResult(resultId: string): Promise<ActionState> {
         fromStatus: currentStatus,
         toStatus: "APPROVED",
         action: "approveResult",
-        actorId: null,
+        actorId: userId,
+        note: selfApproveNote,
       },
     });
 
     // 3. Co-transition DRAFT evidence -> APPROVED
     if (evidence && evidence.status === "DRAFT") {
-      // Validate evidence co-transition.
-      // TODO(auth): replace actorId: "system" with the real authenticated user ID.
-      // See the approveEvidence action for the same bypass and rationale.
+      // For self-review by OWNER/ADMIN, pass a sentinel so the identity guard
+      // in validateEvidenceTransition does not block it.
       const evidenceCheck = validateEvidenceTransition("DRAFT", "APPROVED", {
-        actorId: "system",
-        actorRole: "ADMIN",
-        scanAnalystId: result.scanRun.triggeredById,
+        actorId: selfReviewPermitted ? "self-approved-override" : userId,
+        actorRole: role,
+        scanAnalystId: selfReviewPermitted ? null : scanAnalystId,
       });
 
       if (!evidenceCheck.valid) {
@@ -126,7 +132,7 @@ export async function approveResult(resultId: string): Promise<ActionState> {
         data: {
           status: "APPROVED",
           approvedAt: new Date(),
-          approvedById: null, // TODO: real actorId once auth is wired
+          approvedById: userId,
         },
       });
 
@@ -137,8 +143,10 @@ export async function approveResult(resultId: string): Promise<ActionState> {
           fromStatus: "DRAFT",
           toStatus: "APPROVED",
           action: "approveResult",
-          actorId: null,
-          note: "Co-transition from approveResult.",
+          actorId: userId,
+          note: selfApproveNote
+            ? `Co-transition from approveResult. ${selfApproveNote}`
+            : "Co-transition from approveResult.",
         },
       });
     }
@@ -166,19 +174,19 @@ export async function rejectResult(
     return { message: "A rejection note is required." };
   }
 
-  const organizationId = await getOrganizationId();
+  const { organizationId, userId, role } = await getAuthContext();
   const result = await fetchResultWithOrgScope(resultId, organizationId);
 
   if (!result) return { message: "Scan result not found." };
 
   const currentStatus = result.status;
+  const scanAnalystId = result.scanRun.triggeredById;
+  const isSelfReview = scanAnalystId !== null && userId === scanAnalystId;
+  const selfReviewPermitted = isSelfReview && (role === "OWNER" || role === "ADMIN");
 
-  // Validate the ScanResult transition.
-  // TODO(auth): replace actorId: null with the real authenticated user ID.
-  // The reviewer-cannot-equal-analyst guard is bypassed while auth is not wired.
   const resultCheck = validateResultTransition(currentStatus, "REJECTED", {
-    actorId: null,
-    scanAnalystId: result.scanRun.triggeredById,
+    actorId: selfReviewPermitted ? null : userId,
+    scanAnalystId: selfReviewPermitted ? null : scanAnalystId,
     note,
   });
 
@@ -203,19 +211,17 @@ export async function rejectResult(
         fromStatus: currentStatus,
         toStatus: "REJECTED",
         action: "rejectResult",
-        actorId: null,
+        actorId: userId,
         note,
       },
     });
 
     // 3. Co-transition DRAFT evidence -> REJECTED
     if (evidence && evidence.status === "DRAFT") {
-      // TODO(auth): replace actorId: "system" with the real authenticated user ID.
-      // See the approveEvidence action for the same bypass and rationale.
       const evidenceCheck = validateEvidenceTransition("DRAFT", "REJECTED", {
-        actorId: "system",
-        actorRole: "ADMIN",
-        scanAnalystId: result.scanRun.triggeredById,
+        actorId: selfReviewPermitted ? "self-approved-override" : userId,
+        actorRole: role,
+        scanAnalystId: selfReviewPermitted ? null : scanAnalystId,
         note,
       });
 
@@ -238,7 +244,7 @@ export async function rejectResult(
           fromStatus: "DRAFT",
           toStatus: "REJECTED",
           action: "rejectResult",
-          actorId: null,
+          actorId: userId,
           note: "Co-transition from rejectResult.",
         },
       });
@@ -259,16 +265,15 @@ export async function rejectResult(
  * the result is under review.
  */
 export async function flagResultForReview(resultId: string): Promise<ActionState> {
-  const organizationId = await getOrganizationId();
+  const { organizationId, userId } = await getAuthContext();
   const result = await fetchResultWithOrgScope(resultId, organizationId);
 
   if (!result) return { message: "Scan result not found." };
 
   const currentStatus = result.status;
 
-  // TODO(auth): replace actorId: null with the real authenticated user ID.
   const resultCheck = validateResultTransition(currentStatus, "NEEDS_REVIEW", {
-    actorId: null,
+    actorId: userId,
     scanAnalystId: result.scanRun.triggeredById,
   });
 
@@ -289,7 +294,7 @@ export async function flagResultForReview(resultId: string): Promise<ActionState
         fromStatus: currentStatus,
         toStatus: "NEEDS_REVIEW",
         action: "flagResultForReview",
-        actorId: null,
+        actorId: userId,
       },
     });
   });
@@ -308,7 +313,7 @@ export async function flagResultForReview(resultId: string): Promise<ActionState
 export async function bulkApproveResults(
   scanRunId: string,
 ): Promise<ActionState & { approvedCount?: number }> {
-  const organizationId = await getOrganizationId();
+  const { organizationId, userId } = await getAuthContext();
 
   // Verify scan belongs to org
   const scan = await prisma.scanRun.findFirst({
@@ -363,7 +368,7 @@ export async function bulkApproveResults(
         fromStatus: "RUNNING",
         toStatus: "RUNNING",
         action: "bulkApproveResults",
-        actorId: null,
+        actorId: userId,
         note: `Bulk approved ${results.length} results.`,
       },
     });

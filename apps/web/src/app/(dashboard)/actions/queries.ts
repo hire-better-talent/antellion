@@ -19,7 +19,7 @@ import {
 import type { ActionState } from "@/lib/actions";
 import { optionalString } from "@/lib/actions";
 import {
-  getOrganizationId,
+  getAuthContext,
   requireOrgClient,
   requireOrgQueryCluster,
   requireOrgQuery,
@@ -64,7 +64,7 @@ export async function generateQueries(
   if (!result.success) return { errors: result.errors };
 
   const { clientId, roleTitle, geography, businessContext } = result.data;
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   // Verify the client belongs to the current organization
   await requireOrgClient(clientId, organizationId);
@@ -175,7 +175,7 @@ export async function generateQueries(
 export async function generateSupplementalQueries(
   clientId: string,
 ): Promise<ActionState & { queryCount?: number; clusterId?: string }> {
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
   await requireOrgClient(clientId, organizationId);
 
   // Load the client with full profile context, competitors, and existing queries.
@@ -395,7 +395,7 @@ export async function updateQueryCluster(
 
   if (!result.success) return { errors: result.errors };
 
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   // Verify the cluster belongs to the current organization (via its client)
   await requireOrgQueryCluster(id, organizationId);
@@ -409,7 +409,7 @@ export async function updateQueryCluster(
 }
 
 export async function deleteQueryCluster(id: string): Promise<void> {
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   // Verify the cluster belongs to the current organization (via its client)
   await requireOrgQueryCluster(id, organizationId);
@@ -432,7 +432,7 @@ export async function addQuery(
 
   if (!result.success) return { errors: result.errors };
 
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   // Verify the target cluster belongs to the current organization (via its client)
   await requireOrgQueryCluster(result.data.queryClusterId, organizationId);
@@ -455,7 +455,7 @@ export async function updateQuery(
 
   if (!result.success) return { errors: result.errors };
 
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   // Verify the query belongs to the current organization (via queryCluster → client)
   await requireOrgQuery(queryId, organizationId);
@@ -472,7 +472,7 @@ export async function toggleQueryActive(
   queryId: string,
   clusterId: string,
 ): Promise<void> {
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   // Verify the query belongs to the current organization (via queryCluster → client)
   await requireOrgQuery(queryId, organizationId);
@@ -497,7 +497,7 @@ export async function deleteQuery(
   queryId: string,
   clusterId: string,
 ): Promise<void> {
-  const organizationId = await getOrganizationId();
+  const { organizationId } = await getAuthContext();
 
   // Verify the query belongs to the current organization (via queryCluster → client)
   await requireOrgQuery(queryId, organizationId);

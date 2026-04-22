@@ -1,8 +1,11 @@
 import { mainNav } from "@/lib/navigation";
 import { NavLink } from "./nav-link";
-import { UserMenu } from "./user-menu";
 
-export function Sidebar() {
+interface SidebarProps {
+  userButton?: React.ReactNode;
+}
+
+export function Sidebar({ userButton }: SidebarProps) {
   return (
     <aside className="flex h-full w-64 flex-col border-r border-gray-200 bg-white">
       {/* Brand */}
@@ -23,7 +26,7 @@ export function Sidebar() {
 
       {/* User / workspace */}
       <div className="border-t border-gray-200 px-3 py-3">
-        <UserMenu />
+        {userButton ?? null}
       </div>
     </aside>
   );
