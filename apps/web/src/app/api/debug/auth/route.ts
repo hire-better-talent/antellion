@@ -1,10 +1,11 @@
-import { auth, clerkClient } from "@clerk/nextjs/server";
+import { auth } from "@clerk/nextjs/server";
+import { prisma } from "@antellion/db";
 import { NextResponse } from "next/server";
 
 /**
- * Diagnostic endpoint — returns the raw auth() result plus the user's
- * org memberships, with all errors caught so we see exactly where the
- * auth flow is breaking on Vercel.
+ * Diagnostic endpoint — runs the exact DB queries the dashboard page makes,
+ * one at a time, and reports which one fails. Helps pinpoint Prisma / schema
+ * / connection issues on Vercel that don't surface locally.
  *
  * Remove this endpoint before launch. Temporary debugging only.
  */
@@ -15,36 +16,45 @@ export async function GET() {
   };
 
   try {
-    diagnostics.step = "calling auth()";
-    const authResult = await auth();
-    diagnostics.auth = {
-      userId: authResult.userId,
-      orgId: authResult.orgId,
-      orgRole: authResult.orgRole,
-      sessionId: authResult.sessionId,
-      actor: authResult.actor,
-    };
-
-    if (!authResult.userId) {
-      diagnostics.step = "no userId — not signed in";
+    diagnostics.step = "auth";
+    const { userId, orgId } = await auth();
+    diagnostics.auth = { userId, orgId };
+    if (!userId || !orgId) {
       return NextResponse.json(diagnostics, { status: 200 });
     }
+    const organizationId = orgId;
 
-    diagnostics.step = "calling clerkClient()";
-    const client = await clerkClient();
+    // Run each dashboard query individually, capturing its own error.
+    const queries: Array<{ name: string; fn: () => Promise<unknown> }> = [
+      { name: "client.count", fn: () => prisma.client.count({ where: { organizationId } }) },
+      { name: "query.count", fn: () => prisma.query.count({ where: { queryCluster: { client: { organizationId } } } }) },
+      { name: "report.count", fn: () => prisma.report.count({ where: { client: { organizationId } } }) },
+      { name: "scanRun.groupBy", fn: () => prisma.scanRun.groupBy({ by: ["status"], where: { client: { organizationId } }, _count: true }) },
+      { name: "report.groupBy", fn: () => prisma.report.groupBy({ by: ["status"], where: { client: { organizationId } }, _count: true }) },
+      { name: "scanResult.groupBy", fn: () => prisma.scanResult.groupBy({ by: ["status"], where: { scanRun: { client: { organizationId } } }, _count: true }) },
+      { name: "scanRun.findMany", fn: () => prisma.scanRun.findMany({ where: { client: { organizationId } }, take: 5, orderBy: { createdAt: "desc" } }) },
+      { name: "report.findMany", fn: () => prisma.report.findMany({ where: { client: { organizationId } }, take: 5, orderBy: { createdAt: "desc" } }) },
+      { name: "organization.upsert", fn: () => prisma.organization.upsert({ where: { id: organizationId }, update: {}, create: { id: organizationId, name: organizationId, slug: organizationId } }) },
+      { name: "user.upsert", fn: () => prisma.user.upsert({ where: { id: userId }, update: {}, create: { id: userId, organizationId, email: `${userId}@clerk.placeholder`, name: userId, role: "ADMIN" } }) },
+    ];
 
-    diagnostics.step = "fetching memberships";
-    const memberships = await client.users.getOrganizationMembershipList({
-      userId: authResult.userId,
-    });
+    const results: Array<{ name: string; ok: boolean; error?: string; elapsed_ms: number }> = [];
+    for (const q of queries) {
+      const start = Date.now();
+      try {
+        await q.fn();
+        results.push({ name: q.name, ok: true, elapsed_ms: Date.now() - start });
+      } catch (err) {
+        results.push({
+          name: q.name,
+          ok: false,
+          elapsed_ms: Date.now() - start,
+          error: err instanceof Error ? `${err.name}: ${err.message}` : String(err),
+        });
+      }
+    }
 
-    diagnostics.memberships = memberships.data.map((m) => ({
-      orgId: m.organization.id,
-      orgName: m.organization.name,
-      orgSlug: m.organization.slug,
-      role: m.role,
-    }));
-
+    diagnostics.queries = results;
     diagnostics.step = "done";
     return NextResponse.json(diagnostics, { status: 200 });
   } catch (err) {
