@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs/server";
+import { auth, clerkClient } from "@clerk/nextjs/server";
 import { prisma } from "@antellion/db";
 
 // ── Auth context ─────────────────────────────────────────────
@@ -16,24 +16,50 @@ export type AuthContext = {
  * Prisma on every call. This covers webhook delivery race conditions: if
  * user.created fires after the first page load, the row will still exist.
  *
- * Throws "Unauthorized" if either userId or orgId is absent (unauthenticated
- * request that slipped past middleware, or user not yet org-enrolled).
+ * If Clerk returns no active organization on the session (common right after
+ * sign-in on a fresh domain, where active-org state has not yet been set),
+ * falls back to the user's first organization membership. For single-org
+ * users (Antellion's default case) this resolves transparently. If the user
+ * has zero memberships, throws "No organization" so the caller can redirect
+ * to an onboarding flow.
+ *
+ * Throws "Unauthorized" if userId is absent (unauthenticated request that
+ * slipped past middleware — should not happen in practice).
  */
 export async function getAuthContext(): Promise<AuthContext> {
   const { userId, orgId, orgRole } = await auth();
 
-  if (!userId || !orgId) {
+  if (!userId) {
     throw new Error("Unauthorized");
   }
 
-  const role = mapClerkRole(orgRole);
+  let activeOrgId = orgId;
+  let activeOrgRole: string | null | undefined = orgRole;
+
+  // Fallback: look up first org membership if session has no active org.
+  if (!activeOrgId) {
+    const client = await clerkClient();
+    const memberships = await client.users.getOrganizationMembershipList({
+      userId,
+    });
+    const first = memberships.data[0];
+    if (!first) {
+      throw new Error(
+        "No organization. User must be a member of at least one organization.",
+      );
+    }
+    activeOrgId = first.organization.id;
+    activeOrgRole = first.role;
+  }
+
+  const role = mapClerkRole(activeOrgRole);
 
   // Lazy upsert: ensure shadow rows exist before any FK write.
   // Organization first (User.organizationId FK requires it to exist).
   await prisma.organization.upsert({
-    where: { id: orgId },
+    where: { id: activeOrgId },
     update: {},
-    create: { id: orgId, name: orgId, slug: orgId },
+    create: { id: activeOrgId, name: activeOrgId, slug: activeOrgId },
   });
 
   await prisma.user.upsert({
@@ -41,7 +67,7 @@ export async function getAuthContext(): Promise<AuthContext> {
     update: { role },
     create: {
       id: userId,
-      organizationId: orgId,
+      organizationId: activeOrgId,
       // Unique placeholder until webhook delivers the real email.
       // The webhook handler's user.updated event will overwrite this.
       email: `${userId}@clerk.placeholder`,
@@ -50,7 +76,7 @@ export async function getAuthContext(): Promise<AuthContext> {
     },
   });
 
-  return { userId, organizationId: orgId, role };
+  return { userId, organizationId: activeOrgId, role };
 }
 
 /**
