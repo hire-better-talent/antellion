@@ -159,7 +159,7 @@ The template begins below. Copy to a new file per partner, fill in bracketed pla
 
 This Referral Agreement (the "**Agreement**") is entered into as of **[EFFECTIVE DATE]** (the "**Effective Date**") by and between:
 
-**Antellion [LLC/Inc.]**, a **[STATE]** **[entity type]** with a principal place of business at **[ANTELLION ADDRESS]** ("**Antellion**"), and
+**Hire Better Talent LLC**, a **[STATE]** limited liability company, doing business as "Antellion," with a principal place of business at **[ANTELLION ADDRESS]** ("**Antellion**"), and
 
 **[PARTNER LEGAL NAME]**, an individual / entity with a principal address at **[PARTNER ADDRESS]** ("**Partner**").
 
@@ -261,7 +261,7 @@ This Agreement is governed by the laws of **[STATE — e.g., Delaware]**, withou
 
 ## Signatures
 
-**ANTELLION [LLC/INC.]**
+**HIRE BETTER TALENT LLC** (d/b/a Antellion)
 
 Signature: ___________________________
 
@@ -293,3 +293,4 @@ Date: _______________
 ## Changelog
 
 - **2026-04-20** — Initial program design + agreement template created. Requires counsel review before use.
+- **2026-04-22** — Legal entity updated throughout: Antellion is a d/b/a of Hire Better Talent LLC. Parties section and signature block reflect the corrected entity disclosure.

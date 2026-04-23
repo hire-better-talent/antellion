@@ -18,13 +18,13 @@
 
 This Master Services Agreement (this "**Agreement**") is entered into as of **[EFFECTIVE DATE]** (the "**Effective Date**") by and between:
 
-**Antellion [LLC / Inc.]**, a **[STATE OF FORMATION]** **[entity type]** with a principal place of business at **[ANTELLION ADDRESS]** ("**Antellion**"), and
+**Hire Better Talent LLC**, a **[STATE OF FORMATION]** limited liability company, doing business as "Antellion," with a principal place of business at **[ANTELLION ADDRESS]** ("**Antellion**"), and
 
 **[CUSTOMER LEGAL NAME]**, a **[CUSTOMER ENTITY TYPE AND STATE]** with a principal place of business at **[CUSTOMER ADDRESS]** ("**Customer**").
 
 Antellion and Customer are each a "**Party**" and collectively the "**Parties**."
 
-> **Drafter's Note:** Confirm Antellion's legal entity name and formation state before use. If Antellion is operating as a sole proprietorship rather than LLC/corp, the liability exposure is materially different and counsel review is especially important.
+> **Drafter's Note:** Antellion is the trade name (d/b/a) of Hire Better Talent LLC — the legal entity for all contracts, banking, insurance, tax reporting, and MSA/SOW execution. Confirm the LLC's state of formation before use. The defined term "Antellion" in the body refers to Hire Better Talent LLC throughout.
 
 ---
 
@@ -425,7 +425,7 @@ If a change in applicable law materially affects the Services or the rights and 
 
 ## 15. Signatures
 
-**ANTELLION [LLC / INC.]**
+**HIRE BETTER TALENT LLC** (d/b/a Antellion)
 
 Signature: ___________________________
 
@@ -470,6 +470,7 @@ Before using this template in live deals, a licensed attorney should review:
 
 - **2026-04-19** — Initial template draft created. Requires counsel review before use.
 - **2026-04-20** — Revised Section 2.2 to specify Model A (separate SOWs) as default and Model B (combined SOW with Phase 2 refund clause) as enterprise exception. Revised Section 6.3 to enumerate the specific data submitted to AI systems, enumerate data explicitly not submitted, and extend the model list to contemplate additional providers beyond the current Big 3.
+- **2026-04-22** — Legal entity updated throughout: Antellion is a d/b/a of Hire Better Talent LLC. Parties section, signature blocks, and Drafter's Note reflect the corrected entity disclosure. The defined term "Antellion" continues to operate as the contract-wide shorthand for Hire Better Talent LLC.
 - **2026-04-20** — Enterprise-grade enhancements based on standard B2B MSA conventions:
   - Section 1.3 strengthened: SOW precedence carve-back preserving core risk provisions at master-agreement level.
   - Section 1.4 added: purchase order terms override (embedded PO terms void).

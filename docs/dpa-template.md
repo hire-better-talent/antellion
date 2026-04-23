@@ -16,7 +16,7 @@
 
 # DATA PROCESSING AGREEMENT
 
-This Data Processing Agreement (the "**DPA**") is entered into as of **[EFFECTIVE DATE]** (the "**Effective Date**") and is incorporated into and forms part of the Master Services Agreement between **Antellion [LLC/Inc.]** ("**Processor**" or "**Antellion**") and **[CUSTOMER LEGAL NAME]** ("**Controller**" or "**Customer**") dated **[MSA EFFECTIVE DATE]** (the "**MSA**").
+This Data Processing Agreement (the "**DPA**") is entered into as of **[EFFECTIVE DATE]** (the "**Effective Date**") and is incorporated into and forms part of the Master Services Agreement between **Hire Better Talent LLC, doing business as "Antellion"** ("**Processor**" or "**Antellion**") and **[CUSTOMER LEGAL NAME]** ("**Controller**" or "**Customer**") dated **[MSA EFFECTIVE DATE]** (the "**MSA**").
 
 In the event of any conflict between this DPA and the MSA, this DPA controls with respect to data protection matters only.
 
@@ -225,7 +225,7 @@ This DPA may be executed electronically and in counterparts, each of which is de
 
 ## Signatures
 
-**ANTELLION [LLC/INC.]** (as Processor)
+**HIRE BETTER TALENT LLC** (d/b/a Antellion) (as Processor)
 
 Signature: ___________________________
 
@@ -355,3 +355,4 @@ Before using this template in live deals, a licensed attorney should review:
 ## Changelog
 
 - **2026-04-20** — Initial DPA template draft created. Requires counsel review before use.
+- **2026-04-22** — Legal entity updated throughout: Antellion is a d/b/a of Hire Better Talent LLC. Parties paragraph and signature block reflect the corrected entity disclosure.

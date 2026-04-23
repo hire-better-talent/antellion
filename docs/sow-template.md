@@ -20,13 +20,13 @@
 
 **Effective Date:** [SOW EFFECTIVE DATE]
 
-**Governing Agreement:** This Statement of Work is governed by and incorporates by reference the Master Services Agreement between Antellion [LLC/Inc.] and [CUSTOMER LEGAL NAME] dated [MSA EFFECTIVE DATE] (the "**MSA**"). Defined terms used but not defined in this SOW have the meanings given to them in the MSA. In any conflict between this SOW and the MSA, the MSA controls except with respect to the scope of Services, deliverables, fees, and schedule expressly set forth in this SOW (per MSA Section 1.3).
+**Governing Agreement:** This Statement of Work is governed by and incorporates by reference the Master Services Agreement between Hire Better Talent LLC (d/b/a Antellion) and [CUSTOMER LEGAL NAME] dated [MSA EFFECTIVE DATE] (the "**MSA**"). Defined terms used but not defined in this SOW have the meanings given to them in the MSA. In any conflict between this SOW and the MSA, the MSA controls except with respect to the scope of Services, deliverables, fees, and schedule expressly set forth in this SOW (per MSA Section 1.3).
 
 ---
 
 ## 1. Parties
 
-**Antellion:** Antellion [LLC/Inc.], a [STATE] [entity type], with a principal place of business at [ANTELLION ADDRESS] ("**Antellion**").
+**Antellion:** Hire Better Talent LLC, a [STATE] limited liability company, doing business as "Antellion," with a principal place of business at [ANTELLION ADDRESS] ("**Antellion**").
 
 **Customer:** [CUSTOMER LEGAL NAME], a [STATE AND ENTITY TYPE], with a principal place of business at [CUSTOMER ADDRESS] ("**Customer**").
 
@@ -148,7 +148,7 @@ Upon delivery of the Phase 1 Baseline Audit and the associated executive readout
 
 ## 10. Signatures
 
-**ANTELLION [LLC/INC.]**
+**HIRE BETTER TALENT LLC** (d/b/a Antellion)
 
 Signature: ___________________________
 
@@ -361,3 +361,4 @@ If the Final Deliverable (excluding ongoing advisory and re-scans) is not delive
 ## Changelog
 
 - **2026-04-20** — Initial SOW template draft created. Four tier scope blocks included. Requires counsel review before use (at least first 2-3 executed SOWs).
+- **2026-04-22** — Legal entity updated throughout: Antellion is a d/b/a of Hire Better Talent LLC. Governing Agreement reference, Parties section, and signature block reflect the corrected entity disclosure.
