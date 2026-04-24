@@ -512,6 +512,45 @@ export type {
   SnapshotReplyTemplateVariant,
 } from "./snapshot-action-plan";
 
+// ─── Diagnostic ─────────────────────────────────────────────
+export {
+  PersonaArchetypeSchema,
+  EngagementTierSchema,
+  EngagementStatusSchema,
+  FindingStatusSchema,
+  FindingCategorySchema,
+  PersonaInputSchema,
+  CreateEngagementSchema,
+  ApproveFindingSchema,
+  RejectFindingSchema,
+  UpdateFindingNarrativeSchema,
+  PublishEngagementSchema,
+  extractCandidateFindings,
+  validateDiagnosticDelivery,
+  isMaterialFinding,
+  buildAuditAppendix,
+  MINIMUM_MATERIAL_FINDINGS,
+} from "./diagnostic";
+export type {
+  PersonaArchetype,
+  EngagementTier,
+  EngagementStatus,
+  FindingStatus,
+  FindingCategory,
+  PersonaInput,
+  CreateEngagementInput,
+  ApproveFindingInput,
+  RejectFindingInput,
+  UpdateFindingNarrativeInput,
+  PublishEngagementInput,
+  FindingCategoryType,
+  ScanResultInput,
+  CandidateFinding,
+  FindingRecord,
+  DiagnosticValidationResult,
+  AuditEntry,
+} from "./diagnostic";
+
 // ─── Operator Action Plan ────────────────────────────────────
 export type {
   OperatorActionPlan,
