@@ -136,6 +136,8 @@ Upon delivery of the Phase 1 Baseline Audit and the associated executive readout
 
 **Customer is not obligated to proceed to Phase 2.** If Customer elects not to proceed, the engagement is deemed complete upon acceptance of the Phase 1 deliverable, and no further fees are owed beyond the fees set forth in this SOW.
 
+**Phase 1 Rollover Credit.** If Customer executes a Phase 2 SOW within sixty (60) calendar days of Baseline deliverable acceptance, 100% of the Phase 1 Baseline fee paid under this SOW will be credited toward the Phase 2 fee on the Phase 2 deposit invoice, per the terms specified in the Baseline Scope Block "Rollover Credit to Phase 2" provision. The sixty-day window runs from deliverable acceptance, not SOW execution.
+
 ---
 
 ## 9. SOW-Specific Terms
@@ -182,16 +184,16 @@ Date: _______________
 
 ### 3.1 Services
 
-Antellion will deliver a **Baseline Audit** covering **one (1) job category** ([CATEGORY NAME]) across the full candidate decision journey (Discovery, Consideration, Evaluation, and Commitment stages), tested across **three (3) AI models**: ChatGPT, Claude, and Gemini. The Audit includes competitive analysis against [NUMBER — typically 3] named competitors: [COMPETITOR LIST].
+Antellion will deliver a **Baseline Audit** covering **one (1) job category** ([CATEGORY NAME]) across the full candidate decision journey (Discovery, Consideration, Evaluation, and Commitment stages), tested across **three (3) AI models** (ChatGPT, Claude, and Gemini) and **three (3) category-specific candidate personas** ([PERSONAS — e.g., for Software Engineering: "New-grad SWE, Senior backend engineer, Staff infrastructure engineer"]) curated by Antellion from the standard persona archetype library (Early-career, Mid-career IC, Senior IC, Manager, Executive) in consultation with Customer. The Audit includes competitive analysis against [NUMBER — typically 3] named competitors: [COMPETITOR LIST].
 
 ### 3.2 Methodology
 
 The Audit includes:
 
-- Approximately 300-400 candidate-intent queries spanning all 4 journey stages
-- Cross-model comparison of how AI describes Customer and Named Competitors
+- Approximately 300-400 candidate-intent queries spanning all 4 journey stages, rendered through each of the three named candidate personas at scan-matrix expansion
+- Cross-model and cross-persona comparison of how AI describes Customer and Named Competitors
 - Source attribution analysis identifying the platforms and citations AI draws from
-- Narrative consistency scoring across queries and models
+- Narrative consistency scoring across queries, models, and personas
 - Strategic synthesis via the Journey Action Map (see Deliverables)
 - Human interpretation of findings with remediation prioritization
 
@@ -217,6 +219,17 @@ The final Report must include at least:
 - **Deposit:** $7,000 (Net 15 from SOW execution)
 - **Balance:** $7,000 (Net 30 from final deliverable acceptance)
 - **Delivery Timeline:** 2 weeks from deposit receipt
+
+### Rollover Credit to Phase 2
+
+One hundred percent (100%) of the Baseline Audit fee ($14,000) paid under this SOW is creditable toward any Phase 2 engagement (Focused, Strategic, or Enterprise Audit) or the Baseline + Action Brief SOW, provided that:
+
+- The Phase 2 or Baseline + Action Brief SOW is executed within sixty (60) calendar days of Customer's acceptance of the Baseline Audit deliverable per MSA Section 2.5;
+- The rollover credit applies once per Customer and is non-transferable;
+- The credit is applied as a single line item on the Phase 2 SOW deposit invoice; and
+- If the Phase 2 SOW is terminated for Customer convenience after the credit has been applied, the rollover credit is forfeited and earned fees under the Phase 2 SOW are calculated against the original Phase 2 fee schedule per MSA Section 3.4.
+
+A prior AI Visibility Diagnostic fee, if previously credited into this Baseline SOW, does not stack on the Phase 2 rollover credit — only the net amount Customer has actually paid Antellion for this Baseline engagement is creditable forward.
 
 ---
 
@@ -362,3 +375,4 @@ If the Final Deliverable (excluding ongoing advisory and re-scans) is not delive
 
 - **2026-04-20** — Initial SOW template draft created. Four tier scope blocks included. Requires counsel review before use (at least first 2-3 executed SOWs).
 - **2026-04-22** — Legal entity updated throughout: Antellion is a d/b/a of Hire Better Talent LLC. Governing Agreement reference, Parties section, and signature block reflect the corrected entity disclosure.
+- **2026-04-23** — Rollover Credit clause added to Baseline Scope Block A and Section 8 Phase 2 Contingency. 100% of Baseline fee credits forward to Phase 2 or Baseline + Action Brief SOWs executed within 60 days of Baseline deliverable acceptance. Non-transferable, one per Customer, forfeited on Phase 2 termination for convenience. New scope blocks for AI Visibility Diagnostic (Block E) and Baseline + Action Brief (Block F) to be added per `docs/offers/`.

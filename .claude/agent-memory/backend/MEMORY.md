@@ -24,3 +24,4 @@
 - [project_snapshot_scan_creation.md](./project_snapshot_scan_creation.md) — createSnapshotScan action + CreateSnapshotSchema: atomic transaction creating client/competitors/clusters/queries/ScanRun; competitors as JSON hidden field
 - [project_operator_action_plan.md](./project_operator_action_plan.md) — Phase 1 complete: pure transform from Report.metadata → OperatorActionPlan; no LLM, no DB writes; entry point is buildOperatorActionPlan in packages/core
 - [project_clerk_auth_integration.md](./project_clerk_auth_integration.md) — Clerk v6 live in apps/web; getAuthContext() is the auth entry point; migration script written, not run; self-review guard has OWNER/ADMIN override
+- [project_diagnostic_phase1.md](./project_diagnostic_phase1.md) — Diagnostic Phase 1 complete (2026-04-23): schema, Perplexity adapter, matrix runner, finding extractor, validation gate, public route, operator dashboard
