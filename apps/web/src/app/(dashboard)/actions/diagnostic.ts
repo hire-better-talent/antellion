@@ -594,7 +594,39 @@ export async function publishEngagement(
   const validation = validateDiagnosticDelivery(findingRecords);
 
   if (!validation.valid) {
-    // TODO: trigger Slack/email alert to Jordan on first trigger per engagement
+    // OPERATOR ALERT — publish gate blocked.
+    //
+    // No Slack/email infrastructure is wired up yet. To enable alerting:
+    //
+    // Option A — Slack webhook (preferred):
+    //   1. Create an Incoming Webhook in your Slack workspace
+    //      (api.slack.com → Your Apps → Incoming Webhooks → Add to channel)
+    //   2. Add OPERATOR_SLACK_WEBHOOK_URL to apps/web/.env.local and Vercel env vars
+    //   3. Replace the console.warn below with:
+    //        await fetch(process.env.OPERATOR_SLACK_WEBHOOK_URL!, {
+    //          method: "POST",
+    //          headers: { "Content-Type": "application/json" },
+    //          body: JSON.stringify({
+    //            text: `*Diagnostic publish blocked*\nEngagement: ${engagementId}\nApproved: ${validation.approvedMaterialCount}/${validation.required}`,
+    //          }),
+    //        });
+    //
+    // Option B — email via Resend (if you add the resend package):
+    //   1. npm add resend -w apps/web
+    //   2. Add RESEND_API_KEY to env
+    //   3. POST to https://api.resend.com/emails with the alert body
+    //
+    // Until one of the above is configured, the alert fires to server logs only.
+    console.warn(
+      "[diagnostic:publish-blocked]",
+      JSON.stringify({
+        engagementId,
+        approvedMaterialCount: validation.approvedMaterialCount,
+        required: validation.required,
+        shortfall: validation.shortfall,
+        timestamp: new Date().toISOString(),
+      }),
+    );
     return {
       message: `Publish blocked: only ${validation.approvedMaterialCount} of ${validation.required} required material findings are approved. ${validation.shortfall} more needed.`,
     };

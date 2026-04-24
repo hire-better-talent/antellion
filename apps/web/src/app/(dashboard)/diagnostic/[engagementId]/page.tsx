@@ -4,6 +4,8 @@ import { getOrganizationId } from "@/lib/auth";
 import Link from "next/link";
 import { validateDiagnosticDelivery } from "@antellion/core";
 import type { FindingRecord } from "@antellion/core";
+import { ExtractFindingsButton } from "./extract-findings-button";
+import { TriggerScanPanel } from "./trigger-scan-panel";
 
 export const dynamic = "force-dynamic";
 
@@ -27,6 +29,7 @@ export default async function DiagnosticDetailPage({ params }: Props) {
     where: { id: engagementId, organizationId },
     select: {
       id: true,
+      clientId: true,
       status: true,
       notes: true,
       createdAt: true,
@@ -223,13 +226,19 @@ export default async function DiagnosticDetailPage({ params }: Props) {
       </div>
 
       {/* Actions */}
-      <div className="flex gap-3 flex-wrap">
+      <div className="flex gap-3 flex-wrap items-start">
         <Link
           href={`/diagnostic/${engagement.id}/findings`}
           className="inline-flex items-center rounded-md border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
         >
           Review Findings ({engagement.findings.length})
         </Link>
+
+        {/* Extract findings: visible when latest scan is COMPLETED and no findings exist yet */}
+        {latestScan?.status === "COMPLETED" && engagement.findings.length === 0 && (
+          <ExtractFindingsButton engagementId={engagement.id} />
+        )}
+
         {engagement.status === "REVIEW" && (
           <Link
             href={`/diagnostic/${engagement.id}/publish`}
@@ -243,6 +252,17 @@ export default async function DiagnosticDetailPage({ params }: Props) {
           </Link>
         )}
       </div>
+
+      {/* Query cluster picker + scan trigger */}
+      {(engagement.status === "SCOPING" || engagement.status === "REVIEW") &&
+        latestScan?.status !== "RUNNING" && (
+          <div className="mt-8">
+            <TriggerScanPanel
+              engagementId={engagement.id}
+              clientId={engagement.clientId}
+            />
+          </div>
+        )}
 
       {/* Notes */}
       {engagement.notes && (

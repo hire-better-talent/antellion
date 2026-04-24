@@ -2,6 +2,8 @@
 
 ## Project
 
+- [project_diagnostic_ux_gaps.md](./project_diagnostic_ux_gaps.md) — 5 Diagnostic operator UX gaps closed (2026-04-23): nav link, extract button, cluster picker, publish-block alert, publish page refactor
+
 - [project_enriched_recs_storage.md](./project_enriched_recs_storage.md) — Where enriched recommendation data (rationale, actions, effortDetail) is stored; backend gap to close in reports action
 - [project_traceability_design.md](./project_traceability_design.md) — Report traceability UI design completed; key decisions on lazy loading, confidence tiers, and export appendix
 - [project_workflow_dashboard.md](./project_workflow_dashboard.md) — Workflow dashboard, StatusPipeline, WorkflowStatusBar, ResultReviewActions implemented (2026-03-26)
