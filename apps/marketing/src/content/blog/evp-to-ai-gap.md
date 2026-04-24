@@ -7,13 +7,13 @@ tags: ["ai-visibility", "evp", "employer-brand", "roi", "talent-acquisition"]
 status: "ready"
 ---
 
-## Your Employer Brand Is Excellent. AI Cites About Two of the Ten Platforms It Lives On.
+## Your Employer Brand Is Excellent. AI Is Citing Two or Three of the Nine Platforms It Draws From.
 
 Companies invest $200,000-$500,000 per year in employer value proposition development, careers content, review-site management, employer brand campaigns, and recruitment marketing. The work is thoughtful. The output is polished: careers pages, EVP narratives, managed Glassdoor profiles, targeted social campaigns, candidate experience programs. Teams doing this work are skilled, and most companies are genuinely better employers because of it.
 
-When a candidate asks AI "what is it like to work at your company?", AI will probably cite two or three of those investments -- not the rest. The careers page, the employer brand video, the EVP deck, the candidate experience redesign -- AI may never surface any of it. It weighs those surfaces far below Levels.fyi data, Blind threads, Built In profiles, and engineering blog posts your employer brand team does not manage.
+When a candidate asks ChatGPT or Claude "what is it like to work at [Company]?", AI will typically cite two or three of those investments and construct the rest of its answer from surfaces the employer brand team does not own: Glassdoor reviews, Levels.fyi compensation bands, Blind threads, Built In profiles, Reddit discussions, engineering blog posts written by individual contributors, and press coverage the PR team placed years ago. The careers page, the EVP video, the benefits summary, the employee advocacy campaign -- AI may never surface any of it.
 
-This is the EVP-to-AI gap. Not a failure of employer brand work. A distribution gap between where the work lives and where AI draws from. It shows up in every [AI employer visibility](/blog/ai-employer-visibility-explained) assessment as a measurable delta between effort and candidate-facing narrative.
+This is the EVP-to-AI gap. Not a failure of employer brand work. A distribution gap between where the work lives and where AI draws from. It shows up in every [AI employer visibility](/blog/ai-employer-visibility-explained) assessment as a measurable delta between effort and candidate-facing narrative -- and it is the part of employer brand ROI that traditional measurement does not capture.
 
 ## Where Employer Brand Budgets Go
 
@@ -28,7 +28,7 @@ A typical mid-market or enterprise employer brand investment breaks down into se
 | **Employer brand campaigns** | $30K-$100K (social media content, employee advocacy, events) | LinkedIn, Instagram, careers events |
 | **Recruitment technology** | $50K-$150K (ATS, CRM, career site platform) | Internal tools and candidate experience |
 
-This is a reasonable allocation for building employer perception through traditional channels. The problem is not that these investments are wrong. The problem is that they target surfaces where candidates used to research employers -- not where a growing share of candidates research them now.
+This is a reasonable allocation for building employer perception through traditional channels. The problem is not that these investments are wrong. The problem is twofold: they target surfaces where candidates used to research employers, not where a growing share of candidates research them now -- and there is no instrument in this budget that tells the CHRO whether the investment is actually landing on the new surface. Careers page traffic, application rates, Glassdoor scores, and candidate NPS all measure traditional channels well. None of them measure what AI says about the company when a candidate asks.
 
 ## Where AI Actually Looks
 
@@ -58,9 +58,7 @@ A company invests $80,000 in a redesigned careers page with compelling EVP messa
 
 AI does not cite it.
 
-When a candidate asks "what is the culture like at [Company]?" AI constructs its answer from Glassdoor reviews, Blind discussions, and whatever press coverage exists. The careers page -- the single largest employer brand investment -- contributes little to nothing to the AI-generated narrative because AI does not weigh company-authored careers content the same way it weighs third-party platforms. The careers page is first-party marketing content. AI treats it accordingly: as less authoritative than independent reviews, salary data, and community discussion.
-
-The result: the $80,000 careers page speaks to candidates who directly visit the company website. It does not speak to candidates who ask AI about the company. As the share of candidates who consult AI before ever visiting a careers page grows, the ROI of careers page investment declines relative to citation ecosystem investment.
+When a candidate asks "what is the culture like at [Company]?" AI constructs its answer from Glassdoor reviews, Blind discussions, and press coverage. AI treats the careers page as first-party marketing content -- less authoritative than independent reviews, salary data, and community discussion. The result: the $80,000 careers page speaks to candidates who directly visit the company website. It does not speak to candidates who ask AI about the company first. As that share of candidates grows, the ROI of careers page investment compounds for direct-visit traffic and decays for AI-mediated traffic.
 
 ### The Compensation Narrative AI Constructs Without You
 
@@ -74,11 +72,9 @@ This is not a branding failure. It is a distribution failure. The information ex
 
 ### The DEI Narrative That Gets Overwritten
 
-A company invests heavily in diversity, equity, and inclusion programs. Their careers page features their DEI commitments, employee resource groups, demographic data, and specific initiatives. Their EVP positions DEI as a core differentiator.
+A company invests heavily in diversity, equity, and inclusion programs. Their careers page features ERGs, demographic data, and specific initiatives. Their EVP positions DEI as a core differentiator.
 
-When a candidate asks AI about the company's culture, AI synthesizes from the full citation ecosystem. If Blind threads include employee complaints about DEI being "performative" or Reddit discussions reference diversity concerns, AI incorporates that signal alongside the company's own messaging -- and may give it equal or greater weight, because third-party sources are treated as more credible than first-party claims.
-
-The result: the company's DEI investment is real and substantive. But the AI narrative about their DEI culture reflects a synthesis of company claims and employee criticism, weighted toward the criticism because it comes from independent sources. The EVP message is not wrong -- it is diluted by signals the employer brand team does not monitor and cannot control.
+When a candidate asks AI about the company's culture, AI synthesizes the full citation ecosystem. If Blind threads describe DEI as "performative" or Reddit threads surface specific concerns, AI incorporates that signal alongside the company's own messaging -- often weighting it higher, because third-party sources are treated as more credible than first-party claims. The DEI investment is real. The AI narrative about it is a blend of company claims and employee criticism, tilted toward the criticism. The EVP message is not wrong; it is diluted by signals the employer brand team does not monitor and cannot control.
 
 ## The ROI Question That Changes the Conversation
 
@@ -130,32 +126,34 @@ The gap compounds over time for two reasons:
 
 The companies that close the EVP-to-AI gap earliest will not just improve their own AI narratives. They will displace competitors who are still investing exclusively in traditional surfaces.
 
-## The Diagnostic Starting Point
+## Measurement Comes Before Reallocation
 
-Before reallocating any budget, the first step is measurement: **What does AI actually say about your company when candidates ask?**
+Before reallocating any budget, the first step is measurement. Rigorous measurement -- not typing one prompt into ChatGPT -- answers three questions:
 
-This is not a question you can answer by asking ChatGPT one question and reading the response. A rigorous diagnostic requires running queries across all four stages of the [candidate decision journey](/blog/candidate-decision-journey), scoring responses for mention rate and [narrative positioning](/blog/geo-employer-brand-glossary), mapping citation sources, and comparing your visibility to specific competitors.
-
-The diagnostic answers three questions:
-
-1. **Where are you visible?** Which stages of the candidate decision journey show strong AI visibility, and which show gaps?
-2. **What is AI saying?** Is the narrative accurate? Is it favorable? Does it reflect your EVP -- or is it shaped by sources your employer brand team does not monitor?
+1. **Where are you visible?** Which stages of the [candidate decision journey](/blog/candidate-decision-journey) show strong AI visibility, and which show gaps?
+2. **What is AI saying?** Is the narrative accurate and favorable? Does it reflect your EVP -- or is it shaped by sources your employer brand team does not monitor?
 3. **Where are the citation gaps?** Which platforms does AI cite for your competitors but not for you?
 
-The answers to these questions turn the EVP-to-AI gap from a conceptual concern into a specific, actionable investment case -- with identified platforms, estimated costs, and measurable outcomes.
+The answers turn the EVP-to-AI gap from a conceptual concern into a specific investment case -- with identified platforms, estimated costs, and measurable outcomes.
 
 ## The Conversation to Have With Your CFO
 
-If you are an employer brand leader reading this, the conversation to have is not "we need to spend more on employer brand." It is: "A growing share of candidates never see our careers page because they ask AI first. Here is what AI says about us, here is what it says about our competitors, and here is the $25,000 investment that changes what candidates hear."
-
-That is a specific, data-backed, commercially grounded conversation. It does not require new budget. It requires smarter allocation of existing budget. And it starts with measuring the gap.
+If you are an employer brand leader reading this, the conversation to have is not "we need to spend more on employer brand." It is: "A growing share of candidates never reach our careers page because they ask AI first. Here is what AI says about us today. Here is what it says about our three closest competitors. Here is the reallocation of existing budget that changes what candidates hear." That is a specific, data-backed, commercially grounded conversation -- and it starts with measurement, not strategy.
 
 ---
 
-You can map your own EVP-to-AI gap in about an hour. List every line item in your employer brand budget. Then list the platforms AI actually draws from (see the citation ecosystem table above). Circle the overlap. The surfaces outside the circle are where your investment is not reaching candidates who use AI.
+## How to Measure Your Own EVP-to-AI Gap
 
-What the back-of-envelope exercise will not show you is what AI is *actually saying* about your company today -- the compensation framing it attaches to competitors vs the vague "competitive" label on you, the Discovery queries you are missing from, or the Blind threads and press gaps shaping your narrative in real time.
+You can map the structure of your own gap in an hour. List every line item in your employer brand budget. List the platforms in the citation ecosystem table above. Circle the overlap. The surfaces outside the circle are where your investment is not reaching candidates who use AI.
 
-That is what a Visibility Snapshot is for. 100 candidate-intent queries across ChatGPT, Claude, and Gemini, mapped against your three closest competitors and the full citation ecosystem. You see the gap in specific platforms, specific quotes, and specific competitive losses. No call required to see the output.
+What the back-of-envelope exercise will not show you is what AI is *actually saying* about your company today -- the compensation framing it attaches to your competitors vs the vague "competitive" label on you, the Discovery-stage queries you are missing from, or the specific Blind threads and press gaps shaping your narrative in real time.
 
-Request one at [antellion.com](https://antellion.com).
+Antellion offers two instruments for that. Which one fits depends on how rigorous a case you need to make.
+
+**Visibility Snapshot (free).** 100 candidate-intent queries across ChatGPT, Claude, and Gemini, mapped against your three closest competitors and the full citation ecosystem. You see the gap in specific platforms, specific quotes, and specific competitive losses. No call required to see the output. Most readers of this post start here. Request one at [antellion.com](https://antellion.com).
+
+**AI Visibility Diagnostic ($4,900, 10 business days).** For CHROs and VPs of Talent Acquisition who have already seen enough to know the gap is real and need a defensible measurement artifact to bring to a CFO or board. 40 candidate-intent queries across all four stages of the candidate decision journey, run across ChatGPT, Claude, Gemini, and Perplexity, scored against three personas scoped to the roles you actually hire for and benchmarked against three named competitors. Delivered as an 18-25 page report plus a 2-page Findings Brief written to be circulated to your CEO or board without further translation. The guarantee is tied to what we ship: if the report does not include at least 10 material findings -- each with a specific query, persona, model, or citation named -- you receive a full refund within 10 business days. If you proceed to a Baseline Audit, the $4,900 credits 100% toward it within 60 days.
+
+The Diagnostic is not an alternative to your employer brand program. It is a measurement layer on top of it -- telling the brand, content, and recruitment marketing teams already doing excellent work which citations AI is currently drawing from, which it is missing, and where the next unit of content effort will move the needle on the new surface.
+
+Request a Diagnostic scoping call at jordan@antellion.com.
