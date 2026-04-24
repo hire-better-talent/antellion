@@ -25,6 +25,19 @@ interface ClientContext {
   competitors: { name: string; domain: string }[];
 }
 
+interface PersonaContext {
+  id: string;
+  label: string;
+  seedContext: string | null;
+}
+
+/** A single cell in the (query × model × persona) scan matrix. */
+interface MatrixCell {
+  query: QueryRow;
+  model: string;
+  persona: PersonaContext | null;
+}
+
 // ── Delay helpers ────────────────────────────────────────────
 
 function sleep(ms: number): Promise<void> {
@@ -76,10 +89,30 @@ export async function executeScan(scanRunId: string): Promise<void> {
   }
 
   const client: ClientContext = scan.client;
-  const model = scan.model ?? undefined;
-
-  // ── 2. Resolve queries ───────────────────────────────────
   const meta = scan.metadata as Record<string, unknown> | null;
+
+  // ── 2. Resolve models (single or multi) ──────────────────
+  // Diagnostic scans pass metadata.models: string[] for the matrix.
+  // Snapshot/standard scans use a single model from scan.model.
+  const modelList: string[] = Array.isArray(meta?.models)
+    ? (meta.models as string[])
+    : [(scan.model ?? "gpt-4o")];
+
+  // ── 3. Resolve personas (empty for non-Diagnostic scans) ──
+  const personaIds: string[] = Array.isArray(meta?.personaIds)
+    ? (meta.personaIds as string[])
+    : [];
+
+  let personas: PersonaContext[] = [];
+  if (personaIds.length > 0) {
+    const rows = await prisma.persona.findMany({
+      where: { id: { in: personaIds } },
+      select: { id: true, label: true, seedContext: true },
+    });
+    personas = rows;
+  }
+
+  // ── 4. Resolve queries ───────────────────────────────────
   const explicitQueryIds = Array.isArray(meta?.queryIds) ? (meta.queryIds as string[]) : null;
 
   let allQueries: QueryRow[];
@@ -126,67 +159,93 @@ export async function executeScan(scanRunId: string): Promise<void> {
     return;
   }
 
-  // ── 3. Identify already-recorded queries ─────────────────
+  // ── 5. Expand the scan matrix ────────────────────────────
+  // For Diagnostic: (query × model × persona) = up to 40×4×3=480 cells.
+  // For snapshot/standard: (query × model × [null]) = N×1×1 cells.
+  const matrixCells: MatrixCell[] = [];
+  const personaList: Array<PersonaContext | null> = personas.length > 0
+    ? personas
+    : [null];
+
+  for (const query of allQueries) {
+    for (const model of modelList) {
+      for (const persona of personaList) {
+        matrixCells.push({ query, model, persona });
+      }
+    }
+  }
+
+  // ── 6. Identify already-completed cells ──────────────────
+  // For backward compat: legacy scans have no modelName/personaId.
+  // We check existing results and build a composite key set.
   const existingResults = await prisma.scanResult.findMany({
     where: { scanRunId, competitorId: null },
-    select: { queryId: true },
+    select: { queryId: true, modelName: true, personaId: true },
   });
-  const recordedQueryIds = new Set(existingResults.map((r) => r.queryId));
 
-  const pendingQueries = allQueries.filter((q) => !recordedQueryIds.has(q.id));
+  const recordedCellKeys = new Set(
+    existingResults.map((r) =>
+      `${r.queryId}::${r.modelName ?? ""}::${r.personaId ?? ""}`,
+    ),
+  );
 
-  if (pendingQueries.length === 0) {
-    console.log(`Scan ${scanRunId}: all queries already have results. Marking complete.`);
+  const pendingCells = matrixCells.filter((cell) => {
+    const key = `${cell.query.id}::${cell.model ?? ""}::${cell.persona?.id ?? ""}`;
+    return !recordedCellKeys.has(key);
+  });
+
+  if (pendingCells.length === 0) {
+    console.log(`Scan ${scanRunId}: all matrix cells already have results. Marking complete.`);
     await finalizeScan(scanRunId, scan.status);
     return;
   }
 
   console.log(
-    `Scan ${scanRunId}: running ${pendingQueries.length} pending queries (${recordedQueryIds.size} already recorded).`,
+    `Scan ${scanRunId}: running ${pendingCells.length} pending cells (${recordedCellKeys.size} already recorded). Matrix: ${allQueries.length}q × ${modelList.length}m × ${personaList.length}p`,
   );
 
-  // ── 4. Execute pending queries in concurrent batches ─────
+  // ── 7. Execute pending cells in concurrent batches ────────
   //
-  // BATCH_SIZE queries run in parallel via Promise.all. A fixed
+  // BATCH_SIZE cells run in parallel via Promise.all. A fixed
   // inter-batch delay (INTER_BATCH_DELAY_MS) gives the rate limiter
   // breathing room without serialising individual queries.
   let errorCount = 0;
 
-  for (let batchStart = 0; batchStart < pendingQueries.length; batchStart += BATCH_SIZE) {
-    const batch = pendingQueries.slice(batchStart, batchStart + BATCH_SIZE);
+  for (let batchStart = 0; batchStart < pendingCells.length; batchStart += BATCH_SIZE) {
+    const batch = pendingCells.slice(batchStart, batchStart + BATCH_SIZE);
     const batchEnd = batchStart + batch.length;
 
     console.log(
-      `  Batch ${Math.floor(batchStart / BATCH_SIZE) + 1}: queries ${batchStart + 1}–${batchEnd} of ${pendingQueries.length}`,
+      `  Batch ${Math.floor(batchStart / BATCH_SIZE) + 1}: cells ${batchStart + 1}–${batchEnd} of ${pendingCells.length}`,
     );
 
     const results = await Promise.allSettled(
-      batch.map((query) => executeQuery(scanRunId, query, client, model)),
+      batch.map((cell) => executeMatrixCell(scanRunId, cell, client)),
     );
 
     for (let j = 0; j < results.length; j++) {
       const result = results[j]!;
       if (result.status === "rejected") {
         errorCount++;
-        const query = batch[j]!;
-        console.error(`  Query ${query.id} failed:`, result.reason);
+        const cell = batch[j]!;
+        console.error(`  Cell q:${cell.query.id} m:${cell.model} p:${cell.persona?.id ?? "none"} failed:`, result.reason);
 
-        const failureRate = errorCount / pendingQueries.length;
+        const failureRate = errorCount / pendingCells.length;
         if (failureRate > 0.2) {
           console.warn(
-            `  Warning: ${errorCount}/${pendingQueries.length} queries failed (${Math.round(failureRate * 100)}%). Continuing.`,
+            `  Warning: ${errorCount}/${pendingCells.length} cells failed (${Math.round(failureRate * 100)}%). Continuing.`,
           );
         }
       }
     }
 
     // Inter-batch pause — skip after the last batch
-    if (batchEnd < pendingQueries.length) {
+    if (batchEnd < pendingCells.length) {
       await sleep(INTER_BATCH_DELAY_MS);
     }
   }
 
-  // ── 5. Score all results ─────────────────────────────────
+  // ── 8. Score all results ─────────────────────────────────
   try {
     await scoreAllResults(scanRunId);
   } catch (err) {
@@ -194,42 +253,63 @@ export async function executeScan(scanRunId: string): Promise<void> {
     console.error(`Scan ${scanRunId}: signal scoring failed, scan will still be marked complete.`, err);
   }
 
-  // ── 6. Mark scan complete ────────────────────────────────
+  // ── 9. Mark scan complete ────────────────────────────────
   await finalizeScan(scanRunId, scan.status);
 
   console.log(
-    `Scan ${scanRunId} complete. ${errorCount > 0 ? `${errorCount} queries failed.` : "All queries succeeded."}`,
+    `Scan ${scanRunId} complete. ${errorCount > 0 ? `${errorCount} cells failed.` : "All cells succeeded."}`,
   );
 }
 
-// ── Per-query execution ──────────────────────────────────────
+// ── Per-cell execution ───────────────────────────────────────
 
 /**
- * Call the LLM for a single query, analyze the response, and write
- * ScanResult + CitationSource[] + ScanEvidence in a single transaction.
- *
- * Mirrors the logic in the manual `recordResult` server action exactly.
+ * Render the persona seed context into the query prompt.
+ * The persona's intent context is prepended as a role-framing prefix.
+ * The fully-rendered prompt is stored on ScanEvidence for provenance.
  */
-async function executeQuery(
+function renderPrompt(queryText: string, persona: PersonaContext | null): string {
+  if (!persona?.seedContext) return queryText;
+  return `${persona.seedContext}\n\n${queryText}`;
+}
+
+/**
+ * Execute a single (query, model, persona) matrix cell: call the LLM,
+ * analyze the response, and write ScanResult + CitationSource[] + ScanEvidence
+ * in a single transaction.
+ *
+ * For non-Diagnostic (persona=null) scans this behaves identically to the
+ * previous single-model executeQuery — backward compatible.
+ */
+async function executeMatrixCell(
   scanRunId: string,
-  query: QueryRow,
+  cell: MatrixCell,
   client: ClientContext,
-  model?: string,
 ): Promise<void> {
-  // Soft guard: skip if another process already recorded this query.
-  // This avoids wasting an LLM API call when we can cheaply detect the duplicate
-  // before hitting the network. The @@unique([scanRunId, queryId]) constraint
-  // below is the hard guarantee — this is just an optimistic fast-path.
+  const { query, model, persona } = cell;
+
+  // Soft guard: skip if another process already recorded this cell.
+  // The @@unique([scanRunId, queryId, modelName, personaId]) constraint
+  // is the hard guarantee — this is an optimistic fast-path check.
   const existing = await prisma.scanResult.findFirst({
-    where: { scanRunId, queryId: query.id, competitorId: null },
+    where: {
+      scanRunId,
+      queryId: query.id,
+      competitorId: null,
+      modelName: model,
+      personaId: persona?.id ?? null,
+    },
   });
   if (existing) {
-    console.log(`  Skipping ${query.id} — result already exists.`);
+    console.log(`  Skipping q:${query.id} m:${model} p:${persona?.id ?? "none"} — result already exists.`);
     return;
   }
 
-  // Call the LLM — use the model recorded on the scan run (falls back to gpt-4o)
-  const llmResponse = await queryLLM(query.text, { model });
+  // Render the prompt: persona seed context is woven in at call time.
+  const renderedPrompt = renderPrompt(query.text, persona);
+
+  // Call the LLM with the specified model for this matrix cell.
+  const llmResponse = await queryLLM(renderedPrompt, { model });
 
   // Analyze the response (same as manual flow)
   const analysis = analyzeResponse({
@@ -237,8 +317,6 @@ async function executeQuery(
     clientName: client.name,
     clientDomain: client.domain,
     competitors: client.competitors,
-    // Automated scans don't have a separate citation input — the response IS the source.
-    // We extract citations directly from the response text via parseCitations below.
     rawCitedDomains: "",
   });
 
@@ -266,105 +344,107 @@ async function executeQuery(
     }
   }
 
-  // Write everything in a transaction.
-  // The @@unique([scanRunId, queryId]) constraint on ScanResult guarantees
-  // that if two processes race past the soft guard above, only one will
-  // succeed — the other will get a P2002 unique-violation which we catch below.
   try {
-  await prisma.$transaction(async (tx) => {
-    const scanResult = await tx.scanResult.create({
-      data: {
-        scanRunId,
-        queryId: query.id,
-        response: llmResponse.text,
-        status: initialStatus,
-        visibilityScore: analysis.visibilityScore,
-        sentimentScore: analysis.sentimentScore,
-        mentioned: analysis.clientMentioned,
-        tokenCount: llmResponse.tokenCount,
-        latencyMs: llmResponse.latencyMs,
-        metadata: {
-          competitorMentions: analysis.competitorMentions as unknown as Prisma.JsonArray,
-          source: "automated",
-        } satisfies Prisma.InputJsonObject,
-      },
-    });
-
-    // Create citation sources
-    if (allCitations.length > 0) {
-      await tx.citationSource.createMany({
-        data: allCitations.map((c) => ({
-          scanResultId: scanResult.id,
-          url: c.url,
-          domain: c.domain,
-          title: c.title ?? undefined,
-          sourceType: "cited",
-        })),
-      });
-    }
-
-    // Create evidence record with full LLM provenance
-    const evidence = await tx.scanEvidence.create({
-      data: {
-        scanResultId: scanResult.id,
-        version: 1,
-        status: "DRAFT",
-        promptText: query.text,
-        provider: mapProviderToEnum(llmResponse.provider),
-        modelName: llmResponse.model,
-        temperature: 1,
-        rawResponse: llmResponse.text,
-        rawTokenCount: llmResponse.tokenCount,
-        promptTokens: llmResponse.promptTokens,
-        latencyMs: llmResponse.latencyMs,
-        executedAt: new Date(),
-      },
-    });
-
-    // Compute and store confidence score
-    const confidence = computeResultConfidence({
-      responseLength: llmResponse.text.length,
-      hasVisibilityScore: analysis.visibilityScore != null,
-      hasSentimentScore: analysis.sentimentScore != null,
-      citationCount: allCitations.length,
-      mentioned: analysis.clientMentioned,
-    });
-
-    await tx.scanEvidence.update({
-      where: { id: evidence.id },
-      data: { confidenceScore: confidence.score / 100 },
-    });
-
-    // Auto-flag transition log
-    if (initialStatus === "NEEDS_REVIEW") {
-      await tx.transitionLog.create({
+    await prisma.$transaction(async (tx) => {
+      const scanResult = await tx.scanResult.create({
         data: {
-          entityType: "SCAN_RESULT",
-          entityId: scanResult.id,
-          fromStatus: "CAPTURED",
-          toStatus: "NEEDS_REVIEW",
-          action: "autoFlagResult",
-          actorId: null,
-          note: `Auto-flagged (automated scan): visibility score ${analysis.visibilityScore ?? "null"} below threshold.`,
+          scanRunId,
+          queryId: query.id,
+          // Diagnostic matrix dimensions
+          modelName: model,
+          personaId: persona?.id ?? null,
+          response: llmResponse.text,
+          status: initialStatus,
+          visibilityScore: analysis.visibilityScore,
+          sentimentScore: analysis.sentimentScore,
+          mentioned: analysis.clientMentioned,
+          tokenCount: llmResponse.tokenCount,
+          latencyMs: llmResponse.latencyMs,
+          metadata: {
+            competitorMentions: analysis.competitorMentions as unknown as Prisma.JsonArray,
+            source: "automated",
+            personaLabel: persona?.label ?? null,
+          } satisfies Prisma.InputJsonObject,
         },
       });
-    }
 
-    // Increment the scan result counter so the UI shows live progress
-    await tx.scanRun.update({
-      where: { id: scanRunId },
-      data: { resultCount: { increment: 1 } },
+      // Create citation sources
+      if (allCitations.length > 0) {
+        await tx.citationSource.createMany({
+          data: allCitations.map((c) => ({
+            scanResultId: scanResult.id,
+            url: c.url,
+            domain: c.domain,
+            title: c.title ?? undefined,
+            sourceType: "cited",
+          })),
+        });
+      }
+
+      // Create evidence record with full LLM provenance.
+      // promptText stores the FULLY RENDERED prompt (with persona seed context)
+      // so the audit trail shows exactly what was sent to the model.
+      const evidence = await tx.scanEvidence.create({
+        data: {
+          scanResultId: scanResult.id,
+          version: 1,
+          status: "DRAFT",
+          promptText: renderedPrompt,
+          provider: mapProviderToEnum(llmResponse.provider),
+          modelName: llmResponse.model,
+          temperature: 1,
+          rawResponse: llmResponse.text,
+          rawTokenCount: llmResponse.tokenCount,
+          promptTokens: llmResponse.promptTokens,
+          latencyMs: llmResponse.latencyMs,
+          executedAt: new Date(),
+        },
+      });
+
+      // Compute and store confidence score
+      const confidence = computeResultConfidence({
+        responseLength: llmResponse.text.length,
+        hasVisibilityScore: analysis.visibilityScore != null,
+        hasSentimentScore: analysis.sentimentScore != null,
+        citationCount: allCitations.length,
+        mentioned: analysis.clientMentioned,
+      });
+
+      await tx.scanEvidence.update({
+        where: { id: evidence.id },
+        data: { confidenceScore: confidence.score / 100 },
+      });
+
+      // Auto-flag transition log
+      if (initialStatus === "NEEDS_REVIEW") {
+        await tx.transitionLog.create({
+          data: {
+            entityType: "SCAN_RESULT",
+            entityId: scanResult.id,
+            fromStatus: "CAPTURED",
+            toStatus: "NEEDS_REVIEW",
+            action: "autoFlagResult",
+            actorId: null,
+            note: `Auto-flagged (automated scan): visibility score ${analysis.visibilityScore ?? "null"} below threshold.`,
+          },
+        });
+      }
+
+      // Increment the scan result counter so the UI shows live progress
+      await tx.scanRun.update({
+        where: { id: scanRunId },
+        data: { resultCount: { increment: 1 } },
+      });
     });
-  });
   } catch (err: unknown) {
-    // Unique constraint violation: another process wrote this result first.
+    // Unique constraint violation: another process wrote this cell first.
     // This is not an error — silently skip so the scan continues cleanly.
     if (
       err instanceof Prisma.PrismaClientKnownRequestError &&
       err.code === "P2002"
     ) {
       console.log(
-        `  Skipping ${query.id} — duplicate (another process recorded it).`,
+        `  Skipping q:${query.id} m:${model} p:${persona?.id ?? "none"} — duplicate (another process recorded it).`,
       );
       return;
     }
