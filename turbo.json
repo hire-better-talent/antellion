@@ -12,7 +12,8 @@
         "CLERK_WEBHOOK_SECRET",
         "OPENAI_API_KEY",
         "ANTHROPIC_API_KEY",
-        "GOOGLE_AI_API_KEY"
+        "GOOGLE_AI_API_KEY",
+        "PERPLEXITY_API_KEY"
       ]
     },
     "dev": {

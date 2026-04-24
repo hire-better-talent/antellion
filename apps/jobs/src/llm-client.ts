@@ -20,6 +20,36 @@ export interface LLMResponse {
   citations: LLMCitation[];
 }
 
+// ── Perplexity response types ─────────────────────────────────
+
+interface PerplexityChatChoice {
+  message: {
+    role: string;
+    content: string;
+  };
+  finish_reason?: string;
+}
+
+interface PerplexityUsage {
+  prompt_tokens: number;
+  completion_tokens: number;
+  total_tokens: number;
+}
+
+interface PerplexityCitation {
+  url: string;
+  title?: string | null;
+}
+
+interface PerplexityChatCompletion {
+  id: string;
+  model: string;
+  choices: PerplexityChatChoice[];
+  usage: PerplexityUsage;
+  // Perplexity returns citations as a top-level array when Sonar model is used
+  citations?: string[] | PerplexityCitation[];
+}
+
 // ── Lazy client singletons ────────────────────────────────────
 
 let _openaiClient: OpenAI | null = null;
@@ -55,7 +85,7 @@ function getGoogleClient(): GoogleGenerativeAI {
 
 // ── Provider detection ────────────────────────────────────────
 
-function getProviderForModel(model: string): "openai" | "anthropic" | "google" {
+function getProviderForModel(model: string): "openai" | "anthropic" | "google" | "perplexity" {
   if (model.startsWith("gpt") || model.startsWith("o1") || model.startsWith("o3")) {
     return "openai";
   }
@@ -64,6 +94,9 @@ function getProviderForModel(model: string): "openai" | "anthropic" | "google" {
   }
   if (model.startsWith("gemini")) {
     return "google";
+  }
+  if (model.startsWith("sonar") || model.startsWith("llama-") || model.startsWith("r1-")) {
+    return "perplexity";
   }
   return "openai";
 }
@@ -277,6 +310,91 @@ async function queryGoogle(
   }, "[google]");
 }
 
+/**
+ * Call the Perplexity API (sonar model family) using their OpenAI-compatible
+ * chat completions endpoint. Sonar models perform web-augmented search and
+ * return structured citations as a top-level `citations` array.
+ *
+ * API docs: https://docs.perplexity.ai/reference/post_chat_completions
+ * Default model: sonar-pro — best general-purpose model with citations.
+ */
+async function queryPerplexity(
+  prompt: string,
+  model: string,
+  temperature: number,
+): Promise<LLMResponse> {
+  const apiKey = process.env.PERPLEXITY_API_KEY;
+  if (!apiKey) throw new Error("PERPLEXITY_API_KEY not set");
+
+  return withRetry(async () => {
+    const startMs = Date.now();
+
+    const response = await fetch("https://api.perplexity.ai/chat/completions", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model,
+        temperature,
+        messages: [{ role: "user", content: prompt }],
+        // Return citations in the response
+        return_citations: true,
+        // Return related questions to understand citation sources better
+        return_related_questions: false,
+      }),
+      signal: AbortSignal.timeout(90_000), // Sonar with search may be slower
+    });
+
+    const latencyMs = Date.now() - startMs;
+
+    if (!response.ok) {
+      // Construct an error with the HTTP status so withRetry can classify it
+      const body = await response.text().catch(() => "");
+      const err = new Error(`Perplexity API error ${response.status}: ${body}`) as Error & { status: number };
+      err.status = response.status;
+      throw err;
+    }
+
+    const data = (await response.json()) as PerplexityChatCompletion;
+
+    const text = data.choices[0]?.message?.content ?? "";
+    const promptTokens = data.usage?.prompt_tokens ?? 0;
+    const completionTokens = data.usage?.completion_tokens ?? 0;
+
+    // Parse citations: Perplexity returns them as a string[] (URLs) or
+    // object[] with url+title depending on the model version.
+    const citations: LLMCitation[] = [];
+    const seenUrls = new Set<string>();
+
+    for (const raw of data.citations ?? []) {
+      if (typeof raw === "string") {
+        if (!seenUrls.has(raw)) {
+          seenUrls.add(raw);
+          citations.push({ url: raw, title: null });
+        }
+      } else if (raw && typeof raw === "object" && "url" in raw) {
+        const c = raw as PerplexityCitation;
+        if (!seenUrls.has(c.url)) {
+          seenUrls.add(c.url);
+          citations.push({ url: c.url, title: c.title ?? null });
+        }
+      }
+    }
+
+    return {
+      text,
+      model: data.model ?? model,
+      provider: "perplexity",
+      tokenCount: promptTokens + completionTokens,
+      promptTokens,
+      latencyMs,
+      citations,
+    };
+  }, "[perplexity]");
+}
+
 // ── Public API ────────────────────────────────────────────────
 
 /**
@@ -316,6 +434,9 @@ export async function queryLLM(
   if (provider === "google" && !process.env.GOOGLE_AI_API_KEY) {
     throw new Error("GOOGLE_AI_API_KEY not set");
   }
+  if (provider === "perplexity" && !process.env.PERPLEXITY_API_KEY) {
+    throw new Error("PERPLEXITY_API_KEY not set");
+  }
 
   switch (provider) {
     case "openai":
@@ -324,6 +445,8 @@ export async function queryLLM(
       return queryAnthropic(prompt, model, temperature);
     case "google":
       return queryGoogle(prompt, model, temperature);
+    case "perplexity":
+      return queryPerplexity(prompt, model, temperature);
   }
 }
 
@@ -332,7 +455,7 @@ export async function queryLLM(
 /**
  * Map the provider string from LLMResponse to the Prisma LLMProvider enum value.
  */
-export function mapProviderToEnum(provider: string): "OPENAI" | "ANTHROPIC" | "GOOGLE" | "MANUAL" {
+export function mapProviderToEnum(provider: string): "OPENAI" | "ANTHROPIC" | "GOOGLE" | "PERPLEXITY" | "MANUAL" {
   switch (provider) {
     case "openai":
       return "OPENAI";
@@ -340,6 +463,8 @@ export function mapProviderToEnum(provider: string): "OPENAI" | "ANTHROPIC" | "G
       return "ANTHROPIC";
     case "google":
       return "GOOGLE";
+    case "perplexity":
+      return "PERPLEXITY";
     default:
       return "MANUAL";
   }
