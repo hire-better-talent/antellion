@@ -17,6 +17,48 @@ enum DecisionStage {
   COMMITMENT
 }
 
+// ─── Diagnostic enums ───────────────────────────────────────
+
+enum PersonaArchetype {
+  EARLY_CAREER
+  MID_CAREER_IC
+  SENIOR_IC
+  MANAGER
+  EXECUTIVE
+}
+
+enum EngagementTier {
+  DIAGNOSTIC
+}
+
+enum EngagementStatus {
+  SCOPING
+  SCANNING
+  REVIEW
+  APPROVED
+  PUBLISHED
+}
+
+enum FindingStatus {
+  DRAFT
+  APPROVED
+  REJECTED
+}
+
+enum FindingCategory {
+  ZERO_PRESENCE
+  COMPETITOR_DOMINANCE
+  SENTIMENT_DIVERGENCE
+  CITATION_MONOCULTURE
+  PERSONA_INVISIBILITY
+  NARRATIVE_INCONSISTENCY
+  ZERO_CITATION
+  CONTENT_GAP
+  COMPETITIVE_POSITIONING
+  EMPLOYER_BRAND
+  OTHER
+}
+
 enum QAStatus {
   PENDING
   PASS
@@ -35,6 +77,7 @@ enum LLMProvider {
   OPENAI
   ANTHROPIC
   GOOGLE
+  PERPLEXITY
   MANUAL
 }
 
@@ -61,8 +104,11 @@ model Organization {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  users   User[]
-  clients Client[]
+  users         User[]
+  clients       Client[]
+  jobCategories JobCategory[]
+  personas      Persona[]
+  engagements   Engagement[]
 
   @@map("organizations")
 }
@@ -123,6 +169,7 @@ model Client {
   contentAssets ContentAsset[]
   reports       Report[]
   baselines     AssessmentBaseline[]
+  engagements   Engagement[]
 
   @@unique([organizationId, domain])
   @@index([organizationId])
@@ -211,6 +258,7 @@ model Query {
 model ScanRun {
   id              String        @id @default(cuid())
   clientId        String
+  engagementId    String?
   triggeredById   String?
   parentScanRunId String?
   status          ScanRunStatus @default(PENDING)
@@ -231,12 +279,14 @@ model ScanRun {
   shareTokenRevokedAt DateTime?
 
   client          Client       @relation(fields: [clientId], references: [id])
+  engagement      Engagement?  @relation(fields: [engagementId], references: [id], onDelete: SetNull)
   triggeredBy     User?        @relation("TriggeredBy", fields: [triggeredById], references: [id], onDelete: SetNull)
   parentScan      ScanRun?     @relation("ValidationScans", fields: [parentScanRunId], references: [id])
   validationScans ScanRun[]    @relation("ValidationScans")
   results         ScanResult[]
 
   @@index([clientId])
+  @@index([engagementId])
   @@index([status])
   @@index([parentScanRunId])
   @@map("scan_runs")
@@ -255,6 +305,9 @@ model ScanResult {
   scanRunId       String
   queryId         String
   competitorId    String?
+  // Diagnostic matrix dimensions (nullable for backward compat)
+  modelName       String?          @db.VarChar(100)
+  personaId       String?
   response        String           @db.Text
   visibilityScore Float?
   sentimentScore  Float?
@@ -273,10 +326,12 @@ model ScanResult {
   citations  CitationSource[]
   evidence   ScanEvidence[]
 
-  @@unique([scanRunId, queryId])
+  @@unique([scanRunId, queryId, modelName, personaId])
   @@index([scanRunId])
   @@index([queryId])
   @@index([competitorId])
+  @@index([modelName])
+  @@index([personaId])
   @@index([status])
   @@map("scan_results")
 }
@@ -609,4 +664,158 @@ model AssessmentBaseline {
   @@index([clientId])
   @@index([clientId, assessmentDate])
   @@map("assessment_baselines")
+}
+
+// ─── Diagnostic — Job Categories ────────────────────────────
+
+model JobCategory {
+  id             String   @id @default(cuid())
+  organizationId String
+  slug           String
+  name           String
+  description    String?  @db.Text
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id])
+  personas     Persona[]
+  engagements  Engagement[]
+
+  @@unique([organizationId, slug])
+  @@index([organizationId])
+  @@map("job_categories")
+}
+
+// ─── Diagnostic — Personas ───────────────────────────────────
+
+model Persona {
+  id             String           @id @default(cuid())
+  organizationId String
+  jobCategoryId  String
+  archetype      PersonaArchetype
+  label          String
+  intent         String?          @db.Text
+  seedContext    String?          @db.Text
+  isCatalog      Boolean          @default(true)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  organization       Organization       @relation(fields: [organizationId], references: [id])
+  jobCategory        JobCategory        @relation(fields: [jobCategoryId], references: [id])
+  engagementPersonas EngagementPersona[]
+
+  @@unique([organizationId, jobCategoryId, archetype, label])
+  @@index([organizationId])
+  @@index([jobCategoryId])
+  @@map("personas")
+}
+
+// ─── Diagnostic — Engagements ────────────────────────────────
+
+model Engagement {
+  id             String           @id @default(cuid())
+  organizationId String
+  clientId       String
+  jobCategoryId  String
+  tier           EngagementTier   @default(DIAGNOSTIC)
+  status         EngagementStatus @default(SCOPING)
+  shareToken     String?          @unique
+  shareTokenRevokedAt DateTime?
+  notes          String?          @db.Text
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  organization Organization       @relation(fields: [organizationId], references: [id])
+  client       Client             @relation(fields: [clientId], references: [id])
+  jobCategory  JobCategory        @relation(fields: [jobCategoryId], references: [id])
+  personas     EngagementPersona[]
+  findings     Finding[]
+  scanRuns     ScanRun[]
+
+  @@index([organizationId])
+  @@index([clientId])
+  @@index([jobCategoryId])
+  @@index([status])
+  @@map("engagements")
+}
+
+// ─── Diagnostic — Engagement × Persona join ──────────────────
+
+model EngagementPersona {
+  id             String  @id @default(cuid())
+  engagementId   String
+  personaId      String
+  // Per-engagement overrides (do not mutate catalog)
+  labelOverride       String? @db.VarChar(255)
+  intentOverride      String? @db.Text
+  seedContextOverride String? @db.Text
+  sortOrder      Int     @default(0)
+
+  engagement Engagement @relation(fields: [engagementId], references: [id], onDelete: Cascade)
+  persona    Persona    @relation(fields: [personaId], references: [id])
+
+  @@unique([engagementId, personaId])
+  @@index([engagementId])
+  @@index([personaId])
+  @@map("engagement_personas")
+}
+
+// ─── Diagnostic — Findings ───────────────────────────────────
+
+model Finding {
+  id             String         @id @default(cuid())
+  engagementId   String
+  index          Int
+  namedIssue     String         @db.VarChar(500)
+  // Array of ScanResult IDs that evidence this finding
+  evidenceScanResultIds String[] @default([])
+  // Structured citation evidence snapshot
+  evidenceCitations     Json?
+  actionableCategory    FindingCategory
+  // Optional contextual pointers
+  personaId      String?
+  modelName      String?        @db.VarChar(100)
+  stage          DecisionStage?
+  competitorId   String?
+  // Analyst-written narrative
+  narrative      String?        @db.Text
+  status         FindingStatus  @default(DRAFT)
+  approvedById   String?
+  approvedAt     DateTime?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  engagement    Engagement        @relation(fields: [engagementId], references: [id], onDelete: Cascade)
+  auditEntries  FindingAuditEntry[]
+
+  @@unique([engagementId, index])
+  @@index([engagementId])
+  @@index([engagementId, status])
+  @@map("findings")
+}
+
+// ─── Diagnostic — Finding Audit Appendix entries ─────────────
+
+model FindingAuditEntry {
+  id          String   @id @default(cuid())
+  findingId   String
+  // Snapshot of the 3-criteria check at publish time
+  hasNamedIssue       Boolean
+  hasEvidence         Boolean
+  hasActionableCategory Boolean
+  isMaterial          Boolean
+  // Immutable snapshot fields
+  namedIssueCopy      String   @db.VarChar(500)
+  actionableCategoryCopy String @db.VarChar(100)
+  evidenceCount       Int
+  // Who approved and when — frozen at publish
+  approvedById        String?
+  approvedAt          DateTime?
+  createdAt           DateTime @default(now())
+
+  finding Finding @relation(fields: [findingId], references: [id], onDelete: Cascade)
+
+  @@unique([findingId])
+  @@index([findingId])
+  @@map("finding_audit_entries")
 }
