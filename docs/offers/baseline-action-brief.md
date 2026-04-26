@@ -11,7 +11,7 @@
 
 ## Purpose
 
-A single-SOW variant of Phase 1 Baseline that adds one additional deliverable — a 15-page prioritized remediation brief for one candidate journey stage of the customer's choosing — and catches Phase 2 deals that stall between Baseline ($14K) and Focused ($89K) because the customer wants more than Baseline but cannot approve a $75K+ Phase 2 budget this quarter.
+A single-SOW variant of Phase 1 Baseline that adds one additional deliverable — a prioritized remediation brief for one candidate journey stage of the customer's choosing — and catches Phase 2 deals that stall between Baseline ($14K) and Focused ($89K) because the customer wants more than Baseline but cannot approve a $75K+ Phase 2 budget this quarter.
 
 It preserves the rollover path: the $24K credits 100% toward Focused, Strategic, or Enterprise within 60 days, so adding the Action Brief does not cost the customer future Phase 2 budget.
 
@@ -35,18 +35,20 @@ All Phase 1 Baseline deliverables are included without modification:
 
 ## What's added — the Action Brief
 
-A **15-page prioritized remediation brief** for **one candidate journey stage** (customer selects Discovery, Consideration, Evaluation, or Commitment after reviewing the Baseline findings).
+A **prioritized remediation brief** for **one candidate journey stage** (customer selects Discovery, Consideration, Evaluation, or Commitment after reviewing the Baseline findings).
 
-### Brief structure
+The brief covers six sections, sized to the depth of evidence in each. Page counts vary per engagement based on findings density; the contractual commitments below are output-quality, not document length.
 
-| Section | Pages |
+### Brief structure (typical)
+
+| Section | What it contains |
 |---|---|
-| 1. Stage context and findings synthesis from Baseline | 2 |
-| 2. Named platforms ranked by remediation priority (5-8 platforms) | 3 |
-| 3. Content gap inventory — what AI is not citing that it should be | 3 |
-| 4. Per-platform remediation recommendation (specific content type, frequency, owner role) | 4 |
-| 5. 90-day execution sequence — week-by-week prioritization | 2 |
-| 6. Measurement plan — what to re-scan in 90 days and what success looks like | 1 |
+| 1. Stage context and findings synthesis from Baseline | Distills the Baseline findings relevant to the selected stage into a single-page narrative for context. |
+| 2. Named platforms ranked by remediation priority | At least 5 platforms (typically 5-8), each with current AI citation footprint, competitor presence, and effort × impact ranking. |
+| 3. Content gap inventory | Specific content categories AI is not citing for Customer that it cites for competitors, with named source platforms. |
+| 4. Per-platform remediation recommendation | At least 8 platform-specific recommendations: named platform, content type, owner role, and effort estimate. |
+| 5. 90-day execution sequence | Week-by-week prioritized sequence with at least 6 scheduled milestones. |
+| 6. Measurement plan | What to re-scan in 90 days, what success looks like quantitatively, and the candidate-side signals that indicate progress. |
 
 ### Methodology depth for the Action Brief
 
@@ -82,7 +84,7 @@ This is the margin-protection list. These capabilities live in Focused and above
 | Industry narrative mapping | Not included | Included |
 | Board-ready 10-slide deck | Not included | Included |
 | Quarterly re-scans (4 total for 12 months) | Not included | Included |
-| 40+ page enhanced written report | 18-25 page Baseline report + 15-page Brief | 40+ pages |
+| Enhanced written report depth | Baseline report + single-stage prioritized brief | Full multi-layer report across all 4 stages |
 | Second executive readout (30-day check-in) | Not included | Included |
 | Second Q&A session | Not included | Included |
 

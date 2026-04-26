@@ -75,8 +75,8 @@
 
 ### What you get
 
-- **18-25 page Diagnostic Report** (PDF + interactive HTML) with 10+ specific findings, each with captured data evidence and citation inventory
-- **2-page Findings Brief** — scannable executive summary for CEO / CMO / board circulation
+- **Comprehensive Diagnostic Report** (PDF + interactive HTML) with at least 10 material findings, each with named issue, captured data evidence, and actionable category
+- **Executive Findings Brief** — scannable executive summary for CEO / CMO / board circulation, designed to communicate the gap and proposed direction without requiring the reader to open the full report
 - **45-minute recorded analyst readout call** within 5 business days of delivery
 - **Interactive HTML view** at a tokenized URL, shareable with the customer's team
 
@@ -173,7 +173,7 @@ If a factual error is identified in the analysis, Antellion corrects it within 4
 
 **Role in funnel:** Feature downsell between Baseline and Focused. Offered when a customer pitches toward Phase 2 but encounters current-cycle budget resistance ("we could do $30K this quarter but not $90K"). Preserves the rollover path so adding the Action Brief does not cost the customer future Phase 2 budget.
 
-**Scope:** Everything in Baseline, plus a **15-page prioritized remediation brief for one customer-selected candidate journey stage** and an additional 45-minute Action Brief readout call.
+**Scope:** Everything in Baseline, plus a **prioritized remediation brief for one customer-selected candidate journey stage** and an additional 45-minute Action Brief readout call.
 
 ### What's added beyond Baseline
 
@@ -182,7 +182,7 @@ If a factual error is identified in the analysis, Antellion corrects it within 4
 - Per-platform remediation direction with named platform owners
 - 90-day execution sequence — week-by-week prioritization
 - Additional 45-minute Action Brief readout call
-- 15-page brief structure: context, platform rankings, gap inventory, remediation, sequence, measurement plan
+- Brief structure: context, platform rankings (5+ named platforms), gap inventory, per-platform remediation (8+ recommendations with named platform, content type, and owner role), 90-day execution sequence (6+ scheduled milestones), and measurement plan
 
 ### Delivery
 

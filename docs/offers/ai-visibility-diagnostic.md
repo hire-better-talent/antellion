@@ -83,21 +83,23 @@ These are available in Phase 1 Baseline and Phase 2 tiers.
 
 ### 1. Diagnostic Report (PDF + interactive HTML)
 
-**18-25 pages.** Covers:
+A comprehensive report covering, at minimum:
 
-1. Executive summary (2 pages)
+1. Executive summary
 2. Methodology and scope confirmation
 3. Visibility index — overall score and per-model breakdown
 4. Competitor co-mention map
 5. Per-stage finding summaries (Discovery, Consideration, Evaluation, Commitment)
 6. Citation source inventory — named platforms AI is drawing from
 7. Narrative consistency flag list
-8. 10+ specific findings, each with data evidence
+8. **At least 10 material findings**, each with named issue, data evidence, and actionable category (this is the contractual commitment; see Section E)
 9. Suggested next questions for a deeper engagement
 
-### 2. Findings Brief (2-page executive summary)
+Section depth scales with findings density. The contractual commitment is the count and quality of findings, not document length.
 
-A shareable document for circulation to the CEO, CMO, or board. No jargon. Scannable in 90 seconds.
+### 2. Findings Brief (executive summary)
+
+A shareable document for circulation to the CEO, CMO, or board. Scannable in 90 seconds. No jargon. Designed to communicate the gap and the proposed measurement direction without requiring the reader to open the full report.
 
 ### 3. Findings Review Call (45 minutes, recorded)
 
@@ -146,7 +148,7 @@ Lives at `app.antellion.com/diagnostic/[token]`. No login required for viewers. 
 | Journey Action Map | No | Yes (1-2 page strategic scorecard) |
 | Prioritized remediation roadmap | No | Yes (5+ actions, effort × impact) |
 | Source attribution analysis | Surface-level citation inventory | Full attribution + influence ranking |
-| Written report length | 18-25 pages | 40+ pages |
+| Written report scope | Per-stage finding summaries + 10+ material findings | Full Journey Action Map + 5+ prioritized remediation actions |
 | Executive readout call | 45 minutes | 60 minutes |
 | Follow-up Q&A session | Included in readout | Separate 30-min session within 30 days |
 | Delivery | 10 business days | 2 weeks |
@@ -197,7 +199,7 @@ A fixed-fee AI Visibility Diagnostic from Antellion. 40 candidate-intent queries
 
 ### Three value bullets
 
-- **Delivered by an analyst, not a dashboard.** You receive an 18-25 page report with 10+ named findings, each backed by captured AI responses and citation evidence — written to be circulated to your CEO, CMO, or board without further translation.
+- **Delivered by an analyst, not a dashboard.** You receive a comprehensive report with at least 10 named material findings, each backed by captured AI responses and citation evidence — written to be circulated to your CEO, CMO, or board without further translation.
 - **Built to complement your employer brand program, not replace it.** The Diagnostic identifies which citations AI is currently drawing from and which it is missing, so the work your brand, content, and recruitment marketing teams already do gets directed with more precision.
 - **Full refund if we surface fewer than 10 material findings.** The guarantee is tied to what we ship, not to what you do afterward. If the Diagnostic warrants deeper work, the $4,900 credits 100% toward a Baseline Audit.
 
@@ -235,8 +237,8 @@ A fixed-fee AI Visibility Diagnostic from Antellion. 40 candidate-intent queries
 - Identify 2-3 findings where a Baseline-depth analysis would meaningfully extend the insight (for rollover conversation)
 
 **Day 7 — Report drafting (4 hr)**
-- Draft 18-25 page report against template
-- Write 2-page Findings Brief
+- Draft full report against template (length scales with findings density)
+- Write executive Findings Brief
 - Render interactive HTML view
 
 **Day 8 — QA and polish (2 hr)**

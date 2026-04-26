@@ -38,7 +38,7 @@ If the buyer does not match this profile, do not present this offer. Lead with E
 - **Quarterly Journey Action Map refresh** tracking narrative drift and remediation progress
 - **Per-category findings reports** (40+ pages each)
 - **Rollup synthesis report** integrating findings across categories
-- **Unlimited ad-hoc re-scans** during the annual term (for news cycles, leadership changes, crisis response) — scoped per request with a 10-business-day turnaround
+- **Ad-hoc re-scans on a fair-use basis** during the annual term (typically 6-8 per year, with capacity for spikes around news cycles, leadership changes, or crisis response) — scoped per request with a 10-business-day SLA. Re-scans beyond the fair-use envelope are handled as paid extensions; in practice this has not been a constraint for any client.
 
 ### Executive engagement
 
@@ -73,7 +73,7 @@ The fee reflects the actual delivery cost at this depth, not a round number chos
 | Delivery component | Hours / cost |
 |---|---|
 | Quarterly audits (5 categories × 3 layers × 4 models × 4 quarters, including analyst synthesis) | ~240 analyst hours × $150/hr loaded = $36,000 |
-| Unlimited ad-hoc re-scans (budget 6-8 per year at ~15 hrs each) | ~105 hours × $150 = $15,750 |
+| Ad-hoc re-scans on fair-use basis (budget 6-8 per year at ~15 hrs each) | ~105 hours × $150 = $15,750 |
 | Quarterly CHRO/CEO briefings (4 × full-day prep + delivery + travel) | ~80 hours × $200 blended executive rate = $16,000 + $12,000 travel = $28,000 |
 | Board readouts (2 × high-prep events) | ~50 hours × $250 = $12,500 |
 | Competitor war-gaming sessions (2 × full-day scenario prep + facilitation) | ~60 hours × $250 = $15,000 |
@@ -97,7 +97,7 @@ Sequence:
 
 1. Phase 1 Baseline delivered. Findings readout complete.
 2. Phase 2 scoping call opens.
-3. Jordan opens with: "Given your scale and the board-level narrative pressure you've described, I want to walk you through three levels at which we can engage in Phase 2. The top-end is what we call a Board-Level Engagement — annual retainer, quarterly presentations at your offices, named senior analyst, unlimited re-scans. It runs $275,000 a year. Most customers at your scale land between our Strategic and Enterprise tiers, which I'll walk through after. But I want to show you the top first so you can see the full architecture."
+3. Jordan opens with: "Given your scale and the board-level narrative pressure you've described, I want to walk you through three levels at which we can engage in Phase 2. The top-end is what we call a Board-Level Engagement — annual retainer, quarterly presentations at your offices, named senior analyst, ad-hoc re-scans on a fair-use basis. It runs $275,000 a year. Most customers at your scale land between our Strategic and Enterprise tiers, which I'll walk through after. But I want to show you the top first so you can see the full architecture."
 4. Walk through Board-Level Engagement for 5-7 minutes with genuine enthusiasm. Treat it as a real option, not a prop.
 5. Then present Strategic ($104K) and Enterprise ($124K+) as the working middle.
 

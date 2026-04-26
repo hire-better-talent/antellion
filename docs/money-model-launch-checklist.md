@@ -18,7 +18,7 @@
 - **Product name:** AI Visibility Diagnostic
 - **Statement descriptor (22 char max):** `ANTELLION DIAGNOSTIC`
 - **Description (for invoice + quote):**
-  > 10-business-day fixed-fee AI employer visibility audit. 40 candidate-intent queries across ChatGPT, Claude, Gemini, and Perplexity; 3 candidate personas; 3 named competitors. Deliverable: 18-25 page Diagnostic Report, 2-page Findings Brief, 45-minute analyst readout call, and interactive HTML report. Full refund if fewer than 10 material findings. 100% of fee credits to Baseline Audit or Phase 2 within 60 days.
+  > 10-business-day fixed-fee AI employer visibility audit. 40 candidate-intent queries across ChatGPT, Claude, Gemini, and Perplexity; 3 candidate personas scoped to your job category; 3 named competitors. Deliverable: comprehensive Diagnostic Report with at least 10 material findings (each with a named issue, data evidence, and actionable category), executive Findings Brief suitable for CEO or board circulation, 45-minute analyst readout call, and interactive HTML report. Full refund if fewer than 10 material findings. 100% of fee credits to Baseline Audit or Phase 2 within 60 days.
 - **Price:** $4,900 USD, one-time
 - **Price lookup key / SKU:** `ant-diagnostic-4900`
 - **Tax behavior:** Exclusive (services are not taxable in most states; buyer handles their own tax)
@@ -29,7 +29,7 @@
 - **Product name:** Baseline + Action Brief
 - **Statement descriptor:** `ANTELLION BASELINE+`
 - **Description:**
-  > Phase 1 Baseline Audit plus a 15-page prioritized remediation brief for one candidate journey stage selected by the customer after Baseline findings. 3 weeks delivery. 100% of fee credits to any Phase 2 engagement (Focused, Strategic, Enterprise) within 60 days.
+  > Phase 1 Baseline Audit plus a prioritized remediation brief for one candidate journey stage selected by the customer after Baseline findings. The brief includes at least 8 platform-specific recommendations (each with named platform, content type, and owner role), a 90-day execution sequence with at least 6 scheduled milestones, and a measurement plan for the next quarter. 3 weeks delivery. 100% of fee credits to any Phase 2 engagement (Focused, Strategic, Enterprise) within 60 days.
 - **Price:** $24,000 USD, one-time
 - **Price lookup key / SKU:** `ant-baseline-action-brief-24000`
 - **Billing:** 50/50 split, Net 15 deposit + Net 30 balance (use Method A from stripe-quote-guide.md — single line item, manual second invoice)
@@ -39,7 +39,7 @@
 - **Product name:** Antellion Board-Level Engagement
 - **Statement descriptor:** `ANTELLION BOARD`
 - **Description:**
-  > Annual enterprise engagement: quarterly full-scope audits across 5+ categories, quarterly in-person CHRO/CEO briefings, annual board-ready deck, named senior analyst, competitor war-gaming, unlimited ad-hoc re-scans, dedicated Slack Connect channel.
+  > Annual enterprise engagement: quarterly full-scope audits across 5+ categories, quarterly in-person CHRO/CEO briefings, annual board-ready deck, named senior analyst, two competitor war-gaming sessions per year, ad-hoc re-scans included on a fair-use basis (typically 6-8 per year, 10-business-day SLA), dedicated Slack Connect channel with 1-business-day response SLA.
 - **Price:** $275,000 USD/year, billed quarterly
 - **Create as:** Recurring Price, $68,750 USD, interval = quarter (every 3 months)
 - **Price lookup key / SKU:** `ant-board-level-275000`

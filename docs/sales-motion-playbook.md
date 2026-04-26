@@ -68,7 +68,7 @@ Rebuttal (memorize):
 
 ### Transition 2 — Diagnostic readout → Baseline
 
-**The moment.** You have just walked the buyer through the 18-25 page Diagnostic Report and the 2-page Findings Brief. You have shown them 3-5 findings live in the interactive HTML view. Somewhere in the call they say "so what do we do with this?" or "what's the next level?" or — the strongest signal — they ask a question you cannot fully answer within the Diagnostic scope, like "which platforms specifically?" or "how do I sequence this?"
+**The moment.** You have just walked the buyer through the Diagnostic Report and the executive Findings Brief. You have shown them 3-5 findings live in the interactive HTML view. Somewhere in the call they say "so what do we do with this?" or "what's the next level?" or — the strongest signal — they ask a question you cannot fully answer within the Diagnostic scope, like "which platforms specifically?" or "how do I sequence this?"
 
 **The Hormozi mechanic.** This is the **Rollover commitment mechanic** from *$100M Money Models* §3 (Upsells), layered with **BAMFAM discipline** (Book A Meeting From A Meeting) also from §3. The rollover math is the single highest-leverage move in the entire motion: $4,900 rolls to $14K Baseline, net new spend is **$9,100**, which reframes the decision from "should I spend $14K?" to "should I spend an additional $9,100 to go three to four times deeper?"
 
@@ -115,7 +115,7 @@ Rebuttal (memorize):
 
 **Primary pivot line (memorize).**
 
-> "Given the scale of what the Baseline surfaced and the board-level narrative pressure you've described, I want to walk you through three levels at which we can engage in Phase 2. The top end is what we call a Board-Level Engagement — annual retainer, quarterly presentations at your offices, named senior analyst, unlimited re-scans. It runs $275,000 a year. Most customers at your scale land between our Strategic and Enterprise tiers, which I'll walk through after. But I want to show you the full architecture first."
+> "Given the scale of what the Baseline surfaced and the board-level narrative pressure you've described, I want to walk you through three levels at which we can engage in Phase 2. The top end is what we call a Board-Level Engagement — annual retainer, quarterly presentations at your offices, named senior analyst, ad-hoc re-scans on a fair-use basis. It runs $275,000 a year. Most customers at your scale land between our Strategic and Enterprise tiers, which I'll walk through after. But I want to show you the full architecture first."
 
 *Then spend 5-7 minutes on Board-Level with genuine enthusiasm. Then move to Strategic and Enterprise.*
 
@@ -131,7 +131,7 @@ Rebuttal (memorize):
 
 Rebuttal (memorize):
 
-> "That's exactly the conversation I'd expect to have at this step. If the current-cycle budget is the constraint and not the methodology, there's a middle option I don't usually lead with — Baseline + Action Brief at $24K total. You've already paid $14K, so it's a $10K add for a 15-page remediation brief on the one journey stage you're most exposed on. That preserves your full $24K rollover credit forward to Phase 2 in a later quarter. It catches the budget-cycle gap without losing momentum."
+> "That's exactly the conversation I'd expect to have at this step. If the current-cycle budget is the constraint and not the methodology, there's a middle option I don't usually lead with — Baseline + Action Brief at $24K total. You've already paid $14K, so it's a $10K add for a prioritized remediation brief on the one journey stage you're most exposed on — at least 8 platform-specific recommendations and a 90-day execution sequence. That preserves your full $24K rollover credit forward to Phase 2 in a later quarter. It catches the budget-cycle gap without losing momentum."
 
 **BAMFAM close.**
 
@@ -298,9 +298,10 @@ Monday's readout. So Focused is $75K net, Strategic $90K net.
 
 Two — if current-quarter budget is the constraint and methodology is not,
 there is a middle option I deliberately did not lead with: Baseline + Action
-Brief at $24K total ($10K incremental). A 15-page remediation brief on the
-one journey stage you are most exposed on. The $24K still credits forward
-to Phase 2 in a later quarter.
+Brief at $24K total ($10K incremental). A prioritized remediation brief on
+the one journey stage you are most exposed on — at least 8 platform-specific
+recommendations and a 90-day execution sequence. The $24K still credits
+forward to Phase 2 in a later quarter.
 
 Happy to walk through which fits. Let me know.
 
