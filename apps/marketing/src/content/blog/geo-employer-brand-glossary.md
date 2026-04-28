@@ -32,7 +32,7 @@ When AI responds to a query that names the company specifically. Prompted visibi
 
 ## Citation Ecosystem
 
-The set of platforms, publications, and data sources that AI models draw from when synthesizing employer-related answers. The citation ecosystem for employer queries typically includes review platforms (Glassdoor, Comparably, Blind), salary databases (Levels.fyi, Payscale), company profile platforms (Built In, LinkedIn, Crunchbase), technical content (engineering blogs, GitHub, conference talks), press and media, and community platforms (Reddit, Blind, Hacker News). Understanding the citation ecosystem is critical because AI does not generate employer information from internal knowledge alone -- it synthesizes from these specific sources. A company's presence or absence on these platforms directly determines how AI describes it.
+The set of platforms, publications, and data sources that AI models draw from when synthesizing employer-related answers. The citation ecosystem for employer queries typically includes review platforms (Glassdoor, Comparably, Blind, Fishbowl), salary databases (Levels.fyi for tech, Payscale, sector-specific salary surveys), company profile platforms (Built In, LinkedIn, Crunchbase, vertical employer directories), employee-authored industry content (industry blogs, conference talks, GitHub for technical roles), press and media (industry publications, trade press), and community platforms (Reddit, Blind, Fishbowl, Hacker News, sector forums). Understanding the citation ecosystem is critical because AI does not generate employer information from internal knowledge alone -- it synthesizes from these specific sources. A company's presence or absence on these platforms directly determines how AI describes it.
 
 ## Citation Gap
 
@@ -64,7 +64,7 @@ The distinction between AI-generated statements about a company that cite or cle
 
 ## Employer Signal Surface
 
-The aggregate of all digital signals -- reviews, profiles, content, citations, press, community discussion -- that AI models synthesize when answering candidate queries about an employer. The employer signal surface replaces the generic concept of "digital footprint" with something specific to AI synthesis. A company's employer signal surface determines the raw material AI has to work with. A thin employer signal surface (limited to Glassdoor and a careers page) produces thin, generic AI responses. A rich employer signal surface (spanning review sites, salary databases, engineering blogs, press, and community platforms) gives AI the material to construct a detailed, accurate, and distinctive narrative.
+The aggregate of all digital signals -- reviews, profiles, content, citations, press, community discussion -- that AI models synthesize when answering candidate queries about an employer. The employer signal surface replaces the generic concept of "digital footprint" with something specific to AI synthesis. A company's employer signal surface determines the raw material AI has to work with. A thin employer signal surface (limited to Glassdoor and a careers page) produces thin, generic AI responses. A rich employer signal surface (spanning review sites, salary databases, industry blogs, press, and community platforms) gives AI the material to construct a detailed, accurate, and distinctive narrative.
 
 ## Answer-Surface Intelligence
 

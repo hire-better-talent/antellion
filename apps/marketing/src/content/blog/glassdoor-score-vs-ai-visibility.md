@@ -9,7 +9,7 @@ status: "ready"
 
 ## A 4.5 on Glassdoor Is Not Enough to Get AI to Mention You. A 3.5-Star Competitor With Broader Citation Coverage Will Beat You.
 
-A strong Glassdoor rating is a real asset. It is also insufficient on its own to get AI to name your company when a candidate asks where to work. A 4.5-star company can be invisible to ChatGPT at the Discovery stage. A 3.5-star competitor with a Built In profile, Levels.fyi data, and an engineering blog can dominate the same query.
+A strong Glassdoor rating is a real asset. It is also insufficient on its own to get AI to name your company when a candidate asks where to work. A 4.5-star company can be invisible to ChatGPT at the Discovery stage. A 3.5-star competitor with a vertical employer profile, third-party compensation data, and an industry blog can dominate the same query.
 
 This is not a criticism of Glassdoor management. It is a distinction most talent leaders have not yet had to make: Glassdoor measures how current and former employees rate their experience. [AI employer visibility](/blog/ai-employer-visibility-explained) measures whether and how AI includes your company in synthesized answers to candidate queries. Different surfaces, different inputs, different outcomes -- and a talent leader's Glassdoor strategy covers only one of them.
 
@@ -30,7 +30,7 @@ But it does not tell you whether AI will name your company when a candidate asks
 
 ## What AI Employer Visibility Actually Measures
 
-[AI employer visibility](/blog/ai-employer-visibility-explained) measures whether your company appears in AI-generated responses to candidate-intent queries, how it is described, what sources AI draws from, and how you compare to competitors. The inputs are not employee reviews alone. They are the entire citation ecosystem -- Glassdoor, Levels.fyi, Blind, Built In, Comparably, LinkedIn, engineering blogs, press coverage, Reddit, and more.
+[AI employer visibility](/blog/ai-employer-visibility-explained) measures whether your company appears in AI-generated responses to candidate-intent queries, how it is described, what sources AI draws from, and how you compare to competitors. The inputs are not employee reviews alone. They are the entire citation ecosystem -- Glassdoor, third-party compensation databases, professional community platforms, vertical employer profiles, LinkedIn, industry blogs, press coverage, Reddit, and more.
 
 The critical difference: Glassdoor is one input to AI. It is not the input.
 
@@ -44,7 +44,7 @@ The Glassdoor-to-AI disconnect is not theoretical. It appears consistently in AI
 
 A company with a 4.4-star Glassdoor rating, consistently positive reviews, and active review management. By traditional employer brand metrics, this is a company with a strong reputation.
 
-In AI scans, this company appeared in only 18% of Discovery-stage queries for its industry. When it did appear at the Consideration stage (prompted by name), the AI narrative was thin -- it referenced the Glassdoor rating and not much else. In Evaluation-stage comparisons against competitors, it consistently lost because the competitors had Levels.fyi compensation data, Built In culture profiles, and engineering blog content that AI could cite. The competitor's AI narrative was richer, more specific, and more favorable.
+In AI scans, this company appeared in only 18% of Discovery-stage queries for its industry. When it did appear at the Consideration stage (prompted by name), the AI narrative was thin -- it referenced the Glassdoor rating and not much else. In Evaluation-stage comparisons against competitors, it consistently lost because the competitors had third-party compensation data, vertical employer profiles, and industry blog content that AI could cite. The competitor's AI narrative was richer, more specific, and more favorable.
 
 The high Glassdoor score was real. The AI visibility gap was also real. They measured different things.
 
@@ -52,15 +52,15 @@ The high Glassdoor score was real. The AI visibility gap was also real. They mea
 
 A company with a 3.7-star Glassdoor rating -- not bad, but not standout. Some negative reviews about management, some positive reviews about technical challenges and compensation.
 
-In AI scans, this company appeared in 62% of Discovery-stage queries. Its Consideration narrative was detailed and specific: AI cited Levels.fyi compensation ranges, referenced the company's engineering blog posts about distributed systems, mentioned Built In awards, and described specific cultural programs. In Evaluation comparisons, it was frequently positioned as the stronger option for technically ambitious candidates.
+In AI scans, this company appeared in 62% of Discovery-stage queries. Its Consideration narrative was detailed and specific: AI cited specific compensation ranges from third-party databases, referenced the company's industry blog posts, mentioned vertical employer awards, and described specific cultural programs. In Evaluation comparisons, it was frequently positioned as the stronger option for ambitious candidates.
 
-The moderate Glassdoor score was a real signal about employee experience. But it was one signal among many -- and the other signals (Levels.fyi, engineering blog, Built In, press) were strong enough to produce a rich, favorable AI narrative despite the imperfect Glassdoor rating.
+The moderate Glassdoor score was a real signal about employee experience. But it was one signal among many -- and the other signals (third-party compensation data, industry blog, vertical employer profiles, press) were strong enough to produce a rich, favorable AI narrative despite the imperfect Glassdoor rating.
 
 ### Pattern 3: No Meaningful Difference in Glassdoor, Significant Difference in AI Visibility
 
 Two companies in the same industry, similar headcount, similar Glassdoor ratings (both 4.0-4.2). By traditional employer brand metrics, they are comparable.
 
-In AI scans, one appeared in 55% of Discovery queries. The other appeared in 12%. The difference traced entirely to citation ecosystem breadth. The visible company had a Built In profile, active Levels.fyi data, an engineering blog with 30+ published posts, and recent press coverage. The invisible company had Glassdoor, LinkedIn, and nothing else. Same Glassdoor score. Vastly different AI visibility.
+In AI scans, one appeared in 55% of Discovery queries. The other appeared in 12%. The difference traced entirely to citation ecosystem breadth. The visible company had a vertical employer profile, active third-party compensation data, an industry blog with 30+ published posts, and recent press coverage. The invisible company had Glassdoor, LinkedIn, and nothing else. Same Glassdoor score. Vastly different AI visibility.
 
 ## Why the Disconnect Exists
 
@@ -68,7 +68,7 @@ The disconnect between Glassdoor strength and AI visibility is not a bug. It ref
 
 **Pre-AI candidate research:** A candidate Googles "Company review." Glassdoor dominates the search results. The Glassdoor rating becomes the shorthand for employer reputation. A high rating = strong employer perception.
 
-**AI-mediated candidate research:** A candidate asks ChatGPT "best companies for engineers in [industry]." AI synthesizes from Glassdoor, Levels.fyi, Blind, Built In, engineering blogs, press coverage, and community platforms. Glassdoor is one input among ten. A high Glassdoor rating contributes positively, but it cannot compensate for absence from the other nine sources.
+**AI-mediated candidate research:** A candidate asks ChatGPT "best companies for senior product managers in [industry]." AI synthesizes from Glassdoor, third-party compensation databases, professional community platforms, vertical employer profiles, industry blogs, press coverage, and community platforms. Glassdoor is one input among ten. A high Glassdoor rating contributes positively, but it cannot compensate for absence from the other nine sources.
 
 The mechanism is straightforward: AI casts a wider net than Google's search results page did. A company that optimized for search visibility (where Glassdoor dominated) may not have optimized for AI synthesis (where citation ecosystem breadth dominates).
 
@@ -83,14 +83,14 @@ But understanding precisely what Glassdoor contributes -- and what it does not -
 | **Overall employer sentiment** | High -- AI references the rating and review themes | Does not establish whether AI names you in Discovery queries |
 | **Compensation data** | Moderate -- AI cites Glassdoor salary data | Less specific than Levels.fyi for tech roles; AI prefers Levels.fyi when available |
 | **Culture description** | Moderate -- AI synthesizes review themes | Less structured than Built In profiles; AI produces a thinner narrative from reviews alone |
-| **Technical culture** | Low -- Glassdoor reviews rarely describe technical environment in depth | Engineering blogs and technical content provide this signal |
+| **Professional culture and domain expertise** | Low -- Glassdoor reviews rarely describe professional environment in depth | Industry blogs and employee-authored content provide this signal |
 | **Company trajectory** | Low -- Glassdoor reflects current/past experience | Press coverage and funding data provide trajectory signal |
 | **Interview process** | High -- AI cites Glassdoor interview reviews at Commitment stage | Accuracy depends on recency of reviews |
 | **Discovery-stage inclusion** | Low -- Glassdoor does not drive whether AI includes you in industry shortlists | Built In, press coverage, and technical content drive Discovery visibility |
 
 The pattern: Glassdoor is most influential at the Consideration and Commitment stages, where candidates are asking about a specific company. It is least influential at the Discovery stage, where candidates are asking AI to generate a list of employers. Since Discovery is where the largest [pipeline throughput leakage](/blog/geo-employer-brand-glossary) occurs -- candidates who never discover you never enter your funnel -- the gap between Glassdoor influence and Discovery importance is commercially significant.
 
-In practical terms: when a candidate asks AI "best companies for engineers in your industry," your Glassdoor score does not put you on the list. Built In profiles, Levels.fyi data, engineering blogs, and press coverage put competitors on the list. The candidate never sees your 4.5-star rating because they never discover you. Your Glassdoor management was real. Your Discovery visibility was not. You lose the applicant before they enter your funnel.
+In practical terms: when a candidate asks AI "best companies for senior product managers in your industry," your Glassdoor score does not put you on the list. Vertical employer profiles, third-party compensation data, industry blogs, and press coverage put competitors on the list. The candidate never sees your 4.5-star rating because they never discover you. Your Glassdoor management was real. Your Discovery visibility was not. You lose the applicant before they enter your funnel.
 
 ## The Objection This Addresses
 

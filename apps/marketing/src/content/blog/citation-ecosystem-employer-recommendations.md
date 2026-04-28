@@ -49,21 +49,21 @@ These platforms appear in a meaningful share of AI employer responses, particula
 
 **Blind**
 
-Blind is an anonymous professional discussion platform that AI models draw from frequently for tech industry employer queries, particularly at the Consideration and Evaluation stages. Blind discussions tend to be more candid than Glassdoor reviews, and AI synthesizes this candor into its narratives -- sometimes favorably ("employees praise the technical challenges and compensation"), sometimes unfavorably ("anonymous employees report concerns about management turnover and work-life balance").
+Blind is an anonymous professional discussion platform that AI models draw from frequently for employer queries — most heavily in tech, with growing presence in finance, consulting, and other knowledge-work sectors — particularly at the Consideration and Evaluation stages. Blind discussions tend to be more candid than Glassdoor reviews, and AI synthesizes this candor into its narratives -- sometimes favorably ("employees praise the work and compensation"), sometimes unfavorably ("anonymous employees report concerns about management turnover and work-life balance").
 
 For talent leaders, Blind represents a double-edged citation source: it provides AI with authentic employee sentiment that can strengthen your narrative if the sentiment is positive, but it also surfaces unfiltered complaints and grievances that AI will incorporate without distinguishing between a systemic issue and an individual grievance. You cannot manage your presence on Blind the way you manage Glassdoor, which makes it a citation source that rewards genuinely positive employee experience over reputation management.
 
 **Built In**
 
-Built In company profiles are particularly influential at the Discovery stage. When AI generates lists of "best companies to work for in [city]" or "top tech companies hiring [role]," Built In profiles are a consistent citation source. Companies with complete Built In profiles -- including culture descriptions, benefits summaries, tech stack details, and employee testimonials -- appear more frequently in Discovery responses than companies without them.
+Built In company profiles are particularly influential at the Discovery stage. When AI generates lists of "best companies to work for in [city]" or "top employers hiring [role]," Built In profiles are a consistent citation source. Companies with complete Built In profiles -- including culture descriptions, benefits summaries, tech stack details, and employee testimonials -- appear more frequently in Discovery responses than companies without them.
 
 Built In's citation weight is geographically concentrated (strongest for U.S. tech hubs) and industry-concentrated (strongest for technology companies). For companies in these categories, a Built In profile is one of the highest-ROI citation ecosystem investments.
 
-**Company Engineering and Technical Blogs**
+**Industry Blogs and Employee-Authored Content**
 
-Companies that publish engineering blogs, technical deep dives, open-source project documentation, or conference talk summaries provide AI with a category of information that few other platforms offer: direct evidence of technical culture and innovation. AI models draw from these blogs when constructing narratives about engineering quality, technical environment, and innovation -- dimensions that are critical at the Evaluation stage when candidates compare companies directly.
+Companies that publish industry blogs, domain-specific deep dives, employee-authored thought leadership, or conference talk summaries provide AI with a category of information that few other platforms offer: direct evidence of professional culture and domain expertise. AI models draw from these sources when constructing narratives about work quality, professional environment, and innovation -- dimensions that are critical at the Evaluation stage when candidates compare companies directly. The applicable content varies by sector: engineering blogs for tech employers, clinical research summaries and case studies for healthcare, market commentary and thought leadership for financial services, brand and product storytelling for consumer goods.
 
-The engineering blog effect is particularly strong in competitive comparisons. When a candidate asks "[Company A] vs [Company B] for backend engineers," the company with a substantive engineering blog typically receives more specific, favorable technical culture descriptions than the company without one.
+The industry-blog effect is particularly strong in competitive comparisons. When a candidate asks "[Company A] vs [Company B] for senior product roles," the company with a substantive employee-authored content footprint typically receives more specific, favorable professional culture descriptions than the company without one.
 
 **Press Coverage**
 
@@ -108,17 +108,17 @@ The typical distribution:
 | **Levels.fyi** | Tech companies with 1,000+ employees usually have some data. Mid-market tech companies often have sparse or no data. Non-tech companies rarely appear. |
 | **Blind** | Presence exists by virtue of employees posting. Not manageable. |
 | **Built In** | Only ~30-40% of mid-market tech companies have complete profiles. |
-| **Engineering blog** | Fewer than 25% of companies publish engineering content regularly. |
+| **Industry blog / employee-authored content** | Fewer than 25% of companies publish substantive employee-authored content regularly. |
 | **Press coverage** | Varies enormously. Many mid-market companies have minimal recent coverage. |
 | **Comparably** | Low adoption. Most mid-market companies have no profile. |
 | **Reddit/HN** | Passive -- companies cannot create presence, only respond to existing discussion. |
 | **Crunchbase** | Presence exists for most venture-backed companies. Thin for others. |
 
-The result: AI constructs employer narratives from whatever it can find. For a company with presence only on Glassdoor and LinkedIn, the narrative is dominated by Glassdoor review sentiment and basic company facts. It lacks the compensation depth that Levels.fyi provides, the culture specificity that Built In provides, the technical credibility that engineering blogs provide, and the contextual depth that press coverage provides.
+The result: AI constructs employer narratives from whatever it can find. For a company with presence only on Glassdoor and LinkedIn, the narrative is dominated by Glassdoor review sentiment and basic company facts. It lacks the compensation depth that third-party compensation databases provide, the culture specificity that vertical employer profiles provide, the domain credibility that industry blogs provide, and the contextual depth that press coverage provides.
 
 A competitor with broad citation ecosystem presence receives a richer, more specific, more favorable narrative -- not because they are a better employer, but because AI has more material to work with.
 
-In practical terms: the competitor gets named in the Discovery shortlist you are missing from. Gets the specific compensation framing in head-to-head comparisons. Gets the "known for strong engineering culture" line when candidates compare you. You get "a growing company in the space." The candidate moves on.
+In practical terms: the competitor gets named in the Discovery shortlist you are missing from. Gets the specific compensation framing in head-to-head comparisons. Gets the "known for strong professional culture" line when candidates compare you. You get "a growing company in the space." The candidate moves on.
 
 ## Why This Is Different from Having a "Good Glassdoor Score"
 
@@ -129,7 +129,7 @@ For traditional candidate research, that may have been approximately true. Candi
 For AI-mediated candidate research, Glassdoor is one input among many. The hierarchy matters:
 
 - A strong Glassdoor score helps at the **Consideration** stage -- AI references it when describing your company.
-- But it does not help at the **Discovery** stage if you are absent from the platforms AI uses to generate industry shortlists (Built In, Levels.fyi, press coverage, engineering content).
+- But it does not help at the **Discovery** stage if you are absent from the platforms AI uses to generate industry shortlists (vertical employer profiles, third-party compensation databases, press coverage, employee-authored industry content).
 - And it does not help at the **Evaluation** stage if your competitor has more specific, structured data for AI to reference in head-to-head comparisons.
 
 Glassdoor is necessary but not sufficient. It is one layer of the citation ecosystem, not the whole system.
@@ -145,13 +145,13 @@ Different platforms carry different weight at different stages of the [candidate
 | **Levels.fyi** | Low | Moderate | High | Low |
 | **Blind** | Low | High | Moderate | Low |
 | **Built In** | High | Moderate | Low | Low |
-| **Engineering blogs** | Moderate | Moderate | High | Low |
+| **Industry blogs / employee content** | Moderate | Moderate | High | Low |
 | **Press coverage** | High | Moderate | Moderate | Low |
 | **Comparably** | Low | Moderate | Low | Low |
 | **Reddit** | Low | Moderate | Low | Low |
 | **Crunchbase** | Low | Low | Low | Low |
 
-This stage-level mapping is actionable because it tells you where to invest based on where your visibility gaps are. A company with a Discovery gap should prioritize Built In and press coverage. A company losing Evaluation comparisons should prioritize Levels.fyi data and engineering content. A company with a thin Consideration narrative should invest in Glassdoor, Blind (via genuine employee experience improvement), and Comparably.
+This stage-level mapping is actionable because it tells you where to invest based on where your visibility gaps are. A company with a Discovery gap should prioritize vertical employer profiles and press coverage. A company losing Evaluation comparisons should prioritize third-party compensation data and employee-authored industry content. A company with a thin Consideration narrative should invest in Glassdoor, professional community platforms (via genuine employee experience improvement), and Comparably.
 
 ## Citation Gaps: The Highest-Priority Finding in Any Assessment
 
@@ -163,9 +163,9 @@ Examples of citation gaps from assessments:
 
 **Culture citation gap.** AI cites a competitor's Built In profile when describing their culture ("named a Best Place to Work, known for flexible remote policies and strong internal mobility programs"). AI describes the assessed company's culture using only Glassdoor review themes. The competitor's narrative is richer and more specific.
 
-**Technical culture citation gap.** AI cites a competitor's engineering blog when describing their technical environment ("publishes regularly about their distributed systems architecture, active in open-source communities"). AI has no comparable content for the assessed company and defaults to industry-generic language.
+**Domain expertise citation gap.** AI cites a competitor's employee-authored content when describing their professional environment ("publishes regularly about their domain, active in industry communities"). AI has no comparable content for the assessed company and defaults to industry-generic language.
 
-Each of these citation gaps is fixable with specific platform actions. The remediation is not abstract "employer brand improvement." It is: create a Levels.fyi profile, complete a Built In company page, or begin publishing engineering content. The citation ecosystem is finite. The gaps are identifiable. The actions are concrete.
+Each of these citation gaps is fixable with specific platform actions. The remediation is not abstract "employer brand improvement." It is: create a third-party compensation profile, complete a vertical employer profile page, or begin publishing employee-authored industry content. The citation ecosystem is finite. The gaps are identifiable. The actions are concrete.
 
 ## What This Means for Employer Brand Strategy
 
@@ -192,7 +192,7 @@ Before you read further, do this. Open the table below, put your company name ac
 | Levels.fyi | | | | |
 | Built In | | | | |
 | Comparably | | | | |
-| Engineering blog | | | | |
+| Industry blog / employee content | | | | |
 | Press coverage (last 12 months) | | | | |
 
 Every blank cell in this table is a potential citation gap. Every "No" is an opportunity for improvement that has a direct, measurable effect on how AI describes your company to candidates.

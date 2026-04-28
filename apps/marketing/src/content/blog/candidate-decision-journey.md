@@ -21,15 +21,15 @@ This framework is not theoretical. It is derived from analysis of real candidate
 **What they ask AI:**
 
 - "Best companies to work for in healthcare IT"
-- "Top fintech startups hiring data engineers"
-- "Companies with strong remote engineering culture"
+- "Top consumer goods employers in the Midwest"
+- "Companies with strong remote-first culture"
 - "Best employers for product managers in New York"
 
 **What AI does:** Generates a shortlist. Typically 5-12 companies, named specifically, often with a one-sentence description of each. The list is drawn from the AI model's synthesis of review sites, company profiles, press coverage, salary databases, and technical content.
 
-**What matters at this stage:** Being named at all. Discovery is binary -- you are on the list, or you are not. There is no partial credit. If AI generates a list of "top fintech companies for engineers" and you are not on it, every candidate who asked that question will never ask about you by name.
+**What matters at this stage:** Being named at all. Discovery is binary -- you are on the list, or you are not. There is no partial credit. If AI generates a list of "top employers for senior product managers" and you are not on it, every candidate who asked that question will never ask about you by name.
 
-**Example from a real scan:** When asked "best fintech companies for backend engineers," one AI model named 8 companies. Two were household names (Stripe, Plaid). Three were well-known mid-market players. Three were companies with strong engineering blog presence and active profiles on Built In and Levels.fyi. A competitor in the same market, with 3,000 employees and competitive compensation, was not named -- because it had no engineering blog, no Built In profile, and minimal Levels.fyi data. That company was invisible at Discovery for every AI-researching candidate who asked this type of question.
+**Example from a real scan:** When asked "best companies for senior product managers in B2B SaaS," one AI model named 8 companies. Two were household names. Three were well-known mid-market players. Three were companies with strong industry blog presence and active profiles on Built In, Comparably, and Glassdoor. A competitor in the same market, with 3,000 employees and competitive compensation, was not named -- because it had no industry content, no vertical job-board profile, and minimal third-party compensation data. That company was invisible at Discovery for every AI-researching candidate who asked this type of question.
 
 **The cost of a Discovery gap:** It is total. A candidate who does not discover you at Stage 1 will never reach Stage 2, 3, or 4. There is no downstream recovery. Discovery visibility is the single most important stage for pipeline volume.
 
@@ -41,13 +41,13 @@ This framework is not theoretical. It is derived from analysis of real candidate
 
 - "What is it like to work at [Company]?"
 - "What does [Company] pay for senior product managers?"
-- "[Company] engineering culture"
+- "[Company] leadership style"
 - "[Company] work-life balance"
 - "Is [Company] a good place to work?"
 
 **What AI does:** Constructs a narrative. This is not a list -- it is a synthesized description of your company as an employer, drawn from every source the AI can access. The response typically covers culture, compensation, growth opportunities, leadership reputation, and notable strengths or weaknesses.
 
-**What matters at this stage:** Accuracy, completeness, and favorability. The AI narrative becomes the candidate's mental model of your company. If AI describes your culture based primarily on three-year-old Blind posts and omits your recent engineering investments, that stale narrative is what the candidate carries into Stage 3.
+**What matters at this stage:** Accuracy, completeness, and favorability. The AI narrative becomes the candidate's mental model of your company. If AI describes your culture based primarily on three-year-old community-platform posts and omits your recent culture investments, that stale narrative is what the candidate carries into Stage 3.
 
 **Common failure modes at Consideration:**
 
@@ -73,9 +73,9 @@ This framework is not theoretical. It is derived from analysis of real candidate
 
 **What AI does:** Provides a structured comparison. AI typically presents each company's strengths and weaknesses side by side, then offers a recommendation or framing ("Company A is better for X, Company B is better for Y"). This is the stage where visibility displacement has the most direct impact -- if AI frames your competitor more favorably in a head-to-head comparison, the candidate receives a clear signal to choose the other option.
 
-**What matters at this stage:** Competitive positioning. This is not about whether AI mentions you -- at Stage 3, the candidate already knows your name. It is about how AI frames you relative to a specific alternative. The sources AI draws from for comparison queries tend to be more granular: salary comparison data from Levels.fyi, engineering culture signals from tech blogs and conference talks, growth trajectory indicators from press coverage and funding news.
+**What matters at this stage:** Competitive positioning. This is not about whether AI mentions you -- at Stage 3, the candidate already knows your name. It is about how AI frames you relative to a specific alternative. The sources AI draws from for comparison queries tend to be more granular: salary comparison data from third-party compensation databases, culture signals from industry blogs and conference talks, growth trajectory indicators from press coverage and funding news.
 
-**Visibility displacement at Evaluation:** If AI consistently positions your competitor as the stronger option across key dimensions (compensation, engineering quality, career growth), candidates receive a synthesized "recommendation" to choose the competitor. This is not a review site rating -- it is a narrative that integrates multiple dimensions into a single recommendation. It carries more persuasive weight than any individual data source because it appears comprehensive and objective.
+**Visibility displacement at Evaluation:** If AI consistently positions your competitor as the stronger option across key dimensions (compensation, work quality, career growth), candidates receive a synthesized "recommendation" to choose the competitor. This is not a review site rating -- it is a narrative that integrates multiple dimensions into a single recommendation. It carries more persuasive weight than any individual data source because it appears comprehensive and objective.
 
 **The cost of an Evaluation gap:** You lose candidates who were actively considering you. These are high-intent candidates -- they were on the verge of applying. Losing them at Stage 3 is more expensive per candidate than losing them at Stage 1, because you have already "won" their attention through Discovery and Consideration.
 
@@ -130,7 +130,7 @@ Based on assessments across multiple industries, the most common breakdown patte
 
 2. **Incomplete narrative at Consideration.** AI has enough information to name the company, but not enough to construct a compelling description. The narrative is thin, generic, or based on a narrow set of sources (typically just Glassdoor reviews).
 
-3. **Losing competitive comparisons at Evaluation.** Competitors with broader citation ecosystem presence -- engineering blogs, Levels.fyi profiles, Built In presence, press coverage -- receive more favorable framing in head-to-head comparisons.
+3. **Losing competitive comparisons at Evaluation.** Competitors with broader citation ecosystem presence -- industry blogs, third-party compensation data, vertical employer profiles, press coverage -- receive more favorable framing in head-to-head comparisons.
 
 This pattern -- present but weak at Consideration, losing at Evaluation, and invisible for Discovery -- is the most common finding in AI employer visibility assessments. It suggests that most companies have enough presence to be known but not enough to be chosen.
 
@@ -156,7 +156,7 @@ The candidate decision journey is not a marketing model. It is a diagnostic tool
 
 **What should we fix first?** The framework provides a natural prioritization. Discovery gaps are the most damaging (total loss of unknown candidates). Evaluation gaps are the most commercially painful (losing candidates who were ready to choose you). Consideration gaps are the most common (incomplete narratives due to thin citation ecosystem presence).
 
-For each gap, the remediation maps to specific platforms and content types -- not to generic "employer brand investment." A Discovery gap requires presence on the platforms AI draws from when generating industry lists. An Evaluation gap requires structured comparison content (salary data, engineering culture signals, growth indicators) on the platforms AI uses for head-to-head queries.
+For each gap, the remediation maps to specific platforms and content types -- not to generic "employer brand investment." A Discovery gap requires presence on the platforms AI draws from when generating industry lists. An Evaluation gap requires structured comparison content (salary data, professional culture signals, growth indicators) on the platforms AI uses for head-to-head queries.
 
 This is measurable, stage-specific, and actionable. That is what makes it different from traditional employer brand metrics, which tend to measure sentiment without connecting it to candidate behavior at a specific decision point.
 

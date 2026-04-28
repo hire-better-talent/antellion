@@ -46,7 +46,7 @@ For each of the three industries we scanned, we identified companies of similar 
 
 ## Finding 2: The Same Companies Win Across Multiple Query Types
 
-A company that appears in "best companies for engineers in [industry]" also tends to appear in "top employers for data scientists in [industry]" and "companies with strong engineering culture." Visibility at the Discovery stage is not query-specific. It is structural.
+A company that appears in "best companies for senior product managers in [industry]" also tends to appear in "top employers for [adjacent function] in [industry]" and "companies with strong professional culture." Visibility at the Discovery stage is not query-specific. It is structural.
 
 This means that companies with strong AI employer visibility benefit from a compounding effect: each additional query type where they appear reinforces their presence in AI's synthesis. Companies that are invisible at Discovery tend to be invisible across all Discovery query variations -- not just one.
 
@@ -65,7 +65,7 @@ These proportions are approximate and vary by industry, but the distribution is 
 
 When a candidate asks "what is it like to work at [Company]?" AI constructs a narrative. The quality of that narrative varies enormously -- and it depends almost entirely on what information AI can find across the citation ecosystem.
 
-**Companies with rich citation ecosystem presence** receive detailed, multi-dimensional narratives covering culture, compensation, career growth, technical environment, and leadership. The response feels specific and informative. AI cites or draws from multiple platforms: Glassdoor reviews, Levels.fyi compensation data, engineering blog posts, press coverage, and Built In profiles.
+**Companies with rich citation ecosystem presence** receive detailed, multi-dimensional narratives covering culture, compensation, career growth, professional environment, and leadership. The response feels specific and informative. AI cites or draws from multiple platforms: Glassdoor reviews, third-party compensation data, industry blog posts, press coverage, and vertical employer profiles.
 
 **Companies with thin citation ecosystem presence** receive generic, surface-level descriptions. AI defaults to whatever it can find -- often a single Glassdoor rating and a vague description of the industry vertical. The response feels like a Wikipedia stub, not a compelling employer profile.
 
@@ -73,7 +73,7 @@ Here is a representative contrast:
 
 **Company with strong citation ecosystem presence:**
 
-AI describes the culture in specific terms ("engineering-driven, with a strong emphasis on internal mobility"), references compensation ranges ("competitive with FAANG for senior roles, with significant equity components"), mentions specific programs or initiatives ("known for their internal tech conference and open-source contributions"), and addresses work-life balance with nuance ("demanding during release cycles, but flexible otherwise").
+AI describes the culture in specific terms ("performance-driven, with a strong emphasis on internal mobility"), references compensation ranges ("top quartile for senior roles, with significant variable pay"), mentions specific programs or initiatives ("known for their internal industry conference and external thought leadership"), and addresses work-life balance with nuance ("demanding during peak periods, but flexible otherwise").
 
 **Company with weak citation ecosystem presence:**
 
@@ -83,11 +83,11 @@ The gap between these two narratives is the gap between a candidate who adds you
 
 ## Finding 4: Evaluation-Stage Responses Have Clear Winners and Losers
 
-When candidates ask AI to compare two companies directly -- "[Company A] vs [Company B] for engineers" -- AI produces structured comparisons with explicit positioning. These are not neutral. AI typically identifies one company as stronger on specific dimensions (compensation, culture, technical challenge, career growth) and often provides an overall recommendation.
+When candidates ask AI to compare two companies directly -- "[Company A] vs [Company B] for senior product managers" -- AI produces structured comparisons with explicit positioning. These are not neutral. AI typically identifies one company as stronger on specific dimensions (compensation, culture, work quality, career growth) and often provides an overall recommendation.
 
-The company that "wins" these comparisons is not always the larger or better-known one. It is the one with more structured, recent, and specific information across the citation ecosystem. In our scans, we observed several cases where a mid-market company with strong Built In profiles, active engineering blog posts, and current Levels.fyi data was positioned more favorably than a larger competitor with higher brand recognition but thinner platform presence.
+The company that "wins" these comparisons is not always the larger or better-known one. It is the one with more structured, recent, and specific information across the citation ecosystem. In our scans, we observed several cases where a mid-market company with strong vertical employer profiles, active industry blog posts, and current third-party compensation data was positioned more favorably than a larger competitor with higher brand recognition but thinner platform presence.
 
-**Key pattern: AI weighs specificity over reputation.** A company that has specific, cited data points on compensation, culture, and technical environment will be described more favorably than a company with general brand awareness but no structured data for AI to reference.
+**Key pattern: AI weighs specificity over reputation.** A company that has specific, cited data points on compensation, culture, and professional environment will be described more favorably than a company with general brand awareness but no structured data for AI to reference.
 
 This is the pattern that should concern talent leaders most: you can lose a head-to-head AI comparison to a smaller competitor because they have better citation ecosystem coverage, not because they are a better place to work.
 
@@ -104,7 +104,7 @@ The platforms that appear most frequently in AI employer responses:
 | **Levels.fyi** | Compensation data, particularly for tech roles | High for tech-industry queries; lower for non-tech |
 | **Blind** | Unfiltered employee sentiment, culture signals | Moderate-high for tech; lower for non-tech industries |
 | **Built In** | Company profiles, culture descriptions, benefits | Moderate -- influential for Discovery and Consideration |
-| **Company engineering/tech blogs** | Technical culture signals, innovation indicators | Moderate -- especially for Evaluation-stage queries |
+| **Industry blogs / employee-authored content** | Professional culture signals, domain expertise indicators | Moderate -- especially for Evaluation-stage queries |
 | **Press coverage** | Growth trajectory, leadership, notable events | Moderate -- varies significantly by company |
 | **Comparably** | Culture ratings, CEO approval, diversity metrics | Low-moderate |
 | **Reddit** | Unfiltered discussion, especially r/cscareerquestions | Low-moderate, but can dominate for specific companies |
@@ -118,9 +118,9 @@ We explore this in depth in a forthcoming piece on [the citation ecosystem](/blo
 
 The size of visibility gaps varies by industry:
 
-**Enterprise SaaS** showed the most competitive Discovery landscape. The top 5-6 companies dominated AI responses, and mid-market SaaS companies struggled to appear in Discovery queries unless they had unusually strong engineering blog presence or Built In profiles.
+**Enterprise SaaS** showed the most competitive Discovery landscape. The top 5-6 companies dominated AI responses, and mid-market SaaS companies struggled to appear in Discovery queries unless they had unusually strong industry blog presence or vertical employer profiles.
 
-**Fintech** showed the widest variance. Household names (Stripe, Plaid, Square) appeared in virtually every query, but the next tier of fintech employers -- companies with 1,000-5,000 employees -- showed a sharp divide between visible and invisible. The dividing line consistently tracked to Levels.fyi presence and engineering content.
+**Fintech** showed the widest variance. Household names (Stripe, Plaid, Square) appeared in virtually every query, but the next tier of fintech employers -- companies with 1,000-5,000 employees -- showed a sharp divide between visible and invisible. The dividing line consistently tracked to third-party compensation data presence and employee-authored industry content.
 
 **Healthcare technology** showed the most opportunity for mid-market companies. The citation ecosystem for healthcare IT employers is thinner overall, meaning that companies with even moderate platform presence could achieve strong Discovery visibility. The barrier to being named is lower because fewer companies have built structured AI-readable profiles.
 

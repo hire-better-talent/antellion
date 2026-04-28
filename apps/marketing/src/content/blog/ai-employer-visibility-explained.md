@@ -18,7 +18,7 @@ Three shifts have converged to make this an urgent priority for talent leaders:
 
 **Candidates are using AI as their primary research tool.** A 2025 survey by Tidio found that 45% of job seekers already use AI tools during their job search. Among software engineers and knowledge workers under 35, that number is higher. Candidates are not just using AI to polish resumes. They are asking it fundamental questions: Where should I work? What is it like to be an engineer at this company? How does Company A compare to Company B for data scientists?
 
-**AI does not rank pages. It synthesizes answers.** When a candidate searches Google, they see a list of links. They click through. They form impressions across multiple sources. When a candidate asks ChatGPT the same question, they receive a single synthesized answer -- a narrative about your company drawn from review sites, salary databases, press coverage, engineering blogs, and dozens of other sources. There is no "page 1" to optimize for. There is one answer, and it either includes your company or it does not.
+**AI does not rank pages. It synthesizes answers.** When a candidate searches Google, they see a list of links. They click through. They form impressions across multiple sources. When a candidate asks ChatGPT the same question, they receive a single synthesized answer -- a narrative about your company drawn from review sites, salary databases, press coverage, industry blogs, and dozens of other sources. There is no "page 1" to optimize for. There is one answer, and it either includes your company or it does not.
 
 **Existing employer brand tools do not measure this.** Glassdoor tells you your review score. LinkedIn tells you your follower count. Your ATS tells you application volume. None of these tools tell you what happens when a candidate asks AI "should I work at [your company]?" -- and none of them can tell you why AI recommended your competitor instead of you.
 
@@ -28,7 +28,7 @@ Traditional employer branding focuses on what a company says about itself: the c
 
 AI employer visibility is about what AI says about you -- whether you wrote it or not.
 
-The distinction matters because AI does not read your careers page and repeat it. AI synthesizes information from the entire citation ecosystem: Glassdoor, Levels.fyi, Blind, Built In, Comparably, LinkedIn, company engineering blogs, press coverage, Reddit, and more. The narrative AI constructs may bear little resemblance to the narrative your employer brand team crafted.
+The distinction matters because AI does not read your careers page and repeat it. AI synthesizes information from the entire citation ecosystem: Glassdoor, third-party compensation databases (Levels.fyi for tech, Payscale for cross-sector), professional community platforms (Blind, Fishbowl, sector-specific forums), vertical employer profile sites (Built In, Comparably, sector equivalents), LinkedIn, employee-authored industry blogs, press coverage, Reddit, and more. The narrative AI constructs may bear little resemblance to the narrative your employer brand team crafted.
 
 A company can spend $300,000 per year on employer brand development and still be invisible in AI. A strong EVP on your careers page does not help if AI is pulling its description of your company from Blind threads and outdated press coverage.
 
@@ -64,8 +64,8 @@ Candidates do not ask AI a single question. They move through a decision journey
 The candidate is exploring options. They have not decided where to apply. They ask broad questions:
 
 - "Best companies to work for in fintech"
-- "Top employers for data scientists in Austin"
-- "Companies with strong engineering culture"
+- "Top consumer goods employers in the Midwest"
+- "Companies with strong product culture"
 
 At Discovery, AI generates a shortlist. If your company is not on it, the candidate will never ask about you by name. Discovery visibility is the top of the funnel. A company that is invisible at Discovery loses 100% of AI-researching candidates before they even know it exists.
 
@@ -124,11 +124,11 @@ For every query where your competitor is mentioned and you are not, that is a di
 AI models draw from a specific set of platforms when constructing employer-related answers. The citation ecosystem for employer queries typically includes:
 
 - **Review platforms:** Glassdoor, Comparably, Blind
-- **Salary and compensation data:** Levels.fyi, Glassdoor, Payscale
-- **Company profiles:** Built In, LinkedIn, Crunchbase
-- **Technical content:** Company engineering blogs, GitHub presence, conference talks
-- **Press and media:** TechCrunch, industry publications, local business press
-- **Community platforms:** Reddit, Blind, Hacker News
+- **Salary and compensation data:** Levels.fyi, Glassdoor, Payscale, sector-specific salary surveys
+- **Company profiles:** Built In, LinkedIn, Crunchbase, Comparably, sector-specific employer directories
+- **Industry content:** Employee-authored blogs, conference talks, podcast appearances, GitHub for technical roles
+- **Press and media:** Industry publications, trade press, local business press
+- **Community platforms:** Reddit, Blind, Fishbowl, Hacker News, sector-specific forums
 
 A citation gap exists when AI cites a platform when describing your competitors but you have no meaningful presence on that platform. Citation gaps are the highest-priority remediation targets because they represent sources where competitors are being described and you are not.
 

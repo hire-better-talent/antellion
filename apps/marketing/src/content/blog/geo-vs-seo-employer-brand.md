@@ -59,7 +59,7 @@ These signals are measurable, well-documented, and supported by an entire indust
 
 GEO for employer brand operates on a different set of signals entirely. AI does not rank pages. It synthesizes information from across the [citation ecosystem](/blog/citation-ecosystem-employer-recommendations). The signals that determine whether AI includes your company in its answer are:
 
-- **Citation ecosystem breadth:** How many platforms in the citation ecosystem have meaningful information about your company as an employer (Glassdoor, Levels.fyi, Blind, Built In, Comparably, engineering blogs, press coverage, LinkedIn)
+- **Citation ecosystem breadth:** How many platforms in the citation ecosystem have meaningful information about your company as an employer (Glassdoor, third-party compensation databases, professional community platforms, vertical employer profiles like Built In or Comparably, industry blogs, press coverage, LinkedIn)
 - **Citation frequency:** How often your company is referenced across the platforms AI draws from
 - **Narrative consistency:** Whether the information about your company is consistent across platforms, or whether AI encounters conflicting signals
 - **Information specificity:** Whether platforms contain specific, structured data (compensation ranges, culture descriptions, team details) or generic information
