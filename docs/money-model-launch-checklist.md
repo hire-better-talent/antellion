@@ -18,7 +18,7 @@
 - **Product name:** AI Visibility Diagnostic
 - **Statement descriptor (22 char max):** `ANTELLION DIAGNOSTIC`
 - **Description (for invoice + quote):**
-  > 10-business-day fixed-fee AI employer visibility audit. 40 candidate-intent queries across ChatGPT, Claude, Gemini, and Perplexity; 3 candidate personas scoped to your job category; 3 named competitors. Deliverable: comprehensive Diagnostic Report with at least 10 material findings (each with a named issue, data evidence, and actionable category), executive Findings Brief suitable for CEO or board circulation, 45-minute analyst readout call, and interactive HTML report. Full refund if fewer than 10 material findings. 100% of fee credits to Baseline Audit or Phase 2 within 60 days.
+  > 10-business-day fixed-fee AI employer visibility audit. 40 candidate-intent queries across ChatGPT, Claude, Gemini, and Perplexity; 3 personas; 3 named competitors. Deliverables: Diagnostic Report with 10+ material findings (each with named issue, evidence, and action), Findings Brief, 45-min analyst readout, and interactive HTML report. Full refund if fewer than 10 findings. 100% of fee credits toward Baseline Audit or Phase 2 within 60 days.
 - **Price:** $4,900 USD, one-time
 - **Price lookup key / SKU:** `ant-diagnostic-4900`
 - **Tax behavior:** Exclusive (services are not taxable in most states; buyer handles their own tax)
@@ -26,10 +26,10 @@
 
 ### 1b. Baseline + Action Brief — CREATE NOW
 
-- **Product name:** Baseline + Action Brief
+- **Product name:** Baseline Audit + Action Brief
 - **Statement descriptor:** `ANTELLION BASELINE+`
 - **Description:**
-  > Phase 1 Baseline Audit plus a prioritized remediation brief for one candidate journey stage selected by the customer after Baseline findings. The brief includes at least 8 platform-specific recommendations (each with named platform, content type, and owner role), a 90-day execution sequence with at least 6 scheduled milestones, and a measurement plan for the next quarter. 3 weeks delivery. 100% of fee credits to any Phase 2 engagement (Focused, Strategic, Enterprise) within 60 days.
+  > Phase 1 Baseline Audit plus a prioritized remediation brief for one candidate journey stage you select after Baseline findings. Brief includes 8+ platform-specific recommendations (each with named platform, content type, and owner role), a 90-day execution sequence with 6+ scheduled milestones, and a next-quarter measurement plan. 3-week delivery. 100% of fee credits toward any Phase 2 engagement (Focused, Strategic, or Enterprise) within 60 days.
 - **Price:** $24,000 USD, one-time
 - **Price lookup key / SKU:** `ant-baseline-action-brief-24000`
 - **Billing:** 50/50 split, Net 15 deposit + Net 30 balance (use Method A from stripe-quote-guide.md — single line item, manual second invoice)
