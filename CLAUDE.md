@@ -78,14 +78,42 @@ Build Antellion, an enterprise AI hiring visibility platform for analyzing how c
 
 Use specialized agents when appropriate:
 
+- coo → operating system owner, workflow routing, checklist enforcement, manual-to-agent process design
 - architect → system design, schema, boundaries, tradeoffs
 - backend → data logic, workflows, server actions, jobs
 - frontend → UI, dashboard flows, report presentation
 - quality → hardening, regression detection, test gaps
 - reportpm → report clarity, executive usefulness, recommendations
 - growth → positioning, demo realism, messaging
+- query-ops → query generation, review, pruning, clustering, and scan input optimization
 
 Prefer delegating to the correct agent rather than solving everything in a single pass.
+
+### Operating model
+
+- `coo` is the default orchestrator for recurring business operations. Use it when the task is ambiguous, cross-functional, or needs a repeatable operating procedure rather than a one-off implementation.
+- `architect` is the technical counterweight to `coo`. Use it whenever workflow changes imply schema changes, package boundary decisions, job orchestration changes, or long-term maintenance risk.
+- `query-ops` owns the quality of scan inputs. It should standardize how query sets are generated, reviewed, balanced, and approved before scan execution.
+- `reportpm`, `growth`, and `quality` remain the specialist operators for client-facing report quality, go-to-market/demo realism, and hardening/review.
+- `backend` and `frontend` are execution agents. They implement approved changes rather than defining the operating system on their own.
+
+### Workflow standard
+
+For any manual process that should become agent-run:
+
+1. Define the trigger.
+2. Define required inputs and source-of-truth files.
+3. Define the operator checks and quality gates.
+4. Define the output artifact or decision.
+5. Define the escalation path to `architect` or the founder.
+
+Default high-value workflows to operationalize:
+
+- query generation, review, and optimization before scans
+- scan readiness review before expensive or client-facing runs
+- report QA before delivery or export
+- demo account refresh and realism checks
+- remediation content backlog generation after reports
 
 ---
 

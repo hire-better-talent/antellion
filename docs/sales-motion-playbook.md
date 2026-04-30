@@ -42,7 +42,7 @@ A pivot is a 10-15 second moment on a call where the conversation transitions fr
 **Alternates (when the primary does not fit).**
 
 *When the buyer is senior/skeptical and wants to know what is different from the Snapshot:*
-> "The Snapshot is Discovery-heavy and deliberately light. The Diagnostic is scoped around the personas you actually recruit — so instead of a generic candidate voice, it is a Senior ML Engineer, a Staff Infra Engineer, and a VP Eng candidate asking the questions your candidates are actually typing. That is where the useful findings live."
+> "The Snapshot is Discovery-heavy and deliberately light. The Diagnostic is scoped around the personas you actually recruit — so instead of a generic candidate voice, it is a mid-career individual contributor, a senior people-manager, and an executive-level candidate in your priority job family asking the questions your candidates are actually typing. We parameterize each persona to the role family you nominate at scoping. That is where the useful findings live."
 
 *When the buyer asks "why not go straight to Baseline?":*
 > "You can — and some people do. The Diagnostic exists because most CHROs want to see what the full-persona, full-journey output looks like before they authorize a two-week engagement. The $4,900 credits, so you are not paying twice if you move forward."
@@ -210,7 +210,7 @@ For prospects who do not convert at the first pivot. Pulled from *$100M Leads* B
 
 ### After Snapshot delivered, no Diagnostic booked
 
-- **Day 3:** Reply-able email. One paragraph. Reference one specific finding from their Snapshot ("the gap on Glassdoor for ML roles specifically"). No ask. Signal: "I noticed this, thought you should see it."
+- **Day 3:** Reply-able email. One paragraph. Reference one specific finding from their Snapshot ("the citation gap on Glassdoor for your store-leadership roles specifically," or "the Reddit silence on your nursing roster"). No ask. Signal: "I noticed this, thought you should see it."
 - **Day 7:** Share a related finding from a separate engagement (anonymized). "I saw a similar citation monoculture pattern on a customer in [adjacent industry] — they solved it by [specific action]. Happy to walk you through what they did."
 - **Day 14:** Offer the Diagnostic scoping call directly with a new hook — "I have time Thursday if the top-5 Discovery gaps are worth 30 minutes."
 - **Day 30:** Short check-in with a new piece of content — a blog post, a framework piece, a competitive observation. No calendar ask.
@@ -344,7 +344,7 @@ Enterprise buyers are quietly testing whether you are a vendor or a consultant. 
 2. **The buyer reveals budget authority directly.** "I can approve up to $100K without committee." "Our board approved $2M for talent transformation this year." This is a self-located buyer — they have already done the pivot work for you. Skip to the scoping question: "Given that authority, what's the scope you want to cover?"
 3. **The buyer asks a question your tier menu cannot answer.** "Can you do this in Japanese?" "Can you measure how AI describes our private equity ownership?" "Can you run this against an acquisition target?" These are custom-scope conversations. Stop presenting the menu and start asking what success looks like.
 4. **The buyer signals discomfort with pace.** "This feels fast." "I want to slow down." Drop the BAMFAM close and explicitly give them room. "Let's not book the next call today. Read the report, share it internally, and email me when you want to talk." Enterprise buyers reward this; it is the single most counterintuitive sales move and it works.
-5. **The buyer starts diagnosing their own problem out loud.** When a CHRO starts saying "we have a real issue with how we show up for mid-career engineers, and I think it traces back to our last leadership change" — stop talking. Let them keep going. Ask clarifying questions. The scope of the engagement is being drafted by the buyer in real time. Your job is to not interrupt it.
+5. **The buyer starts diagnosing their own problem out loud.** When a CHRO starts saying "we have a real issue with how we show up for mid-career branch managers, and I think it traces back to our last leadership change" — stop talking. Let them keep going. Ask clarifying questions. The scope of the engagement is being drafted by the buyer in real time. Your job is to not interrupt it.
 6. **The conversation turns to someone else's opinion.** "My CFO is going to want to see X." "My board will ask about Y." This is procurement thinking out loud. Pivot scripts are for the individual; now the conversation is about committee. Ask: "What would the CFO need to see to approve this?" and listen. The answer tells you what needs to be in the proposal.
 
 **The signal you are still on the right track:** the buyer is asking you questions. The signal you have drifted: you are asking the buyer questions and getting short answers.

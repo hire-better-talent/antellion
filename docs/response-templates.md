@@ -152,6 +152,53 @@ Jordan
 
 ---
 
+### 10. (reserved)
+
+---
+
+## Group E: Pricing-tier objection handlers
+
+### 11. "Is there something below Baseline?"
+
+Use when the prospect has been told about the $14K Baseline and asks if there is a smaller, cheaper, or lower-commitment paid option to start with. They are not pushing back on price — they are asking whether a foot-in-the-door tier exists.
+
+```
+{{firstName}} —
+
+Yes — the AI Visibility Diagnostic at $4,900.
+
+Scope: 40 candidate-intent queries across the four leading AI systems candidates use (ChatGPT, Claude, Gemini, Perplexity), three personas scoped to your priority role family, all four stages of the candidate journey — Discovery, Consideration, Evaluation, Commitment. Delivered in 10 business days as a written report with at least 10 named material findings, each backed by captured AI responses and citation evidence, plus a 45-minute analyst readout.
+
+Two terms worth flagging:
+
+1. Win Your Money Back. If the Diagnostic surfaces fewer than 10 material findings, full refund. The guarantee is tied to what we ship, not to what you do afterward.
+2. 100% rollover. The $4,900 credits in full toward a Baseline within 60 days, so the net cost of going deeper later is $9,100, not $14,000.
+
+It is the first paid step in the stack — designed to be authorized by a CHRO or VP TA without procurement. Reply with your domain and your priority role family and I will send the SOW.
+
+Jordan
+```
+
+### 12. Price pushback between Baseline and Phase 2
+
+Use when the prospect has completed (or scoped) the Baseline, has seen the Phase 2 menu (Focused $89K / Strategic $104K / Enterprise $124K+), and replies that the current quarter's budget cannot absorb $89K — but the methodology and findings are clearly valuable. This is a budget-cycle problem, not a methodology problem. Do not lead with this template; offer it only in response to that specific signal.
+
+```
+{{firstName}} —
+
+Heard. The methodology-versus-budget-cycle gap is a real one, and the current quarter not absorbing $89K is a fair constraint to name.
+
+There is a middle option built for exactly this: Baseline + Action Brief at $24K total — $10K incremental on top of the Baseline you have already scoped. The Action Brief is a deep dive into the single candidate journey stage your Baseline shows you are most exposed on (you select the stage after reviewing Baseline findings). Deliverable includes at least 8 platform-specific recommendations with named platform, content type, and owner role; at least 6 scheduled milestones; and a 90-day execution sequence designed to run alongside your existing employer brand and recruitment marketing work, not replace it.
+
+The rollover term is the part that matters here. The full $24K credits forward to Focused, Strategic, or Enterprise within 60 days of Action Brief delivery. So if Q+1 or Q+2 budget opens up, you are not paying twice — you are sequencing the same engagement across two budget cycles. Phase 2 is deferred, not declined.
+
+If that shape works, I can have a revised SOW over today.
+
+Jordan
+```
+
+---
+
 ## Signature (paste once into Instantly settings if not already)
 
 ```
@@ -175,3 +222,5 @@ antellion.com
 | "Who are you / why should I trust this" | 7 | < 2 hrs |
 | "Not my area — talk to [X]" | 8 | < 4 hrs |
 | "How much does this cost" | 9 | < 2 hrs |
+| "Is there something below Baseline?" | 11 | < 2 hrs |
+| "Phase 2 budget pushback (cycle, not methodology)" | 12 | < 4 hrs |
