@@ -283,7 +283,7 @@ Here is your AI Employer Visibility Snapshot for [Company]. Three highlights:
 
 Full details are in the attached snapshot.
 
-Happy to walk through the findings on a 20-minute call. If the gaps look material, the next analyst-delivered step is the $4,900 AI Visibility Diagnostic — full refund if it surfaces fewer than 10 material findings, and the fee credits toward a Baseline within 60 days. We cover the scope on the walkthrough.
+Happy to walk through the findings on a 20-minute call. If the gaps look material, the next analyst-delivered step is the $4,900 AI Visibility Diagnostic — 10 business days, full refund if it surfaces fewer than 10 material findings, and the fee credits toward a Baseline within 60 days. We cover the scope on the walkthrough.
 
 If the timing is not right, no follow-up needed.
 
@@ -291,7 +291,21 @@ If the timing is not right, no follow-up needed.
 
 ---
 
-### Day 3: Insight follow-up
+### Day 3: Diagnostic follow-up (replaces the prior Insight follow-up at launch volume)
+
+**Active email:** the Diagnostic-pitch email defined in `docs/email-campaign-v1.md` under "Post-Snapshot Diagnostic follow-up (Day 3 after Snapshot delivery)." That is the canonical Day 3 send. Subject: `The $4,900 next step after your {{company}} Snapshot`.
+
+**Why this replaces the prior Insight follow-up at launch:** the Insight email required a per-prospect data observation written by the operator. At launch volume (50-75 Snapshots/wk through May), per-email authoring does not scale and the Diagnostic-pitch email carries stronger Hormozi alignment (Win Your Money Back, named scope, $9,100 net rollover math, P-card authorization line) without operator overhead.
+
+**Reintroduce the Insight follow-up at Day 7 when:**
+- Active prospect volume drops below ~10/week, and
+- Per-prospect data customization is operationally feasible again.
+
+The Insight follow-up archived below is the version to reintroduce when those triggers are met.
+
+---
+
+**Archived — Insight follow-up (do not send during launch; reintroduce at Day 7 per trigger above):**
 
 **Subject:** One thing that stood out in your Snapshot
 
@@ -301,7 +315,7 @@ If the timing is not right, no follow-up needed.
 
 Looking back at the [Company] Snapshot, one finding worth flagging: [specific insight, e.g., "your sentiment was positive, but your mention rate is still in the moderate range — which usually means AI recognizes you favorably when it mentions you, but it is not mentioning you often enough for that to matter."]
 
-This is the kind of pattern the full Assessment breaks down by theme — which candidate questions you are winning and which ones you are not showing up in at all.
+This is the kind of pattern the Diagnostic breaks down by persona and stage — which candidate questions you are winning and which ones you are not showing up in at all.
 
 Would a 20-minute walkthrough of the findings be useful?
 

@@ -211,9 +211,7 @@ Two terms worth flagging:
 1. Win Your Money Back. If we surface fewer than 10 material findings, full refund. The guarantee is tied to what we ship, not to what you do afterward.
 2. 100% rollover. The $4,900 credits in full toward a Baseline within 60 days. Net cost of going deeper later is $9,100, not $14,000.
 
-It's authorizable on a P-card or simple PO -- designed not to require procurement.
-
-Reply with your priority role family and three competitors and I'll send the SOW.
+If you have the authority to take action on this directly, reply with your priority role family and three competitors, and I will send the SOW out today.
 
 Jordan
 ```
