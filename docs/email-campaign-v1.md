@@ -182,6 +182,70 @@ Jordan
 
 ---
 
+### Post-Snapshot Diagnostic follow-up (Day 3 after Snapshot delivery)
+
+**Purpose:** Convert a delivered Snapshot into a paid Diagnostic. Fires three business days after the Snapshot delivery email if no walkthrough has been booked. This is the explicit economic pitch — Snapshot already established credibility and surfaced the gap; this email names the next analyst-delivered step with full economic terms.
+
+**Sequence trigger:** Snapshot delivered + 3 business days elapsed + no walkthrough scheduled.
+
+**Subject line:** `The $4,900 next step after your {{company}} Snapshot`
+
+**Body:**
+
+```
+{{first_name}} --
+
+Following up on the Snapshot for {{company}}. The Snapshot covers Discovery -- the candidate-intent queries that surface in AI when someone first asks about the best companies to work for in your space. Roughly a quarter of the real picture.
+
+The next analyst-delivered step is the AI Visibility Diagnostic. The scope:
+
+- 40 candidate-intent queries (vs. the Snapshot's lighter-touch scan)
+- Four AI systems -- ChatGPT, Claude, Gemini, Perplexity
+- Three personas scoped to a role family you actually hire for -- early-career, mid-career, senior
+- All four stages of the candidate journey -- Discovery, Consideration, Evaluation, Commitment
+
+Delivery: 10 business days from kickoff. Output: written report with at least 10 material findings -- each with a specific named issue, captured AI-response evidence, and an actionable category -- plus a 45-minute analyst readout.
+
+Two terms worth flagging:
+
+1. Win Your Money Back. If we surface fewer than 10 material findings, full refund. The guarantee is tied to what we ship, not to what you do afterward.
+2. 100% rollover. The $4,900 credits in full toward a Baseline within 60 days. Net cost of going deeper later is $9,100, not $14,000.
+
+It's authorizable on a P-card or simple PO -- designed not to require procurement.
+
+Reply with your priority role family and three competitors and I'll send the SOW.
+
+Jordan
+```
+
+**Word count:** ~270
+
+**Why this works (Hormozi alignment):**
+- **Lead with value, not curiosity** -- the subject line states the offer and price plainly. No teasing.
+- **Dream Outcome, named** -- the four-stage candidate journey, three personas, four AI systems. Specifics, not abstractions.
+- **Perceived Likelihood, maxed** -- exact numbers (40 queries, 10 business days, 10 findings, $4,900, $9,100 net), captured-evidence requirement, named output formats.
+- **Time Delay, named** -- 10 business days from kickoff. Stated explicitly.
+- **Effort, minimized** -- "Reply with your priority role family and three competitors" is the entire CTA. No call required to start, no demo, no procurement.
+- **Risk reversal, explicit** -- Win Your Money Back. Tied to deliverable count, not to subjective satisfaction.
+- **Rollover math shown** -- $9,100 net frames the decision as "extra $4,200 to go three to four times deeper" rather than "another $14K."
+- **P-card/PO line** -- removes the procurement objection before it surfaces. Crucial at this price tier.
+
+**Personalization variables required:**
+- `{{first_name}}` -- Apollo / Instantly merge field
+- `{{company}}` -- Apollo / Instantly merge field
+
+No per-prospect data customization required. This email scales to launch-week volume (~50-75 Snapshots) without operator authoring overhead.
+
+**What NOT to add:**
+- Do not link to a Diagnostic landing page. The `/diagnostic` page is gated on first 1-2 deliveries (see `docs/project_diagnostic_page_decisions.md`). The CTA is reply-driven until then.
+- Do not add a Calendly link. Calendly is not stood up yet; reply-and-scope is the launch-volume motion.
+- Do not introduce Baseline pricing as the primary frame. The $4,900 P-card pitch is the whole point of the Diagnostic — anchoring against $14K Baseline reactivates procurement.
+- Do not offer to discount the $4,900. The refund guarantee is the risk reversal. Discounting signals lack of belief in the guarantee.
+
+**Sequencing question:** This email fires Day 3. The current sequence in `docs/snapshot-outreach-guide.md` also has a "Day 3 Insight follow-up" email (a data-led walkthrough request requiring per-prospect customization). Two Day 3 emails is too many. Recommended resolution: replace the existing Day 3 insight-follow-up with this Diagnostic-pitch email at launch volume; reintroduce a customized data-led follow-up at Day 7 once volume drops below 10 active prospects/week and per-email authoring is feasible. Founder to confirm.
+
+---
+
 ## 3. Subject Lines
 
 ### Email 1 Subject Lines (A/B Test)

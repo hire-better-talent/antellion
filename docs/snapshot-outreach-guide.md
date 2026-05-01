@@ -283,7 +283,9 @@ Here is your AI Employer Visibility Snapshot for [Company]. Three highlights:
 
 Full details are in the attached snapshot.
 
-Happy to walk through the findings if useful. If not, no follow-up needed.
+Happy to walk through the findings on a 20-minute call. If the gaps look material, the next analyst-delivered step is the $4,900 AI Visibility Diagnostic — full refund if it surfaces fewer than 10 material findings, and the fee credits toward a Baseline within 60 days. We cover the scope on the walkthrough.
+
+If the timing is not right, no follow-up needed.
 
 [Signature]
 
