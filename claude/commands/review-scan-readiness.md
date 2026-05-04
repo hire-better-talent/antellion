@@ -4,6 +4,9 @@ Route detailed review through the query-ops agent and use the quality agent if n
 
 Requirements:
 - inspect the intended scan inputs, latest query set, competitors, personas, and workflow status first
+- follow `docs/scan-readiness-sop.md` as the operating procedure
+- use `docs/scan-review-rubric.md` for scoring
+- format the decision with `docs/scan-decision-template.md`
 - verify the query set is fit to run before spending time or model budget
 - call out missing coverage, duplicate intent, weak prompts, and workflow blockers
 - return a clear decision: ready, ready with edits, or not ready

@@ -16,7 +16,13 @@ export default async function EditQueryClusterPage({ params }: Props) {
 
   const cluster = await prisma.queryCluster.findFirst({
     where: { id, client: { organizationId } },
-    select: { id: true, name: true, intent: true, client: { select: { name: true } } },
+    select: {
+      id: true,
+      name: true,
+      intent: true,
+      reviewNotes: true,
+      client: { select: { name: true } },
+    },
   });
 
   if (!cluster) notFound();
@@ -33,7 +39,11 @@ export default async function EditQueryClusterPage({ params }: Props) {
         <CardBody>
           <QueryClusterForm
             action={updateAction}
-            defaultValues={{ name: cluster.name, intent: cluster.intent }}
+            defaultValues={{
+              name: cluster.name,
+              intent: cluster.intent,
+              reviewNotes: cluster.reviewNotes,
+            }}
             cancelHref={`/queries/${id}`}
           />
         </CardBody>

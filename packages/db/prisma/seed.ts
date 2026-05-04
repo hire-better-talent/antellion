@@ -172,6 +172,9 @@ async function main() {
       roleProfileId: backendRole.id,
       name: "Engineering Culture & Reputation",
       intent: "Candidate evaluating engineering team quality and culture",
+      reviewStatus: "NEEDS_REVISION",
+      reviewNotes:
+        "Broad discovery prompts still over-index on ambient employer brand. Tighten before a report-bound rerun.",
       queries: {
         create: [
           { text: "best enterprise software companies for backend engineers in Austin", intent: "Geographic + role discovery" },
@@ -192,6 +195,9 @@ async function main() {
       roleProfileId: backendRole.id,
       name: "Compensation & Benefits",
       intent: "Candidate evaluating pay, equity, and total rewards",
+      reviewStatus: "NEEDS_REVISION",
+      reviewNotes:
+        "Strategically important gap area, but several prompts are still broad market lookups instead of Meridian-diagnostic comparisons.",
       queries: {
         create: [
           { text: "senior backend engineer salary enterprise SaaS Austin Texas", intent: "Compensation benchmarking" },
@@ -212,6 +218,11 @@ async function main() {
       roleProfileId: backendRole.id,
       name: "Hiring Process & Candidate Experience",
       intent: "Candidate evaluating the interview and hiring process",
+      reviewStatus: "APPROVED",
+      reviewNotes:
+        "Strong direct and comparative coverage. Good enough for current scan use.",
+      reviewedById: user.id,
+      reviewedAt: new Date("2026-05-03T14:00:00Z"),
       queries: {
         create: [
           { text: "what is the interview process like at Meridian Technologies", intent: "Direct process inquiry" },
@@ -232,6 +243,11 @@ async function main() {
       roleProfileId: backendRole.id,
       name: "Role Expectations & Impact",
       intent: "Candidate evaluating scope, autonomy, and impact of the role",
+      reviewStatus: "APPROVED",
+      reviewNotes:
+        "Strong technical and ownership-oriented prompts. Fit for Meridian’s positioning.",
+      reviewedById: user.id,
+      reviewedAt: new Date("2026-05-03T14:00:00Z"),
       queries: {
         create: [
           { text: "what do backend engineers work on at supply chain software companies", intent: "Scope evaluation" },
@@ -252,6 +268,9 @@ async function main() {
       roleProfileId: mlRole.id,
       name: "Culture & Work-Life Balance",
       intent: "Candidate evaluating workplace culture, DEI, and work-life balance",
+      reviewStatus: "NEEDS_REVISION",
+      reviewNotes:
+        "Important theme, but current prompts are too generic and competitor-biased for client-facing use.",
       queries: {
         create: [
           { text: "is Meridian Technologies a diverse workplace", intent: "DEI evaluation" },
@@ -272,6 +291,11 @@ async function main() {
       roleProfileId: mlRole.id,
       name: "Competitor Comparison",
       intent: "Candidate directly comparing employers",
+      reviewStatus: "APPROVED",
+      reviewNotes:
+        "Useful comparative framing with a few broad prompts still worth tightening later.",
+      reviewedById: user.id,
+      reviewedAt: new Date("2026-05-03T14:00:00Z"),
       queries: {
         create: [
           { text: "should I work at Meridian Technologies or Apex Cloud Systems", intent: "Head-to-head comparison" },

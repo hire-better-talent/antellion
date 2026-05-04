@@ -25,6 +25,8 @@ export default async function NewScanPage({ searchParams }: Props) {
         select: {
           id: true,
           name: true,
+          reviewStatus: true,
+          reviewedAt: true,
           createdAt: true,
           _count: { select: { queries: { where: { isActive: true } } } },
         },
@@ -74,12 +76,14 @@ export default async function NewScanPage({ searchParams }: Props) {
     return {
       ...c,
       defaultFocusArea,
-      queryClusters: c.queryClusters.map((qc) => ({
-        id: qc.id,
-        name: qc.name,
-        queryCount: qc._count.queries,
-        createdAt: qc.createdAt,
-        scanned: scannedClusterIds.has(qc.id),
+        queryClusters: c.queryClusters.map((qc) => ({
+          id: qc.id,
+          name: qc.name,
+          reviewStatus: qc.reviewStatus,
+          reviewedAt: qc.reviewedAt,
+          queryCount: qc._count.queries,
+          createdAt: qc.createdAt,
+          scanned: scannedClusterIds.has(qc.id),
       })),
     };
   });

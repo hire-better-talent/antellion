@@ -35,6 +35,16 @@ The first standardized workflows in this repo are:
 - demo-readiness refresh
 - remediation content backlog generation
 
+Repo-specific SOPs:
+
+- [Query Ops SOP](/Users/jordanellison/Projects/talentsignal/docs/query-ops-sop.md)
+- [Scan Readiness SOP](/Users/jordanellison/Projects/talentsignal/docs/scan-readiness-sop.md)
+
+Standard review assets:
+
+- [Scan Review Rubric](/Users/jordanellison/Projects/talentsignal/docs/scan-review-rubric.md)
+- [Scan Decision Template](/Users/jordanellison/Projects/talentsignal/docs/scan-decision-template.md)
+
 ## Suggested usage
 
 - Start with `coo` when the request is cross-functional or still ambiguous.

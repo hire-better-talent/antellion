@@ -39,6 +39,8 @@ interface ClusterOption {
   id: string;
   name: string;
   queryCount: number;
+  reviewStatus: "DRAFT" | "APPROVED" | "NEEDS_REVISION" | "STALE";
+  reviewedAt?: string | Date | null;
   createdAt?: string | Date;
   scanned?: boolean;
 }
@@ -223,16 +225,23 @@ export function CreateScanForm({
                   <label
                     key={cluster.id}
                     className={`flex items-center gap-3 rounded-md border px-4 py-3 hover:bg-gray-50 ${
-                      cluster.scanned
-                        ? "border-gray-200 bg-gray-50"
-                        : "border-brand-200 bg-brand-50/30"
+                      cluster.reviewStatus === "APPROVED"
+                        ? "border-green-200 bg-green-50/50"
+                        : cluster.reviewStatus === "NEEDS_REVISION" || cluster.reviewStatus === "STALE"
+                          ? "border-amber-200 bg-amber-50/50"
+                          : cluster.scanned
+                            ? "border-gray-200 bg-gray-50"
+                            : "border-brand-200 bg-brand-50/30"
                     }`}
                   >
                     <input
                       type="checkbox"
                       name="queryClusterIds"
                       value={cluster.id}
-                      defaultChecked={!cluster.scanned}
+                      defaultChecked={
+                        cluster.reviewStatus === "APPROVED"
+                        || (!cluster.scanned && cluster.reviewStatus === "DRAFT")
+                      }
                       className="h-4 w-4 rounded border-gray-300 text-brand-600 focus:ring-brand-500"
                     />
                     <div className="flex flex-1 items-center justify-between">
@@ -248,13 +257,22 @@ export function CreateScanForm({
                         {date && (
                           <span className="text-xs text-gray-400">{date}</span>
                         )}
-                        {cluster.scanned ? (
+                        <span
+                          className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${
+                            cluster.reviewStatus === "APPROVED"
+                              ? "bg-green-100 text-green-700"
+                              : cluster.reviewStatus === "NEEDS_REVISION"
+                                ? "bg-amber-100 text-amber-800"
+                                : cluster.reviewStatus === "STALE"
+                                  ? "bg-red-100 text-red-700"
+                                  : "bg-gray-100 text-gray-600"
+                          }`}
+                        >
+                          {cluster.reviewStatus.toLowerCase().replace(/_/g, " ")}
+                        </span>
+                        {cluster.scanned && (
                           <span className="inline-flex items-center rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-500">
                             scanned
-                          </span>
-                        ) : (
-                          <span className="inline-flex items-center rounded-full bg-brand-100 px-2 py-0.5 text-xs font-medium text-brand-700">
-                            new
                           </span>
                         )}
                       </div>
@@ -264,6 +282,9 @@ export function CreateScanForm({
               })}
             </div>
           )}
+          <p className="mt-2 text-xs text-gray-500">
+            Approved clusters are preselected. Draft, stale, or needs-revision clusters should be reviewed before client-facing scans.
+          </p>
           {fieldError(state, "queryClusterIds") && (
             <p className="mt-1 text-sm text-red-600">
               {fieldError(state, "queryClusterIds")}

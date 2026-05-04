@@ -13,6 +13,7 @@ interface QueryClusterFormProps {
   defaultValues: {
     name: string;
     intent?: string | null;
+    reviewNotes?: string | null;
   };
   cancelHref: string;
 }
@@ -48,6 +49,15 @@ export function QueryClusterForm({
         defaultValue={defaultValues.intent ?? undefined}
         rows={2}
         error={fieldError(state, "intent")}
+      />
+
+      <FormTextarea
+        label="Review notes"
+        name="reviewNotes"
+        placeholder="Optional notes about gaps, risks, or why this cluster is approved."
+        defaultValue={defaultValues.reviewNotes ?? undefined}
+        rows={3}
+        error={fieldError(state, "reviewNotes")}
       />
 
       <div className="flex items-center gap-3 border-t border-gray-200 pt-6">

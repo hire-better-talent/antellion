@@ -27,6 +27,24 @@ import {
 import { supplementalQueryPrompt } from "@antellion/prompts";
 import { generateStructuredJSON } from "@/lib/llm";
 
+async function markClusterStaleIfApproved(queryClusterId: string): Promise<void> {
+  const cluster = await prisma.queryCluster.findUnique({
+    where: { id: queryClusterId },
+    select: { reviewStatus: true },
+  });
+
+  if (cluster?.reviewStatus !== "APPROVED") return;
+
+  await prisma.queryCluster.update({
+    where: { id: queryClusterId },
+    data: {
+      reviewStatus: "STALE",
+      reviewedAt: null,
+      reviewedById: null,
+    },
+  });
+}
+
 // ─── Role variant helpers ────────────────────────────────────
 
 /**
@@ -137,6 +155,7 @@ export async function generateQueries(
           roleProfileId: roleProfile!.id,
           name: cluster.name,
           intent: cluster.intent,
+          reviewStatus: "DRAFT",
           queries: {
             create: cluster.queries.map((q) => ({
               text: q.text,
@@ -362,6 +381,7 @@ export async function generateSupplementalQueries(
       name: "AI-Generated — Strategic Depth",
       intent: "LLM-generated queries targeting gaps and competitive dynamics not covered by standard templates.",
       description: auditPayload,
+      reviewStatus: "DRAFT",
       // stage: null — this cluster spans all stages
       queries: {
         create: survivingSupplemental.map((q) => ({
@@ -391,6 +411,7 @@ export async function updateQueryCluster(
   const result = validate(UpdateQueryClusterSchema, {
     name: formData.get("name"),
     intent: optionalString(formData, "intent"),
+    reviewNotes: optionalString(formData, "reviewNotes"),
   });
 
   if (!result.success) return { errors: result.errors };
@@ -405,6 +426,30 @@ export async function updateQueryCluster(
     data: result.data,
   });
 
+  await markClusterStaleIfApproved(id);
+
+  redirect(`/queries/${id}`);
+}
+
+export async function setQueryClusterReviewStatus(
+  id: string,
+  reviewStatus: "APPROVED" | "NEEDS_REVISION" | "DRAFT",
+): Promise<void> {
+  const { organizationId, userId } = await getAuthContext();
+  await requireOrgQueryCluster(id, organizationId);
+
+  await prisma.queryCluster.update({
+    where: { id },
+    data: {
+      reviewStatus,
+      reviewedAt: reviewStatus === "DRAFT" ? null : new Date(),
+      reviewedById: reviewStatus === "DRAFT" ? null : userId,
+    },
+  });
+
+  revalidatePath(`/queries/${id}`);
+  revalidatePath("/queries");
+  revalidatePath("/scans/new");
   redirect(`/queries/${id}`);
 }
 
@@ -439,6 +484,8 @@ export async function addQuery(
 
   await prisma.query.create({ data: result.data });
 
+  await markClusterStaleIfApproved(result.data.queryClusterId);
+
   redirect(`/queries/${result.data.queryClusterId}`);
 }
 
@@ -465,6 +512,8 @@ export async function updateQuery(
     data: result.data,
   });
 
+  await markClusterStaleIfApproved(clusterId);
+
   redirect(`/queries/${clusterId}`);
 }
 
@@ -489,6 +538,8 @@ export async function toggleQueryActive(
     data: { isActive: !query.isActive },
   });
 
+  await markClusterStaleIfApproved(clusterId);
+
   revalidatePath(`/queries/${clusterId}`);
   redirect(`/queries/${clusterId}`);
 }
@@ -503,6 +554,7 @@ export async function deleteQuery(
   await requireOrgQuery(queryId, organizationId);
 
   await prisma.query.delete({ where: { id: queryId } });
+  await markClusterStaleIfApproved(clusterId);
   revalidatePath(`/queries/${clusterId}`);
   redirect(`/queries/${clusterId}`);
 }

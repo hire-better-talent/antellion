@@ -4,6 +4,7 @@ Then route execution to the query-ops agent.
 
 Requirements:
 - inspect the existing client, role, persona, competitor, and query-cluster context first
+- follow `docs/query-ops-sop.md` as the operating procedure
 - define the trigger, inputs, review checklist, approval gate, and output artifact
 - optimize for scan quality, comparability, and commercial relevance
 - separate approved queries from proposed additions, edits, and retirements

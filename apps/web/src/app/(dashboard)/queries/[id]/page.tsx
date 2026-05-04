@@ -6,6 +6,7 @@ import { Card, CardHeader, CardBody, Badge } from "@antellion/ui";
 import { DeleteButton } from "@/components/delete-button";
 import {
   deleteQueryCluster,
+  setQueryClusterReviewStatus,
   toggleQueryActive,
   deleteQuery,
 } from "@/app/(dashboard)/actions/queries";
@@ -21,9 +22,16 @@ export default async function QueryClusterDetailPage({ params }: Props) {
 
   const cluster = await prisma.queryCluster.findFirst({
     where: { id, client: { organizationId } },
-    include: {
+    select: {
+      id: true,
+      name: true,
+      intent: true,
+      reviewStatus: true,
+      reviewNotes: true,
+      reviewedAt: true,
       client: { select: { name: true } },
       roleProfile: { select: { title: true } },
+      reviewedBy: { select: { name: true, email: true } },
       queries: {
         orderBy: [{ isActive: "desc" }, { createdAt: "asc" }],
         select: {
@@ -40,6 +48,14 @@ export default async function QueryClusterDetailPage({ params }: Props) {
   if (!cluster) notFound();
 
   const activeCount = cluster.queries.filter((q) => q.isActive).length;
+  const reviewBadgeClass =
+    cluster.reviewStatus === "APPROVED"
+      ? "bg-green-100 text-green-700"
+      : cluster.reviewStatus === "NEEDS_REVISION"
+        ? "bg-amber-100 text-amber-800"
+        : cluster.reviewStatus === "STALE"
+          ? "bg-red-100 text-red-700"
+          : "bg-gray-100 text-gray-600";
 
   return (
     <div className="space-y-8">
@@ -51,6 +67,30 @@ export default async function QueryClusterDetailPage({ params }: Props) {
         }
         action={
           <div className="flex items-center gap-3">
+            <form action={setQueryClusterReviewStatus.bind(null, id, "APPROVED")}>
+              <button
+                type="submit"
+                className="inline-flex items-center rounded-md border border-green-300 bg-white px-4 py-2 text-sm font-medium text-green-700 hover:bg-green-50"
+              >
+                Mark approved
+              </button>
+            </form>
+            <form action={setQueryClusterReviewStatus.bind(null, id, "NEEDS_REVISION")}>
+              <button
+                type="submit"
+                className="inline-flex items-center rounded-md border border-amber-300 bg-white px-4 py-2 text-sm font-medium text-amber-800 hover:bg-amber-50"
+              >
+                Needs revision
+              </button>
+            </form>
+            <form action={setQueryClusterReviewStatus.bind(null, id, "DRAFT")}>
+              <button
+                type="submit"
+                className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                Reset draft
+              </button>
+            </form>
             <Link
               href={`/queries/${id}/add`}
               className="rounded-md bg-brand-600 px-4 py-2 text-sm font-medium text-white hover:bg-brand-700"
@@ -80,10 +120,29 @@ export default async function QueryClusterDetailPage({ params }: Props) {
       <div className="flex gap-4">
         <Badge>{cluster.queries.length} total</Badge>
         <Badge variant="success">{activeCount} active</Badge>
+        <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${reviewBadgeClass}`}>
+          {cluster.reviewStatus.toLowerCase().replace(/_/g, " ")}
+        </span>
         {cluster.queries.length - activeCount > 0 && (
           <Badge>{cluster.queries.length - activeCount} inactive</Badge>
         )}
       </div>
+
+      {(cluster.reviewNotes || cluster.reviewedAt || cluster.reviewedBy) && (
+        <Card>
+          <CardBody className="space-y-2">
+            {cluster.reviewNotes && (
+              <p className="text-sm text-gray-700 whitespace-pre-line">{cluster.reviewNotes}</p>
+            )}
+            {(cluster.reviewedAt || cluster.reviewedBy) && (
+              <p className="text-xs text-gray-500">
+                {cluster.reviewedAt ? `Reviewed ${cluster.reviewedAt.toLocaleDateString()}` : "Not yet reviewed"}
+                {cluster.reviewedBy ? ` by ${cluster.reviewedBy.name || cluster.reviewedBy.email}` : ""}
+              </p>
+            )}
+          </CardBody>
+        </Card>
+      )}
 
       {/* Query list */}
       <Card>

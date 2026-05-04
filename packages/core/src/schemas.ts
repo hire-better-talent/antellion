@@ -244,6 +244,7 @@ export const UpdateQueryClusterSchema = z.object({
   name: shortText.optional(),
   intent: z.string().max(500).optional(),
   description: longText.optional(),
+  reviewNotes: longText.optional(),
 });
 export type UpdateQueryClusterInput = z.infer<typeof UpdateQueryClusterSchema>;
 

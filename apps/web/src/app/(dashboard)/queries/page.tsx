@@ -20,6 +20,7 @@ export default async function QueriesPage() {
       name: true,
       intent: true,
       createdAt: true,
+      reviewStatus: true,
       client: { select: { id: true, name: true } },
       roleProfile: { select: { title: true } },
       queries: {
@@ -64,6 +65,19 @@ export default async function QueriesPage() {
                         {cluster.name}
                       </h3>
                       <Badge>{cluster.queries.length} queries</Badge>
+                      <span
+                        className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${
+                          cluster.reviewStatus === "APPROVED"
+                            ? "bg-green-100 text-green-700"
+                            : cluster.reviewStatus === "NEEDS_REVISION"
+                              ? "bg-amber-100 text-amber-800"
+                              : cluster.reviewStatus === "STALE"
+                                ? "bg-red-100 text-red-700"
+                                : "bg-gray-100 text-gray-600"
+                        }`}
+                      >
+                        {cluster.reviewStatus.toLowerCase().replace(/_/g, " ")}
+                      </span>
                     </div>
                     <p className="mt-1 text-sm text-gray-500">
                       {cluster.client.name}

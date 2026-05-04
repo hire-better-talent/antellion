@@ -95,6 +95,13 @@ enum ScanResultStatus {
   REJECTED
 }
 
+enum QueryClusterReviewStatus {
+  DRAFT
+  APPROVED
+  NEEDS_REVISION
+  STALE
+}
+
 // ─── Tenant & Auth ──────────────────────────────────────────
 
 model Organization {
@@ -126,6 +133,7 @@ model User {
   scanRuns         ScanRun[]      @relation("TriggeredBy")
   reports          Report[]       @relation("GeneratedBy")
   approvedEvidence ScanEvidence[] @relation("EvidenceApprovedBy")
+  reviewedQueryClusters QueryCluster[]
 
   @@index([organizationId])
   @@map("users")
@@ -215,22 +223,28 @@ model RoleProfile {
 }
 
 model QueryCluster {
-  id            String         @id @default(cuid())
+  id            String                   @id @default(cuid())
   clientId      String
   roleProfileId String?
   name          String
   intent        String?
-  description   String?        @db.Text
+  description   String?                  @db.Text
   stage         DecisionStage?
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
+  reviewStatus  QueryClusterReviewStatus @default(DRAFT)
+  reviewNotes   String?                  @db.Text
+  reviewedById  String?
+  reviewedAt    DateTime?
+  createdAt     DateTime                 @default(now())
+  updatedAt     DateTime                 @updatedAt
 
   client      Client       @relation(fields: [clientId], references: [id], onDelete: Cascade)
   roleProfile RoleProfile? @relation(fields: [roleProfileId], references: [id], onDelete: SetNull)
+  reviewedBy  User?        @relation(fields: [reviewedById], references: [id], onDelete: SetNull)
   queries     Query[]
 
   @@index([clientId])
   @@index([clientId, stage])
+  @@index([clientId, reviewStatus])
   @@index([roleProfileId])
   @@map("query_clusters")
 }
