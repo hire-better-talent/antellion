@@ -74,9 +74,31 @@
 2. Walkthroughs booked this week (count)
 3. BAMFAM compliance this week (target >90%)
 
-### Year-1 validation gate
+### Cold send cadence (locked May 5, 2026)
 
-3 closed Diagnostics in Month 1 = funnel works. Below = revisit copy, list, or motion. Above = scale.
+Cold sends run **Tuesday / Wednesday / Thursday only** — 3 send days/week, not 5. This is the deliverability sweet spot per `docs/email-campaign-v1.md` § Send Times: Mondays compete with weekend backlog, Fridays compete with mental checkout, weekends signal automation. Tue/Wed/Thu maximize per-email engagement at the cost of total monthly volume.
+
+The trade-off: at safe ramp velocity from a single warmed mailbox (Warmbox capacity ~22-28/day), Month 1 cold-email volume tops out at **~210-220 sends** — meaningfully below the ~340 a 5-day cadence would deliver.
+
+This shapes the Month 1 validation gate (next section) and means LinkedIn + warm-channel contribution to Snapshot requests is structurally more important to the gate than cold email alone.
+
+### Phased validation gates
+
+The original "3 closed Diagnostics in Month 1" gate assumed a 5-day send cadence. With Tue/Wed/Thu only and a single warmed mailbox, Month 1 cold-email volume cannot mathematically support that gate at target conversion rates. Revised gates:
+
+| Window | Gate | What it validates |
+|---|---|---|
+| **Month 1 (May 5-31)** | **1 Diagnostic delivered** | Funnel mechanics work end-to-end. Day 3 email converts. BAMFAM cadence holds. WYMB guarantee invoked-or-not correctly. Most failures are single-step bugs, not systemic. |
+| **Month 2 (June 1-30)** | **2-3 Diagnostics delivered** | Compounded LinkedIn engagement starts contributing Snapshot requests. Second mailbox (alternate domain) potentially active. Conversion benchmarks stabilize across more N. |
+| **Month 3 (July 1-31)** | **4-6 Diagnostics delivered** | Steady-state from blended channels (cold + LinkedIn + blog SEO + warm). First Baseline conversion expected via 60-day rollover from a Month 1 Diagnostic. |
+
+Below floor in any window = funnel structural issue → audit per-stage conversion to find which lever broke. Above floor = scale spend on whichever Stage 1 input has the most headroom.
+
+### What changed and why (May 5, 2026)
+
+The Month 1 gate was lowered from 3 → 1 Diagnostic when send cadence locked at Tue/Wed/Thu. The math: at target conversion (1% Snapshot request rate × 60% walkthrough × 50% Diagnostic), 3 Diagnostics requires ~1,000 cold sends in the window. Tue/Wed/Thu cadence delivers ~220 sends. The gate had to follow the cadence, not the other way around.
+
+Month 1 is now a **funnel-mechanics validation window**, not a revenue window. Validate the system; revenue scales with channel maturation in Months 2-3.
 
 ---
 
@@ -265,7 +287,7 @@ These need a Google Sheet or CSV import as the source. Honest, computable.
 - Reply rate, any reply (Instantly + Gmail manual reconciliation)
 - Three numbers on the wall (positive reply count, walkthroughs booked count, BAMFAM compliance) — if the founder maintains a weekly tally sheet
 - Stripe-backed metrics: invoice-paid counts, rollover credit redemptions, Continuous attach at signature
-- Year-1 validation gate (3 closed Diagnostics) — manual count from Stripe
+- Phased validation gates (1 Diagnostic in Month 1 / 2-3 in Month 2 / 4-6 in Month 3) — manual count from Stripe by month
 
 ### Bucket B: Requires new instrumentation
 
@@ -309,7 +331,7 @@ For each stage, the $100M framework lever the metric is measuring. Lets the foun
 | Stage 5 — Baseline → Phase 2 | **Continuity setup** + **rollover commitment** (Phase 2 → Continuous attach) | This is where the money model compounds. Low Phase 2 conversion = Baseline deliverable is not surfacing enough next-tier value. Time-to-close is the cleanest signal of buyer momentum |
 | Stage 6 — Continuous attach | **Continuity offer** at point of maximum trust (signature page, post-Phase-2 commitment) | Attach at signature is the cheapest continuity acquisition. Below 30% = continuity offer is not framed as the obvious next thing |
 | Deliverability | Foundational — no framework lever, pure infrastructure | If bounce >2% or spam >0.1%, all upstream framework levers are masked. Always check deliverability first when Stage 1 underperforms |
-| Year-1 gate (3 Diagnostics in Month 1) | Hormozi's "validate before scale" gate (*$100M Offers* — funnel must work at small N before paid acquisition) | Below 3 = something is broken upstream of money. Above 3 = scale spend on whichever Stage 1 input has the most headroom |
+| Phased validation gates (1 / 2-3 / 4-6 Diagnostics across Months 1/2/3) | Hormozi's "validate before scale" gate (*$100M Offers* — funnel must work at small N before paid acquisition) | Each window validates a different mechanic: Month 1 = funnel mechanics work end-to-end; Month 2 = compounded LinkedIn engagement contributes; Month 3 = blended-channel steady state. Below floor in any window = audit per-stage conversion to find the broken lever. Above floor = scale spend on whichever Stage 1 input has the most headroom |
 
 ---
 
