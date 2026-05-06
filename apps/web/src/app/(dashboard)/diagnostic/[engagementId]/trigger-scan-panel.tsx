@@ -8,6 +8,9 @@ interface ClusterRow {
   name: string;
   intent: string | null;
   stage: string | null;
+  reviewStatus: "DRAFT" | "APPROVED" | "NEEDS_REVISION" | "STALE";
+  reviewedAt: string | null;
+  reviewNotes: string | null;
   queries: { id: string }[];
 }
 
@@ -50,10 +53,13 @@ export function TriggerScanPanel({ engagementId, clientId }: Props) {
       .then((data) => {
         if (data.clusters) {
           setClusters(data.clusters);
-          // Pre-select all clusters if there are few enough
-          if (data.clusters.length > 0 && data.clusters.length <= 10) {
-            setSelected(new Set(data.clusters.map((c: ClusterRow) => c.id)));
-          }
+          setSelected(
+            new Set(
+              data.clusters
+                .filter((cluster: ClusterRow) => cluster.reviewStatus === "APPROVED")
+                .map((cluster: ClusterRow) => cluster.id),
+            ),
+          );
         } else {
           setFetchError(data.error ?? "Failed to load query clusters.");
         }
@@ -151,7 +157,7 @@ export function TriggerScanPanel({ engagementId, clientId }: Props) {
         {clusters
           .filter((c) => selected.has(c.id))
           .reduce((sum, c) => sum + c.queries.length, 0)}{" "}
-        active queries).
+        active queries). Only approved clusters can launch a Diagnostic scan.
       </p>
 
       <div className="space-y-4 mb-5">
@@ -165,27 +171,12 @@ export function TriggerScanPanel({ engagementId, clientId }: Props) {
               </p>
               <div className="space-y-1">
                 {stageClusters.map((cluster) => (
-                  <label
+                  <ClusterCheckbox
                     key={cluster.id}
-                    className="flex items-start gap-3 cursor-pointer rounded-md border border-gray-100 px-3 py-2 hover:border-gray-300 transition-colors"
-                  >
-                    <input
-                      type="checkbox"
-                      checked={selected.has(cluster.id)}
-                      onChange={() => toggleCluster(cluster.id)}
-                      className="mt-0.5 h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
-                    />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm text-gray-800 leading-snug">{cluster.name}</p>
-                      {cluster.intent && (
-                        <p className="text-xs text-gray-400 mt-0.5 line-clamp-1">{cluster.intent}</p>
-                      )}
-                      <p className="text-xs text-gray-400 mt-0.5">
-                        {cluster.queries.length} active{" "}
-                        {cluster.queries.length === 1 ? "query" : "queries"}
-                      </p>
-                    </div>
-                  </label>
+                    cluster={cluster}
+                    checked={selected.has(cluster.id)}
+                    onChange={() => toggleCluster(cluster.id)}
+                  />
                 ))}
               </div>
             </div>
@@ -199,27 +190,12 @@ export function TriggerScanPanel({ engagementId, clientId }: Props) {
             </p>
             <div className="space-y-1">
               {unstaged.map((cluster) => (
-                <label
+                <ClusterCheckbox
                   key={cluster.id}
-                  className="flex items-start gap-3 cursor-pointer rounded-md border border-gray-100 px-3 py-2 hover:border-gray-300 transition-colors"
-                >
-                  <input
-                    type="checkbox"
-                    checked={selected.has(cluster.id)}
-                    onChange={() => toggleCluster(cluster.id)}
-                    className="mt-0.5 h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
-                  />
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm text-gray-800 leading-snug">{cluster.name}</p>
-                    {cluster.intent && (
-                      <p className="text-xs text-gray-400 mt-0.5 line-clamp-1">{cluster.intent}</p>
-                    )}
-                    <p className="text-xs text-gray-400 mt-0.5">
-                      {cluster.queries.length} active{" "}
-                      {cluster.queries.length === 1 ? "query" : "queries"}
-                    </p>
-                  </div>
-                </label>
+                  cluster={cluster}
+                  checked={selected.has(cluster.id)}
+                  onChange={() => toggleCluster(cluster.id)}
+                />
               ))}
             </div>
           </div>
@@ -239,5 +215,70 @@ export function TriggerScanPanel({ engagementId, clientId }: Props) {
         {isPending ? "Launching scan..." : `Launch scan (${selected.size} cluster${selected.size !== 1 ? "s" : ""})`}
       </button>
     </div>
+  );
+}
+
+function ClusterCheckbox({
+  cluster,
+  checked,
+  onChange,
+}: {
+  cluster: ClusterRow;
+  checked: boolean;
+  onChange: () => void;
+}) {
+  const reviewedAt = cluster.reviewedAt
+    ? new Date(cluster.reviewedAt).toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+      })
+    : null;
+
+  return (
+    <label
+      className={`flex cursor-pointer items-start gap-3 rounded-md border px-3 py-2 transition-colors hover:border-gray-300 ${
+        cluster.reviewStatus === "APPROVED"
+          ? "border-green-100 bg-green-50/40"
+          : "border-amber-100 bg-amber-50/40"
+      }`}
+    >
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={onChange}
+        className="mt-0.5 h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
+      />
+      <div className="min-w-0 flex-1">
+        <div className="flex items-start justify-between gap-3">
+          <p className="text-sm leading-snug text-gray-800">{cluster.name}</p>
+          <span
+            className={`shrink-0 rounded-full px-2 py-0.5 text-xs font-medium ${
+              cluster.reviewStatus === "APPROVED"
+                ? "bg-green-100 text-green-700"
+                : cluster.reviewStatus === "STALE"
+                  ? "bg-red-100 text-red-700"
+                  : "bg-amber-100 text-amber-800"
+            }`}
+          >
+            {cluster.reviewStatus.toLowerCase().replace(/_/g, " ")}
+          </span>
+        </div>
+        {cluster.intent && (
+          <p className="mt-0.5 line-clamp-1 text-xs text-gray-400">
+            {cluster.intent}
+          </p>
+        )}
+        <p className="mt-0.5 text-xs text-gray-400">
+          {cluster.queries.length} active{" "}
+          {cluster.queries.length === 1 ? "query" : "queries"}
+          {reviewedAt ? `, reviewed ${reviewedAt}` : ""}
+        </p>
+        {cluster.reviewNotes && (
+          <p className="mt-1 line-clamp-2 text-xs text-gray-500">
+            {cluster.reviewNotes}
+          </p>
+        )}
+      </div>
+    </label>
   );
 }

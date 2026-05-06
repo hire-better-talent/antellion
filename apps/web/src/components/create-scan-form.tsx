@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useActionState } from "react";
 import Link from "next/link";
 import type { ActionState } from "@/lib/actions";
@@ -41,6 +41,7 @@ interface ClusterOption {
   queryCount: number;
   reviewStatus: "DRAFT" | "APPROVED" | "NEEDS_REVISION" | "STALE";
   reviewedAt?: string | Date | null;
+  reviewNotes?: string | null;
   createdAt?: string | Date;
   scanned?: boolean;
 }
@@ -68,18 +69,41 @@ export function CreateScanForm({
   const [selectedClientId, setSelectedClientId] = useState(
     preselectedClientId ?? "",
   );
+  const [selectedClusterIds, setSelectedClusterIds] = useState<string[]>(() => {
+    const client = clients.find((c) => c.id === preselectedClientId);
+    return defaultSelectedClusterIds(client?.queryClusters ?? []);
+  });
 
   const selectedClient = clients.find((c) => c.id === selectedClientId);
   const clusters = selectedClient?.queryClusters ?? [];
+  const selectedClusters = clusters.filter((cluster) =>
+    selectedClusterIds.includes(cluster.id),
+  );
+  const selectedUnapprovedClusters = selectedClusters.filter(
+    (cluster) => cluster.reviewStatus !== "APPROVED",
+  );
 
   // When a client is selected, auto-populate focusArea from the client's default
   const defaultFocusArea = selectedClient?.defaultFocusArea ?? "";
   const [focusArea, setFocusArea] = useState(defaultFocusArea);
 
+  useEffect(() => {
+    if (!selectedClientId) return;
+    const client = clients.find((c) => c.id === selectedClientId);
+    setSelectedClusterIds(defaultSelectedClusterIds(client?.queryClusters ?? []));
+  }, [clients, selectedClientId]);
+
   function handleClientChange(clientId: string) {
     setSelectedClientId(clientId);
     const client = clients.find((c) => c.id === clientId);
     setFocusArea(client?.defaultFocusArea ?? "");
+  }
+
+  function toggleCluster(clusterId: string, checked: boolean) {
+    setSelectedClusterIds((current) => {
+      if (checked) return [...new Set([...current, clusterId])];
+      return current.filter((id) => id !== clusterId);
+    });
   }
 
   return (
@@ -221,6 +245,12 @@ export function CreateScanForm({
                       day: "numeric",
                     })
                   : null;
+                const reviewedAt = cluster.reviewedAt
+                  ? new Date(cluster.reviewedAt).toLocaleDateString("en-US", {
+                      month: "short",
+                      day: "numeric",
+                    })
+                  : null;
                 return (
                   <label
                     key={cluster.id}
@@ -238,9 +268,9 @@ export function CreateScanForm({
                       type="checkbox"
                       name="queryClusterIds"
                       value={cluster.id}
-                      defaultChecked={
-                        cluster.reviewStatus === "APPROVED"
-                        || (!cluster.scanned && cluster.reviewStatus === "DRAFT")
+                      checked={selectedClusterIds.includes(cluster.id)}
+                      onChange={(event) =>
+                        toggleCluster(cluster.id, event.target.checked)
                       }
                       className="h-4 w-4 rounded border-gray-300 text-brand-600 focus:ring-brand-500"
                     />
@@ -252,10 +282,17 @@ export function CreateScanForm({
                         <span className="ml-2 text-xs text-gray-500">
                           {cluster.queryCount} queries
                         </span>
+                        {cluster.reviewNotes && (
+                          <p className="mt-1 text-xs leading-5 text-gray-500">
+                            {cluster.reviewNotes}
+                          </p>
+                        )}
                       </div>
                       <div className="flex items-center gap-2">
-                        {date && (
-                          <span className="text-xs text-gray-400">{date}</span>
+                        {(reviewedAt ?? date) && (
+                          <span className="text-xs text-gray-400">
+                            {reviewedAt ? `reviewed ${reviewedAt}` : date}
+                          </span>
                         )}
                         <span
                           className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${
@@ -283,8 +320,32 @@ export function CreateScanForm({
             </div>
           )}
           <p className="mt-2 text-xs text-gray-500">
-            Approved clusters are preselected. Draft, stale, or needs-revision clusters should be reviewed before client-facing scans.
+            Approved clusters are preselected. Draft, stale, or needs-revision clusters require an explicit override.
           </p>
+          {selectedUnapprovedClusters.length > 0 && (
+            <div className="mt-3 rounded-md border border-amber-200 bg-amber-50 px-4 py-3">
+              <p className="text-sm font-medium text-amber-900">
+                Non-approved clusters selected
+              </p>
+              <p className="mt-1 text-sm text-amber-800">
+                This scan includes{" "}
+                {selectedUnapprovedClusters
+                  .map((cluster) => cluster.name)
+                  .join(", ")}
+                . Confirm this is intentional before starting the scan.
+              </p>
+              <label className="mt-3 flex items-start gap-2 text-sm text-amber-900">
+                <input
+                  type="checkbox"
+                  name="allowUnapprovedClusters"
+                  className="mt-0.5 h-4 w-4 rounded border-amber-300 text-amber-700 focus:ring-amber-600"
+                />
+                <span>
+                  Allow this scan to run with draft, stale, or needs-revision clusters.
+                </span>
+              </label>
+            </div>
+          )}
           {fieldError(state, "queryClusterIds") && (
             <p className="mt-1 text-sm text-red-600">
               {fieldError(state, "queryClusterIds")}
@@ -304,4 +365,10 @@ export function CreateScanForm({
       </div>
     </form>
   );
+}
+
+function defaultSelectedClusterIds(clusters: ClusterOption[]): string[] {
+  return clusters
+    .filter((cluster) => cluster.reviewStatus === "APPROVED")
+    .map((cluster) => cluster.id);
 }

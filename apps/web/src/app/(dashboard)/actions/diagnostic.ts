@@ -11,6 +11,7 @@ import {
   validateDiagnosticDelivery,
   isMaterialFinding,
   extractCandidateFindings,
+  validateScanPreflight,
 } from "@antellion/core";
 import { getAuthContext } from "@/lib/auth";
 import type { ActionState } from "@/lib/actions";
@@ -245,6 +246,42 @@ export async function triggerEngagementScan(
 
   const personaIds = engagement.personas.map((ep) => ep.personaId);
 
+  const selectedClusters = await prisma.queryCluster.findMany({
+    where: {
+      id: { in: queryClusterIds },
+      clientId: engagement.clientId,
+      client: { organizationId },
+    },
+    select: {
+      id: true,
+      name: true,
+      reviewStatus: true,
+      _count: { select: { queries: { where: { isActive: true } } } },
+    },
+  });
+
+  if (selectedClusters.length !== queryClusterIds.length) {
+    return { error: "One or more selected query clusters were not found for this engagement." };
+  }
+
+  const preflight = validateScanPreflight(
+    selectedClusters.map((cluster) => ({
+      id: cluster.id,
+      name: cluster.name,
+      reviewStatus: cluster.reviewStatus,
+      activeQueryCount: cluster._count.queries,
+    })),
+  );
+
+  if (!preflight.valid) {
+    return { error: preflight.reason ?? "Selected query clusters are not ready to scan." };
+  }
+
+  const queryCount = selectedClusters.reduce(
+    (sum, cluster) => sum + cluster._count.queries,
+    0,
+  );
+
   // Diagnostic uses all 4 providers
   const diagnosticModels = [
     "gpt-4o",
@@ -259,12 +296,17 @@ export async function triggerEngagementScan(
       engagementId: engagement.id,
       status: "RUNNING",
       startedAt: new Date(),
-      queryCount: queryClusterIds.length, // will be updated by worker
+      queryCount,
       metadata: {
         automated: true,
         diagnostic: true,
         engagementId: engagement.id,
         queryClusterIds,
+        queryClusterPreflight: {
+          checkedAt: new Date().toISOString(),
+          allowUnapprovedClusters: false,
+          unapprovedClusters: [],
+        },
         models: diagnosticModels,
         personaIds,
       } satisfies Prisma.InputJsonObject,

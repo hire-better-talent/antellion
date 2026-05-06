@@ -12,6 +12,7 @@ import {
   validateScanCompletion,
   validateScanDeletion,
   validateScanCancellation,
+  validateScanPreflight,
   shouldAutoFlag,
   computeResultConfidence,
   discoverCompetitors,
@@ -41,18 +42,52 @@ export async function createScan(
 
   const { clientId, model, queryDepth, focusArea } = result.data;
   const { organizationId, userId } = await getAuthContext();
+  const allowUnapprovedClusters =
+    formData.get("allowUnapprovedClusters") === "on";
 
   // Verify the client belongs to the current organization
   await requireOrgClient(clientId, organizationId);
 
-  // Count queries in selected clusters (clusters are scoped through the client)
-  const queryCount = await prisma.query.count({
+  // Fetch selected clusters with review state and active query counts. This is
+  // the server-side preflight gate; the UI is advisory only.
+  const selectedClusters = await prisma.queryCluster.findMany({
     where: {
-      queryClusterId: { in: queryClusterIds },
-      isActive: true,
-      queryCluster: { client: { organizationId } },
+      id: { in: queryClusterIds },
+      clientId,
+      client: { organizationId },
+    },
+    select: {
+      id: true,
+      name: true,
+      reviewStatus: true,
+      _count: { select: { queries: { where: { isActive: true } } } },
     },
   });
+
+  if (selectedClusters.length !== queryClusterIds.length) {
+    return { message: "One or more selected query clusters were not found for this client." };
+  }
+
+  const preflight = validateScanPreflight(
+    selectedClusters.map((cluster) => ({
+      id: cluster.id,
+      name: cluster.name,
+      reviewStatus: cluster.reviewStatus,
+      activeQueryCount: cluster._count.queries,
+    })),
+    { allowUnapprovedClusters },
+  );
+
+  if (!preflight.valid) {
+    return {
+      message: preflight.reason ?? "Selected query clusters are not ready to scan.",
+    };
+  }
+
+  const queryCount = selectedClusters.reduce(
+    (sum, cluster) => sum + cluster._count.queries,
+    0,
+  );
 
   if (queryCount === 0) {
     return { message: "Selected clusters contain no active queries." };
@@ -67,7 +102,18 @@ export async function createScan(
       focusArea: focusArea ?? null,
       queryCount,
       startedAt: new Date(),
-      metadata: { queryClusterIds },
+      metadata: {
+        queryClusterIds,
+        queryClusterPreflight: {
+          checkedAt: new Date().toISOString(),
+          allowUnapprovedClusters,
+          unapprovedClusters: (preflight.unapprovedClusters ?? []).map((cluster) => ({
+            id: cluster.id,
+            name: cluster.name,
+            reviewStatus: cluster.reviewStatus,
+          })),
+        },
+      },
       triggeredById: userId,
     },
   });

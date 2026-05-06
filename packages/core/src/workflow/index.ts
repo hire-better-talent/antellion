@@ -6,7 +6,18 @@ export type {
 } from "./types";
 
 // ── Scan rules ───────────────────────────────────────────────
-export { validateScanCompletion, validateScanDeletion, validateScanCancellation } from "./scan-rules";
+export {
+  validateScanCompletion,
+  validateScanDeletion,
+  validateScanCancellation,
+  validateScanPreflight,
+} from "./scan-rules";
+export type {
+  QueryClusterReviewStatus,
+  ScanPreflightCluster,
+  ScanPreflightOptions,
+  ScanPreflightResult,
+} from "./scan-rules";
 
 // ── ScanResult rules ─────────────────────────────────────────
 export {

@@ -276,11 +276,18 @@ export {
   validateScanCompletion,
   validateScanDeletion,
   validateScanCancellation,
+  validateScanPreflight,
   validateResultTransition,
   shouldAutoFlag,
   AUTO_FLAG_VISIBILITY_THRESHOLD,
   validateReportGeneration,
   validateReportTransition,
+} from "./workflow";
+export type {
+  QueryClusterReviewStatus,
+  ScanPreflightCluster,
+  ScanPreflightOptions,
+  ScanPreflightResult,
 } from "./workflow";
 
 // ─── Evidence provenance ─────────────────────────────────────

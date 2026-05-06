@@ -1,7 +1,75 @@
 import { describe, it, expect } from "vitest";
-import { validateScanCompletion, validateScanDeletion, validateScanCancellation } from "../workflow/scan-rules";
+import {
+  validateScanCompletion,
+  validateScanDeletion,
+  validateScanCancellation,
+  validateScanPreflight,
+} from "../workflow/scan-rules";
 import { validateResultTransition, shouldAutoFlag, AUTO_FLAG_VISIBILITY_THRESHOLD } from "../workflow/result-rules";
 import { validateReportGeneration, validateReportTransition } from "../workflow/report-rules";
+
+// ── validateScanPreflight ────────────────────────────────────
+
+describe("validateScanPreflight", () => {
+  it("passes when all selected clusters are approved and contain active queries", () => {
+    const check = validateScanPreflight([
+      {
+        id: "cluster-1",
+        name: "Discovery",
+        reviewStatus: "APPROVED",
+        activeQueryCount: 4,
+      },
+    ]);
+
+    expect(check.valid).toBe(true);
+  });
+
+  it("blocks draft clusters without an explicit override", () => {
+    const check = validateScanPreflight([
+      {
+        id: "cluster-1",
+        name: "Discovery",
+        reviewStatus: "DRAFT",
+        activeQueryCount: 4,
+      },
+    ]);
+
+    expect(check.valid).toBe(false);
+    expect(check.reason).toMatch(/explicit override/i);
+    expect(check.reason).toMatch(/Discovery/);
+  });
+
+  it("allows non-approved clusters with an explicit override", () => {
+    const check = validateScanPreflight(
+      [
+        {
+          id: "cluster-1",
+          name: "Discovery",
+          reviewStatus: "STALE",
+          activeQueryCount: 4,
+        },
+      ],
+      { allowUnapprovedClusters: true },
+    );
+
+    expect(check.valid).toBe(true);
+    expect(check.unapprovedClusters).toHaveLength(1);
+  });
+
+  it("blocks selected clusters with no active queries", () => {
+    const check = validateScanPreflight([
+      {
+        id: "cluster-1",
+        name: "Empty cluster",
+        reviewStatus: "APPROVED",
+        activeQueryCount: 0,
+      },
+    ]);
+
+    expect(check.valid).toBe(false);
+    expect(check.reason).toMatch(/active queries/i);
+  });
+});
 
 // ── validateScanCompletion ───────────────────────────────────
 

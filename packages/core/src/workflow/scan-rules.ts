@@ -1,5 +1,73 @@
 import type { TransitionResult } from "./types";
 
+export type QueryClusterReviewStatus =
+  | "DRAFT"
+  | "APPROVED"
+  | "NEEDS_REVISION"
+  | "STALE";
+
+export interface ScanPreflightCluster {
+  id: string;
+  name: string;
+  reviewStatus: QueryClusterReviewStatus;
+  activeQueryCount: number;
+}
+
+export interface ScanPreflightOptions {
+  allowUnapprovedClusters?: boolean;
+}
+
+export interface ScanPreflightResult extends TransitionResult {
+  unapprovedClusters?: ScanPreflightCluster[];
+}
+
+/**
+ * Validates whether selected query clusters are ready to start a scan.
+ *
+ * APPROVED clusters are the normal path. DRAFT, NEEDS_REVISION, and STALE
+ * clusters may only be scanned with an explicit operator override so scan
+ * setup cannot accidentally spend LLM budget on unreviewed query inputs.
+ */
+export function validateScanPreflight(
+  clusters: ScanPreflightCluster[],
+  options: ScanPreflightOptions = {},
+): ScanPreflightResult {
+  if (clusters.length === 0) {
+    return {
+      valid: false,
+      reason: "Select at least one query cluster before starting a scan.",
+    };
+  }
+
+  const emptyClusters = clusters.filter((cluster) => cluster.activeQueryCount === 0);
+  if (emptyClusters.length > 0) {
+    return {
+      valid: false,
+      reason: `Selected query clusters must contain active queries: ${formatClusterList(emptyClusters)}.`,
+    };
+  }
+
+  const unapprovedClusters = clusters.filter(
+    (cluster) => cluster.reviewStatus !== "APPROVED",
+  );
+
+  if (unapprovedClusters.length > 0 && !options.allowUnapprovedClusters) {
+    return {
+      valid: false,
+      reason: `Non-approved query clusters require an explicit override before scanning: ${formatClusterList(unapprovedClusters)}.`,
+      unapprovedClusters,
+    };
+  }
+
+  return { valid: true, unapprovedClusters };
+}
+
+function formatClusterList(clusters: ScanPreflightCluster[]): string {
+  return clusters
+    .map((cluster) => `${cluster.name} (${cluster.reviewStatus.toLowerCase().replace(/_/g, " ")})`)
+    .join(", ");
+}
+
 // ── Completable statuses ─────────────────────────────────────
 // Only RUNNING scans can be completed. PENDING scans have not started
 // executing yet and must not be completed directly — they must transition
