@@ -5,6 +5,15 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getBlogPost, getBlogPosts } from "@/lib/blog";
 
+// Re-evaluate the date-gated publish list hourly so newly-eligible
+// posts get rendered within an hour of their publish date.
+export const revalidate = 3600;
+
+// Allow rendering of slugs not in generateStaticParams at build time.
+// A post that becomes publishable after deploy will be SSR'd on first
+// request and cached per the revalidate window.
+export const dynamicParams = true;
+
 interface Props {
   params: Promise<{ slug: string }>;
 }

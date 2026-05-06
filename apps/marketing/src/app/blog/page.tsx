@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getBlogPosts } from "@/lib/blog";
 
+// Re-evaluate the date-gated publish list hourly so posts go live
+// within an hour of their publish date without needing a redeploy.
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Blog | Antellion",
   description:

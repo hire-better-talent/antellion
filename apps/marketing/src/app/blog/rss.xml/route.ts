@@ -1,5 +1,9 @@
 import { getBlogPosts } from "@/lib/blog";
 
+// Re-evaluate the date-gated publish list hourly so the RSS feed
+// includes newly-eligible posts within an hour of their publish date.
+export const revalidate = 3600;
+
 const SITE_URL = "https://antellion.com";
 
 function escapeXml(str: string): string {
