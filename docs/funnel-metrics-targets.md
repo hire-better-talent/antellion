@@ -78,9 +78,44 @@
 
 Cold sends run **Tuesday / Wednesday / Thursday only** — 3 send days/week, not 5. This is the deliverability sweet spot per `docs/email-campaign-v1.md` § Send Times: Mondays compete with weekend backlog, Fridays compete with mental checkout, weekends signal automation. Tue/Wed/Thu maximize per-email engagement at the cost of total monthly volume.
 
-The trade-off: at safe ramp velocity from a single warmed mailbox (Warmbox capacity ~22-28/day), Month 1 cold-email volume tops out at **~210-220 sends** — meaningfully below the ~340 a 5-day cadence would deliver.
+The trade-off: at safe ramp velocity from a single warmed mailbox during the warmup phase, Month 1 cold-email volume tops out at **~250-300 sends** (revised upward May 7 — see ratio rule below) — meaningfully below the ~400+ a 5-day cadence would deliver.
 
 This shapes the Month 1 validation gate (next section) and means LinkedIn + warm-channel contribution to Snapshot requests is structurally more important to the gate than cold email alone.
+
+### Cold-send cap rule — cold:warmup ratio (locked May 7, 2026)
+
+**Rule:** during the warmup phase, daily cold-send cap on the campaign **must not exceed** that day's Warmbox warmup-send volume from the same mailbox.
+
+**Why this is the rule:** Warmbox sends warmup-network emails from `jordan@antellion.com` (~28-30/day at Week 2 pace) to build domain reputation. Recipient mail servers see roughly 50/50 reputation-positive vs. reputation-uncertain traffic if cold ≤ warmup volume. Pushing cold meaningfully above warmup during the warmup phase tilts the ratio toward "spammy-shaped sender" and triggers reputation drift faster than a single bad batch would.
+
+**Why this corrects a prior misread:** the May 5 version of this doc treated Warmbox capacity as the *cold-send ceiling* (cap = Warmbox volume). That conflated Warmbox's own activity with deliverability headroom. The corrected framing: Warmbox volume is the *reputation-positive baseline* the cold cap should not exceed, not the cap itself.
+
+**Practical implementation — daily cap with 15% pad:**
+
+```
+daily cold cap = floor( Warmbox daily warmup volume × 0.85 )
+```
+
+The 15% pad accommodates noise (single-recipient bounces, enterprise-policy 554 rejections, etc.) without spiking the cold-to-warmup ratio.
+
+**Example daily caps for Week 2 (May 11-14):**
+
+| Send day | Warmbox warmup volume | Cold cap (85%) | Net-new target after follow-ups |
+|---|---|---|---|
+| Tue May 12 | 29 | 22-24 | ~14-17 |
+| Wed May 13 | 29 | 22-24 | ~14-17 |
+| Thu May 14 | 30 | 24-25 | ~15-17 |
+
+(Mon May 11 sees 28 Warmbox sends but is not a cold-send day per the Tue/Wed/Thu cadence.)
+
+**Sanity rules attached to the cold:warmup constraint:**
+
+1. **Cap ≤ Warmbox volume** during warmup phase (next 2-3 weeks from May 7, locked through ~early June).
+2. **Cap stays at ~85% of Warmbox** while volume is still ramping; the pad protects reputation against single-day spikes.
+3. **First Friday-after-launch deliverability check** (Fri May 15): if Tue's batch has cleared full reply window with bounce rate <2%, no spam complaints, and opens trending normal, then **Tue May 19's cap can match Warmbox 1:1** (~28-29 cold).
+4. **After 30+ days of consistent warmup** (~early June), cold can safely exceed warmup. That's the migration trigger to activate `getantellion.com` for additional capacity rather than pushing a single mailbox harder.
+
+**What this rule replaces:** the May 5 ramp recommendation that capped cold at fixed values (15/18/22 across Week 2). That fixed ramp is superseded by the ratio rule, which is more responsive to actual warmup state.
 
 ### Phased validation gates
 
