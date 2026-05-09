@@ -74,13 +74,36 @@
 2. Walkthroughs booked this week (count)
 3. BAMFAM compliance this week (target >90%)
 
-### Cold send cadence (locked May 5, 2026)
+### Cold send cadence (revised May 9, 2026 — phased rule)
 
-Cold sends run **Tuesday / Wednesday / Thursday only** — 3 send days/week, not 5. This is the deliverability sweet spot per `docs/email-campaign-v1.md` § Send Times: Mondays compete with weekend backlog, Fridays compete with mental checkout, weekends signal automation. Tue/Wed/Thu maximize per-email engagement at the cost of total monthly volume.
+The May 5 lock of "Tue/Wed/Thu only" was an over-reach. It applied a day-of-week reply-rate heuristic from pre-AMPP industry data as if it were a measurable constraint, when at current scale (N=13 sends, 0 replies) reply rate by day is statistically meaningless noise. Day-of-week optimization is a Month 3 problem, not a Week 2 problem.
 
-The trade-off: at safe ramp velocity from a single warmed mailbox during the warmup phase, Month 1 cold-email volume tops out at **~250-300 sends** (revised upward May 7 — see ratio rule below) — meaningfully below the ~400+ a 5-day cadence would deliver.
+**The phased rule:**
 
-This shapes the Month 1 validation gate (next section) and means LinkedIn + warm-channel contribution to Snapshot requests is structurally more important to the gate than cold email alone.
+**Phase 1 — pre-significance (current, until ~500 cumulative sends with reply data):**
+
+Cold sends run **Mon / Tue / Wed / Thu / Fri / Sat — 6 days/week.** Sundays excluded (deliverability fingerprint: most legitimate B2B senders skip Sunday; matching that pattern is reputation hygiene, not reply-rate optimization). Volume is the goal — accumulating sends fastest to reach statistical significance is the purpose of every send-day decision at this scale.
+
+The Tue/Wed/Thu reply-rate wisdom from `docs/email-campaign-v1.md` § Send Times remains a defensible heuristic but is unmeasurable at current N. Phase 1 collects the data needed to test it.
+
+**Phase 2 — post-significance (after ~500 cumulative sends with reply data):**
+
+Slice reply rate by day-of-week. Decide whether to:
+- Constrain to Tue/Wed/Thu (if reply rate gap >50% between mid-week and Mon/Fri/Sat — confirms original heuristic)
+- Hold full Mon-Sat cadence (if reply rate gap <30% — heuristic doesn't survive AMPP-era data)
+- Custom mix (e.g., Mon-Fri only, dropping Sat — if Sat reply rate is meaningfully worse but Mon/Fri are competitive)
+
+Decision is data-driven, not heuristic-driven. Trigger condition: at least 5 confirmed positive replies across at least 4 distinct send-days, providing enough N per day-of-week to compare.
+
+**Phase 1 volume math:**
+
+At 6 send days/week and 85% of Warmbox volume per day (per cold:warmup ratio rule below):
+- Week 2 (May 11-16): ~125-145 sends (Mon 24 + Tue-Thu 22-25 each + Fri 25 + Sat 25)
+- Month 1 (May 5-31, ~26 send days): ~575-625 sends
+
+This is roughly 2x the Tue/Wed/Thu plan. The Month 1 validation gate (1 Diagnostic — funnel-mechanics validation, not revenue) doesn't change. The Month 2-3 gates (2-3 / 4-6 Diagnostics) become materially more reachable on cold-email volume alone, reducing dependency on LinkedIn + warm-channel contribution.
+
+**Why Sunday stays excluded:** the "automation signal" concern is genuine for Sunday specifically, distinct from Saturday. Most legitimate B2B senders skip Sunday entirely; sending Sunday creates a deliverability fingerprint that doesn't pattern-match human-shaped sending. This is reputation hygiene, not reply-rate optimization, so it survives the "no benchmarks at small N" critique.
 
 ### Cold-send cap rule — cold:warmup ratio (locked May 7, 2026)
 
@@ -98,15 +121,18 @@ daily cold cap = floor( Warmbox daily warmup volume × 0.85 )
 
 The 15% pad accommodates noise (single-recipient bounces, enterprise-policy 554 rejections, etc.) without spiking the cold-to-warmup ratio.
 
-**Example daily caps for Week 2 (May 11-14):**
+**Example daily caps for Week 2 (May 11-16) — full Mon-Sat cadence per phased rule above:**
 
 | Send day | Warmbox warmup volume | Cold cap (85%) | Net-new target after follow-ups |
 |---|---|---|---|
+| Mon May 11 | 28 | 22-23 | ~14-15 |
 | Tue May 12 | 29 | 22-24 | ~14-17 |
 | Wed May 13 | 29 | 22-24 | ~14-17 |
 | Thu May 14 | 30 | 24-25 | ~15-17 |
+| Fri May 15 | ~30 | 24-25 | ~15-17 |
+| Sat May 16 | ~30 | 24-25 | ~15-17 |
 
-(Mon May 11 sees 28 Warmbox sends but is not a cold-send day per the Tue/Wed/Thu cadence.)
+Verify Friday/Saturday Warmbox volume in the Warmbox dashboard — the 30/day projection is interpolated from the Mon-Thu trajectory the founder shared.
 
 **Sanity rules attached to the cold:warmup constraint:**
 
@@ -129,11 +155,15 @@ The original "3 closed Diagnostics in Month 1" gate assumed a 5-day send cadence
 
 Below floor in any window = funnel structural issue → audit per-stage conversion to find which lever broke. Above floor = scale spend on whichever Stage 1 input has the most headroom.
 
-### What changed and why (May 5, 2026)
+### What changed and why
 
-The Month 1 gate was lowered from 3 → 1 Diagnostic when send cadence locked at Tue/Wed/Thu. The math: at target conversion (1% Snapshot request rate × 60% walkthrough × 50% Diagnostic), 3 Diagnostics requires ~1,000 cold sends in the window. Tue/Wed/Thu cadence delivers ~220 sends. The gate had to follow the cadence, not the other way around.
+**May 5, 2026 — Month 1 gate lowered from 3 → 1 Diagnostic.** The original 3-Diagnostic gate assumed a 5-day send cadence. With Tue/Wed/Thu and a single mailbox, Month 1 cold-email volume couldn't mathematically support that gate at target conversion rates. Month 1 redefined as a funnel-mechanics validation window, not a revenue window.
 
-Month 1 is now a **funnel-mechanics validation window**, not a revenue window. Validate the system; revenue scales with channel maturation in Months 2-3.
+**May 9, 2026 — Tue/Wed/Thu lock replaced with phased Mon-Sat cadence.** The Tue/Wed/Thu rule applied a reply-rate-by-day heuristic to a campaign that has 0 replies and N=13 sends. At pre-significance scale, the heuristic is unmeasurable and the volume cost (locking out 3 of 6 viable send days) is real. Phase 1 collects the data needed to test the heuristic; Phase 2 applies it (or revises it) data-driven. Month 1 ceiling estimate revised upward from ~250-300 to ~575-625 sends.
+
+The 1-Diagnostic Month 1 gate doesn't change. It was set on funnel mechanics, not volume. Mon-Sat just makes it more reachable, and makes the Month 2-3 gates (2-3 / 4-6) materially more achievable on cold-email volume alone.
+
+Month 1 remains a **funnel-mechanics validation window**, not a revenue window. Validate the system; revenue scales with channel maturation in Months 2-3.
 
 ---
 
