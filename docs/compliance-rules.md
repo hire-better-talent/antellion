@@ -67,21 +67,38 @@ Each rule has:
 - **Severity:** BLOCKER
 - **Applies to:** LinkedIn, blog, cold email, response templates
 - **Detection:** judgment (with deterministic pattern hints)
-- **Source:** `CLAUDE.md` § Domain rules; founder's day job at Symphony Talent (employer brand vendor); reinforced across sessions
-- **Why it matters:** Antellion must never anti-sell employer brand work. Anti-employer-brand framing creates a personal conflict of interest and contradicts the structural positioning of Antellion as a measurement layer above existing employer brand programs.
+- **Source:** `CLAUDE.md` § Domain rules; founder's day job at Symphony Talent (employer brand vendor); reinforced across sessions. Tightened 2026-05-11 after Symphony Talent began productizing AI visibility audits — comparative-without-replacement framings now carry the same conflict-of-interest risk as direct replacement framings and are folded into this rule.
+- **Why it matters:** Antellion must never anti-sell employer brand work. Anti-employer-brand framing creates a personal conflict of interest and contradicts the structural positioning of Antellion as a measurement layer above existing employer brand programs. As of May 2026, the same constraint applies to brand-side AI visibility audits — Antellion must not position against the format or adequacy of an existing audit, only against the specific differentiation (hiring-specific persona depth, candidate-journey stage coverage, four-model variation).
 
-**Pattern hints (deterministic):** flag co-occurrence of `replace`, `instead of`, `obsolete`, `outdated`, `dying`, `dead`, `kills`, or `disrupt` near `employer brand`, `EVP`, `recruitment marketing`, `careers site`, `careers page`.
+**Pattern hints — direct replacement (deterministic):** flag co-occurrence of `replace`, `instead of`, `obsolete`, `outdated`, `dying`, `dead`, `kills`, or `disrupt` near `employer brand`, `EVP`, `recruitment marketing`, `careers site`, `careers page`.
 
-**Bad:**
+**Pattern hints — comparative-without-replacement (deterministic, added 2026-05-11):**
+
+- Co-occurrence of `most audits`, `traditional audit`, `the audit you ran`, `your current audit`, `the audit format`, `existing audits`, `the typical audit`, `the standard audit` with negative-coded language: `doesn't measure`, `does not measure`, `misses`, `miss this`, `gap`, `incomplete`, `can't see`, `cannot see`, `won't catch`, `fails to`, `blind to`.
+- Co-occurrence of `most companies are missing`, `most teams haven't`, `the standard approach`, `the typical audit`, `most brand-side`, `most existing` with `this`, `this layer`, `this dimension`, `this depth`.
+- Specific phrases (BLOCKER on exact match): `audit doesn't measure`, `audit does not measure`, `audit misses`, `audit can't see`, `audit cannot see`, `audit format is`, `traditional audit format`, `your audit didn't`, `your audit can't`, `current audits don't`, `brand-side audit misses`, `brand-side audits miss`.
+
+**Bad — direct replacement:**
 > Stop investing in employer brand and start investing in AI visibility.
 > Your employer brand program is dying.
 > Recruitment marketing is dead. AI is what matters now.
 
+**Bad — comparative-without-replacement (added 2026-05-11):**
+> Most audits don't measure this layer.
+> The audit you ran misses the hiring-specific dimension.
+> Traditional audit formats can't see candidate-journey stage coverage.
+> Your current audit is incomplete without persona depth.
+> Brand-side audits miss the persona-coding entirely.
+
 **Good:**
 > AI visibility is a measurement layer above your employer brand program — not a replacement.
 > The employer brand work most companies are doing is real. The new layer is that AI synthesizes from inputs nobody's team has been formally measured on for the last decade.
+> A hiring-specific AI visibility audit measures 40 candidate-intent queries across 4 AI models, 3 personas, and 4 candidate-journey stages — a methodology designed for the recruiting funnel. *[Positions around the specific methodology, not against the adequacy of other audits.]*
+> Brand-side AI visibility work measures the company-as-brand surface. Hiring-specific work measures the company-as-employer surface for named candidate personas. Both are valid; they answer different questions. *[Positions as complementary methodologies.]*
 
-**Suggested fix:** reframe as additive. Antellion measures what employer brand teams produce; it does not replace them.
+**Suggested fix:** reframe as additive or complementary. Antellion measures what employer brand teams produce; it does not replace them. When differentiating from other AI visibility audits, position around the specific methodology Antellion uses (persona-coded queries, candidate-journey stage coverage, four-model variation) rather than around the inadequacy of other audits. Talk about *what hiring-specific measurement adds* — not *what brand-side measurement is missing*.
+
+**Override mechanic:** override only with founder-supplied reason that confirms the post is genuinely positioning around methodology depth rather than vendor or audit-format comparison.
 
 ---
 
