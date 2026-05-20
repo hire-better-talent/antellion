@@ -239,13 +239,15 @@ Each rule has:
 
 ## LinkedIn-specific
 
-### RULE-20 — No antellion.com / Antellion-controlled URL in LinkedIn body
+### RULE-20 — No antellion.com / Antellion-controlled URL in LinkedIn body (organic posts only)
 
 - **Severity:** BLOCKER
-- **Applies to:** LinkedIn
+- **Applies to:** LinkedIn — **organic posts only** (paid Sponsored Content carve-out 2026-05-19)
 - **Detection:** deterministic
-- **Source:** `~/.claude/projects/-Users-jordanellison-Projects-talentsignal/memory/feedback_linkedin_no_outbound_links.md`; confirmed 2026-04-28
-- **Why it matters:** LinkedIn algorithm down-ranks posts with external links. Enterprise-tone posts land harder when ending on confident statement, not CTA link. Engagement comes from comments/shares/DMs, not click-through.
+- **Source:** `~/.claude/projects/-Users-jordanellison-Projects-talentsignal/memory/feedback_linkedin_no_outbound_links.md`; confirmed 2026-04-28; paid-content carve-out added 2026-05-19
+- **Why it matters:** LinkedIn algorithm down-ranks organic posts with external links. Enterprise-tone organic posts land harder when ending on confident statement, not CTA link. Engagement comes from comments/shares/DMs, not click-through.
+
+**Paid-content carve-out (2026-05-19):** LinkedIn Sponsored Content (paid posts, boosted posts, InMail / Message Ads, Document Ads) may include `antellion.com` URLs by design — paid distribution has different mechanics than organic. The algorithm-penalty rationale does not apply to paid placement. The enterprise-tone discipline (no CTA bait, no engagement gimmicks) still applies — paid copy should land on substance, not on "click here" framing. URL must be functional (route to a real, current blog post or page), not a tracking-only redirect that looks deceptive.
 
 **Pattern hints:** `antellion.com`, `antellion.io`, any `getantellion.com` / `joinantellion.com` / `antellion.work` (alternate sending domains, but still Antellion-controlled).
 
