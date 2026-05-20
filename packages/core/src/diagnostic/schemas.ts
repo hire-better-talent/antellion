@@ -51,6 +51,7 @@ export const FindingCategorySchema = z.enum([
   "CONTENT_GAP",
   "COMPETITIVE_POSITIONING",
   "EMPLOYER_BRAND",
+  "AUTHORITY_DEFICIT",
   "OTHER",
 ]);
 export type FindingCategory = z.infer<typeof FindingCategorySchema>;

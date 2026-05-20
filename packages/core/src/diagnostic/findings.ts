@@ -22,6 +22,7 @@ export type FindingCategoryType =
   | "CONTENT_GAP"
   | "COMPETITIVE_POSITIONING"
   | "EMPLOYER_BRAND"
+  | "AUTHORITY_DEFICIT"
   | "OTHER";
 
 export interface ScanResultInput {

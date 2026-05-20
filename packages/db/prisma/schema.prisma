@@ -56,7 +56,37 @@ enum FindingCategory {
   CONTENT_GAP
   COMPETITIVE_POSITIONING
   EMPLOYER_BRAND
+  AUTHORITY_DEFICIT
   OTHER
+}
+
+// ─── Authority Surface Map enum ─────────────────────────────
+// Canonical 12-category taxonomy locked 2026-05-18.
+// Source of truth: docs/diagnostic/authority-surface-map-taxonomy.md
+// Mirror of `SurfaceCategory` in packages/core/src/diagnostic/authority/surface-rules.ts.
+// Two non-scored buckets included so the inventory layer can persist
+// every classification (reference sites + needs-classification queue).
+enum SurfaceCategory {
+  // Employer-owned (4)
+  CAREERS_SITE
+  COMPANY_NEWSROOM_BLOG
+  FUNCTIONAL_TEAM_CONTENT
+  LEADERSHIP_SOCIAL_CONTENT
+  // Peer-reviewed (3)
+  GLASSDOOR
+  GENERALIST_PEER_REVIEW
+  SECTOR_SPECIFIC_PEER_REVIEW
+  // Specialist (3)
+  COMPENSATION_SPECIALIST_PLATFORMS
+  PERSONA_SPECIFIC_COMMUNITY_PLATFORMS
+  REDDIT_GENERAL_PROFESSIONAL_FORUMS
+  // Independent (1)
+  INDEPENDENT_VOICE_CONTENT
+  // Authoritative (1)
+  TRADE_AND_BUSINESS_PRESS
+  // Non-scored buckets
+  REFERENCE_SITE_UNMAPPED
+  NEEDS_CLASSIFICATION
 }
 
 enum QAStatus {
@@ -745,6 +775,8 @@ model Engagement {
   personas     EngagementPersona[]
   findings     Finding[]
   scanRuns     ScanRun[]
+  authoritySurfaceScores AuthoritySurfaceScore[]
+  authorityPeerSnapshots AuthorityPeerSnapshot[]
 
   @@index([organizationId])
   @@index([clientId])
@@ -832,4 +864,91 @@ model FindingAuditEntry {
   @@unique([findingId])
   @@index([findingId])
   @@map("finding_audit_entries")
+}
+
+// ─── Diagnostic — Authority Surface Map ──────────────────────
+// Locked 2026-05-18. One row per (engagement, surfaceCategory, rubricVersion).
+// Quarter is NOT a column — it is derived from scoredAt at read time so
+// Continuous-SKU quarterly tracking can re-bucket without a migration.
+// `voiceAudit` is REQUIRED (Json, not Json?) — inter-rater defensibility.
+model AuthoritySurfaceScore {
+  id              String          @id @default(cuid())
+  engagementId    String
+  surfaceCategory SurfaceCategory
+  rubricVersion   String          @db.VarChar(32)
+
+  // Sub-component integer scores (0..4)
+  densityScore Int
+  voiceScore   Int
+  recencyScore Int
+  combined     Int
+
+  // Detail for the audit appendix / analyst-facing UI
+  densityWeightedCount Float
+  distinctVoiceCount   Int
+  monthsSinceMostRecent Float?
+
+  // REQUIRED audit log of named voices behind this score.
+  // Shape mirrors `VoiceAudit` in packages/core/src/diagnostic/authority/score.ts.
+  voiceAudit Json
+
+  // Analyst overlay
+  analystNotes String? @db.Text
+
+  scoredAt  DateTime @default(now())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  engagement Engagement @relation(fields: [engagementId], references: [id], onDelete: Cascade)
+
+  // One score per (engagement, surface, rubric version). Re-scoring under
+  // the same rubric updates the row; a rubric version bump creates a new
+  // row, preserving the historical score for cross-quarter comparison.
+  @@unique([engagementId, surfaceCategory, rubricVersion])
+  @@index([engagementId])
+  @@index([surfaceCategory])
+  @@index([scoredAt])
+  @@map("authority_surface_scores")
+}
+
+// Curated peer reference set used to compute per-surface depth gaps.
+// One row per (engagement, peer company, surface). Snapshot semantics:
+// peer scores at the moment this engagement scored them — not a live join.
+model AuthorityPeerSnapshot {
+  id              String          @id @default(cuid())
+  engagementId    String
+  surfaceCategory SurfaceCategory
+  rubricVersion   String          @db.VarChar(32)
+
+  // Peer identity (snapshotted; no FK to Client because peers may be
+  // companies we do not own a record for).
+  peerName   String  @db.VarChar(255)
+  peerDomain String  @db.VarChar(255)
+
+  // Peer's score under the same rubric
+  combined             Int
+  densityScore         Int
+  voiceScore           Int
+  recencyScore         Int
+  densityWeightedCount Float
+  distinctVoiceCount   Int
+  monthsSinceMostRecent Float?
+
+  // REQUIRED audit log — same inter-rater defensibility rule applies to
+  // peer scoring as it does to client scoring.
+  voiceAudit Json
+
+  analystNotes String? @db.Text
+
+  scoredAt  DateTime @default(now())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  engagement Engagement @relation(fields: [engagementId], references: [id], onDelete: Cascade)
+
+  @@unique([engagementId, peerDomain, surfaceCategory, rubricVersion])
+  @@index([engagementId])
+  @@index([surfaceCategory])
+  @@index([peerDomain])
+  @@map("authority_peer_snapshots")
 }
