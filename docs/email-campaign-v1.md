@@ -642,6 +642,106 @@ Jordan
 
 ---
 
+## 11. Step 2 Deep-Link A/B Test
+
+Active experiment as of 2026-05-24. Tests whether deep-linking Step 2 to a substantive blog post (with explicit reply CTA) produces more replies than the current homepage URL-as-CTA.
+
+**Hypothesis:** The funnel produces clicks but no replies (6 click events / 0 replies across 243 touches through 2026-05-21; Step 2 single-variant baseline 70 sends / 3 click events / 0 replies). The bottleneck is landing-page-to-reply. Grounding the prospect in a 2,000-word piece on the EVP-to-AI gap, then asking for one specific data point (closest talent competitor), should produce more replies than dumping them on the homepage.
+
+**Variable tested:** link destination + CTA mechanism. Both variants share subject, opening, and the two argument paragraphs.
+
+**Not tested in this experiment** (held constant): subject line, body argument, sender, send timing, audience targeting.
+
+### Variant A (control) — homepage URL-as-CTA
+
+**Subject:** `your employer brand might not be reaching AI`
+
+**Body:**
+```
+{{first_name}} --
+
+One more thought on this.
+
+Your team has probably invested real money in employer brand -- Glassdoor, careers site, LinkedIn presence, maybe EVP work. All of that matters. But none of it controls what AI synthesizes about {{company}} when a candidate asks "where should I work in [INDUSTRY]?"
+
+AI does not pull from one source. It reads hundreds of signals and produces one answer. The companies that show up in that answer are the ones candidates consider first. The ones that do not show up are invisible to an entire research channel -- regardless of how strong the underlying brand actually is.
+
+For a talent leader thinking about where the next competitive edge comes from, this is worth measuring. I can show you exactly where {{company}} stands in 48 hours.
+
+https://antellion.com?utm_source=instantly&utm_medium=cold_email&utm_campaign=step2&utm_content=home_a
+
+Jordan
+```
+
+**Pre-experiment baseline** (through 2026-05-21, single-variant): 70 sends, 3 click events on 2 unique companies (4.3% event rate, 2.9% unique), 0 replies. Circle is the repeat clicker.
+
+**Note:** Body identical to current single Step 2; URL updated from stale `?utm_source=apollo&utm_campaign=cto_v1_e2` to `instantly`-source UTM scheme for parallel attribution with Variant B.
+
+### Variant B (test) — blog deep-link + explicit reply CTA
+
+**Subject:** `your employer brand might not be reaching AI`
+
+**Body:**
+```
+{{first_name}} --
+
+One more thought on this.
+
+Your team has probably invested real money in employer brand -- Glassdoor, careers site, LinkedIn presence, maybe EVP work. All of that matters. But none of it controls what AI synthesizes about {{company}} when a candidate asks "where should I work in [INDUSTRY]?"
+
+AI does not pull from one source. It reads hundreds of signals and produces one answer. The companies that show up in that answer are the ones candidates consider first. The ones that do not show up are invisible to an entire research channel -- regardless of how strong the underlying brand actually is.
+
+I wrote up the structural reason this happens here: https://antellion.com/blog/evp-to-ai-gap?utm_source=instantly&utm_medium=cold_email&utm_campaign=step2&utm_content=blog_b
+
+If you want to see where {{company}} specifically stands, just reply with your closest talent competitor and I'll have your Snapshot back in 48 hours.
+
+Jordan
+```
+
+**Changes from Variant A:**
+- Closing line restructured: soft "I can show you" replaced with explicit reply CTA + specific data ask (one talent competitor — matches Snapshot intake form's single-competitor field)
+- Link destination: homepage → `/blog/evp-to-ai-gap`
+- Link framing: from "next step" to "structural reason / authority"
+- Penultimate paragraph removed ("For a talent leader thinking…") — its rhetorical work is now done by the blog post itself
+
+### UTM scheme
+
+All Step 2 variants use:
+```
+?utm_source=instantly&utm_medium=cold_email&utm_campaign=step{N}&utm_content={destination}_{variant_id}
+```
+
+Where:
+- `step{N}` — `step1` / `step2` / `step3`
+- `{destination}` — `home` (homepage) / `blog` (blog post deep-link)
+- `{variant_id}` — `a` / `b` / `c` (lowercase)
+
+Step 2 specifically:
+- Variant A: `?utm_source=instantly&utm_medium=cold_email&utm_campaign=step2&utm_content=home_a`
+- Variant B: `?utm_source=instantly&utm_medium=cold_email&utm_campaign=step2&utm_content=blog_b`
+
+This supersedes the prior `?utm_source=apollo&utm_campaign=cto_v1_e2` pattern across all in-flight Step 2 emails. Steps 1 and 3 retain `apollo`-source UTMs until they enter their own A/B tests or are cleaned up in a pass.
+
+### Kill criteria
+
+**Positive signal (lock B, kill A):** First reply on Variant B arrives before any reply on Variant A. Reply is the primary success metric — click rate is informational only.
+
+**Negative signal (hypothesis falsified):** Both variants reach ~120 sends with 0 replies on either side. Conclusion: landing page is NOT the binding bottleneck. Pivot diagnostic focus to body copy / offer framing / audience-product fit.
+
+**Secondary observability:** Click-rate divergence at ≥50 sends per cell is informational. A meaningful CTR delta (e.g. ≥2x) on Variant B without replies suggests the deep-link is hooking interest but the conversion path (post → snapshot form) is the next bottleneck. Useful for follow-up experiments; not a decision trigger here.
+
+**Cell volume reality:** At current ~70-80 sends/week single-variant cap on Step 2, splitting A/B = ~35-40 per cell per week. 120 sends per cell = ~3-4 weeks. Test resolves either way by mid-June 2026 at current cadence.
+
+### Status
+
+| Field | Value |
+|---|---|
+| Started | (not started — founder to log launch date) |
+| Resolved | — |
+| Outcome | — |
+
+---
+
 ## Appendix A: Language Rules
 
 Maintain these across all emails and replies.

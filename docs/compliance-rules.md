@@ -301,12 +301,12 @@ Each rule has:
 ### RULE-30 — Don't use the word "free" in cold email body
 
 - **Severity:** BLOCKER
-- **Applies to:** cold email
+- **Applies to:** cold email body (subject lines carved out — see below)
 - **Detection:** deterministic
 - **Source:** `docs/email-campaign-v1.md` § Do Not Use the Word "Free"
-- **Why it matters:** "Free report" sounds like 2019 lead-magnet PDF. Devalues the Snapshot before it's seen.
+- **Why it matters:** "Free report" in the body sounds like a 2019 lead-magnet PDF. Devalues the Snapshot before it's seen.
 
-**Pattern hints:** `free` (case-insensitive, whole-word). Allow `no cost` as an alternate.
+**Pattern hints:** `free` (case-insensitive, whole-word) **in the email body**. Allow `no cost` as an alternate in body copy.
 
 **Bad:**
 > I'd like to offer you a free AI employer visibility report...
@@ -314,7 +314,9 @@ Each rule has:
 **Good:**
 > I can put together a Visibility Snapshot for [Company] — no cost, takes 48 hours.
 
-**Suggested fix:** replace `free` with `no cost`, or describe the deliverable without referring to price.
+**Suggested fix:** replace `free` with `no cost` in body copy, or describe the deliverable without referring to price.
+
+**Subject-line carve-out (Hormozi $100M Leads framework):** "Free" is **allowed in cold email subject lines** when used as the canonical "lead with the free thing" construction (e.g., `free AI visibility audit for {{company}}`, `Free Visibility Snapshot for {{company}} — 48 hours`). This is the Big Fast Value rhetoric from *$100M Leads* pp. 168–169: the subject IS the offer. Body usage frames the deliverable as a lead-magnet PDF; subject-line usage names the offer. See RULE-32 for the broader subject-line construction guidance.
 
 ---
 
@@ -352,7 +354,10 @@ Each rule has:
 **Good:**
 > 5-minute read: how candidates see {{company}} in AI
 > The $4,900 next step after your {{company}} Snapshot
-> Free Visibility Snapshot for {{company}} — 48 hours [retired in this campaign because RULE-30 blocks "free"; use the equivalent "no cost" version]
+> free AI visibility audit for {{company}}
+> Free Visibility Snapshot for {{company}} — 48 hours
+
+**Note:** "free" is permitted in subject lines per RULE-30's Hormozi carve-out — the subject IS the offer. It remains blocked in body copy.
 
 **Suggested fix:** rewrite the subject to state the offer / deliverable plainly. Resist the urge to tease.
 

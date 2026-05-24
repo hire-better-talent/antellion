@@ -4,6 +4,7 @@
 - [user_role.md](./user_role.md) — Jordan Ellison's role, working style, and how to collaborate
 
 ## Project
+- [project_query_cluster_review_state_and_migration_caveat_may2026.md](./project_query_cluster_review_state_and_migration_caveat_may2026.md) — QueryCluster review-state workflow is live in Neon, but Prisma migrate dev replay is still historically fragile
 - [project_workflow_state_machine.md](./project_workflow_state_machine.md) — Unified workflow state machine implementation status and key decisions
 - [project_org_scoping.md](./project_org_scoping.md) — Org scoping coverage: all actions fixed, reusable helpers in auth.ts, scoping chain reference
 - [project_approved_only_report_pipeline.md](./project_approved_only_report_pipeline.md) — Report pipeline now enforces APPROVED-only at scan results, evidence linking, and QA check levels

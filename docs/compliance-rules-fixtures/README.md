@@ -23,7 +23,7 @@ Fixtures exist for the highest-stakes rules. Remaining rules will accumulate fix
 | RULE-01 (Symphony additive) | ✓ | Day-job conflict, brand-existential |
 | RULE-10 (sector-neutral) | ✓ | Most-corrected pattern in past sessions |
 | RULE-20 (no antellion.com on LinkedIn) | ✓ | Deterministic, easy to validate |
-| RULE-30 (no "free" in cold email) | ✓ | Deterministic, high false-positive risk on edge cases |
+| RULE-30 (no "free" in cold email body) | ✓ | Deterministic, high false-positive risk on edge cases |
 | RULE-50 (WYMB canonical) | ✓ | Code-enforced guarantee — drift = legal exposure |
 | All others | TODO | Add during first 30 days of `compliance-sentry` runtime |
 
