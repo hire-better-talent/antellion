@@ -732,11 +732,23 @@ This supersedes the prior `?utm_source=apollo&utm_campaign=cto_v1_e2` pattern ac
 
 **Cell volume reality:** At current ~70-80 sends/week single-variant cap on Step 2, splitting A/B = ~35-40 per cell per week. 120 sends per cell = ~3-4 weeks. Test resolves either way by mid-June 2026 at current cadence.
 
+### Launch checklist (added 2026-05-27)
+
+Before activating any new variant in Instantly:
+
+- **Link tracking ON per-variant.** Verify by sending the variant to a controlled inbox, then right-click the link → Copy Link Address. The pasted URL must be Instantly's wrapped redirect (e.g. `clicks.instantly.io/...`), not the raw destination URL. Raw URL = tracking is off → A/B click data will be uncomparable across variants.
+- **UTM params intact** in the rendered email body after Instantly's template substitution.
+- **At least one variant in the test has a known-good tracked baseline** (e.g. carryover from a pre-test single-variant version) so the asymmetric case is detectable.
+
 ### Status
 
 | Field | Value |
 |---|---|
-| Started | (not started — founder to log launch date) |
+| Variant A activated | 2026-05-26 (paired with Variant B; same body as pre-test single-variant Step 2, UTM scheme updated) |
+| Variant B activated | 2026-05-26 (Tue) |
+| Tracking config bug | 2026-05-27 (Wed) — Variant B was activated with Instantly link tracking OFF; raw URL inserted in body bypassed Instantly's redirect wrapper. Confirmed via controlled-inbox test. Effect: 12 Vercel visits to `/blog/evp-to-ai-gap` accumulated during the tracking-off window — mix of real human clicks and email-security pre-fetches (Microsoft Defender / Mimecast URL Rewriter), no clean way to split without Vercel Plus. Instantly dashboard showed 0-1 clicks for Variant B during the same window. |
+| Tracking config corrected | (pending — founder action in Instantly UI) |
+| A/B comparison reset | From the correction point forward, Variants A and B are symmetrically tracked. All pre-correction 2B clicks/visits are treated as un-attributable noise. Send-count baseline for kill criteria resets to the correction point for Variant B only; Variant A's baseline carries through. |
 | Resolved | — |
 | Outcome | — |
 
