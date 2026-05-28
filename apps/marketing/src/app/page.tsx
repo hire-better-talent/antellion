@@ -264,7 +264,7 @@ function HowItWorksSection() {
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-bold leading-snug text-gray-900 sm:text-4xl">
-            60 seconds from you. 48 hours from us.{" "}
+            30 seconds from you. 48 hours from us.{" "}
             <span className="text-gradient">No demo required.</span>
           </h2>
         </div>
@@ -286,8 +286,8 @@ function HowItWorksSection() {
 
           <Step
             number={1}
-            title="You fill out 4 fields"
-            description="Company name, website, your name, and your work email. Optionally add your biggest talent competitor and primary role you hire for. Takes 60 seconds."
+            title="You fill out 3 fields"
+            description="Your name, your work email, and your company name. Takes 30 seconds."
           />
           <Step
             number={2}
@@ -553,7 +553,7 @@ function LeadFormSection() {
             Get your Visibility Snapshot
           </h2>
           <p className="mx-auto mt-5 max-w-lg text-lg leading-relaxed text-blue-100/80">
-            Four required fields. 60 seconds. We run 100 candidate-intent queries
+            Three fields. 30 seconds. We run 100 candidate-intent queries
             for your company, score every response, compare you against your top
             competitor, and deliver a personalized analysis to your inbox.
             Each assessment is scoped to your competitive landscape and reviewed
@@ -588,7 +588,7 @@ const FAQ_ITEMS = [
   {
     question: "How long does this take on my end?",
     answer:
-      "60 seconds to fill out the form. 48 hours until your Snapshot arrives by email. We design the query set for your industry and competitive landscape, run the analysis, and produce a written interpretation. The 48-hour window reflects real analytical work, not processing time.",
+      "30 seconds to fill out the form. 48 hours until your Snapshot arrives by email. We design the query set for your industry and competitive landscape, run the analysis, and produce a written interpretation. The 48-hour window reflects real analytical work, not processing time.",
   },
   {
     question: "How is this different from our Glassdoor or Comparably data?",

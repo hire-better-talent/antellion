@@ -36,22 +36,20 @@ export async function submitLead(
   _prev: ActionState,
   formData: FormData,
 ): Promise<ActionState & { success?: boolean }> {
-  // 1. Validate input — all fields are required
+  // 1. Validate input. The form collects three fields — name, work email,
+  //    company name. companyDomain is derived from the email by the schema.
   const result = validate(CreateLeadSchema, {
     companyName: formData.get("companyName"),
-    companyDomain: formData.get("companyDomain"),
     contactName: formData.get("contactName"),
     contactEmail: formData.get("contactEmail"),
-    contactTitle: formData.get("contactTitle"),
-    topCompetitor: formData.get("topCompetitor"),
-    primaryRole: formData.get("primaryRole"),
   });
 
   if (!result.success) return { errors: result.errors };
 
-  const { contactEmail, companyDomain, ...rest } = result.data;
+  const { contactEmail, ...rest } = result.data;
 
-  // 2. Reject free email providers
+  // 2. Reject free email providers, then derive the company domain from the
+  //    work email — the form no longer collects a separate website field.
   const emailDomain = contactEmail.split("@")[1]?.toLowerCase();
   if (!emailDomain || FREE_EMAIL_DOMAINS.has(emailDomain)) {
     return {
@@ -63,6 +61,7 @@ export async function submitLead(
       ],
     };
   }
+  const companyDomain = emailDomain;
 
   // 3. Check for duplicate submission (same email + domain within 24h)
   const cutoff = new Date(Date.now() - DUPLICATE_WINDOW_MS);
@@ -117,18 +116,22 @@ export async function submitLead(
 function notifySlack(lead: {
   companyName: string;
   companyDomain: string;
-  contactTitle: string;
-  topCompetitor: string;
-  primaryRole: string;
+  contactTitle?: string;
+  topCompetitor?: string;
+  primaryRole?: string;
 }) {
   const webhookUrl = process.env.SLACK_WEBHOOK_URL;
   if (!webhookUrl) return;
 
+  // Optional fields are now collected post-signup via follow-up; "— (enrich)"
+  // flags an unfilled field so the operator knows to chase it.
+  const orEnrich = (v?: string) => v ?? "— (enrich)";
+
   const fields = [
     `*Company:* ${lead.companyName} (${lead.companyDomain})`,
-    `*Title:* ${lead.contactTitle}`,
-    `*Top Competitor:* ${lead.topCompetitor}`,
-    `*Primary Role:* ${lead.primaryRole}`,
+    `*Title:* ${orEnrich(lead.contactTitle)}`,
+    `*Top Competitor:* ${orEnrich(lead.topCompetitor)}`,
+    `*Primary Role:* ${orEnrich(lead.primaryRole)}`,
   ].join("\n");
 
   const text = `🎯 *New Snapshot Lead* — contact details in the /leads dashboard\n\n${fields}`;

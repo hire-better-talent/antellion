@@ -86,7 +86,6 @@ export function LeadCaptureForm() {
   const [submittedData, setSubmittedData] = useState<{
     companyName: string;
     contactEmail: string;
-    topCompetitor: string;
   } | null>(null);
 
   function handleEmailBlur(e: React.FocusEvent<HTMLInputElement>) {
@@ -104,7 +103,6 @@ export function LeadCaptureForm() {
     setSubmittedData({
       companyName: (formData.get("companyName") as string) || "",
       contactEmail: (formData.get("contactEmail") as string) || "",
-      topCompetitor: (formData.get("topCompetitor") as string) || "",
     });
     formAction(formData);
   }
@@ -113,7 +111,6 @@ export function LeadCaptureForm() {
   if (state && "success" in state && state.success) {
     const companyName = submittedData?.companyName || "your company";
     const email = submittedData?.contactEmail || "your inbox";
-    const hasCompetitor = !!submittedData?.topCompetitor?.trim();
 
     return (
       <div className="px-2 py-8 text-center sm:py-10">
@@ -153,18 +150,12 @@ export function LeadCaptureForm() {
             curated interpretation with your primary strength and two biggest
             opportunities.
           </p>
-          {hasCompetitor ? (
-            <p>
-              Since you named a talent competitor, your Snapshot will include a
-              direct head-to-head comparison with the gap quantified in
-              percentage points.
-            </p>
-          ) : (
-            <p>
-              We will identify your most visible competitor from the scan data
-              and include a direct comparison with the gap quantified.
-            </p>
-          )}
+          <p>
+            We will identify your most visible competitor from the scan data
+            and include a direct comparison with the gap quantified. If you have
+            a specific talent competitor in mind, just reply to your
+            confirmation email and we will benchmark against them directly.
+          </p>
           <p className="text-gray-500">
             Questions before then? Reach us at{" "}
             <a
@@ -189,10 +180,9 @@ export function LeadCaptureForm() {
       )}
 
       <p className="text-xs uppercase tracking-wide text-gray-500">
-        All fields are required
+        Three fields. 30 seconds.
       </p>
 
-      {/* Required: company info */}
       <div className="grid gap-5 sm:grid-cols-2">
         <DarkFormField
           label="Your name"
@@ -213,46 +203,13 @@ export function LeadCaptureForm() {
         />
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
-        <DarkFormField
-          label="Company name"
-          name="companyName"
-          placeholder="Acme Corp"
-          required
-          error={fieldError(state, "companyName")}
-        />
-        <DarkFormField
-          label="Company website"
-          name="companyDomain"
-          placeholder="acme.com"
-          required
-          error={fieldError(state, "companyDomain")}
-        />
-      </div>
-
-      <div className="grid gap-5 sm:grid-cols-3">
-        <DarkFormField
-          label="Your title"
-          name="contactTitle"
-          placeholder="CHRO"
-          required
-          error={fieldError(state, "contactTitle")}
-        />
-        <DarkFormField
-          label="Talent competitor"
-          name="topCompetitor"
-          placeholder="Ajax Corporation"
-          required
-          error={fieldError(state, "topCompetitor")}
-        />
-        <DarkFormField
-          label="Primary role"
-          name="primaryRole"
-          placeholder="Software Engineer"
-          required
-          error={fieldError(state, "primaryRole")}
-        />
-      </div>
+      <DarkFormField
+        label="Company name"
+        name="companyName"
+        placeholder="Acme Corp"
+        required
+        error={fieldError(state, "companyName")}
+      />
 
       <div className="pt-2">
         <SubmitButton

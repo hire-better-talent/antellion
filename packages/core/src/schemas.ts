@@ -438,20 +438,25 @@ export const LeadStatus = z.enum([
 ]);
 export type LeadStatus = z.infer<typeof LeadStatus>;
 
+// Optional free-text: empty or whitespace-only input normalizes to undefined
+// so the value persists as NULL rather than "" (the Lead columns
+// contactTitle / topCompetitor / primaryRole are nullable).
+const optionalText = z
+  .string()
+  .max(255)
+  .optional()
+  .transform((v) => (v && v.trim() !== "" ? v.trim() : undefined));
+
+// companyDomain is not collected here — it is derived from the work email in
+// the submit action (the form dropped the separate website field). Operator
+// review before each scan catches the rare email-domain ≠ web-domain case.
 export const CreateLeadSchema = z.object({
   companyName: z.string().min(1, "Company name is required").max(255),
-  companyDomain: domain,
   contactName: z.string().min(1, "Your name is required").max(255),
   contactEmail: z.string().email("Valid work email is required").max(255),
-  contactTitle: z.string().min(1, "Your title is required").max(255),
-  topCompetitor: z
-    .string()
-    .min(1, "Please name your biggest talent competitor")
-    .max(255),
-  primaryRole: z
-    .string()
-    .min(1, "Please tell us the primary role you hire for")
-    .max(255),
+  contactTitle: optionalText,
+  topCompetitor: optionalText,
+  primaryRole: optionalText,
 });
 export type CreateLeadInput = z.infer<typeof CreateLeadSchema>;
 
