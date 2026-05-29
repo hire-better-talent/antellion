@@ -1,6 +1,7 @@
 "use client";
 
-import { useActionState, useState, useRef } from "react";
+import { useActionState, useState, useRef, useEffect } from "react";
+import { track } from "@vercel/analytics";
 import { submitLead } from "./actions";
 import { SubmitButton } from "@/components/submit-button";
 import { fieldError } from "@/lib/actions";
@@ -81,12 +82,64 @@ export function LeadCaptureForm() {
   const [state, formAction] = useActionState(submitLead, null);
   const [emailHint, setEmailHint] = useState<string | undefined>();
   const formRef = useRef<HTMLFormElement>(null);
+  const startedRef = useRef(false);
 
   // Track submitted values for personalized confirmation
   const [submittedData, setSubmittedData] = useState<{
     companyName: string;
     contactEmail: string;
   } | null>(null);
+
+  // ── Conversion-funnel analytics (Vercel custom events) ───────
+  // Funnel: lead_form_view → lead_form_start → lead_form_submit →
+  // { lead_form_success | lead_form_error(reason) }. Measurement only —
+  // no behavior change. Lets us see WHERE visitors drop, not just that
+  // completions are zero.
+
+  // Fire once when the form scrolls into view (top of the on-page funnel).
+  useEffect(() => {
+    const el = formRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          track("lead_form_view");
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.5 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // Fire the result event once per submission, keyed on the action state.
+  useEffect(() => {
+    if (!state) return;
+    if ("success" in state && state.success) {
+      track("lead_form_success");
+      return;
+    }
+    if (state.errors && state.errors.length > 0) {
+      const isFreeEmail = state.errors.some(
+        (e) => e.field === "contactEmail" && /work email/i.test(e.message),
+      );
+      track("lead_form_error", {
+        reason: isFreeEmail ? "free_email" : "validation",
+      });
+      return;
+    }
+    if (state.message) {
+      track("lead_form_error", { reason: "server" });
+    }
+  }, [state]);
+
+  // Fire once on the first field interaction ("started filling the form").
+  function handleFormFocus() {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    track("lead_form_start");
+  }
 
   function handleEmailBlur(e: React.FocusEvent<HTMLInputElement>) {
     const value = e.target.value.trim();
@@ -99,6 +152,7 @@ export function LeadCaptureForm() {
   }
 
   function handleSubmit(formData: FormData) {
+    track("lead_form_submit");
     // Capture form values before submission for personalized confirmation
     setSubmittedData({
       companyName: (formData.get("companyName") as string) || "",
@@ -172,7 +226,12 @@ export function LeadCaptureForm() {
 
   // ── Form state ───────────────────────────────────────────
   return (
-    <form action={handleSubmit} ref={formRef} className="space-y-6">
+    <form
+      action={handleSubmit}
+      ref={formRef}
+      onFocus={handleFormFocus}
+      className="space-y-6"
+    >
       {state?.message && (
         <div className="rounded-xl border border-red-800 bg-red-900/30 px-4 py-3 text-sm text-red-300">
           {state.message}
