@@ -3,7 +3,18 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Inter } from "next/font/google";
 import "./globals.css";
+
+// Self-hosted, subsetted, auto-preloaded Inter. Replaces the
+// render-blocking Google Fonts @import that chained HTML → CSS →
+// fonts.googleapis.com → fonts.gstatic.com on the critical path.
+// Inter is a variable font, so all weights ship via the variable axis.
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
 
 export const metadata: Metadata = {
   title:
@@ -38,7 +49,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className={`scroll-smooth ${inter.variable}`}>
       <body className="min-h-screen antialiased">
         <div className="flex min-h-screen flex-col">
           {/* ── Sticky glassmorphism nav ─────────────────────────── */}
